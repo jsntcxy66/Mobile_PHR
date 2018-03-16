@@ -5,6 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { TrackersPage } from './../pages/trackers/trackers';
+import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
+import { TestPage } from './../pages/test/test';
+
+import { Pages } from '../shared/pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,17 +19,43 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Pages[];
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+    this.pages = [{
+      title: 'Health Records',
+      icon: 'leaf',
+      open: false,
+      children: [{
+        title: 'Medical Record',
+        icon: 'medkit',
+        component: MedicalrecordPage
+      },
+      {
+        title: 'Tracker',
+        icon: 'infinite',
+        component: TrackersPage
+      },
+      {
+        title: 'Test',
+        icon: 'clipboard',
+        component: TestPage
+      }]
+    },
+    {
+      title: 'List',
+      icon: 'create',
+      open: false,
+      component: ListPage
+    }];
+    
+  }
 
+  toggleSection(i) {
+    this.pages[i].open = !this.pages[i].open;
   }
 
   initializeApp() {

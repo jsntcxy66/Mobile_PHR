@@ -14,3 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.section-open {
+    background-color: rgb(200, 217, 234);
+    transition: 0.2s linear;
+}
+
+.section-close {
+    background-color: rgb(200, 217, 234);
+}
+
+.section {
+    margin-bottom: 0px;
+}

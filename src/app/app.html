@@ -1,16 +1,24 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
+    <ion-toolbar color="primary">
+      <ion-title>Health Manager</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+      <ion-list *ngFor="let page of pages; let i = index" class="section" no-lines no-padding>
+        <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-open': page.open, 'section-close': !page.open}">
+          <ion-icon item-left name="arrow-forward" *ngIf="!page.open"></ion-icon>
+          <ion-icon item-left name="arrow-down" *ngIf="page.open"></ion-icon>
+          {{page.title}}
+        </button>
+        <ion-list *ngIf="page.children && page.open" class="section" no-padding>
+          <button menuClose ion-item *ngFor="let p of page.children" (click)="openPage(p)">
+            <ion-icon [name]="p.icon" item-left></ion-icon>
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-list>
   </ion-content>
 
 </ion-menu>

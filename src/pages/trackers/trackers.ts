@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FoodtrackerPage } from './../foodtracker/foodtracker';
 
 /**
  * Generated class for the TrackersPage page.
@@ -15,6 +16,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TrackersPage {
 
+  foodtracker: FoodtrackerPage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -22,4 +25,7 @@ export class TrackersPage {
     console.log('ionViewDidLoad TrackersPage');
   }
 
+  selectTracker(page) {
+    this.navCtrl.push(FoodtrackerPage);
+  }
 }

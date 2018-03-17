@@ -44,12 +44,6 @@ export class MyApp {
         icon: 'clipboard',
         component: TestPage
       }]
-    },
-    {
-      title: 'List',
-      icon: 'create',
-      open: false,
-      component: ListPage
     }];
     
   }

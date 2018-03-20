@@ -7,12 +7,73 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Track Food</ion-title>
+    <ion-title>FOOD</ion-title>
   </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="foodtracker">
+      <ion-segment-button value="track">
+        TRACK
+      </ion-segment-button>
+      <ion-segment-button value="history">
+        HISTORY
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content color="primary" pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+  <div [ngSwitch]="foodtracker">
+    <div *ngSwitchCase="'track'">
+      <ion-card>
+        <ion-card-content>
+          <form [formGroup]='foodForm' (ngSubmit)="onSubmit()">
+            <ion-item class="fix-underline">
+              <ion-label color="primary" floating>Food you have had</ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item class="fix-underline">
+              <ion-label color="primary" floating>Weight</ion-label>
+              <ion-input type="text" formControlName="weight"></ion-input>
+            </ion-item>
+            <ion-item class="fix-underline">
+              <ion-label color="primary" fixed>Time Period</ion-label>
+              <ion-select formControlName="timeperiod" text-wrap>
+                <ion-option value="Breakfast">Breakfast</ion-option>
+                <ion-option value="Lunch">Lunch</ion-option>
+                <ion-option value="Dinner">Dinner</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item class="fix-underline">
+              <ion-label color="primary" fixed>Date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
+            </ion-item>
+            <button ion-button type="submit" [disabled]="!foodForm.valid">Record</button>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'history'">
+      <ion-list *ngIf="foods">
+        <ion-card *ngFor="let food of foods">
+          <ion-item>
+            <ion-row>
+              {{food.name}} {{food.weight}}
+            </ion-row>
+            <ion-row>
+              <ion-note>
+                {{food.timeperiod}} - {{food.date | date}}
+              </ion-note>
+            </ion-row>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

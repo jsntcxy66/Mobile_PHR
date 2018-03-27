@@ -1,0 +1,37 @@
+<!--
+  Generated template for the CustomPanelPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<form [formGroup]='custompanel' (ngSubmit)="onSubmit()">
+  <ion-list no-lines>
+    <ion-list-header>Custom Panel</ion-list-header>
+    <ion-item>
+      <ion-label>Food</ion-label>
+      <ion-checkbox formControlName="food"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Alcohol</ion-label>
+      <ion-checkbox formControlName="alcohol"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Exercise</ion-label>
+      <ion-checkbox formControlName="exercise"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Weight</ion-label>
+      <ion-checkbox formControlName="weight"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Medication</ion-label>
+      <ion-checkbox formControlName="medication"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vaccination</ion-label>
+      <ion-checkbox formControlName="vaccination"></ion-checkbox>
+    </ion-item>
+    <button ion-button clear type="submit">OK</button>
+  </ion-list>
+</form>

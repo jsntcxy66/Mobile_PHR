@@ -50,8 +50,8 @@ export class FoodtrackerPage implements OnInit {
     this.trackerService.getFoods()
       .subscribe(foods => {
         foods.sort((a: Food, b: Food) => {
-          var shortdate_a = new Date(a.date).toDateString();
-          var shortdate_b = new Date(b.date).toDateString();
+          var shortdate_a = new Date(new Date(a.date).getFullYear(), new Date(a.date).getMonth() - 1, new Date(a.date).getDate());
+          var shortdate_b = new Date(new Date(b.date).getFullYear(), new Date(b.date).getMonth() - 1, new Date(b.date).getDate());
           if (shortdate_a > shortdate_b) {
             return -1;
           }
@@ -66,7 +66,7 @@ export class FoodtrackerPage implements OnInit {
           }
         });
         foods.forEach(food => {
-          console.log(food.timeperiod, new Date(food.date).toISOString());
+          console.log(food.timeperiod, food.date);
         });
         console.log('Breakfast'.charCodeAt(0));
         console.log('Lunch'.charCodeAt(0));
@@ -85,9 +85,21 @@ export class FoodtrackerPage implements OnInit {
       this.trackerService.getFoods()
         .subscribe(foods => {
           foods.sort((a: Food, b: Food) => {
-            return +new Date(a.date) - +new Date(b.date);
+            var shortdate_a = new Date(new Date(a.date).getFullYear(), new Date(a.date).getMonth() - 1, new Date(a.date).getDate());
+            var shortdate_b = new Date(new Date(b.date).getFullYear(), new Date(b.date).getMonth() - 1, new Date(b.date).getDate());
+            if (shortdate_a > shortdate_b) {
+              return -1;
+            }
+            if (shortdate_a < shortdate_b) {
+              return 1;
+            }
+            if (a.timeperiod.charCodeAt(0) - b.timeperiod.charCodeAt(0) == 8 || a.timeperiod.charCodeAt(0) - b.timeperiod.charCodeAt(0) == -2 || a.timeperiod.charCodeAt(0) - b.timeperiod.charCodeAt(0) == -10) {
+              return -1;
+            }
+            if (a.timeperiod.charCodeAt(0) - b.timeperiod.charCodeAt(0) == -8 || a.timeperiod.charCodeAt(0) - b.timeperiod.charCodeAt(0) == 2 || a.timeperiod.charCodeAt(0) - b.timeperiod.charCodeAt(0) == 10) {
+              return 1;
+            }
           });
-          foods.reverse();
           this.foods = foods;
         }, errmess => this.errMess = <any>errmess);
       console.log('Async operation has ended');
@@ -97,6 +109,8 @@ export class FoodtrackerPage implements OnInit {
 
   onSubmit() {
     this.food = this.foodForm.value;
+    //var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    //var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
     this.trackerService.addFood(this.food);
     this.createForm();
   }

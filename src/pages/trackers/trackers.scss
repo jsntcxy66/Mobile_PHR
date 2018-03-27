@@ -1,6 +1,5 @@
 page-trackers {
     ion-card {
-        position: relative;
         text-align: center;
         padding-bottom: 25px;
         padding-top: 25px;
@@ -9,11 +8,15 @@ page-trackers {
     ion-icon {
         font-size: 60px;
     }
+    
+    ion-label {
+        text-align: center;
+    }
 
     .col {
         padding: 0px;
     }
-
+    
     .item-size {
         text-align: center;
     }

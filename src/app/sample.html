@@ -5,7 +5,7 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
- 
+
 <ion-content>
   <ion-list class="accordion-list">
     <!-- First Level -->
@@ -16,7 +16,7 @@
         <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
           {{ item.name }}
       </button>
- 
+
       <ion-list *ngIf="item.children && item.open" no-lines>
         <!-- Second Level -->
         <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>

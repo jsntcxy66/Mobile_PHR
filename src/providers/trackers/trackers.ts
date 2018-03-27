@@ -5,6 +5,8 @@ import { ProcessHttpmsgProvider } from './../process-httpmsg/process-httpmsg';
 import { Observable } from 'rxjs/Observable';
 
 import { Food } from './../../shared/food';
+import { Alcohol } from './../../shared/alcohol';
+
 import { baseurl } from '../../shared/baseurl';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -28,9 +30,18 @@ export class TrackersProvider {
       .map(res => { return this.processHttpmsgService.extractData(res); })
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
-
   addFood(food) {
     return this.http.post(baseurl + 'foods', food)
+      .subscribe(res => { console.log(res.json()); });
+  }
+
+  getAlcohols(): Observable<Alcohol[]> {
+    return this.http.get(baseurl + 'alcohols')
+      .map(res => { return this.processHttpmsgService.extractData(res); })
+      .catch(error => { return this.processHttpmsgService.handleError(error); })
+  }
+  addAlcohol(alcohol) {
+    return this.http.post(baseurl + 'alcohols', alcohol)
       .subscribe(res => { console.log(res.json()); });
   }
 }

@@ -17,6 +17,8 @@ import { VaccinationtrackerPage } from './../pages/vaccinationtracker/vaccinatio
 import { MedicationtrackerPage } from './../pages/medicationtracker/medicationtracker';
 import { ExercisetrackerPage } from './../pages/exercisetracker/exercisetracker';
 import { AlcoholtrackerPage } from './../pages/alcoholtracker/alcoholtracker';
+import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
+import { CustomtrackerPage } from './../pages/customtracker/customtracker';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,7 +39,9 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     VaccinationtrackerPage,
     MedicationtrackerPage,
     ExercisetrackerPage,
-    AlcoholtrackerPage
+    AlcoholtrackerPage,
+    CreateTrackerPage,
+    CustomtrackerPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     VaccinationtrackerPage,
     MedicationtrackerPage,
     ExercisetrackerPage,
-    AlcoholtrackerPage
+    AlcoholtrackerPage,
+    CreateTrackerPage,
+    CustomtrackerPage
   ],
   providers: [
     StatusBar,

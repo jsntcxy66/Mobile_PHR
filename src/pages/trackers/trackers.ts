@@ -9,6 +9,7 @@ import { VaccinationtrackerPage } from './../vaccinationtracker/vaccinationtrack
 import { MedicationtrackerPage } from './../medicationtracker/medicationtracker';
 import { ExercisetrackerPage } from './../exercisetracker/exercisetracker';
 import { AlcoholtrackerPage } from './../alcoholtracker/alcoholtracker';
+import { CustomtrackerPage } from './../customtracker/customtracker';
 
 /**
  * Generated class for the TrackersPage page.
@@ -91,6 +92,8 @@ export class TrackersPage {
         keys.forEach(key => {
           values.push(this.panels[key]);
         });
+        console.log(keys);
+        console.log(values);
         for (var i = 0; i < keys.length; i++) {
           if (values[i] == true) {
             this.trackers.forEach(tracker => {
@@ -98,10 +101,33 @@ export class TrackersPage {
                 this.customtrackers.push(tracker);
               }
             });
+            console.log(this.customtrackers);
+          }
+        }
+        for (var i = 0; i < keys.length; i++) {
+          if (this.customtrackers[i].name == keys[i]) {
+            
           }
         }
       }
-      console.log(this.customtrackers);
+    });
+  }
+
+  ionViewDidEnter() {
+    console.log("DidEnter");
+    this.storage.get('mytracker').then(mytracker => {
+      if (mytracker != null) {
+        for (let trackers of this.customtrackers) {
+          if (trackers.name == mytracker.name) {
+            return;
+          }
+        }
+        this.customtrackers.push({
+          name: mytracker.name,
+          icon: 'analytics',
+          component: CustomtrackerPage
+        });
+      }
     });
   }
 }

@@ -1,3 +1,4 @@
+import { Mytracker } from './../../shared/mytracker';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { ProcessHttpmsgProvider } from './../process-httpmsg/process-httpmsg';
@@ -42,6 +43,16 @@ export class TrackersProvider {
   }
   addAlcohol(alcohol) {
     return this.http.post(baseurl + 'alcohols', alcohol)
+      .subscribe(res => { console.log(res.json()); });
+  }
+
+  getMytrackers(): Observable<Mytracker[]> {
+    return this.http.get(baseurl + 'mytrackers')
+      .map(res => { return this.processHttpmsgService.extractData(res); })
+      .catch(error => { return this.processHttpmsgService.handleError(error); })
+  }
+  addMytracker(mytracker) {
+    return this.http.post(baseurl + 'mytrackers', mytracker)
       .subscribe(res => { console.log(res.json()); });
   }
 }

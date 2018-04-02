@@ -8,30 +8,11 @@
 <form [formGroup]='custompanel' (ngSubmit)="onSubmit()">
   <ion-list no-lines>
     <ion-list-header>Custom Panel</ion-list-header>
-    <ion-item>
-      <ion-label>Food</ion-label>
-      <ion-checkbox formControlName="food"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Alcohol</ion-label>
-      <ion-checkbox formControlName="alcohol"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Exercise</ion-label>
-      <ion-checkbox formControlName="exercise"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Weight</ion-label>
-      <ion-checkbox formControlName="weight"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Medication</ion-label>
-      <ion-checkbox formControlName="medication"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Vaccination</ion-label>
-      <ion-checkbox formControlName="vaccination"></ion-checkbox>
+    <ion-item *ngFor="let f of formgrouparray">
+      <ion-label>{{f.name | titlecase}}</ion-label>
+      <ion-checkbox formControlName="{{f.name}}"></ion-checkbox>
     </ion-item>
     <button ion-button clear type="submit">OK</button>
+    <button ion-button clear (click)="createTracker()">Create My Tracker</button>
   </ion-list>
 </form>

@@ -1,4 +1,4 @@
-import { CustomtrackerPage } from './../customtracker/customtracker';
+// import { CustomtrackerPage } from './../customtracker/customtracker';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -43,7 +43,7 @@ export class CustomPanelPage {
 
     this.custompanel = this.fb.group(this.formgroupvalue);
 
-    let keys1 = Object.keys(this.formgroupvalue);
+    // let keys1 = Object.keys(this.formgroupvalue);
     this.storage.get('mytracker').then(mytracker => {
       if (mytracker != null) {
         this.formgroupvalue[mytracker.name] = true;

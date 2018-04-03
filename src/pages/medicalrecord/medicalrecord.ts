@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-//import { TileComponent } from '../../components/tile/tile';
-import { ComponentsModule } from '../../components/components.module';
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
+
 /**
  * Generated class for the MedicalrecordPage page.
  *
@@ -14,11 +12,17 @@ import { IonicPageModule } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-medicalrecord',
-  templateUrl: 'medicalrecord.html'
+  templateUrl: 'medicalrecord.html',
+  providers: [MedicalClassificationProvider]
 })
 export class MedicalrecordPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  tiles : any[];
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public mcp: MedicalClassificationProvider
+  ) {
+    this.tiles = mcp.getMain();
   }
 
   ionViewDidLoad() {

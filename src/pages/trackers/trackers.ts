@@ -58,7 +58,7 @@ export class TrackersPage {
       keys.forEach(key => {
         values.push(this.panels[key]);
       });
-      for (var i = 0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i++) {
         if (values[i] == true) {
           this.trackers.forEach(tracker => {
             if (tracker.name == keys[i]) {
@@ -94,7 +94,7 @@ export class TrackersPage {
         });
         console.log(keys);
         console.log(values);
-        for (var i = 0; i < keys.length; i++) {
+        for (let i = 0; i < keys.length; i++) {
           if (values[i] == true) {
             this.trackers.forEach(tracker => {
               if (tracker.name == keys[i]) {
@@ -104,7 +104,7 @@ export class TrackersPage {
             console.log(this.customtrackers);
           }
         }
-        for (var i = 0; i < keys.length; i++) {
+        for (let i = 0; i < keys.length; i++) {
           if (this.customtrackers[i].name == keys[i]) {
             
           }

@@ -25,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TrackersProvider } from '../providers/trackers/trackers';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
 import { TileComponent } from '../components/tile/tile';
+import { MedicalClassificationProvider } from '../providers/medical-classification/medical-classification';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { TileComponent } from '../components/tile/tile';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TrackersProvider,
-    ProcessHttpmsgProvider
+    ProcessHttpmsgProvider,
+    MedicalClassificationProvider
   ]
 })
 export class AppModule {}

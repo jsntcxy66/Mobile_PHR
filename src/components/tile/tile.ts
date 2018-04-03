@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
 
 /**
  * Generated class for the TileComponent component.
@@ -8,15 +9,21 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'tile',
-  templateUrl: 'tile.html'
+  templateUrl: 'tile.html',
+  providers: [MedicalClassificationProvider]
 })
 export class TileComponent {
-
+  @Input() tiles: Array<any>;
   text: string;
 
-  constructor() {
+  constructor(
+    public mcp: MedicalClassificationProvider
+  ) {
     console.log('Hello TileComponent Component');
     this.text = 'Hello World';
   }
 
+  getSub(id: number) {
+    this.tiles = this.mcp.getSub(id);
+  }
 }

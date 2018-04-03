@@ -140,7 +140,20 @@ export class MedicalRecordDetailPage {
     let self = this;
     this.chartOption = {
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: function (params) {
+          console.log(params)
+          var res = (params[0].value[0].toISOString().slice(0, 10));
+          for (var i = 4, l = params.length; i < l; i++) {
+            res += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value[1];
+            if (params[i].seriesName === 'Antigenic') {
+              res += ' mg/dl';
+            } else if (params[i].seriesName === 'Functional') {
+              res += '%';
+            }
+          }
+          return res;
+        }
       },
       legend: {
         data: ['Antigenic', 'Functional']

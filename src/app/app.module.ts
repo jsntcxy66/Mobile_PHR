@@ -24,6 +24,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TrackersProvider } from '../providers/trackers/trackers';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
+import { TileComponent } from '../components/tile/tile';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     ExercisetrackerPage,
     AlcoholtrackerPage,
     CreateTrackerPage,
-    CustomtrackerPage
+    CustomtrackerPage,
+    TileComponent
   ],
   imports: [
     BrowserModule,

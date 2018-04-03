@@ -1,23 +1,25 @@
 tile {
-    ion-card {
-        text-align: center;
-        padding-bottom: 25px;
-        padding-top: 25px;
-    }
-
-    ion-icon {
-        font-size: 60px;
-    }
-    
-    ion-label {
-        text-align: center;
-    }
-
-    .col {
-        padding: 0px;
-    }
-    
-    .item-size {
-        text-align: center;
-    }
+  ion-card {
+    text-align: center;
+    display: flex;
+    height: 180px;
+  }
+  ion-icon {
+    font-size: 60px;
+  }
+  ion-label {
+    text-align: center;
+  }
+  .col {
+    padding: 0px;
+  }
+  .item-size {
+    text-align: center;
+    margin: auto;
+  }
+  p.break {
+    color: white;
+    word-break: break-word;
+    white-space: normal;
+  }
 }

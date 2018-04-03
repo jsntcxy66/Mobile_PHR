@@ -12,27 +12,27 @@ export class MedicalClassificationProvider {
     console.log('Hello MedicalClassificationProvider Provider');
   }
 
-  getMain(): any[] {
-    let arr = [
-      { id: 0, name: 'food', icon: 'restaurant' },
-      { id: 1, name: 'alcohol', icon: 'beer' },
-      { id: 2, name: 'exercise', icon: 'walk' },
-      { id: 3, name: 'weight', icon: 'speedometer' },
-      { id: 4, name: 'medication', icon: 'leaf' },
-      { id: 5, name: 'vaccination', icon: 'leaf' }
-    ];
+  getMenu(id: number): any[] {
+    let arr = [];
+    if (id === 0) {
+      arr = [
+        { id: 1, name: 'Hematology and Coagulation', icon: 'restaurant', end: false },
+        { id: 2, name: 'Immunology', icon: 'beer', end: false },
+        { id: 3, name: 'Clinical Chemistry', icon: 'walk', end: false },
+        { id: 4, name: 'Metabolic and Endocrine Tests', icon: 'speedometer', end: false },
+        { id: 5, name: 'Therapeutic-Drug Monitoring and Toxicology', icon: 'leaf', end: false },
+      ];
+    } else if (id === 1) {
+      arr = [
+        { id: 11, name: 'Antithrombin III', icon: 'restaurant', end: true },
+        { id: 12, name: 'Anti-Xa assay (heparin assay)', icon: 'beer', end: true },
+        { id: 13, name: 'Carboxyhemoglobin', icon: 'walk', end: true },
+        { id: 14, name: 'Differential blood count', icon: 'speedometer', end: true },
+        { id: 15, name: 'Erythrocyte count', icon: 'leaf', end: true },
+        { id: 16, name: 'Erythrocyte lifespan', icon: 'leaf', end: true }
+      ];
+    }
     return arr;
   }
 
-  getSub(id: number): any[] {
-    let arr = [
-      { id: 0, name: '123', icon: 'restaurant' },
-      { id: 1, name: '123', icon: 'beer' },
-      { id: 2, name: '123', icon: 'walk' },
-      { id: 3, name: '123', icon: 'speedometer' },
-      { id: 4, name: '123', icon: 'leaf' },
-      { id: 5, name: '123', icon: 'leaf' }
-    ];
-    return arr;
-  }
 }

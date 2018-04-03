@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
-
+import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medical-record-detail';
 /**
  * Generated class for the TileComponent component.
  *
@@ -17,13 +18,22 @@ export class TileComponent {
   text: string;
 
   constructor(
-    public mcp: MedicalClassificationProvider
+    public navCtrl: NavController,
+    public mcp: MedicalClassificationProvider,
   ) {
     console.log('Hello TileComponent Component');
     this.text = 'Hello World';
   }
 
   getSub(id: number) {
-    this.tiles = this.mcp.getSub(id);
+    this.tiles = this.mcp.getMenu(id);
+  }
+
+  goToRecord(tile: any) {
+    this.navCtrl.push(MedicalRecordDetailPage, 
+      {
+        'id': tile.id,
+        'title': tile.name
+      });
   }
 }

@@ -19,6 +19,7 @@ import { ExercisetrackerPage } from './../pages/exercisetracker/exercisetracker'
 import { AlcoholtrackerPage } from './../pages/alcoholtracker/alcoholtracker';
 import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
 import { CustomtrackerPage } from './../pages/customtracker/customtracker';
+import { MedicalRecordDetailPage } from './../pages/medical-record-detail/medical-record-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +27,8 @@ import { TrackersProvider } from '../providers/trackers/trackers';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
 import { TileComponent } from '../components/tile/tile';
 import { MedicalClassificationProvider } from '../providers/medical-classification/medical-classification';
+
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -44,13 +47,15 @@ import { MedicalClassificationProvider } from '../providers/medical-classificati
     AlcoholtrackerPage,
     CreateTrackerPage,
     CustomtrackerPage,
+    MedicalRecordDetailPage,
     TileComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    NgxEchartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,7 +73,8 @@ import { MedicalClassificationProvider } from '../providers/medical-classificati
     ExercisetrackerPage,
     AlcoholtrackerPage,
     CreateTrackerPage,
-    CustomtrackerPage
+    CustomtrackerPage,
+    MedicalRecordDetailPage
   ],
   providers: [
     StatusBar,

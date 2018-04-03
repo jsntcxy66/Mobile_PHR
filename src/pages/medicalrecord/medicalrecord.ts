@@ -22,7 +22,8 @@ export class MedicalrecordPage {
     public navParams: NavParams,
     public mcp: MedicalClassificationProvider
   ) {
-    this.tiles = mcp.getMain();
+    // get Main Menu
+    this.tiles = mcp.getMenu(0);
   }
 
   ionViewDidLoad() {

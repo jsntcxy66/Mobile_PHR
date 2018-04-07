@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,19 +12,27 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 $background-dark: rgb(140, 179, 217);
 $background-pale: rgb(200, 217, 234);
-
 .section-open {
-    background-color: $background-pale;
-    transition: 0.2s linear;
+  background-color: $background-pale;
+  transition: 0.2s linear;
 }
 
 .section-close {
-    background-color: $background-pale;
+  background-color: $background-pale;
+}
+
+.sidemenu {
+  min-height: calc(100vh - 109px);
 }
 
 .section {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.login {
+  // position: fixed;
+  // bottom: 10px;
+  color: black;
 }

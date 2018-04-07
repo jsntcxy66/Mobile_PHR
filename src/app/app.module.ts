@@ -20,15 +20,24 @@ import { AlcoholtrackerPage } from './../pages/alcoholtracker/alcoholtracker';
 import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
 import { CustomtrackerPage } from './../pages/customtracker/customtracker';
 import { MedicalRecordDetailPage } from './../pages/medical-record-detail/medical-record-detail';
+import { DashboardPage } from './../pages/dashboard/dashboard';
+import { AllergyPage } from './../pages/allergy/allergy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TrackersProvider } from '../providers/trackers/trackers';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
-import { TileComponent } from '../components/tile/tile';
 import { MedicalClassificationProvider } from '../providers/medical-classification/medical-classification';
+import { AllergyClassificationProvider } from '../providers/allergy-classification/allergy-classification';
+import { ImmunizationClassificationProvider } from '../providers/immunization-classification/immunization-classification';
+
+import { TileComponent } from '../components/tile/tile';
+import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
+import { DynamicFormComponent } from './../components/dynamic-form/dynamic-form';
 
 import { NgxEchartsModule } from 'ngx-echarts';
+import { QuestionControlProvider } from '../providers/question-control/question-control';
+import { QuestionProvider } from '../providers/question/question';
 
 @NgModule({
   declarations: [
@@ -48,7 +57,11 @@ import { NgxEchartsModule } from 'ngx-echarts';
     CreateTrackerPage,
     CustomtrackerPage,
     MedicalRecordDetailPage,
-    TileComponent
+    TileComponent,
+    DashboardPage,
+    AllergyPage,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +87,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
     AlcoholtrackerPage,
     CreateTrackerPage,
     CustomtrackerPage,
-    MedicalRecordDetailPage
+    MedicalRecordDetailPage,
+    DashboardPage,
+    AllergyPage
   ],
   providers: [
     StatusBar,
@@ -82,7 +97,11 @@ import { NgxEchartsModule } from 'ngx-echarts';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TrackersProvider,
     ProcessHttpmsgProvider,
-    MedicalClassificationProvider
+    MedicalClassificationProvider,
+    AllergyClassificationProvider,
+    ImmunizationClassificationProvider,
+    QuestionControlProvider,
+    QuestionProvider
   ]
 })
 export class AppModule {}

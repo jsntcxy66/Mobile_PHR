@@ -16,11 +16,13 @@ import { MedicalClassificationProvider } from '../../providers/medical-classific
   providers: [MedicalClassificationProvider]
 })
 export class MedicalrecordPage {
-  tiles : any[];
+
+  tiles: any[];
+
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public mcp: MedicalClassificationProvider
+    private mcp: MedicalClassificationProvider
   ) {
     // get Main Menu
     this.tiles = mcp.getMenu(0);

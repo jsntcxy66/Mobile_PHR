@@ -1,0 +1,16 @@
+<!-- Generated template for the DynamicFormComponent component -->
+<div>
+  <form [formGroup]='form' (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let question of questions">
+      <ion-item class="fix-underline">
+        <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
+      </ion-item>
+    </div>
+
+    <div>
+      <button ion-button type="submit" [disabled]="!form.valid">Record</button>
+    </div>
+
+  </form>
+</div>

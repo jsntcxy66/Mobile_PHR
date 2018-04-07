@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TrackersProvider } from './../../providers/trackers/trackers';
+import { QuestionProvider } from './../../providers/question/question';
 
 import { Food } from './../../shared/food';
 
@@ -28,10 +29,14 @@ export class FoodtrackerPage implements OnInit {
   errMess: string;
   fooddate: string[];
 
+  questions: any[];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
-    private trackerService: TrackersProvider) {
+    private trackerService: TrackersProvider,
+    qp: QuestionProvider) {
 
+    this.questions = qp.getQuestions();
     this.createForm();
 
   }

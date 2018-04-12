@@ -11,6 +11,7 @@
         <ion-icon item-left name="analytics"></ion-icon>
         Dashboard
       </button>
+      <!-- Two levels buttons -->
       <ion-list *ngFor="let page of pages; let i = index" class="section" no-lines no-padding>
         <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-open': page.open, 'section-close': !page.open}">
           <ion-icon item-left name="arrow-forward" *ngIf="!page.open"></ion-icon>
@@ -24,7 +25,8 @@
           </button>
         </ion-list>
       </ion-list>
-      <ion-list class="section" *ngFor="let page of onelayerPages; let i = index" no-lines no-padding>
+      <!-- One level buttons -->
+      <ion-list class="section" *ngFor="let page of onelevelPages; let i = index" no-lines no-padding>
         <button menuClose ion-item color="primary-pale" (click)="openPage(page)">
           <ion-icon item-left [name]='page.icon'></ion-icon>
           {{page.title}}
@@ -32,8 +34,8 @@
       </ion-list>
     </div>
     <button class="login" ion-button icon-start clear>
-      <ion-icon item-left name="log-in"></ion-icon>
-      Login
+      <ion-icon item-left name="log-out"></ion-icon>
+      Logout
     </button>
   </ion-content>
 

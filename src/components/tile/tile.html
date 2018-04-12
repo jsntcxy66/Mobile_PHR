@@ -1,13 +1,13 @@
 <!-- Generated template for the TileComponent component -->
 <ion-grid>
   <ion-row>
-    <ion-col col-4 *ngFor="let tile of tiles;">
-      <ion-card class="fix-card" *ngIf="!tile.end" color="primary" (click)="getSub(tile.id)">
+    <ion-col col-4 *ngFor="let tile of tiles; let i = index">
+      <ion-card class="fix-card" *ngIf="!tile.end" [ngStyle]="{'background-color': color[i%3]}" (click)="getSub(tile.id)">
         <div class="item_size" color="primary">
           <p class="break">{{tile.name | titlecase}}</p>
         </div>
       </ion-card>
-      <ion-card class="fix-card" *ngIf="tile.end" color="primary" (click)="goToRecord(tile)">
+      <ion-card class="fix-card" *ngIf="tile.end" [ngStyle]="{'background-color': color[i%3]}" (click)="goToRecord(tile)">
         <div class="item_size" color="primary">
           <p class="break">{{tile.name | titlecase}}</p>
         </div>

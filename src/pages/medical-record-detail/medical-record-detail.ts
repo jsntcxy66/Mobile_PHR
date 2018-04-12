@@ -15,7 +15,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'medical-record-detail.html',
 })
 export class MedicalRecordDetailPage {
+
   title: string;
+  id: number;
+  color = ['dark-salmon', 'rosy-brown', 'slate-grey'];
+  navcolor: string;
 
   constructor(
     public navCtrl: NavController,
@@ -23,6 +27,8 @@ export class MedicalRecordDetailPage {
     private fb: FormBuilder
   ) {
     this.title = navParams.get('title');
+    this.id = navParams.get('id');
+    this.navcolor = this.color[(this.id+1)%3];
     this.createForm();
   }
 

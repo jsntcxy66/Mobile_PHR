@@ -3,7 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ListPage } from '../pages/list/list';
 import { TrackersPage } from './../pages/trackers/trackers';
 import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
 import { DashboardPage } from './../pages/dashboard/dashboard';
@@ -20,74 +19,83 @@ export class MyApp {
   rootPage: any = DashboardPage;
 
   pages: Pages[];
-  onelayerPages: Pages[];
+  onelevelPages: Pages[];
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [{
-      title: 'Health Records',
-      icon: 'leaf',
-      open: false,
-      children: [
-        {
-          title: 'Allergy',
-          icon: 'medkit',
-          component: AllergyPage
-        },
-        {
-          title: 'Immunization',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        },
-        {
-          title: 'Lab Test',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        },
-        {
-          title: 'Doctor Visit Notes',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        },
-        {
-          title: 'Medical History',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        },
-        {
-          title: 'Social History',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        },
-        {
-          title: 'Surgical History',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        },
-        {
-          title: 'Family History',
-          icon: 'medkit',
-          component: MedicalrecordPage
-        }
-      ]
-    }];
+    // used for ngFor and navigation
+    this.pages = [
+      {
+        title: 'Health Records',
+        icon: 'leaf',
+        open: false,
+        children: [
+          {
+            title: 'Lab Test',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
+            title: 'Doctor Visit Notes',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
+            title: 'Immunization',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          }
+        ]
+      },
+      {
+        title: 'History',
+        icon: 'leaf',
+        open: false,
+        children: [
+          {
+            title: 'Allergy',
+            icon: 'medkit-outline',
+            component: AllergyPage
+          },
+          {
+            title: 'Medication',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
+            title: 'Medical History',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
+            title: 'Social History',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
+            title: 'Surgical History',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
+            title: 'Family History',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          }
+        ]
+      }
+    ];
 
-    this.onelayerPages = [
+    this.onelevelPages = [
       {
         title: 'Trackers',
         icon: 'infinite',
         component: TrackersPage
       },
       {
-        title: 'View Record',
-        icon: 'stats',
-        component: TrackersPage
-      },
-      {
-        title: 'Reminder',
-        icon: 'alarm',
+        title: 'Appointment',
+        icon: 'calendar',
         component: TrackersPage
       },
       {

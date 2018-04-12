@@ -2,7 +2,7 @@ tile {
   ion-card {
     text-align: center;
     display: flex;
-    height: 85px;
+    height: 95px;
   }
   ion-label {
     text-align: center;
@@ -25,5 +25,7 @@ tile {
     white-space: normal;
     font-size: 15px;
     margin: auto;
+    overflow: auto;
+    max-height: 100%;
   }
 }

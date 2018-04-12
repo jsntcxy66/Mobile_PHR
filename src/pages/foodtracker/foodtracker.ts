@@ -34,7 +34,7 @@ export class FoodtrackerPage implements OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
     private trackerService: TrackersProvider,
-    qp: QuestionProvider) {
+    private qp: QuestionProvider) {
 
     this.questions = qp.getQuestions();
     this.createForm();

@@ -17,5 +17,12 @@
 
 
 <ion-content>
+
   <tile [tiles]="tiles"></tile>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="goToHome($event)">
+      <ion-icon name="home"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

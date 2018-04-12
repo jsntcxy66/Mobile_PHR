@@ -22,6 +22,7 @@ import { CustomtrackerPage } from './../pages/customtracker/customtracker';
 import { MedicalRecordDetailPage } from './../pages/medical-record-detail/medical-record-detail';
 import { DashboardPage } from './../pages/dashboard/dashboard';
 import { AllergyPage } from './../pages/allergy/allergy';
+import { AllergyDetailPage } from '../pages/allergy-detail/allergy-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -60,6 +61,7 @@ import { QuestionProvider } from '../providers/question/question';
     TileComponent,
     DashboardPage,
     AllergyPage,
+    AllergyDetailPage,
     DynamicFormComponent,
     DynamicFormQuestionComponent
   ],
@@ -89,7 +91,8 @@ import { QuestionProvider } from '../providers/question/question';
     CustomtrackerPage,
     MedicalRecordDetailPage,
     DashboardPage,
-    AllergyPage
+    AllergyPage,
+    AllergyDetailPage
   ],
   providers: [
     StatusBar,

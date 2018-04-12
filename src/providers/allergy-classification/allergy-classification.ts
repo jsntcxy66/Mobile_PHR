@@ -17,18 +17,18 @@ export class AllergyClassificationProvider {
     let arr = [];
     if (id === 0) {
       arr = [
-        { id: 11, name: 'Food Allergy', icon: 'restaurant', end: true },
-        { id: 12, name: 'Skin Allergy', icon: 'beer', end: true },
-        { id: 13, name: 'Dust Allergy', icon: 'walk', end: true },
-        { id: 14, name: 'Insect Sting Allergy', icon: 'speedometer', end: true },
-        { id: 15, name: 'Pet Allergies', icon: 'leaf', end: true },
-        { id: 16, name: 'Eye Allergy', icon: 'leaf', end: true },
-        { id: 17, name: 'Drug Allergies', icon: 'leaf', end: true },
-        { id: 18, name: 'Allergic Rhinitis', icon: 'leaf', end: true },
-        { id: 19, name: 'Latex Allergy', icon: 'leaf', end: true },
-        { id: 20, name: 'Mold Allergy', icon: 'leaf', end: true },
-        { id: 20, name: 'Sinus Infection', icon: 'leaf', end: true },
-        { id: 20, name: 'Cockroach Allergy', icon: 'leaf', end: true }
+        { id: 1, name: 'Food Allergy', menu: 'allergy', end: true },
+        { id: 2, name: 'Skin Allergy', menu: 'allergy', end: true },
+        { id: 3, name: 'Dust Allergy', menu: 'allergy', end: true },
+        { id: 4, name: 'Insect Sting Allergy', menu: 'allergy', end: true },
+        { id: 5, name: 'Pet Allergies', menu: 'allergy', end: true },
+        { id: 6, name: 'Eye Allergy', menu: 'allergy', end: true },
+        { id: 7, name: 'Drug Allergies', menu: 'allergy', end: true },
+        { id: 8, name: 'Allergic Rhinitis', menu: 'allergy', end: true },
+        { id: 9, name: 'Latex Allergy', menu: 'allergy', end: true },
+        { id: 10, name: 'Mold Allergy', menu: 'allergy', end: true },
+        { id: 11, name: 'Sinus Infection', menu: 'allergy', end: true },
+        { id: 12, name: 'Cockroach Allergy', menu: 'allergy', end: true }
       ];
     }
     return arr;

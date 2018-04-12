@@ -10,8 +10,8 @@
     <ion-title>FOOD</ion-title>
   </ion-navbar>
 
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="foodtracker">
+  <ion-toolbar color="primary">
+    <ion-segment color="light" [(ngModel)]="foodtracker">
       <ion-segment-button value="track">
         TRACK
       </ion-segment-button>
@@ -59,33 +59,6 @@
           </form> -->
         </ion-card-content>
       </ion-card>
-      <ion-card>
-          <ion-card-content>
-            <form [formGroup]='foodForm' (ngSubmit)="onSubmit()">
-              <ion-item class="fix-underline">
-                <ion-label color="primary" floating>Food</ion-label>
-                <ion-input type="text" formControlName="name"></ion-input>
-              </ion-item>
-              <ion-item class="fix-underline">
-                <ion-label color="primary" floating>Weight</ion-label>
-                <ion-input type="text" formControlName="weight"></ion-input>
-              </ion-item>
-              <ion-item class="fix-underline">
-                <ion-label color="primary" fixed>Time Period</ion-label>
-                <ion-select formControlName="timeperiod" text-wrap>
-                  <ion-option value="Breakfast">Breakfast</ion-option>
-                  <ion-option value="Lunch">Lunch</ion-option>
-                  <ion-option value="Dinner">Dinner</ion-option>
-                </ion-select>
-              </ion-item>
-              <ion-item class="fix-underline">
-                <ion-label color="primary" fixed>Date</ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
-              </ion-item>
-              <button ion-button type="submit" [disabled]="!foodForm.valid">Record</button>
-            </form>
-          </ion-card-content>
-        </ion-card>
     </div>
     <div *ngSwitchCase="'history'">
       <ion-list *ngIf="foods">

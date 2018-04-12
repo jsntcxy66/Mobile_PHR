@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
 import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medical-record-detail';
+import { AllergyDetailPage } from './../../pages/allergy-detail/allergy-detail';
+
 /**
  * Generated class for the TileComponent component.
  *
@@ -15,14 +17,14 @@ import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medic
 })
 export class TileComponent {
   @Input() tiles: Array<any>;
-  text: string;
+
+  color = ['darksalmon', 'rosybrown', 'slategrey'];
 
   constructor(
     public navCtrl: NavController,
     public mcp: MedicalClassificationProvider,
   ) {
     console.log('Hello TileComponent Component');
-    this.text = 'Hello World';
   }
 
   getSub(id: number) {
@@ -30,10 +32,19 @@ export class TileComponent {
   }
 
   goToRecord(tile: any) {
-    this.navCtrl.push(MedicalRecordDetailPage, 
-      {
-        'id': tile.id,
-        'title': tile.name
-      });
+    if (tile.menu == "lab_test") {
+      this.navCtrl.push(MedicalRecordDetailPage,
+        {
+          'id': tile.id,
+          'title': tile.name
+        });
+    }
+    else if (tile.menu == "allergy") {
+      this.navCtrl.push(AllergyDetailPage,
+        {
+          'id': tile.id,
+          'title': tile.name
+        });
+    }
   }
 }

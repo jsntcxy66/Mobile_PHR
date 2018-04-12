@@ -10,6 +10,7 @@ import { MedicationtrackerPage } from './../medicationtracker/medicationtracker'
 import { ExercisetrackerPage } from './../exercisetracker/exercisetracker';
 import { AlcoholtrackerPage } from './../alcoholtracker/alcoholtracker';
 import { CustomtrackerPage } from './../customtracker/customtracker';
+import { DashboardPage } from '../dashboard/dashboard';
 
 /**
  * Generated class for the TrackersPage page.
@@ -104,11 +105,11 @@ export class TrackersPage {
             console.log(this.customtrackers);
           }
         }
-        for (let i = 0; i < keys.length; i++) {
-          if (this.customtrackers[i].name == keys[i]) {
-            
-          }
-        }
+        // for (let i = 0; i < keys.length; i++) {
+        //   if (this.customtrackers[i].name == keys[i]) {
+
+        //   }
+        // }
       }
     });
   }
@@ -129,5 +130,10 @@ export class TrackersPage {
         });
       }
     });
+  }
+
+  goToHome(ev) {
+    this.navCtrl.setRoot(DashboardPage);
+    this.navCtrl.popToRoot();
   }
 }

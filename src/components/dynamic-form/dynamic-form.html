@@ -3,7 +3,7 @@
   <form [formGroup]='form' (ngSubmit)="onSubmit()">
 
     <div *ngFor="let question of questions">
-      <ion-item class="fix-underline">
+      <ion-item>
         <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
       </ion-item>
     </div>

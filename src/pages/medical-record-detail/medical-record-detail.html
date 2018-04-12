@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar [color]="navcolor">
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="tab">
+  <ion-toolbar [color]="navcolor">
+    <ion-segment color="light" [(ngModel)]="tab">
       <ion-segment-button value="form">
         TRACK
       </ion-segment-button>
@@ -28,10 +28,10 @@
 
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content color="primary" pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
       refreshingText="Refreshing..."></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <div [ngSwitch]="tab">
     <div *ngSwitchCase="'form'">
       <ion-card>

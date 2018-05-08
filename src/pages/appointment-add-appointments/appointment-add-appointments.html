@@ -1,0 +1,48 @@
+<!--
+  Generated template for the AppointmentAddAppointmentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>New Appointment</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Choose a Date</ion-list-header>
+    <ion-card>
+      <calendar (selectDate)="selectDate($event)"></calendar>
+    </ion-card>
+  </ion-list>
+  <form [formGroup]="newAppointmentForm" (ngSubmit)="onSubmit()">
+    <ion-list radio-group formControlName="doctor">
+      <ion-list-header>Choose one doctor</ion-list-header>
+      <ion-item *ngFor="let doctor of doctors">
+        <ion-label>
+          <h2>{{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}</h2>
+          <p>{{doctor.gender | titlecase}}</p>
+        </ion-label>
+        <ion-radio value="{{doctor.id}}"></ion-radio>
+      </ion-item>
+      <div *ngIf="!doctors">
+        <ion-item>
+          <h2>No Doctor Record!</h2>
+          <button ion-button block (click)="addContact()">Add Contacts</button>
+        </ion-item>
+      </div>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Enter a Location</ion-list-header>
+      <ion-item>
+        <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block type="submit" [disabled]="!check_valid() || !newAppointmentForm.valid">Add Contacts</button>
+  </form>
+</ion-content>

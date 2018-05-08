@@ -5,8 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TrackersPage } from './../pages/trackers/trackers';
 import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
-import { DashboardPage } from './../pages/dashboard/dashboard';
 import { AllergyPage } from './../pages/allergy/allergy';
+import { WelcomePage } from '../pages/welcome/welcome';
+import { ContactPage } from '../pages/contact/contact';
+import { AppointmentPage } from '../pages/appointment/appointment';
 
 import { Pages } from '../shared/pages';
 
@@ -16,7 +18,7 @@ import { Pages } from '../shared/pages';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = DashboardPage;
+  rootPage: any = WelcomePage;
 
   pages: Pages[];
   onelevelPages: Pages[];
@@ -42,6 +44,11 @@ export class MyApp {
             component: MedicalrecordPage
           },
           {
+            title: 'Medication',
+            icon: 'medkit-outline',
+            component: MedicalrecordPage
+          },
+          {
             title: 'Immunization',
             icon: 'medkit-outline',
             component: MedicalrecordPage
@@ -57,11 +64,6 @@ export class MyApp {
             title: 'Allergy',
             icon: 'medkit-outline',
             component: AllergyPage
-          },
-          {
-            title: 'Medication',
-            icon: 'medkit-outline',
-            component: MedicalrecordPage
           },
           {
             title: 'Medical History',
@@ -96,7 +98,7 @@ export class MyApp {
       {
         title: 'Appointment',
         icon: 'calendar',
-        component: TrackersPage
+        component: AppointmentPage
       },
       {
         title: 'Profile',
@@ -106,7 +108,7 @@ export class MyApp {
       {
         title: 'Contact Info',
         icon: 'contact',
-        component: TrackersPage
+        component: ContactPage
       },
       {
         title: 'Resources',
@@ -134,5 +136,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.nav.push(WelcomePage);
   }
 }

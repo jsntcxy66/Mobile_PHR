@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { CalendarModule } from "ion2-calendar";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -23,6 +25,14 @@ import { MedicalRecordDetailPage } from './../pages/medical-record-detail/medica
 import { DashboardPage } from './../pages/dashboard/dashboard';
 import { AllergyPage } from './../pages/allergy/allergy';
 import { AllergyDetailPage } from '../pages/allergy-detail/allergy-detail';
+import { WelcomePage } from '../pages/welcome/welcome';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ContactPage } from './../pages/contact/contact';
+import { ContactDetailPage } from './../pages/contact-detail/contact-detail';
+import { ContactAddContactsPage } from '../pages/contact-add-contacts/contact-add-contacts';
+import { AppointmentPage } from './../pages/appointment/appointment';
+import { AppointmentAddAppointmentsPage } from '../pages/appointment-add-appointments/appointment-add-appointments';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,8 +45,8 @@ import { ImmunizationClassificationProvider } from '../providers/immunization-cl
 import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
 import { DynamicFormComponent } from './../components/dynamic-form/dynamic-form';
+import { CalendarComponent } from './../components/calendar/calendar';
 
-import { NgxEchartsModule } from 'ngx-echarts';
 import { QuestionControlProvider } from '../providers/question-control/question-control';
 import { QuestionProvider } from '../providers/question/question';
 
@@ -63,14 +73,24 @@ import { QuestionProvider } from '../providers/question/question';
     AllergyPage,
     AllergyDetailPage,
     DynamicFormComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    WelcomePage,
+    LoginPage,
+    SignupPage,
+    ContactPage,
+    ContactDetailPage,
+    ContactAddContactsPage,
+    AppointmentPage,
+    AppointmentAddAppointmentsPage,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    NgxEchartsModule
+    NgxEchartsModule,
+    CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,7 +112,15 @@ import { QuestionProvider } from '../providers/question/question';
     MedicalRecordDetailPage,
     DashboardPage,
     AllergyPage,
-    AllergyDetailPage
+    AllergyDetailPage,
+    WelcomePage,
+    LoginPage,
+    SignupPage,
+    ContactPage,
+    ContactDetailPage,
+    ContactAddContactsPage,
+    AppointmentPage,
+    AppointmentAddAppointmentsPage
   ],
   providers: [
     StatusBar,

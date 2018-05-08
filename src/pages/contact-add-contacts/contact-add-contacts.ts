@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
@@ -20,7 +20,8 @@ export class ContactAddContactsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController) {
 
     this.addContactForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -44,6 +45,11 @@ export class ContactAddContactsPage {
 
   onSubmit() {
     console.log(this.addContactForm.value);
+    this.toastCtrl.create({
+      message: 'Successfully added a new contact',
+      position: 'bottom',
+      duration: 2000
+    }).present();
     this.viewCtrl.dismiss();
   }
 

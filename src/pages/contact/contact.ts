@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ContactDetailPage } from './../contact-detail/contact-detail';
 import { ContactAddContactsPage } from '../contact-add-contacts/contact-add-contacts';
 
@@ -20,8 +20,7 @@ export class ContactPage {
   contacts: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private modalCtrl: ModalController,
-    private toastCtrl: ToastController) {
+    private modalCtrl: ModalController) {
 
     this.contacts = [
       {
@@ -56,11 +55,7 @@ export class ContactPage {
     let modal = this.modalCtrl.create(ContactAddContactsPage);
     modal.present();
     modal.onDidDismiss(() => {
-      this.toastCtrl.create({
-        message: 'Successfully added a new contact',
-        position: 'bottom',
-        duration: 2000
-      }).present();
+      console.log("add contact");
     });
   }
 }

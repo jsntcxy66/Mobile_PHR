@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,6 +9,7 @@ import { AllergyPage } from './../pages/allergy/allergy';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ContactPage } from '../pages/contact/contact';
 import { AppointmentPage } from '../pages/appointment/appointment';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 import { Pages } from '../shared/pages';
 
@@ -23,7 +24,8 @@ export class MyApp {
   pages: Pages[];
   onelevelPages: Pages[];
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    public app: App) {
     this.initializeApp();
 
     // used for ngFor and navigation
@@ -138,7 +140,13 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  goToDashboard() {
+    this.nav.setRoot(DashboardPage);
+  }
+
   logout() {
+    // const root = this.app.getRootNav();
+    // root.popToRoot();
     this.nav.push(WelcomePage);
   }
 }

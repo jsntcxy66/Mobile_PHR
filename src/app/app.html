@@ -7,7 +7,7 @@
 
   <ion-content>
     <div class="sidemenu">
-      <button ion-item color="primary-pale">
+      <button menuClose ion-item color="primary-pale" (click)="goToDashboard()">
         <ion-icon item-left name="analytics"></ion-icon>
         Dashboard
       </button>
@@ -33,7 +33,7 @@
         </button>
       </ion-list>
     </div>
-    <button class="logout" ion-button icon-start clear menuClose (click)="logout()">
+    <button class="logout" menuClose ion-button icon-start clear (click)="logout()">
       <ion-icon item-left name="log-out"></ion-icon>
       Logout
     </button>

@@ -1,6 +1,6 @@
 {
-  "name": "healthRecord",
-  "app_id": "",
+  "name": "MobilePHR",
+  "app_id": "fb616dcf",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

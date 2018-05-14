@@ -17,7 +17,6 @@ export class ContactDetailPage {
 
   category: string;
   contacts: any;
-  matchCategory: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -27,41 +26,33 @@ export class ContactDetailPage {
       {
         firstname: "Aaric",
         lastname: "Falconi",
-        telnum: "4123457680",
-        email: "AaricF@gmail.com",
-        address: "515 S Aiken Ave",
-        birthday: "01/01/1990",
-        gender: "male",
+        tel: "4123457680",
+        fax: "4123457680",
+        location: "515 S Aiken Ave",
         type: "friends,doctors"
       },
       {
         firstname: "Alivia",
         lastname: "Ryan",
-        telnum: "4123457680",
-        email: "AliviaR@gmail.com",
-        address: "999 N Negley Str",
-        birthday: "01/01/1990",
-        gender: "female",
+        tel: "4123457680",
+        fax: "4123457680",
+        location: "999 N Negley Str",
         type: "family,emergency"
       },
       {
         firstname: "Martin",
         lastname: "DOUGLAS",
-        telnum: "4123457680",
-        email: "MartinD@gmail.com",
-        address: "132 Centre Ave",
-        birthday: "01/02/1991",
-        gender: "male",
+        tel: "4123457680",
+        fax: "4123457680",
+        location: "132 Centre Ave",
         type: "family"
       },
       {
         firstname: "Scott",
         lastname: "Williamson",
-        telnum: "4123457680",
-        email: "ScottW@gmail.com",
-        address: "111 Fifth Ave",
-        birthday: "07/01/1980",
-        gender: "male",
+        tel: "4123457680",
+        fax: "4123457680",
+        location: "111 Fifth Ave",
         type: "doctors"
       },
     ];

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
 import { QuestionProvider } from '../../providers/question/question';
 
 /**

@@ -20,11 +20,12 @@
   <ion-list *ngFor="let contact of contacts; let i = index">
     <div *ngIf="isCategory(i)">
       <ion-list-header>{{contact.firstname}} {{contact.lastname}}</ion-list-header>
-      <ion-item>Gender: {{contact.gender | titlecase}}</ion-item>
-      <ion-item>Phone: {{contact.telnum}}</ion-item>
-      <ion-item>Email: {{contact.email}}</ion-item>
-      <ion-item>Address: {{contact.address}}</ion-item>
-      <ion-item>Birthday: {{contact.birthday}}</ion-item>
+      <ion-item>
+        Tel: {{contact.tel}}
+        <ion-icon item-end name="call-outline"></ion-icon>
+      </ion-item>
+      <ion-item>Fax: {{contact.fax}}</ion-item>
+      <ion-item>Location: {{contact.location}}</ion-item>
     </div>
   </ion-list>
   <!-- <ion-card [hidden]="matchCategory">

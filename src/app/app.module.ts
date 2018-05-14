@@ -7,7 +7,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { CalendarModule } from "ion2-calendar";
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { TrackersPage } from './../pages/trackers/trackers';
 import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
@@ -33,6 +32,8 @@ import { ContactDetailPage } from './../pages/contact-detail/contact-detail';
 import { ContactAddContactsPage } from '../pages/contact-add-contacts/contact-add-contacts';
 import { AppointmentPage } from './../pages/appointment/appointment';
 import { AppointmentAddAppointmentsPage } from '../pages/appointment-add-appointments/appointment-add-appointments';
+import { ProfilePage } from '../pages/profile/profile';
+import { ProfileEditablePage } from '../pages/profile-editable/profile-editable';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -53,7 +54,6 @@ import { QuestionProvider } from '../providers/question/question';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     ListPage,
     TrackersPage,
     MedicalrecordPage,
@@ -82,7 +82,9 @@ import { QuestionProvider } from '../providers/question/question';
     ContactAddContactsPage,
     AppointmentPage,
     AppointmentAddAppointmentsPage,
-    CalendarComponent
+    CalendarComponent,
+    ProfilePage,
+    ProfileEditablePage
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,6 @@ import { QuestionProvider } from '../providers/question/question';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     ListPage,
     TrackersPage,
     MedicalrecordPage,
@@ -120,7 +121,9 @@ import { QuestionProvider } from '../providers/question/question';
     ContactDetailPage,
     ContactAddContactsPage,
     AppointmentPage,
-    AppointmentAddAppointmentsPage
+    AppointmentAddAppointmentsPage,
+    ProfilePage,
+    ProfileEditablePage
   ],
   providers: [
     StatusBar,

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController } 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
- * Generated class for the ContactAddContactsPage page.
+ * Generated class for the ProfileEditablePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,39 +11,38 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
-  selector: 'page-contact-add-contacts',
-  templateUrl: 'contact-add-contacts.html',
+  selector: 'page-profile-editable',
+  templateUrl: 'profile-editable.html',
 })
-export class ContactAddContactsPage {
+export class ProfileEditablePage {
 
-  addContactForm: FormGroup;
+  profileForm: FormGroup;
+  profile: any;
   formErrors = {
     "firstname": '',
     "lastname": '',
+    "email": '',
     "tel": '',
-    "fax": '',
-    "type": ''
+    "birthday": ''
   };
   validationMessages = {
     "firstname": {
-      "required": "Firstname is required.",
       "minlength": "Firstname must be at least 2 characters long.",
       "maxlength": "Firstname cannot be more than 25 characters long."
     },
     "lastname": {
-      "required": "Lastname is required.",
       "minlength": "Lastname must be at least 2 characters long.",
       "maxlength": "Lastname cannot be more than 25 characters long."
     },
+    "email": {
+      "required": "Email is required.",
+      "email": "Please enter a valid email address."
+    },
     "tel": {
-      "required": "Tel number is required.",
       "pattern": "Please enter a valid phone number."
     },
-    "fax": {
-      "pattern": "Please enter a valid fax number."
-    },
-    "type": {
-      "required": "Contacts type is required."
+    "birthday": {
+      "pattern": "Please enter your birthday in MM/DD/YYYY format."
     }
   };
 
@@ -52,25 +51,38 @@ export class ContactAddContactsPage {
     private viewCtrl: ViewController,
     private toastCtrl: ToastController) {
 
-    this.addContactForm = this.fb.group({
-      firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      tel: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-      fax: ['', Validators.pattern('[0-9]{10}')],
-      location: [''],
-      type: ['', Validators.required]
+    //get profile from database
+    this.profile = {
+      username: "km111",
+      firstname: "Kelly",
+      lastname: "Marsh",
+      gender: "male",
+      email: "KellyM@gmail.com",
+      tel: "4125890011",
+      address: "100 Fifth Ave",
+      birthday: "11/11/1911"
+    };
+
+    this.profileForm = this.fb.group({
+      firstname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
+      lastname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
+      gender: [this.profile.gender],
+      email: ['', [Validators.required, Validators.email]],
+      tel: ['', Validators.pattern('[0-9]{10}')],
+      address: [''],
+      birthday: ['', Validators.pattern('(^(((0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-8]))|((0[13578]|1[02])/(29|30|31))|((0[469]|11)/(29|30)))/(19|20)\\d\\d$)|(^02/29/(19(04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)|20(([02468][048])|([13579][26])))$)')]
     });
-    this.addContactForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    this.profileForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactAddContactsPage');
+    console.log('ionViewDidLoad ProfileEditablePage');
   }
 
   onValueChanged(data?: any) {
-    if (!this.addContactForm) { return; }
-    const form = this.addContactForm;
+    if (!this.profileForm) { return; }
+    const form = this.profileForm;
 
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
@@ -89,13 +101,12 @@ export class ContactAddContactsPage {
   }
 
   onSubmit() {
-    console.log(this.addContactForm.value);
+    console.log(this.profileForm.value);
     this.toastCtrl.create({
-      message: 'Successfully added a new contact',
+      message: 'Successfully edited.',
       position: 'bottom',
       duration: 2000
     }).present();
     this.viewCtrl.dismiss();
   }
-
 }

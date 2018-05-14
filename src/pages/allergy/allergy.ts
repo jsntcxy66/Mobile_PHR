@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AllergyClassificationProvider } from './../../providers/allergy-classification/allergy-classification';
 import { DashboardPage } from '../dashboard/dashboard';
 

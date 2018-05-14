@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
 import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medical-record-detail';
 import { AllergyDetailPage } from './../../pages/allergy-detail/allergy-detail';

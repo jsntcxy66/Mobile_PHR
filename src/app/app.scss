@@ -41,3 +41,7 @@ $background-pale: rgb(200, 217, 234);
     box-shadow: inset 0 -1px 0 0 #dedede;
     border-bottom-color: #dedede !important;
 }
+
+.alert-ios .alert-radio-label{ white-space: normal;}
+.alert-md .alert-radio-label{ white-space: normal;}
+.alert-wp .alert-radio-label{ white-space: normal;}

@@ -10,6 +10,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { ContactPage } from '../pages/contact/contact';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { Pages } from '../shared/pages';
 
@@ -104,12 +105,12 @@ export class MyApp {
       },
       {
         title: 'Profile',
-        icon: 'document',
-        component: TrackersPage
+        icon: 'person',
+        component: ProfilePage
       },
       {
-        title: 'Contact Info',
-        icon: 'contact',
+        title: 'Contacts Info',
+        icon: 'contacts',
         component: ContactPage
       },
       {

@@ -39,7 +39,7 @@ export class SignupPage {
     },
     "password": {
       "required": "Password is required.",
-      "pattern": "Password must be 8-17 characters long and contains at least one number, one letter and one unique character such as !@#$%&? -=[]\\\""
+      "pattern": "Password must be 8-17 characters long and contains at least one number, one letter and one unique character such as !@#$%^&*?\"';:"
     },
     "email": {
       "required": "Email is required.",
@@ -103,7 +103,7 @@ export class SignupPage {
 
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      password: ['', [Validators.required, Validators.pattern('^.*(?=.{8,17})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\!\@\#\$\%\&\-\=\?\ \"\[\]\'\\\;\']).*$')]],
+      password: ['', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\!\@\#\$\%\^\&\*\?\"\'\;\:]).*$')]],
       email: ['', [Validators.required, Validators.email]],
       secQues: ['', Validators.required],
       secAns: ['', Validators.required],

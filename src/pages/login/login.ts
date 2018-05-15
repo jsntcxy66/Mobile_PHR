@@ -1,6 +1,6 @@
 import { DashboardPage } from './../dashboard/dashboard';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**
@@ -20,7 +20,8 @@ export class LoginPage {
   loginForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private menuCtrl: MenuController) {
 
       this.loginForm = this.fb.group({
         username: ['', Validators.required],
@@ -31,9 +32,13 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
   onSubmit() {
     this.navCtrl.setRoot(DashboardPage);
+    this.menuCtrl.enable(true);
   }
 
 }

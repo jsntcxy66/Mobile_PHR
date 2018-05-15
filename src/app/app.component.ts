@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, App } from 'ionic-angular';
+import { Nav, Platform, App, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -11,6 +11,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { ResourcesPage } from '../pages/resources/resources';
 
 import { Pages } from '../shared/pages';
 
@@ -26,7 +27,9 @@ export class MyApp {
   onelevelPages: Pages[];
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    public app: App) {
+    public app: App,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController) {
     this.initializeApp();
 
     // used for ngFor and navigation
@@ -116,7 +119,7 @@ export class MyApp {
       {
         title: 'Resources',
         icon: 'link',
-        component: TrackersPage
+        component: ResourcesPage
       }
     ]
 
@@ -148,6 +151,41 @@ export class MyApp {
   logout() {
     // const root = this.app.getRootNav();
     // root.popToRoot();
-    this.nav.push(WelcomePage);
+    let confirm = this.alertCtrl.create({
+      title: 'Confirm Logout',
+      message: 'Are you sure to log out?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('logout cancelled');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            let toast = this.toastCtrl.create({
+              message: 'Log out successfully',
+              duration: 2000
+            });
+            toast.present();
+            this.nav.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
+
+  // shouldShow() {
+  //   let view = this.nav.getActive().name;
+  //   console.log(view);
+  //   return true;
+  //   if (view == "WelcomePage") {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
 }

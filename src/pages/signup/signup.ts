@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DashboardPage } from '../dashboard/dashboard';
 
@@ -68,7 +68,8 @@ export class SignupPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private menuCtrl: MenuController) {
 
     this.secQuestions = [
       {
@@ -121,6 +122,9 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
   onValueChanged(data?: any) {
     if (!this.registerForm) { return; }
@@ -141,6 +145,7 @@ export class SignupPage {
   onSubmit() {
     console.log(this.registerForm.value);
     this.navCtrl.setRoot(DashboardPage);
+    this.menuCtrl.enable(true);
   }
 
 }

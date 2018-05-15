@@ -84,6 +84,7 @@ export class AppointmentAddAppointmentsPage {
   addContact() {
     let modal = this.modalCtrl.create(ContactAddContactsPage);
     modal.present();
+    this.dismiss();
     modal.onDidDismiss(() => {
       console.log("Contacts added");
     });

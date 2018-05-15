@@ -24,11 +24,11 @@ export class WelcomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
   }
-  ionViewDidEnter() {
-    this.menuCtrl.swipeEnable(false);
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
   ionViewWillLeave() {
-    this.menuCtrl.swipeEnable(true);
+    this.menuCtrl.enable(true);
   }
 
   signup() {

@@ -35,6 +35,7 @@ import { AppointmentPage } from './../pages/appointment/appointment';
 import { AppointmentAddAppointmentsPage } from '../pages/appointment-add-appointments/appointment-add-appointments';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileEditablePage } from '../pages/profile-editable/profile-editable';
+import { ResourcesPage } from '../pages/resources/resources';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -85,7 +86,8 @@ import { QuestionProvider } from '../providers/question/question';
     AppointmentAddAppointmentsPage,
     CalendarComponent,
     ProfilePage,
-    ProfileEditablePage
+    ProfileEditablePage,
+    ResourcesPage
   ],
   imports: [
     BrowserModule,
@@ -124,7 +126,8 @@ import { QuestionProvider } from '../providers/question/question';
     AppointmentPage,
     AppointmentAddAppointmentsPage,
     ProfilePage,
-    ProfileEditablePage
+    ProfileEditablePage,
+    ResourcesPage
   ],
   providers: [
     StatusBar,

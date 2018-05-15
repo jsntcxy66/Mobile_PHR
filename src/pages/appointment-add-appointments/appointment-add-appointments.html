@@ -42,10 +42,10 @@
         </ion-label>
         <ion-radio value="{{doctor.id}}" (ionSelect)="selectDoctor($event)"></ion-radio>
       </ion-item>
-      <div *ngIf="!doctors">
+      <div *ngIf="!doctors || doctors==''">
         <ion-item>
           <h2>No Doctor Record!</h2>
-          <button ion-button block (click)="addContact()">Add Contacts</button>
+          <button ion-button block type="button" (click)="addContact()">Add Contacts</button>
         </ion-item>
       </div>
     </ion-list>
@@ -58,6 +58,6 @@
         <ion-radio value="{{location}}"></ion-radio>
       </ion-item>
     </ion-list>
-    <button ion-button block type="submit" [disabled]="!check_valid() || !newAppointmentForm.valid">Add Contacts</button>
+    <button ion-button block type="submit" [disabled]="!check_valid() || !newAppointmentForm.valid">Create</button>
   </form>
 </ion-content>

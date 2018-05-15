@@ -44,7 +44,8 @@ export class QuestionProvider {
         options: [
           { key: 'breakfast', value: 'Breakfast' },
           { key: 'lunch', value: 'Lunch' },
-          { key: 'dinner', value: 'Dinner' }
+          { key: 'dinner', value: 'Dinner' },
+          { key: 'snack', value: 'Snack' }
         ],
         order: 3
       }),

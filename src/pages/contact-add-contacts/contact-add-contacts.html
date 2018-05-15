@@ -22,8 +22,8 @@
 <ion-content padding>
   <form [formGroup]='addContactForm' (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-label>Contacts Type</ion-label>
-      <ion-select formControlName="type" (value)="type" multiple="true">
+      <ion-label>Contact Group</ion-label>
+      <ion-select formControlName="group" (value)="group" multiple="true">
         <ion-option value="emergency">Emergency</ion-option>
         <ion-option value="friend">Friend</ion-option>
         <ion-option value="family">Family</ion-option>
@@ -31,7 +31,7 @@
       </ion-select>
     </ion-item>
     <div class="pull-right color-red">
-      <span [hidden]="!(formErrors.type)">{{formErrors.type}}</span>
+      <span [hidden]="!(formErrors.group)">{{formErrors.group}}</span>
     </div>
     <ion-item>
       <ion-label floating>First Name</ion-label>
@@ -54,16 +54,31 @@
     <div class="pull-right color-red">
       <span [hidden]="!(formErrors.tel)">{{formErrors.tel}}</span>
     </div>
-    <ion-item>
+    <ion-item *ngIf="isDoctor">
       <ion-label floating>Fax</ion-label>
       <ion-input type="tel" formControlName="fax"></ion-input>
     </ion-item>
     <div class="pull-right color-red">
       <span [hidden]="!(formErrors.fax)">{{formErrors.fax}}</span>
     </div>
-    <ion-item>
-      <ion-label floating>Location</ion-label>
-      <ion-input formControlName="location"></ion-input>
+    <ion-item *ngIf="!isDoctor">
+      <ion-label floating>Address</ion-label>
+      <ion-input formControlName="location1"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="isDoctor">
+      <ion-label floating>Address1</ion-label>
+      <ion-input formControlName="location1"></ion-input>
+      <ion-icon color="primary" name="add-circle" (click)="addAddress()" item-end></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="address[0] && isDoctor">
+      <ion-label floating>Address2</ion-label>
+      <ion-input formControlName="location2"></ion-input>
+      <ion-icon color="danger" name="remove-circle" (click)="deleteAddress()" item-end></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="address[1] && isDoctor">
+      <ion-label floating>Address3</ion-label>
+      <ion-input formControlName="location3"></ion-input>
+      <ion-icon color="danger" name="remove-circle" (click)="deleteAddress()" item-end></ion-icon>
     </ion-item>
     <button ion-button block type="submit" [disabled]="!addContactForm.valid">Create</button>
   </form>

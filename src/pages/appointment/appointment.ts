@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AppointmentAddAppointmentsPage } from '../appointment-add-appointments/appointment-add-appointments';
 
 /**
@@ -18,28 +18,30 @@ export class AppointmentPage {
 
   appointments: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      //appointments should be already sorted by time
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private modalCtrl: ModalController) {
+    
+    //get appointments which have already been sorted by time
     this.appointments = [
       {
-        time: "2018-06-01",
+        date: "2018-06-01",
+        time: "21:00",
         firstname: "Scott",
         lastname: "Williamson",
-        gender: "male",
         address: "111 Fifth Ave"
       },
       {
-        time: "2018-06-03",
+        date: "2018-06-03",
+        time: "10:30",
         firstname: "Aaric",
         lastname: "Falconi",
-        gender: "male",
         address: "515 S Aiken Ave",
       },
       {
-        time: "2018-06-19",
+        date: "2018-06-19",
+        time: "09:20",
         firstname: "Scott",
         lastname: "Williamson",
-        gender: "male",
         address: "111 Fifth Ave"
       }
     ];
@@ -50,6 +52,10 @@ export class AppointmentPage {
   }
 
   addAppointment() {
-    this.navCtrl.push(AppointmentAddAppointmentsPage);
+    let modal = this.modalCtrl.create(AppointmentAddAppointmentsPage);
+    modal.present();
+    modal.onDidDismiss(() => {
+      console.log("add appointment");
+    });
   }
 }

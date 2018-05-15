@@ -17,12 +17,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ContactAddContactsPage {
 
   addContactForm: FormGroup;
+  groups: Array<string> = [];
+  isDoctor: boolean = false;
+  address: Array<number> = [];
+
   formErrors = {
     "firstname": '',
     "lastname": '',
     "tel": '',
     "fax": '',
-    "type": ''
+    "group": ''
   };
   validationMessages = {
     "firstname": {
@@ -42,8 +46,8 @@ export class ContactAddContactsPage {
     "fax": {
       "pattern": "Please enter a valid fax number."
     },
-    "type": {
-      "required": "Contacts type is required."
+    "group": {
+      "required": "Contact group is required."
     }
   };
 
@@ -57,11 +61,15 @@ export class ContactAddContactsPage {
       lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       tel: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       fax: ['', Validators.pattern('[0-9]{10}')],
-      location: [''],
-      type: ['', Validators.required]
+      location1: [''],
+      location2: [''],
+      location3: [''],
+      group: ['', Validators.required]
     });
     this.addContactForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
+
+    this.addContactForm.controls["group"].valueChanges.subscribe(value => this.onGroupValueChanged(value));
   }
 
   ionViewDidLoad() {
@@ -82,6 +90,25 @@ export class ContactAddContactsPage {
         }
       }
     }
+  }
+
+  onGroupValueChanged(value) {
+    this.isDoctor = false;
+    this.groups = value;
+    this.groups.forEach(group => {
+      if(group == "doctor") this.isDoctor = true;
+    });
+    console.log(this.isDoctor);
+  }
+
+  addAddress() {
+    if (this.address.length < 2)
+      this.address.push(1);
+  }
+
+  deleteAddress() {
+    if (this.address.length > 0)
+      this.address.pop();
   }
 
   dismiss() {

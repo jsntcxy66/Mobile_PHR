@@ -22,10 +22,13 @@
       <ion-list-header>{{contact.firstname}} {{contact.lastname}}</ion-list-header>
       <ion-item>
         Tel: {{contact.tel}}
-        <ion-icon item-end name="call-outline"></ion-icon>
+        <ion-icon item-end name="call" (click)="callNumber(i)"></ion-icon>
       </ion-item>
       <ion-item>Fax: {{contact.fax}}</ion-item>
-      <ion-item>Location: {{contact.location}}</ion-item>
+      <ion-item *ngIf="!(contact.location[1] || contact.location[2])">Address: {{contact.location[0]}}</ion-item>
+      <ion-item *ngIf="contact.location[1] || contact.location[2]">Address1: {{contact.location[0]}}</ion-item>
+      <ion-item *ngIf="contact.location[1]">Address2: {{contact.location[1]}}</ion-item>
+      <ion-item *ngIf="contact.location[2]">Address3: {{contact.location[2]}}</ion-item>
     </div>
   </ion-list>
   <!-- <ion-card [hidden]="matchCategory">

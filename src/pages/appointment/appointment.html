@@ -18,12 +18,12 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>Your Appointments</ion-list-header>
+    <ion-list-header>My Appointments</ion-list-header>
     <ion-item *ngFor="let appointment of appointments">
-      <h2>{{appointment.firstname | titlecase}} {{appointment.lastname | titlecase}}</h2>
-      <h3>{{appointment.time | date}}</h3>
-      <p>{{appointment.address}}</p>
-      <ion-note item-end>{{appointment.gender | titlecase}}</ion-note>
+      <h2>{{appointment.date | date}} at {{appointment.time}}</h2>
+      <h3>{{appointment.address}}</h3>
+      <p>{{appointment.firstname | titlecase}} {{appointment.lastname | titlecase}}</p>
+      <!-- <ion-note item-end>{{appointment.gender | titlecase}}</ion-note> -->
     </ion-item>
   </ion-list>
   <div>

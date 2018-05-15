@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CalendarModule } from "ion2-calendar";
+import { CallNumber } from '@ionic-native/call-number';
 
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
@@ -135,7 +136,8 @@ import { QuestionProvider } from '../providers/question/question';
     AllergyClassificationProvider,
     ImmunizationClassificationProvider,
     QuestionControlProvider,
-    QuestionProvider
+    QuestionProvider,
+    CallNumber
   ]
 })
 export class AppModule {}

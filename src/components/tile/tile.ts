@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
 import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medical-record-detail';
 import { AllergyDetailPage } from './../../pages/allergy-detail/allergy-detail';
+import { ImmunizationDetailPage } from '../../pages/immunization-detail/immunization-detail';
 
 /**
  * Generated class for the TileComponent component.
@@ -13,7 +14,7 @@ import { AllergyDetailPage } from './../../pages/allergy-detail/allergy-detail';
 @Component({
   selector: 'tile',
   templateUrl: 'tile.html',
-  providers: [MedicalClassificationProvider]
+  // providers: [MedicalClassificationProvider]
 })
 export class TileComponent {
   @Input() tiles: Array<any>;
@@ -23,6 +24,7 @@ export class TileComponent {
   constructor(
     public navCtrl: NavController,
     public mcp: MedicalClassificationProvider,
+    private modalCtrl: ModalController
   ) {
     console.log('Hello TileComponent Component');
   }
@@ -40,11 +42,20 @@ export class TileComponent {
         });
     }
     else if (tile.menu == "allergy") {
-      this.navCtrl.push(AllergyDetailPage,
+      let modal = this.modalCtrl.create(AllergyDetailPage,
         {
           'id': tile.id,
           'title': tile.name
         });
+        modal.present();
+    }
+    else if (tile.menu == "immunization") {
+      let modal = this.modalCtrl.create(ImmunizationDetailPage,
+        {
+          'id': tile.id,
+          'title': tile.name
+        });
+        modal.present();
     }
   }
 }

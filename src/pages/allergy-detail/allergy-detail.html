@@ -6,39 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar [color]="navcolor">
-    <ion-title>{{title}}</ion-title>
-  </ion-navbar>
-
   <ion-toolbar [color]="navcolor">
-    <ion-segment color="light" [(ngModel)]="tab">
-      <ion-segment-button value="form">
-        TRACK
-      </ion-segment-button>
-      <ion-segment-button value="history">
-        HISTORY
-      </ion-segment-button>
-    </ion-segment>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="white" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div [ngSwitch]="tab">
-    <div *ngSwitchCase="'form'">
-      <ion-card>
-        <ion-card-content>
-          <dynamic-form [questions]="questions"></dynamic-form>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    <div *ngSwitchCase="'history'">
-      <ion-card>
-        <ion-card-header>
-          History Data here
-        </ion-card-header>
-      </ion-card>
-    </div>
-  </div>
+  <ion-card>
+    <ion-card-content>
+      <dynamic-form [questions]="questions"></dynamic-form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

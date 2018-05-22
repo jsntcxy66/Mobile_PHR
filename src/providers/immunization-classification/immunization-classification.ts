@@ -14,21 +14,24 @@ export class ImmunizationClassificationProvider {
   }
 
   getMenu(id: number): any[] {
+    // get categories from database
     let arr = [];
     if (id === 0) {
       arr = [
-        { id: 11, name: 'Food Allergy', icon: 'restaurant', end: true },
-        { id: 12, name: 'Skin Allergy', icon: 'beer', end: true },
-        { id: 13, name: 'Dust Allergy', icon: 'walk', end: true },
-        { id: 14, name: 'Insect Sting Allergy', icon: 'speedometer', end: true },
-        { id: 15, name: 'Pet Allergies', icon: 'leaf', end: true },
-        { id: 16, name: 'Eye Allergy', icon: 'leaf', end: true },
-        { id: 17, name: 'Drug Allergies', icon: 'leaf', end: true },
-        { id: 18, name: 'Allergic Rhinitis', icon: 'leaf', end: true },
-        { id: 19, name: 'Latex Allergy', icon: 'leaf', end: true },
-        { id: 20, name: 'Mold Allergy', icon: 'leaf', end: true },
-        { id: 20, name: 'Sinus Infection', icon: 'leaf', end: true },
-        { id: 20, name: 'Cockroach Allergy', icon: 'leaf', end: true }
+        { id: 1, name: 'Influenza', menu: 'immunization', end: true },
+        { id: 2, name: 'Tdap or Td', menu: 'immunization', end: true },
+        { id: 3, name: 'MMR', menu: 'immunization', end: true },
+        { id: 4, name: 'VAR', menu: 'immunization', end: true },
+        { id: 5, name: 'RZV or ZVL', menu: 'immunization', end: true },
+        { id: 6, name: 'HPV-Female', menu: 'immunization', end: true },
+        { id: 7, name: 'HPV-Male', menu: 'immunization', end: true },
+        { id: 8, name: 'PCV13', menu: 'immunization', end: true },
+        { id: 9, name: 'PPSV23', menu: 'immunization', end: true },
+        { id: 10, name: 'HepA', menu: 'immunization', end: true },
+        { id: 11, name: 'HepB', menu: 'immunization', end: true },
+        { id: 12, name: 'MenACWY', menu: 'immunization', end: true },
+        { id: 13, name: 'MenB', menu: 'immunization', end: true },
+        { id: 14, name: 'Hib', menu: 'immunization', end: true }
       ];
     }
     return arr;

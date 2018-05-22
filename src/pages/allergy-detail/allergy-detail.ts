@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
 
 /**
@@ -16,7 +16,6 @@ import { QuestionProvider } from '../../providers/question/question';
 })
 export class AllergyDetailPage {
   
-  tab: string = "form";
   title: string;
   id: number;
   questions: any[];
@@ -24,7 +23,8 @@ export class AllergyDetailPage {
   navcolor: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private qp: QuestionProvider) {
+    private qp: QuestionProvider,
+    private viewCtrl: ViewController) {
 
       this.title = navParams.get('title');
       this.id = navParams.get('id');
@@ -34,6 +34,10 @@ export class AllergyDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllergyDetailPage');
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

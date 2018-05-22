@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { QuestionControlProvider } from './../../providers/question-control/question-control';
 
 import { QuestionBase } from './../../shared/question-base';
+import { ViewController, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the DynamicFormComponent component.
@@ -20,7 +21,9 @@ export class DynamicFormComponent {
   form: FormGroup;
   payLoad = '';
 
-  constructor(private qcp: QuestionControlProvider) {
+  constructor(private qcp: QuestionControlProvider,
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController) {
     console.log('Hello DynamicFormComponent Component');
   }
 
@@ -29,7 +32,14 @@ export class DynamicFormComponent {
   }
 
   onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
+    this.payLoad = this.form.value;
+    console.log(this.payLoad);
+    this.toastCtrl.create({
+      message: 'Successfully added',
+      position: 'bottom',
+      duration: 2000
+    }).present();
+    this.viewCtrl.dismiss();
   }
 
 }

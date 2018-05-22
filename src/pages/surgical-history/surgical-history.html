@@ -1,0 +1,40 @@
+<!--
+  Generated template for the SurgicalHistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>SURGICAL HISTORY</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngIf="records">
+    <ion-list-header>Surgical History</ion-list-header>
+    <ion-item *ngFor="let record of records">
+      <div class="white-space">
+        <h3>Sugery: {{record.sugery}}</h3>
+        <h3>Doctor: {{record.doctor}}</h3>
+        <p>{{record.date | date}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-card [hidden]="records">
+    <ion-card-header>No surgical history record.</ion-card-header>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addSurgicalHistory()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

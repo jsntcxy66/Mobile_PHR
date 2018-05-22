@@ -1,0 +1,48 @@
+<!--
+  Generated template for the AllergyHistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>ALLERGY</ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngIf="records">
+    <ion-list-header>Allergy History</ion-list-header>
+    <ion-item *ngFor="let record of records; let i = index">
+      <div class="white-space">
+        <h3 *ngIf="checkLifeThreatening(i)">Symptom:
+          <span style="color:red">{{record.symptom}}</span>
+        </h3>
+        <h3 *ngIf="!checkLifeThreatening(i)">Symptom: {{record.symptom}}</h3>
+        <h3 *ngIf="checkLifeThreatening(i)">Trigger:
+          <span style="color:red">{{record.trigger}}</span>
+        </h3>
+        <h3 *ngIf="!checkLifeThreatening(i)">Trigger: {{record.trigger}}</h3>
+        <p>{{record.date | date}}</p>
+      </div>
+      <p item-end>{{record.category}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-card [hidden]="records">
+    <ion-card-header>No allergy record.</ion-card-header>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addAllergy()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

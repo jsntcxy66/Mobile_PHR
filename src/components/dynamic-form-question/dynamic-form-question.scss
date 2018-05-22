@@ -2,6 +2,7 @@ dynamic-form-question {
   .width {
     width: 49%;
     display: inline-block;
+    white-space: initial;
   }
   .color {
     color: #222;
@@ -23,5 +24,8 @@ dynamic-form-question {
   }
   .left-pull {
     padding-left: 0px;
+  }
+  .right-pull {
+    float: right;
   }
 }

@@ -29,9 +29,4 @@ export class AllergyPage {
     console.log('ionViewDidLoad AllergyPage');
   }
 
-  goToHome(ev) {
-    this.navCtrl.setRoot(DashboardPage);
-    this.navCtrl.popToRoot();
-  }
-
 }

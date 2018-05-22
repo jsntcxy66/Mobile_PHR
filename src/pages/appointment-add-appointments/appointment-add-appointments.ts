@@ -100,7 +100,7 @@ export class AppointmentAddAppointmentsPage {
     this.toastCtrl.create({
       message: 'Successfully added a new appointment',
       position: 'bottom',
-      duration: 3000
+      duration: 2000
     }).present();
     this.viewCtrl.dismiss();
   }

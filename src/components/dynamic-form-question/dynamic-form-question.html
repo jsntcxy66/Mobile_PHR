@@ -5,13 +5,15 @@
 
     <input class="input" *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
 
-    <ion-select class="select-width left-pull" [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+    <ion-select class="select-width left-pull" [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key" [multiple]="question.multiple">
       <ion-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</ion-option>
     </ion-select>
 
     <ion-datetime class="left-pull" *ngSwitchCase="'datetime'" [formControlName]="question.key" [id]="question.key" displayFormat="MM/DD/YYYY"></ion-datetime>
 
     <textarea class="input" *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key" rows="4"></textarea>
+
+    <ion-toggle class="right-pull" *ngSwitchCase="'toggle'" [formControlName]="question.key" [id]="question.key" color="slate-grey"></ion-toggle>
 
   </div>
   

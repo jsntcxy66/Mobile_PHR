@@ -4,10 +4,6 @@ import { Storage } from '@ionic/storage';
 
 import { FoodtrackerPage } from './../foodtracker/foodtracker';
 import { CustomPanelPage } from './../custom-panel/custom-panel';
-import { WeighttrackerPage } from '../weighttracker/weighttracker';
-import { VaccinationtrackerPage } from './../vaccinationtracker/vaccinationtracker';
-import { MedicationtrackerPage } from './../medicationtracker/medicationtracker';
-import { ExercisetrackerPage } from './../exercisetracker/exercisetracker';
 import { AlcoholtrackerPage } from './../alcoholtracker/alcoholtracker';
 import { CustomtrackerPage } from './../customtracker/customtracker';
 import { DashboardPage } from '../dashboard/dashboard';
@@ -37,10 +33,10 @@ export class TrackersPage {
   trackers: Array<{ name: string, icon: string, component: any }> = [
     { name: 'food', icon: 'restaurant', component: FoodtrackerPage },
     { name: 'alcohol', icon: 'beer', component: AlcoholtrackerPage },
-    { name: 'exercise', icon: 'walk', component: ExercisetrackerPage },
-    { name: 'weight', icon: 'speedometer', component: WeighttrackerPage },
-    { name: 'medication', icon: 'leaf', component: MedicationtrackerPage },
-    { name: 'vaccination', icon: 'leaf', component: VaccinationtrackerPage }
+    { name: 'exercise', icon: 'walk', component: FoodtrackerPage },
+    { name: 'weight', icon: 'speedometer', component: FoodtrackerPage },
+    { name: 'medication', icon: 'leaf', component: FoodtrackerPage },
+    { name: 'vaccination', icon: 'leaf', component: FoodtrackerPage }
   ];
   customtrackers: Array<{ name: string, icon: string, component: any }> = this.trackers;
 

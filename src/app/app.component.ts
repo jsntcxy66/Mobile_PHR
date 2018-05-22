@@ -3,17 +3,21 @@ import { Nav, Platform, App, AlertController, ToastController } from 'ionic-angu
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { Pages } from '../shared/pages';
+
 import { TrackersPage } from './../pages/trackers/trackers';
 import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
-import { AllergyPage } from './../pages/allergy/allergy';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ContactPage } from '../pages/contact/contact';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
 import { ResourcesPage } from '../pages/resources/resources';
-
-import { Pages } from '../shared/pages';
+import { AllergyHistoryPage } from '../pages/allergy-history/allergy-history';
+import { FamilyHistoryPage } from './../pages/family-history/family-history';
+import { MedicalHistoryPage } from '../pages/medical-history/medical-history';
+import { SurgicalHistoryPage } from '../pages/surgical-history/surgical-history';
+import { ImmunizationHistoryPage } from '../pages/immunization-history/immunization-history';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +25,8 @@ import { Pages } from '../shared/pages';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WelcomePage;
+  // rootPage: any = WelcomePage;
+  rootPage: any = DashboardPage;
 
   pages: Pages[];
   onelevelPages: Pages[];
@@ -57,7 +62,7 @@ export class MyApp {
           {
             title: 'Immunization',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: ImmunizationHistoryPage
           }
         ]
       },
@@ -69,12 +74,12 @@ export class MyApp {
           {
             title: 'Allergy',
             icon: 'medkit-outline',
-            component: AllergyPage
+            component: AllergyHistoryPage
           },
           {
             title: 'Medical History',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: MedicalHistoryPage
           },
           {
             title: 'Social History',
@@ -84,12 +89,12 @@ export class MyApp {
           {
             title: 'Surgical History',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: SurgicalHistoryPage
           },
           {
             title: 'Family History',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: FamilyHistoryPage
           }
         ]
       }
@@ -163,7 +168,7 @@ export class MyApp {
           }
         },
         {
-          text: 'Yes',
+          text: 'Logout',
           handler: () => {
             let toast = this.toastCtrl.create({
               message: 'Log out successfully',

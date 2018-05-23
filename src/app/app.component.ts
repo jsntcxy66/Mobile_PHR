@@ -18,6 +18,8 @@ import { FamilyHistoryPage } from './../pages/family-history/family-history';
 import { MedicalHistoryPage } from '../pages/medical-history/medical-history';
 import { SurgicalHistoryPage } from '../pages/surgical-history/surgical-history';
 import { ImmunizationHistoryPage } from '../pages/immunization-history/immunization-history';
+import { SocialHistoryPage } from '../pages/social-history/social-history';
+import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-notes';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,8 +27,8 @@ import { ImmunizationHistoryPage } from '../pages/immunization-history/immunizat
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // rootPage: any = WelcomePage;
-  rootPage: any = DashboardPage;
+  rootPage: any = WelcomePage;
+  // rootPage: any = DashboardPage;
 
   pages: Pages[];
   onelevelPages: Pages[];
@@ -52,7 +54,7 @@ export class MyApp {
           {
             title: 'Doctor Visit Notes',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: DoctorVisitNotesPage
           },
           {
             title: 'Medication',
@@ -84,7 +86,7 @@ export class MyApp {
           {
             title: 'Social History',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: SocialHistoryPage
           },
           {
             title: 'Surgical History',

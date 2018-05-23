@@ -4,6 +4,10 @@ dynamic-form-question {
     display: inline-block;
     white-space: initial;
   }
+  .full-width {
+    width: 100% !important;
+    display: grid !important;
+  }
   .color {
     color: #222;
   }

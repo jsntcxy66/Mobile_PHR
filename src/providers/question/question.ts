@@ -260,4 +260,57 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
+  getDoctorVisitNotesQuestions() {
+    let option = this.qop.getDoctorOption();
+    let questions: QuestionBase<any>[] = [
+  
+      new TextboxQuestion({
+        key: 'diagnosis',
+        label: 'Diagnosis',
+        type: 'text',
+        value: '',
+        required: true,
+        order: 1
+      }),
+
+      new DropdownQuestion({
+        key: 'doctor',
+        label: 'Doctor',
+        value: '',
+        multiple: false,
+        options: option,
+        order: 2
+      }),
+
+      new TextboxQuestion({
+        key: 'prescription',
+        label: 'Prescription',
+        type: 'text',
+        value: '',
+        required: true,
+        order: 3
+      }),
+
+      new DatetimeQuestion({
+        key: 'date',
+        label: 'Date',
+        value: '',
+        required: true,
+        order: 4
+      }),
+
+      new TextareaQuestion({
+        key: 'reason',
+        label: 'Reason of Visit',
+        value: '',
+        rows: 12,
+        required: false,
+        order: 5
+      }),
+
+    ];
+
+    return questions.sort((a, b) => a.order - b.order);
+  }
+
 }

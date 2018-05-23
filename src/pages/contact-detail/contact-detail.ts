@@ -40,59 +40,59 @@ export class ContactDetailPage {
     //   }
     // });
     this.userId = 1;
-    
+
     // get all contacts' data
-    this.contactsProvider.getContactsDetail(this.userId)
-      .subscribe(contacts => this.contacts = contacts, errmess => this.errMess = <any>errmess);
-    // this.contacts = [
-    //   {
-    //     firstname: "Aaric",
-    //     lastname: "Falconi",
-    //     tel: "4123457680",
-    //     fax: "4123457680",
-    //     relation: "",
-    //     specialization: "physician",
-    //     location: [
-    //       "5542 Walnut St",
-    //       "5819 Elwood St",
-    //       "1001 Fifth Ave"
-    //     ],
-    //     group: "friends,doctors"
-    //   },
-    //   {
-    //     firstname: "Alivia",
-    //     lastname: "Ryan",
-    //     tel: "4123457680",
-    //     fax: "",
-    //     relation: "husband",
-    //     specialization: "",
-    //     location: ["999 N Negley Str"],
-    //     group: "family,emergency"
-    //   },
-    //   {
-    //     firstname: "Martin",
-    //     lastname: "DOUGLAS",
-    //     tel: "4123457680",
-    //     fax: "",
-    //     relation: "father",
-    //     specialization: "",
-    //     location: ["132 Centre Ave"],
-    //     group: "family"
-    //   },
-    //   {
-    //     firstname: "Scott",
-    //     lastname: "Williamson",
-    //     tel: "4123457680",
-    //     fax: "4123457680",
-    //     relation: "",
-    //     specialization: "dermatologist",
-    //     location: [
-    //       "1100 Fifth Ave",
-    //       "1090 Centre Ave"
-    //     ],
-    //     group: "doctors"
-    //   },
-    // ];
+    // this.contactsProvider.getContactsDetail(this.userId)
+    //   .subscribe(contacts => this.contacts = contacts, errmess => this.errMess = <any>errmess);
+    this.contacts = [
+      {
+        firstname: "Aaric",
+        lastname: "Falconi",
+        tel: "4123457680",
+        fax: "4123457680",
+        relation: "",
+        specialization: "physician",
+        location: [
+          "5542 Walnut St",
+          "5819 Elwood St",
+          "1001 Fifth Ave"
+        ],
+        group: "friends,doctors"
+      },
+      {
+        firstname: "Alivia",
+        lastname: "Ryan",
+        tel: "4123457680",
+        fax: "",
+        relation: "husband",
+        specialization: "",
+        location: ["999 N Negley Str"],
+        group: "family,emergency"
+      },
+      {
+        firstname: "Martin",
+        lastname: "DOUGLAS",
+        tel: "4123457680",
+        fax: "",
+        relation: "father",
+        specialization: "",
+        location: ["132 Centre Ave"],
+        group: "family"
+      },
+      {
+        firstname: "Scott",
+        lastname: "Williamson",
+        tel: "4123457680",
+        fax: "4123457680",
+        relation: "",
+        specialization: "dermatologist",
+        location: [
+          "1100 Fifth Ave",
+          "1090 Centre Ave"
+        ],
+        group: "doctors"
+      },
+    ];
   }
 
   ionViewDidLoad() {

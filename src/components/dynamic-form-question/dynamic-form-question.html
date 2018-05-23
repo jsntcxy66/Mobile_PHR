@@ -1,7 +1,7 @@
 <!-- Generated template for the DynamicFormQuestionComponent component -->
 <div [formGroup]="form" class="fix-underline" [ngClass]="{'red-underline': ((!form.controls[question.key].pristine) && (!isValid))}">
-  <label class="width color" [attr.for]="question.key">{{question.label}}</label>
-  <div class="width" [ngSwitch]="question.controlType">
+  <label class="width color" [attr.for]="question.key" [ngClass]="{'full-width': (question.controlType=='textarea')}">{{question.label}}</label>
+  <div class="width" [ngSwitch]="question.controlType" [ngClass]="{'full-width': (question.controlType=='textarea')}">
 
     <input class="input" *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
 
@@ -11,7 +11,7 @@
 
     <ion-datetime class="left-pull" *ngSwitchCase="'datetime'" [formControlName]="question.key" [id]="question.key" displayFormat="MM/DD/YYYY"></ion-datetime>
 
-    <textarea class="input" *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key" rows="4"></textarea>
+    <textarea class="input" *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key" [rows]="question.rows"></textarea>
 
     <ion-toggle class="right-pull" *ngSwitchCase="'toggle'" [formControlName]="question.key" [id]="question.key" color="slate-grey"></ion-toggle>
 

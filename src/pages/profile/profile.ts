@@ -52,9 +52,13 @@ export class ProfilePage {
   editProfile() {
     let modal = this.modalCtrl.create(ProfileEditablePage);
     modal.present();
-    modal.onDidDismiss(() => {
-      console.log("edit profile");
-    });
+    modal.onWillDismiss(
+      () => {
+        this.userProvider.getProfile(this.userId)
+          .subscribe(profile => this.profile = profile,
+            errmess => this.errMess = <any>errmess);
+      }
+    );
   }
 
   resetPassword() {

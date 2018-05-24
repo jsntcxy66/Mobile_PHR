@@ -64,8 +64,12 @@ export class AppointmentPage {
   addAppointment() {
     let modal = this.modalCtrl.create(AppointmentAddAppointmentsPage);
     modal.present();
-    modal.onDidDismiss(() => {
-      console.log("add appointment");
-    });
+    modal.onWillDismiss(
+      () => {
+        this.ap.getAppointment(this.userId)
+          .subscribe(app => this.appointments = app,
+            errmess => this.errMess = <any>errmess);
+      }
+    );
   }
 }

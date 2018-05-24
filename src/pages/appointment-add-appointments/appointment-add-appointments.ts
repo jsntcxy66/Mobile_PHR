@@ -95,10 +95,14 @@ export class AppointmentAddAppointmentsPage {
   addContact() {
     let modal = this.modalCtrl.create(ContactAddContactsPage);
     modal.present();
+    modal.onWillDismiss(
+      () => {
+        this.contactsProvider.getDoctors(this.userId)
+          .subscribe(doctors => this.doctors = doctors,
+            errmess => this.errMess = <any>errmess);
+      }
+    );
     this.dismiss();
-    modal.onDidDismiss(() => {
-      console.log("Contacts added");
-    });
   }
 
   dismiss() {

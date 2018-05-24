@@ -19,7 +19,12 @@ export class ContactsProvider {
   }
 
   getContactsDetail(id: number): Observable<any> {
-    return this.http.get(baseurl + 'api/' + id + '/contacts')
+    return this.http.get(baseurl + 'contacts/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); })
+  }
+
+  addContacts(contact, id: number): Observable<any> {
+    return this.http.post(baseurl + 'contacts/' + id, contact)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 }

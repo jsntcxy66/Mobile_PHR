@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ContactsProvider } from '../../providers/contacts/contacts';
 
 /**
  * Generated class for the ContactAddContactsPage page.
@@ -16,16 +17,21 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ContactAddContactsPage {
 
+  userId: number;
   addContactForm: FormGroup;
+  contact: any;
   groups: Array<string> = [];
   isDoctor: boolean = false;
+  isFamilyorEmergency: boolean = false;
   address: Array<number> = [];
 
   formErrors = {
     "firstname": '',
     "lastname": '',
+    "relationship": '',
     "tel": '',
     "fax": '',
+    "specialization": '',
     "group": ''
   };
   validationMessages = {
@@ -38,6 +44,12 @@ export class ContactAddContactsPage {
       "required": "Lastname is required.",
       "minlength": "Lastname must be at least 2 characters long.",
       "maxlength": "Lastname cannot be more than 25 characters long."
+    },
+    "relationship": {
+      "required": "Relationship is required."
+    },
+    "specialization": {
+      "required": "Specialization is required."
     },
     "tel": {
       "required": "Tel number is required.",
@@ -54,13 +66,19 @@ export class ContactAddContactsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
     private viewCtrl: ViewController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private contactsProvider: ContactsProvider) {
+
+    //get userId from storage
+    this.userId = 1;
 
     this.addContactForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      relationship: ['', Validators.required],
       tel: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       fax: ['', Validators.pattern('[0-9]{10}')],
+      specialization: ['', Validators.required],
       location1: [''],
       location2: [''],
       location3: [''],
@@ -94,11 +112,32 @@ export class ContactAddContactsPage {
 
   onGroupValueChanged(value) {
     this.isDoctor = false;
+    this.isFamilyorEmergency = false;
     this.groups = value;
-    this.groups.forEach(group => {
-      if(group == "doctor") this.isDoctor = true;
-    });
-    console.log(this.isDoctor);
+    if (this.groups.includes("doctor")) {
+      this.isDoctor = true;
+      this.addContactForm.patchValue({
+        specialization: ""
+      });
+    } else {
+      this.isDoctor = false;
+      this.addContactForm.patchValue({
+        specialization: "0"
+      });
+    }
+
+    if (this.groups.includes("family") || this.groups.includes("emergency")) {
+      this.isFamilyorEmergency = true;
+      this.addContactForm.patchValue({
+        relationship: ""
+      });
+    } else {
+      this.isFamilyorEmergency = false;
+      this.addContactForm.patchValue({
+        relationship: "0"
+      });
+    }
+
   }
 
   addAddress() {
@@ -116,12 +155,25 @@ export class ContactAddContactsPage {
   }
 
   onSubmit() {
-    console.log(this.addContactForm.value);
-    this.toastCtrl.create({
-      message: 'Successfully added a new contact',
-      position: 'bottom',
-      duration: 2000
-    }).present();
+    this.contact = this.addContactForm.value;
+    this.contact.group = this.addContactForm.get("group").value.toString();
+    console.log(this.contact);
+    console.log(this.addContactForm.get("group").value);
+    this.contactsProvider.addContacts(this.contact, this.userId)
+      .subscribe(contact => {
+        this.toastCtrl.create({
+          message: 'Successfully add new contact',
+          position: 'bottom',
+          duration: 2000
+        }).present()
+      },
+        error => this.toastCtrl.create({
+          message: 'Failed to add new contact',
+          position: 'bottom',
+          duration: 2000
+        }).present()
+      );
+
     this.viewCtrl.dismiss();
   }
 

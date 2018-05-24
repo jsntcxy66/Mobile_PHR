@@ -47,6 +47,13 @@
     <div class="pull-right color-red">
       <span [hidden]="!(formErrors.lastname)">{{formErrors.lastname}}</span>
     </div>
+    <ion-item *ngIf="isFamilyorEmergency">
+      <ion-label floating>Relationship</ion-label>
+      <ion-input formControlName="relationship"></ion-input>
+    </ion-item>
+    <div class="pull-right color-red" *ngIf="isFamilyorEmergency">
+      <span [hidden]="!(formErrors.relationship)">{{formErrors.relationship}}</span>
+    </div>
     <ion-item>
       <ion-label floating>Tel</ion-label>
       <ion-input type="tel" formControlName="tel"></ion-input>
@@ -58,8 +65,15 @@
       <ion-label floating>Fax</ion-label>
       <ion-input type="tel" formControlName="fax"></ion-input>
     </ion-item>
-    <div class="pull-right color-red">
+    <div class="pull-right color-red" *ngIf="isDoctor">
       <span [hidden]="!(formErrors.fax)">{{formErrors.fax}}</span>
+    </div>
+    <ion-item *ngIf="isDoctor">
+      <ion-label floating>Specialization</ion-label>
+      <ion-input formControlName="specialization"></ion-input>
+    </ion-item>
+    <div class="pull-right color-red" *ngIf="isDoctor">
+      <span [hidden]="!(formErrors.specialization)">{{formErrors.specialization}}</span>
     </div>
     <ion-item *ngIf="!isDoctor">
       <ion-label floating>Address</ion-label>

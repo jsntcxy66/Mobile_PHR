@@ -20,6 +20,7 @@ import { SurgicalHistoryPage } from '../pages/surgical-history/surgical-history'
 import { ImmunizationHistoryPage } from '../pages/immunization-history/immunization-history';
 import { SocialHistoryPage } from '../pages/social-history/social-history';
 import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-notes';
+import { MedicationPage } from '../pages/medication/medication';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,8 +28,8 @@ import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-n
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WelcomePage;
-  // rootPage: any = DashboardPage;
+  // rootPage: any = WelcomePage;
+  rootPage: any = DashboardPage;
 
   pages: Pages[];
   onelevelPages: Pages[];
@@ -47,7 +48,7 @@ export class MyApp {
         open: false,
         children: [
           {
-            title: 'Lab Test',
+            title: 'Test Result',
             icon: 'medkit-outline',
             component: MedicalrecordPage
           },
@@ -59,7 +60,7 @@ export class MyApp {
           {
             title: 'Medication',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: MedicationPage
           },
           {
             title: 'Immunization',
@@ -185,14 +186,4 @@ export class MyApp {
     confirm.present();
   }
 
-  // shouldShow() {
-  //   let view = this.nav.getActive().name;
-  //   console.log(view);
-  //   return true;
-  //   if (view == "WelcomePage") {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
 }

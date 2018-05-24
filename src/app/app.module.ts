@@ -44,6 +44,7 @@ import { ImmunizationHistoryPage } from './../pages/immunization-history/immuniz
 import { SocialHistoryPage } from '../pages/social-history/social-history';
 import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-notes';
 import { DoctorVisitNotesDetailPage } from '../pages/doctor-visit-notes-detail/doctor-visit-notes-detail';
+import { MedicationPage } from '../pages/medication/medication';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -105,7 +106,8 @@ import { UserProvider } from '../providers/user/user';
     ImmunizationDetailPage,
     SocialHistoryPage,
     DoctorVisitNotesPage,
-    DoctorVisitNotesDetailPage
+    DoctorVisitNotesDetailPage,
+    MedicationPage
   ],
   imports: [
     BrowserModule,
@@ -153,7 +155,8 @@ import { UserProvider } from '../providers/user/user';
     ImmunizationDetailPage,
     SocialHistoryPage,
     DoctorVisitNotesPage,
-    DoctorVisitNotesDetailPage
+    DoctorVisitNotesDetailPage,
+    MedicationPage
   ],
   providers: [
     StatusBar,

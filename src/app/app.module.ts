@@ -53,6 +53,8 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
 import { MedicalClassificationProvider } from '../providers/medical-classification/medical-classification';
 import { AllergyClassificationProvider } from '../providers/allergy-classification/allergy-classification';
 import { ImmunizationClassificationProvider } from '../providers/immunization-classification/immunization-classification';
+import { UserProvider } from '../providers/user/user';
+import { AppointmentProvider } from '../providers/appointment/appointment';
 
 import { QuestionOptionProvider } from '../providers/question-option/question-option';
 import { QuestionControlProvider } from '../providers/question-control/question-control';
@@ -63,7 +65,6 @@ import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
 import { DynamicFormComponent } from './../components/dynamic-form/dynamic-form';
 import { CalendarComponent } from './../components/calendar/calendar';
-import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
@@ -172,7 +173,8 @@ import { UserProvider } from '../providers/user/user';
     CallNumber,
     ContactsProvider,
     QuestionOptionProvider,
-    UserProvider
+    UserProvider,
+    AppointmentProvider
   ]
 })
 export class AppModule {}

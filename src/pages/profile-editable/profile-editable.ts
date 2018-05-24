@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the ProfileEditablePage page.
@@ -16,8 +17,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ProfileEditablePage {
 
+  userId: number;
+  errMess: string;
   profileForm: FormGroup;
-  profile: any;
+  profile: any = {};
   formErrors = {
     "firstname": '',
     "lastname": '',
@@ -49,19 +52,26 @@ export class ProfileEditablePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
     private viewCtrl: ViewController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private userProvider: UserProvider) {
 
-    //get profile from database
-    this.profile = {
-      username: "km111",
-      firstname: "Kelly",
-      lastname: "Marsh",
-      gender: "male",
-      email: "KellyM@gmail.com",
-      tel: "4125890011",
-      address: "100 Fifth Ave",
-      birthday: "11/11/1911"
-    };
+    this.userId = 1;
+
+    // get profile from database
+    this.userProvider.getProfile(this.userId)
+      .subscribe(profile => this.profile = profile,
+        errmess => this.errMess = <any>errmess);
+
+    // this.profile = {
+    //   username: "km111",
+    //   firstname: "Kelly",
+    //   lastname: "Marsh",
+    //   gender: "male",
+    //   email: "KellyM@gmail.com",
+    //   tel: "4125890011",
+    //   address: "100 Fifth Ave",
+    //   birthday: "11/11/1911"
+    // };
 
     this.profileForm = this.fb.group({
       firstname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
@@ -101,12 +111,26 @@ export class ProfileEditablePage {
   }
 
   onSubmit() {
-    console.log(this.profileForm.value);
-    this.toastCtrl.create({
-      message: 'Successfully edited.',
-      position: 'bottom',
-      duration: 2000
-    }).present();
-    this.viewCtrl.dismiss();
+    let profile = this.profileForm.value;
+    console.log(profile);
+    // post edited profile
+    this.userProvider.editProfile(profile, this.userId)
+      .subscribe(
+        profile => {
+          this.toastCtrl.create({
+            message: 'Successfully edited.',
+            position: 'bottom',
+            duration: 2000
+          }).present();
+          this.viewCtrl.dismiss();
+        },
+        error => {
+          this.toastCtrl.create({
+            message: 'Failed to edit.',
+            position: 'bottom',
+            duration: 2000
+          }).present();
+        }
+      );
   }
 }

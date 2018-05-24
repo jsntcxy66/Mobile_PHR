@@ -14,8 +14,15 @@ import { ProcessHttpmsgProvider } from '../process-httpmsg/process-httpmsg';
 export class UserProvider {
 
   constructor(public http: HttpClient,
-    private processHttpmsgService: ProcessHttpmsgProvider) {
-    console.log('Hello UserProvider Provider');
+    private processHttpmsgService: ProcessHttpmsgProvider) { }
+
+  getProfile(id: number): Observable<any> {
+    return this.http.get(baseurl + 'profile/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  editProfile(profile, id: number): Observable<any> {
+    return this.http.post(baseurl + 'profile/' + id, profile)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
 }

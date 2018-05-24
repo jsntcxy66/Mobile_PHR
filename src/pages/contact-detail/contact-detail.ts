@@ -19,9 +19,9 @@ import { ContactsProvider } from '../../providers/contacts/contacts';
 export class ContactDetailPage {
 
   userId: number;
+  errMess: string;
   category: string;
   contacts: any[] = [];
-  errMess: string;
   tel: string[] = [];
   fax: string[] = [];
 
@@ -45,10 +45,8 @@ export class ContactDetailPage {
 
     // get all contacts' data
     this.contactsProvider.getContactsDetail(this.userId)
-      .subscribe(contacts => 
-        this.contacts = contacts,
-        errmess => {this.errMess = <any>errmess; console.log(errmess);}
-      );
+      .subscribe(contacts => this.contacts = contacts,
+        errmess => this.errMess = <any>errmess);
     // this.contacts = [
     //   {
     //     firstname: "Aaric",
@@ -126,7 +124,6 @@ export class ContactDetailPage {
         this.fax.push("");
       }
     }
-    console.log(this.fax);
   }
 
   isCategory(i): boolean {

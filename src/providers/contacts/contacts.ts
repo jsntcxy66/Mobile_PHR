@@ -27,4 +27,9 @@ export class ContactsProvider {
     return this.http.post(baseurl + 'contacts/' + id, contact)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
+
+  getDoctors(id: number): Observable<any> {
+    return this.http.get(baseurl + 'contacts/doctors/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); })
+  }
 }

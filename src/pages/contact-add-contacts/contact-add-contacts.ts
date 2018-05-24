@@ -19,7 +19,6 @@ export class ContactAddContactsPage {
 
   userId: number;
   addContactForm: FormGroup;
-  contact: any;
   groups: Array<string> = [];
   isDoctor: boolean = false;
   isFamilyorEmergency: boolean = false;
@@ -155,26 +154,28 @@ export class ContactAddContactsPage {
   }
 
   onSubmit() {
-    this.contact = this.addContactForm.value;
-    this.contact.group = this.addContactForm.get("group").value.toString();
-    console.log(this.contact);
-    console.log(this.addContactForm.get("group").value);
-    this.contactsProvider.addContacts(this.contact, this.userId)
-      .subscribe(contact => {
-        this.toastCtrl.create({
-          message: 'Successfully add new contact',
-          position: 'bottom',
-          duration: 2000
-        }).present()
-      },
-        error => this.toastCtrl.create({
-          message: 'Failed to add new contact',
-          position: 'bottom',
-          duration: 2000
-        }).present()
+    let contact = this.addContactForm.value;
+    contact.group = this.addContactForm.get("group").value.toString();
+    console.log(contact);
+    // post new contact info
+    this.contactsProvider.addContacts(contact, this.userId)
+      .subscribe(
+        contact => {
+          this.toastCtrl.create({
+            message: 'Successfully add new contact',
+            position: 'bottom',
+            duration: 2000
+          }).present();
+          this.viewCtrl.dismiss();
+        },
+        error => {
+          this.toastCtrl.create({
+            message: 'Failed to add new contact',
+            position: 'bottom',
+            duration: 2000
+          }).present();
+        }
       );
-
-    this.viewCtrl.dismiss();
   }
 
 }

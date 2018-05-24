@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController, ViewController } from 'ionic-angular';
 import { ContactAddContactsPage } from '../contact-add-contacts/contact-add-contacts';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactsProvider } from '../../providers/contacts/contacts';
+import { AppointmentProvider } from '../../providers/appointment/appointment';
 
 /**
  * Generated class for the AppointmentAddAppointmentsPage page.
@@ -17,7 +19,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppointmentAddAppointmentsPage {
 
-  doctors: any;
+  userId: number;
+  errMess: string;
+  doctors: any[] = [];
   newAppointmentForm: FormGroup;
   date: Date;
   locations: Array<string> = [];
@@ -26,31 +30,38 @@ export class AppointmentAddAppointmentsPage {
     private modalCtrl: ModalController,
     private fb: FormBuilder,
     private viewCtrl: ViewController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private contactsProvider: ContactsProvider,
+    private ap: AppointmentProvider) {
+
+    this.userId = 1;
 
     //get doctors in such structure
-    this.doctors = [
-      {
-        id: 0,
-        firstname: "Scott",
-        lastname: "Williamson",
-        locations: [
-          "1100 Fifth Ave",
-          "1090 Centre Ave"
-        ]
-      },
-      {
-        id: 1,
-        firstname: "Aaric",
-        lastname: "Falconi",
-        locations: [
-          "5542 Walnut St",
-          "5819 Elwood St",
-          "1001 Fifth Ave"
-        ]
-      }
-    ];
-    console.log(this.doctors);
+    this.contactsProvider.getDoctors(this.userId)
+      .subscribe(doctors => this.doctors = doctors,
+        errmess => this.errMess = <any>errmess);
+
+    // this.doctors = [
+    //   {
+    //     id: 0,
+    //     firstname: "Scott",
+    //     lastname: "Williamson",
+    //     locations: [
+    //       "1100 Fifth Ave",
+    //       "1090 Centre Ave"
+    //     ]
+    //   },
+    //   {
+    //     id: 1,
+    //     firstname: "Aaric",
+    //     lastname: "Falconi",
+    //     locations: [
+    //       "5542 Walnut St",
+    //       "5819 Elwood St",
+    //       "1001 Fifth Ave"
+    //     ]
+    //   }
+    // ];
 
     this.newAppointmentForm = this.fb.group({
       time: ['', Validators.required],
@@ -75,7 +86,7 @@ export class AppointmentAddAppointmentsPage {
     });
     this.locations = [];
     this.doctors.forEach(doctor => {
-      if(doctor.id == $event)
+      if (doctor.id == $event)
         this.locations = doctor.locations;
     });
     console.log(this.locations);
@@ -96,13 +107,40 @@ export class AppointmentAddAppointmentsPage {
 
   onSubmit() {
     //http post date + form.value
-    console.log(this.newAppointmentForm.value);
-    this.toastCtrl.create({
-      message: 'Successfully added a new appointment',
-      position: 'bottom',
-      duration: 2000
-    }).present();
-    this.viewCtrl.dismiss();
+    let appForm = this.newAppointmentForm.value;
+    let firstname, lastname;
+    this.doctors.forEach(doctor => {
+      if (doctor.id == appForm.doctor) {
+        firstname = doctor.firstname;
+        lastname = doctor.lastname;
+      }
+    });
+    let app = {
+      date: this.date,
+      time: appForm.time,
+      firstname: firstname,
+      lastname: lastname,
+      location: appForm.location
+    };
+    console.log(app);
+    this.ap.addAppointment(app, this.userId)
+      .subscribe(
+        app => {
+          this.toastCtrl.create({
+            message: 'Successfully added a new appointment',
+            position: 'bottom',
+            duration: 2000
+          }).present();
+          this.viewCtrl.dismiss();
+        },
+        error => {
+          this.toastCtrl.create({
+            message: 'Failed to add a new appointment',
+            position: 'bottom',
+            duration: 2000
+          }).present();
+        }
+      );
   }
 
   check_valid(): boolean {

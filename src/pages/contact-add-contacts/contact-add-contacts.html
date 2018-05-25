@@ -22,7 +22,7 @@
 <ion-content padding>
   <form [formGroup]='addContactForm' (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-label>Contact Group</ion-label>
+      <ion-label>Contact Group<span class="color-red">*</span></ion-label>
       <ion-select formControlName="group" (value)="group" multiple="true">
         <ion-option value="emergency">Emergency</ion-option>
         <ion-option value="friend">Friend</ion-option>
@@ -34,28 +34,28 @@
       <span [hidden]="!(formErrors.group)">{{formErrors.group}}</span>
     </div>
     <ion-item>
-      <ion-label floating>First Name</ion-label>
+      <ion-label floating>First Name<span class="color-red">*</span></ion-label>
       <ion-input formControlName="firstname"></ion-input>
     </ion-item>
     <div class="pull-right color-red">
       <span [hidden]="!(formErrors.firstname)">{{formErrors.firstname}}</span>
     </div>
     <ion-item>
-      <ion-label floating>Last Name</ion-label>
+      <ion-label floating>Last Name<span class="color-red">*</span></ion-label>
       <ion-input formControlName="lastname"></ion-input>
     </ion-item>
     <div class="pull-right color-red">
       <span [hidden]="!(formErrors.lastname)">{{formErrors.lastname}}</span>
     </div>
     <ion-item *ngIf="isFamilyorEmergency">
-      <ion-label floating>Relationship</ion-label>
+      <ion-label floating>Relationship<span class="color-red">*</span></ion-label>
       <ion-input formControlName="relationship"></ion-input>
     </ion-item>
     <div class="pull-right color-red" *ngIf="isFamilyorEmergency">
       <span [hidden]="!(formErrors.relationship)">{{formErrors.relationship}}</span>
     </div>
     <ion-item>
-      <ion-label floating>Tel</ion-label>
+      <ion-label floating>Tel<span class="color-red">*</span></ion-label>
       <ion-input type="tel" formControlName="tel"></ion-input>
     </ion-item>
     <div class="pull-right color-red">
@@ -69,7 +69,7 @@
       <span [hidden]="!(formErrors.fax)">{{formErrors.fax}}</span>
     </div>
     <ion-item *ngIf="isDoctor">
-      <ion-label floating>Specialization</ion-label>
+      <ion-label floating>Specialization<span class="color-red">*</span></ion-label>
       <ion-input formControlName="specialization"></ion-input>
     </ion-item>
     <div class="pull-right color-red" *ngIf="isDoctor">

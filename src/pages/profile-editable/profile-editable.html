@@ -23,14 +23,14 @@
   <form novalidate [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-item>
-        <ion-label stacked color="primary">Firstname</ion-label>
+        <ion-label stacked color="primary">Firstname<span class="color-red">*</span></ion-label>
         <ion-input value="{{profile.firstname | titlecase}}" type="text" formControlName="firstname"></ion-input>
       </ion-item>
       <div class="pull-right color-red">
         <span [hidden]="!(formErrors.firstname)">{{formErrors.firstname}}</span>
       </div>
       <ion-item>
-        <ion-label stacked color="primary">Lastname</ion-label>
+        <ion-label stacked color="primary">Lastname<span class="color-red">*</span></ion-label>
         <ion-input value="{{profile.lastname | titlecase}}" type="text" formControlName="lastname"></ion-input>
       </ion-item>
       <div class="pull-right color-red">
@@ -45,7 +45,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label stacked color="primary">Email</ion-label>
+        <ion-label stacked color="primary">Email<span class="color-red">*</span></ion-label>
         <ion-input value="{{profile.email}}" type="email" formControlName="email"></ion-input>
       </ion-item>
       <div class="pull-right color-red">

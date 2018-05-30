@@ -192,72 +192,72 @@ export class MedicalRecordDetailPage {
         }
       ],
       series: [
-        {
-          type: 'line',
-          symbol: 'none',
-          itemStyle: {
-            color: '#A5A5A5',
-            normal: {
-              lineStyle: {
-                color: '#ffffff',
-                opacity: 1
-              },
-              areaStyle: { type: 'default' }
-            }
-          },
-          data: this.functionalAreaTop
-        },
-        {
-          type: 'line',
-          symbol: 'none',
-          itemStyle: {
-            color: '#A5A5A5',
-            normal: {
-              lineStyle: {
-                color: '#ffffff',
-                opacity: 1
-              },
-              areaStyle: {
-                color: '#ffffff',
-                opacity: 1
-              }
-            }
-          },
-          data: this.functionalAreaBottom
-        },
-        {
-          type: 'line',
-          symbol: 'none',
-          itemStyle: {
-            color: '#A5A5A5',
-            normal: {
-              lineStyle: {
-                color: '#ffffff',
-                opacity: 1
-              },
-              areaStyle: { type: 'default' }
-            }
-          },
-          data: this.antigenicAreaTop
-        },
-        {
-          type: 'line',
-          symbol: 'none',
-          itemStyle: {
-            color: '#A5A5A5',
-            normal: {
-              lineStyle: {
-                color: '#ffffff',
-                opacity: 1
-              },
-              areaStyle: {
-                color: '#ffffff',
-                opacity: 1
-              }
-            }
-          },
-          data: this.antigenicAreaBottom
-        },
+        // {
+        //   type: 'line',
+        //   symbol: 'none',
+        //   itemStyle: {
+        //     color: '#A5A5A5',
+        //     normal: {
+        //       lineStyle: {
+        //         color: '#ffffff',
+        //         opacity: 1
+        //       },
+        //       areaStyle: { type: 'default' }
+        //     }
+        //   },
+        //   data: this.functionalAreaTop
+        // },
+        // {
+        //   type: 'line',
+        //   symbol: 'none',
+        //   itemStyle: {
+        //     color: '#A5A5A5',
+        //     normal: {
+        //       lineStyle: {
+        //         color: '#ffffff',
+        //         opacity: 1
+        //       },
+        //       areaStyle: {
+        //         color: '#ffffff',
+        //         opacity: 1
+        //       }
+        //     }
+        //   },
+        //   data: this.functionalAreaBottom
+        // },
+        // {
+        //   type: 'line',
+        //   symbol: 'none',
+        //   itemStyle: {
+        //     color: '#A5A5A5',
+        //     normal: {
+        //       lineStyle: {
+        //         color: '#ffffff',
+        //         opacity: 1
+        //       },
+        //       areaStyle: { type: 'default' }
+        //     }
+        //   },
+        //   data: this.antigenicAreaTop
+        // },
+        // {
+        //   type: 'line',
+        //   symbol: 'none',
+        //   itemStyle: {
+        //     color: '#A5A5A5',
+        //     normal: {
+        //       lineStyle: {
+        //         color: '#ffffff',
+        //         opacity: 1
+        //       },
+        //       areaStyle: {
+        //         color: '#ffffff',
+        //         opacity: 1
+        //       }
+        //     }
+        //   },
+        //   data: this.antigenicAreaBottom
+        // },
         {
           name: 'Antigenic',
           type: 'line',

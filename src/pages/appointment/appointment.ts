@@ -27,34 +27,34 @@ export class AppointmentPage {
 
     this.userId = 1;
 
+    this.appointments = [
+      {
+        date: "2018-06-01",
+        time: "21:00",
+        firstname: "Scott",
+        lastname: "Williamson",
+        location: "111 Fifth Ave"
+      },
+      {
+        date: "2018-06-03",
+        time: "10:30",
+        firstname: "Aaric",
+        lastname: "Falconi",
+        location: "515 S Aiken Ave",
+      },
+      {
+        date: "2018-06-19",
+        time: "09:20",
+        firstname: "Scott",
+        lastname: "Williamson",
+        location: "111 Fifth Ave"
+      }
+    ];
+
     //get appointments which have already been sorted by time
     this.ap.getAppointment(this.userId)
       .subscribe(app => this.appointments = app,
         errmess => this.errMess = <any>errmess);
-
-    // this.appointments = [
-    //   {
-    //     date: "2018-06-01",
-    //     time: "21:00",
-    //     firstname: "Scott",
-    //     lastname: "Williamson",
-    //     location: "111 Fifth Ave"
-    //   },
-    //   {
-    //     date: "2018-06-03",
-    //     time: "10:30",
-    //     firstname: "Aaric",
-    //     lastname: "Falconi",
-    //     location: "515 S Aiken Ave",
-    //   },
-    //   {
-    //     date: "2018-06-19",
-    //     time: "09:20",
-    //     firstname: "Scott",
-    //     lastname: "Williamson",
-    //     location: "111 Fifth Ave"
-    //   }
-    // ];
   }
 
   ionViewDidLoad() {

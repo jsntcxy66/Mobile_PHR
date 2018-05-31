@@ -36,21 +36,18 @@
     <div *ngSwitchCase="'form'">
       <ion-card>
         <ion-card-content>
-          <form [formGroup]='recordForm' (ngSubmit)="onSubmit()">
-            <ion-item class="fix-underline">
-              <ion-label color="primary" floating>Antigenic (mg/dl)</ion-label>
+          <dynamic-form [questions]="questions"></dynamic-form>
+          <!-- <form [formGroup]='recordForm' (ngSubmit)="onSubmit()">
+            <ion-item>
+              <ion-label fixed text-wrap>Antigenic (mg/dl)</ion-label>
               <ion-input type="text" formControlName="antigenic"></ion-input>
             </ion-item>
-            <ion-item class="fix-underline">
-              <ion-label color="primary" floating>Functional (%)</ion-label>
-              <ion-input type="text" formControlName="functional"></ion-input>
-            </ion-item>
-            <ion-item class="fix-underline">
-              <ion-label color="primary" fixed>Date</ion-label>
+            <ion-item>
+              <ion-label fixed>Date</ion-label>
               <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
             </ion-item>
             <button ion-button type="submit" [disabled]="!recordForm.valid">Record</button>
-          </form>
+          </form> -->
         </ion-card-content>
       </ion-card>
     </div>
@@ -58,18 +55,17 @@
       <ion-list>
         <ion-card *ngFor="let d of data">
           <ion-item>
-            <ion-row class="color-primary-darker">
-              <ion-col>
-                Antigenic:
-              </ion-col>
-              <ion-col *ngIf="checkRange(d.antigenic, 22, 39)" style="color:green">
+            <ion-col>Antigenic:</ion-col>
+            <ion-col>{{d.antigenic}} mg/dl</ion-col>
+            <p>{{d.date | date}}</p>
+            <!-- <ion-col *ngIf="checkRange(d.antigenic, 22, 39)" style="color:green">
                 {{d.antigenic}} mg/dl
               </ion-col>
               <ion-col *ngIf="!checkRange(d.antigenic, 22, 39)" style="color:red">
                 {{d.antigenic}} mg/dl
-              </ion-col>
-            </ion-row>
-            <ion-row class="color-primary-darker">
+              </ion-col> -->
+
+            <!-- <ion-row class="color-primary-darker">
               <ion-col>
                 Functional:
               </ion-col>
@@ -79,13 +75,13 @@
               <ion-col *ngIf="!checkRange(d.functional, 80, 130)" style="color:red">
                 {{d.functional}}%
               </ion-col>
-            </ion-row>
+            </ion-row> -->
           </ion-item>
         </ion-card>
       </ion-list>
     </div>
     <div *ngSwitchCase="'chart'">
-        <div echarts [options]="chartOption"></div>
+      <div echarts [options]="chartOption"></div>
     </div>
   </div>
 </ion-content>

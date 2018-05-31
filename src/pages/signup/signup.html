@@ -39,14 +39,14 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item>
-          <ion-label floating>Email<span class="color-red">*</span></ion-label>
+          <ion-label stacked>Email<span class="color-red">*</span></ion-label>
           <ion-input type="email" formControlName="email" email></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.email)">{{formErrors.email}}</span>
         </div>
         <ion-item>
-          <ion-label text-wrap>Security Question<span class="color-red">*</span></ion-label>
+          <ion-label stacked>Security Question<span class="color-red">*</span></ion-label>
           <ion-select formControlName="secQues">
             <ion-option *ngFor="let sq of secQuestions" [value]="sq.question">
               {{sq.question}}
@@ -57,36 +57,36 @@
           <span [hidden]="!(formErrors.secQues)">{{formErrors.secQues}}</span>
         </div>
         <ion-item>
-          <ion-label floating>Security Answer<span class="color-red">*</span></ion-label>
+          <ion-label stacked>Security Answer<span class="color-red">*</span></ion-label>
           <ion-input type="text" formControlName="secAns"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.secAns)">{{formErrors.secAns}}</span>
         </div>
         <ion-item>
-          <ion-label floating>First Name</ion-label>
+          <ion-label stacked>First Name</ion-label>
           <ion-input type="text" formControlName="firstname"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.firstname)">{{formErrors.firstname}}</span>
         </div>
         <ion-item>
-          <ion-label floating>Last Name</ion-label>
+          <ion-label stacked>Last Name</ion-label>
           <ion-input type="text" formControlName="lastname"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.lastname)">{{formErrors.lastname}}</span>
         </div>
         <ion-item>
-          <ion-label floating>Tel. Number</ion-label>
+          <ion-label stacked>Tel. Number</ion-label>
           <ion-input type="tel" formControlName="tel"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.tel)">{{formErrors.tel}}</span>
         </div>
         <ion-item>
-          <ion-label floating>Address</ion-label>
-          <ion-input type="text" formControlName="address"></ion-input>
+          <ion-label stacked>Address</ion-label>
+          <ion-textarea type="text" formControlName="address"></ion-textarea>
         </ion-item>
         <ion-item>
           <ion-label stacked>Birthday</ion-label>
@@ -96,11 +96,22 @@
           <span [hidden]="!(formErrors.birthday)">{{formErrors.birthday}}</span>
         </div>
         <ion-item>
-          <ion-label>Gender</ion-label>
+          <ion-label stacked>Gender</ion-label>
           <ion-select formControlName="gender">
             <ion-option value="female">Female</ion-option>
             <ion-option value="male">Male</ion-option>
             <ion-option value="other">Other</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Race and Ethnicity</ion-label>
+          <ion-select formControlName="race">
+            <ion-option>Hispanic or Latino</ion-option>
+            <ion-option>White</ion-option>
+            <ion-option>Black or African American</ion-option>
+            <ion-option>Native Hawaiian or Other Pacific Islander</ion-option>
+            <ion-option>Asian</ion-option>
+            <ion-option>American Indian or Alaskan Native</ion-option>
           </ion-select>
         </ion-item>
       </ion-card-content>

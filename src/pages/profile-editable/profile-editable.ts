@@ -57,26 +57,28 @@ export class ProfileEditablePage {
 
     this.userId = 1;
 
+    this.profile = {
+      username: "km111",
+      firstname: "Kelly",
+      lastname: "Marsh",
+      gender: "male",
+      email: "KellyM@gmail.com",
+      tel: "4125890011",
+      address: "100 Fifth Ave\nApt 119",
+      birthday: "11/11/1911",
+      race: "White"
+    };
+    
     // get profile from database
     this.userProvider.getProfile(this.userId)
       .subscribe(profile => this.profile = profile,
         errmess => this.errMess = <any>errmess);
 
-    // this.profile = {
-    //   username: "km111",
-    //   firstname: "Kelly",
-    //   lastname: "Marsh",
-    //   gender: "male",
-    //   email: "KellyM@gmail.com",
-    //   tel: "4125890011",
-    //   address: "100 Fifth Ave",
-    //   birthday: "11/11/1911"
-    // };
-
     this.profileForm = this.fb.group({
       firstname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
       lastname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
       gender: [this.profile.gender],
+      race: [this.profile.race],
       email: ['', [Validators.required, Validators.email]],
       tel: ['', Validators.pattern('[0-9]{10}')],
       address: [''],

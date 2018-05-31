@@ -34,11 +34,9 @@ export class CustomPanelPage {
     this.panels = navParams.data;
     this.formgroupvalue = {
       food: this.panels.food,
-      alcohol: this.panels.alcohol,
       exercise: this.panels.exercise,
       weight: this.panels.weight,
-      medication: this.panels.medication,
-      vaccination: this.panels.vaccination
+      height: this.panels.height
     };
 
     this.custompanel = this.fb.group(this.formgroupvalue);

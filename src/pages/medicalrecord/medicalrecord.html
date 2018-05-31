@@ -10,14 +10,27 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>LAB TEST</ion-title>
+    <ion-title>Lab Test</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <tile [tiles]="tiles"></tile>
+  <!-- <tile [tiles]="tiles"></tile> -->
+<ion-list>
+  <ion-list-header>Common Tests</ion-list-header>
+  <ion-item-group *ngFor="let l of list; let i = index">
+    <ion-item-divider color="light">{{l.initial}}</ion-item-divider>
+    <div *ngFor="let c of l.category; let j = index">
+      <ion-item (click)="goToCategory(i,j)" text-wrap>{{c}}</ion-item>
+    </div>
+  </ion-item-group>
+</ion-list>
+<ion-list>
+  <ion-list-header>Other Tests</ion-list-header>
+  <button ion-item color="light" (click)="goToOtherTest()">Add other tests' records</button>
+</ion-list>
 
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="goToHome($event)">

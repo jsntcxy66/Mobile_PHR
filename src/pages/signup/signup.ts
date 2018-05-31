@@ -113,7 +113,8 @@ export class SignupPage {
       tel: ['', Validators.pattern('[0-9]{10}')],
       address: [''],
       birthday: ['', Validators.pattern('(^(((0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-8]))|((0[13578]|1[02])/(29|30|31))|((0[469]|11)/(29|30)))/(19|20)\\d\\d$)|(^02/29/(19(04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)|20(([02468][048])|([13579][26])))$)')],
-      gender: ['']
+      gender: [''],
+      race: ['']
     });
     this.registerForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();

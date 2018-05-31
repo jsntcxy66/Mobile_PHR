@@ -13,9 +13,27 @@
     <ion-title>MEDICATION</ion-title>
   </ion-navbar>
 
+
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list *ngIf="records">
+    <ion-list-header>Medication History</ion-list-header>
+    <ion-item *ngFor="let record of records">
+      <h3>Medication: {{record.name}}</h3>
+      <h3>Frequency: {{record.frequency}}</h3>
+      <p>Date: {{record.date}}</p>
+    </ion-item>
+  </ion-list>
 
+  <ion-card [hidden]="records">
+    <ion-card-header>No medication record.</ion-card-header>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addMedication()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

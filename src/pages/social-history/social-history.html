@@ -17,5 +17,64 @@
 
 
 <ion-content padding>
+  <ion-list *ngIf="smoking != ''">
+    <ion-list-header>Smoking History</ion-list-header>
+    <ion-item *ngFor="let s of smoking">
+      <div class="white-space">
+        <h3>Cigarettes: {{s.amount}}</h3>
+        <p>{{s.date | date}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="alcohol != ''">
+    <ion-list-header>Alcohol History</ion-list-header>
+    <ion-item *ngFor="let a of alcohol">
+      <div class="white-space">
+        <h3>Name: {{a.name}}</h3>
+        <h3>Amount: {{a.amount}} oz</h3>
+        <h3>Alcohol: {{a.alcohol}} %</h3>
+        <p>{{a.date | date}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="pill != ''">
+    <ion-list-header>Pill History</ion-list-header>
+    <ion-item *ngFor="let p of pill">
+      <div class="white-space">
+        <h3>Name: {{p.name}}</h3>
+        <h3>Amount: {{p.amount}}</h3>
+        <p>{{p.date | date}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="travel != ''">
+    <ion-list-header>Travel History</ion-list-header>
+    <ion-item *ngFor="let t of travel">
+      <div class="white-space">
+        <h3>Location: {{t.location}}</h3>
+        <h3>Note: {{t.note}}</h3>
+        <p>{{t.date | date}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="housing != ''">
+    <ion-list-header>Housing History</ion-list-header>
+    <ion-item *ngFor="let h of housing">
+      <div class="white-space">
+        <h3>Housing Type: {{h.type | titlecase}}</h3>
+        <h3>Move in: {{h.moveindate | date}}</h3>
+        <h3>Move out: {{h.moveoutdate | date}}</h3>
+      </div>
+    </ion-item>
+  </ion-list>
 
+  <ion-card [hidden]="smoking!='' || alcohol!='' || pill!='' || travel!='' || housing!=''">
+    <ion-card-header>No record.</ion-card-header>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addSocialHistory()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

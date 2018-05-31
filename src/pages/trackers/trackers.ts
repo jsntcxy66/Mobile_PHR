@@ -7,6 +7,7 @@ import { CustomPanelPage } from './../custom-panel/custom-panel';
 import { AlcoholtrackerPage } from './../alcoholtracker/alcoholtracker';
 import { CustomtrackerPage } from './../customtracker/customtracker';
 import { DashboardPage } from '../dashboard/dashboard';
+import { TrackerDetailPage } from '../tracker-detail/tracker-detail';
 
 /**
  * Generated class for the TrackersPage page.
@@ -24,21 +25,17 @@ export class TrackersPage {
 
   panels = {
     food: true,
-    alcohol: true,
     exercise: true,
     weight: true,
-    medication: true,
-    vaccination: true
+    height: true
   };
-  trackers: Array<{ name: string, icon: string, component: any }> = [
-    { name: 'food', icon: 'restaurant', component: FoodtrackerPage },
-    { name: 'alcohol', icon: 'beer', component: AlcoholtrackerPage },
-    { name: 'exercise', icon: 'walk', component: FoodtrackerPage },
-    { name: 'weight', icon: 'speedometer', component: FoodtrackerPage },
-    { name: 'medication', icon: 'leaf', component: FoodtrackerPage },
-    { name: 'vaccination', icon: 'leaf', component: FoodtrackerPage }
+  trackers: Array<{ id: number, name: string, icon: string }> = [
+    { id: 1, name: 'food', icon: 'restaurant'},
+    { id: 2, name: 'exercise', icon: 'walk'},
+    { id: 3, name: 'weight', icon: 'speedometer'},
+    { id: 4, name: 'height', icon: 'speedometer'}
   ];
-  customtrackers: Array<{ name: string, icon: string, component: any }> = this.trackers;
+  customtrackers: Array<{ id: number, name: string, icon: string }> = this.trackers;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private popoverCtrl: PopoverController,
@@ -71,8 +68,13 @@ export class TrackersPage {
     console.log('ionViewDidLoad TrackersPage');
   }
 
-  selectTracker(index) {
-    this.navCtrl.push(this.customtrackers[index].component);
+  selectTracker(i: number) {
+    this.navCtrl.push(TrackerDetailPage,
+      {
+        'id': this.trackers[i].id,
+        'title': this.trackers[i].name
+      });
+    // this.navCtrl.push(this.customtrackers[index].component);
   }
 
   presentPopover(ev) {
@@ -120,9 +122,9 @@ export class TrackersPage {
           }
         }
         this.customtrackers.push({
+          id: 5,
           name: mytracker.name,
-          icon: 'analytics',
-          component: CustomtrackerPage
+          icon: 'analytics'
         });
       }
     });

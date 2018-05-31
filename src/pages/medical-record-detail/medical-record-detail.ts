@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { QuestionProvider } from '../../providers/question/question';
 
 /**
  * Generated class for the MedicalRecordDetailPage page.
@@ -18,16 +19,18 @@ export class MedicalRecordDetailPage {
 
   title: string;
   id: number;
+  questions: any[];
   color = ['dark-salmon', 'rosy-brown', 'slate-grey'];
   navcolor: string;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private fb: FormBuilder
-  ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private fb: FormBuilder,
+    private qp: QuestionProvider,
+    private viewCtrl: ViewController) {
+
     this.title = navParams.get('title');
     this.id = navParams.get('id');
+    this.questions = qp.getLabTestQuestions();
     this.navcolor = this.color[(this.id+1)%3];
     this.createForm();
   }
@@ -54,7 +57,6 @@ export class MedicalRecordDetailPage {
     this.nowTime = new Date().toISOString();
     this.recordForm = this.fb.group({
       antigenic: ['', Validators.required],
-      functional: ['', Validators.required],
       date: [this.nowTime, Validators.required]
     });
   }
@@ -264,28 +266,28 @@ export class MedicalRecordDetailPage {
           data: this.antigenic,
           itemStyle: {
             normal: {
-
-              color: function (params) {
-                console.log(params);
-                // build a color map as your need.
-                return self.antigenicColorList[params.dataIndex]
-              }
+              color: 'rgb(140, 158, 217)'
+              // color: function (params) {
+              //   console.log(params);
+              //   // build a color map as your need.
+              //   return self.antigenicColorList[params.dataIndex]
+              // }
             }
           }
         },
-        {
-          name: 'Functional',
-          type: 'line',
-          data: this.functional,
-          itemStyle: {
-            normal: {
-              color: function (params) {
-                // build a color map as your need.
-                return self.functionalColorList[params.dataIndex]
-              }
-            }
-          }
-        },
+        // {
+        //   name: 'Functional',
+        //   type: 'line',
+        //   data: this.functional,
+        //   itemStyle: {
+        //     normal: {
+        //       color: function (params) {
+        //         // build a color map as your need.
+        //         return self.functionalColorList[params.dataIndex]
+        //       }
+        //     }
+        //   }
+        // },
       ]
     }
   }

@@ -28,21 +28,22 @@ export class ProfilePage {
 
     this.userId = 1;
 
+    this.profile = {
+      username: "km111",
+      firstname: "Kelly",
+      lastname: "Marsh",
+      gender: "male",
+      race: "White",
+      email: "KellyM@gmail.com",
+      tel: "4125890011",
+      address: "100 Fifth Ave\nApt 119",
+      birthday: "11/11/1911"
+    };
+
     //get profile from database
     this.userProvider.getProfile(this.userId)
       .subscribe(profile => this.profile = profile,
         errmess => this.errMess = <any>errmess);
-
-    // this.profile = {
-    //   username: "km111",
-    //   firstname: "Kelly",
-    //   lastname: "Marsh",
-    //   gender: "male",
-    //   email: "KellyM@gmail.com",
-    //   tel: "4125890011",
-    //   address: "100 Fifth Ave",
-    //   birthday: "11/11/1911"
-    // };
   }
 
   ionViewDidLoad() {

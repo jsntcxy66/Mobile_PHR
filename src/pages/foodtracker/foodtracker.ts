@@ -36,7 +36,7 @@ export class FoodtrackerPage implements OnInit {
     private trackerService: TrackersProvider,
     private qp: QuestionProvider) {
 
-    this.questions = qp.getQuestions();
+    this.questions = qp.getTrackersQuestions(1);
     this.createForm();
 
   }

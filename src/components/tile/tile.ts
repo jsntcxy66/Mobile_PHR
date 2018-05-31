@@ -4,6 +4,7 @@ import { MedicalClassificationProvider } from '../../providers/medical-classific
 import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medical-record-detail';
 import { AllergyDetailPage } from './../../pages/allergy-detail/allergy-detail';
 import { ImmunizationDetailPage } from '../../pages/immunization-detail/immunization-detail';
+import { SocialHistoryDetailPage } from '../../pages/social-history-detail/social-history-detail';
 
 /**
  * Generated class for the TileComponent component.
@@ -47,7 +48,7 @@ export class TileComponent {
           'id': tile.id,
           'title': tile.name
         });
-        modal.present();
+      modal.present();
     }
     else if (tile.menu == "immunization") {
       let modal = this.modalCtrl.create(ImmunizationDetailPage,
@@ -55,7 +56,15 @@ export class TileComponent {
           'id': tile.id,
           'title': tile.name
         });
-        modal.present();
+      modal.present();
+    }
+    else if (tile.menu == "socialhistory") {
+      let modal = this.modalCtrl.create(SocialHistoryDetailPage,
+        {
+          'id': tile.id,
+          'title': tile.name
+        });
+      modal.present();
     }
   }
 }

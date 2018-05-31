@@ -20,51 +20,135 @@ export class QuestionProvider {
 
   constructor(private qop: QuestionOptionProvider) { }
 
-  getQuestions() {
-    let questions: QuestionBase<any>[] = [
+  getTrackersQuestions(id: number) {
+    if (id == 1) {
+      let questions: QuestionBase<any>[] = [
 
-      new TextboxQuestion({
-        key: 'food',
-        label: 'Food',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 1
-      }),
+        new TextboxQuestion({
+          key: 'food',
+          label: 'Food',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+  
+        new TextboxQuestion({
+          key: 'amount',
+          label: 'Amount',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 2
+        }),
+  
+        new DropdownQuestion({
+          key: 'timeperiod',
+          label: 'Time Period',
+          value: 'breakfast',
+          multiple: false,
+          options: [
+            { key: 'breakfast', value: 'Breakfast' },
+            { key: 'lunch', value: 'Lunch' },
+            { key: 'dinner', value: 'Dinner' },
+            { key: 'snack', value: 'Snack' }
+          ],
+          order: 3
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: new Date(),
+          required: true,
+          order: 4
+        }),
+  
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 2) {
+      let questions: QuestionBase<any>[] = [
 
-      new TextboxQuestion({
-        key: 'weight',
-        label: 'Weight',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 2
-      }),
+        new TextboxQuestion({
+          key: 'exercise',
+          label: 'Exercise',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+  
+        new TextboxQuestion({
+          key: 'duration',
+          label: 'Duration',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 2
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: new Date(),
+          required: true,
+          order: 3
+        }),
+  
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 3) {
+      let questions: QuestionBase<any>[] = [
 
-      new DropdownQuestion({
-        key: 'timeperiod',
-        label: 'Time Period',
-        value: 'breakfast',
-        multiple: false,
-        options: [
-          { key: 'breakfast', value: 'Breakfast' },
-          { key: 'lunch', value: 'Lunch' },
-          { key: 'dinner', value: 'Dinner' },
-          { key: 'snack', value: 'Snack' }
-        ],
-        order: 3
-      }),
+        new TextboxQuestion({
+          key: 'weight',
+          label: 'Weight(kg)',
+          type: 'number',
+          value: '',
+          required: true,
+          order: 1
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: new Date(),
+          required: true,
+          order: 2
+        }),
+  
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 4) {
+      let questions: QuestionBase<any>[] = [
 
-      new DatetimeQuestion({
-        key: 'datetime',
-        label: 'Date',
-        value: new Date(),
-        order: 4
-      }),
-
-    ];
-
-    return questions.sort((a, b) => a.order - b.order);
+        new TextboxQuestion({
+          key: 'height',
+          label: 'Height(inch)',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: new Date(),
+          required: true,
+          order: 2
+        }),
+  
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
   }
 
   getAllergyQuestions() {
@@ -220,7 +304,7 @@ export class QuestionProvider {
 
   getImmunizationQuestions() {
     let questions: QuestionBase<any>[] = [
-  
+
       new TextboxQuestion({
         key: 'vaccine',
         label: 'Vaccine',
@@ -263,7 +347,7 @@ export class QuestionProvider {
   getDoctorVisitNotesQuestions() {
     let option = this.qop.getDoctorOption();
     let questions: QuestionBase<any>[] = [
-  
+
       new TextboxQuestion({
         key: 'diagnosis',
         label: 'Diagnosis',
@@ -303,7 +387,7 @@ export class QuestionProvider {
         key: 'reason',
         label: 'Reason of Visit',
         value: '',
-        rows: 12,
+        rows: 9,
         required: false,
         order: 5
       }),
@@ -313,4 +397,241 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
+  getSocialHistoryQuestions(id: number) {
+    if (id == 1) {
+      let questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: 'amount',
+          label: 'Amount',
+          type: 'number',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: '',
+          required: true,
+          order: 2
+        }),
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 2) {
+      let questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: 'name',
+          label: 'Name',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'amount',
+          label: 'Amount(oz)',
+          type: 'number',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new TextboxQuestion({
+          key: 'alcohol',
+          label: 'Alcohol(%)',
+          type: 'number',
+          value: '',
+          required: true,
+          order: 3
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: '',
+          required: true,
+          order: 4
+        }),
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 3) {
+      let questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: 'name',
+          label: 'Name',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'amount',
+          label: 'Amount',
+          type: 'number',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: '',
+          required: true,
+          order: 3
+        }),
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 4) {
+      let questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: 'location',
+          label: 'Location',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Note',
+          value: '',
+          rows: 5,
+          required: false,
+          order: 2
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          value: '',
+          required: true,
+          order: 3
+        }),
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 5) {
+      let questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: 'type',
+          label: 'Type',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'moveindate',
+          label: 'Move in',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new DatetimeQuestion({
+          key: 'moveoutdate',
+          label: 'Move out',
+          value: '',
+          required: true,
+          order: 3
+        }),
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
+  }
+
+  getMedicationQuestions() {
+    let questions: QuestionBase<any>[] = [
+
+      new TextboxQuestion({
+        key: 'name',
+        label: 'Medication Name',
+        type: 'text',
+        value: '',
+        required: true,
+        order: 1
+      }),
+
+      new TextareaQuestion({
+        key: 'frequency',
+        label: 'Frequency',
+        value: '',
+        rows: 2,
+        required: true,
+        order: 2
+      }),
+
+      new DatetimeQuestion({
+        key: 'date',
+        label: 'Date',
+        value: new Date(),
+        required: true,
+        order: 3
+      }),
+    ];
+
+    return questions.sort((a, b) => a.order - b.order);
+  }
+
+  getLabTestQuestions() {
+    let questions: QuestionBase<any>[] = [
+
+      new TextboxQuestion({
+        key: 'name',
+        label: 'Test Name',
+        type: 'text',
+        value: '',
+        required: true,
+        order: 1
+      }),
+
+      new DatetimeQuestion({
+        key: 'date',
+        label: 'Date',
+        value: new Date(),
+        required: true,
+        order: 2
+      }),
+
+      new TextboxQuestion({
+        key: 'result',
+        label: 'Result',
+        type: 'text',
+        value: '',
+        required: true,
+        order: 3
+      }),
+
+      new TextareaQuestion({
+        key: 'note',
+        label: 'Notes',
+        value: '',
+        rows: 4,
+        required: false,
+        order: 4
+      }),
+
+    ];
+
+    return questions.sort((a, b) => a.order - b.order);
+  }
 }

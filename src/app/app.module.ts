@@ -10,6 +10,7 @@ import { CallNumber } from '@ionic-native/call-number';
 
 import { MyApp } from './app.component';
 import { TrackersPage } from './../pages/trackers/trackers';
+import { TrackerDetailPage } from '../pages/tracker-detail/tracker-detail';
 import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
 import { FoodtrackerPage } from './../pages/foodtracker/foodtracker';
 import { CustomPanelPage } from './../pages/custom-panel/custom-panel';
@@ -42,9 +43,14 @@ import { ImmunizationPage } from './../pages/immunization/immunization';
 import { ImmunizationDetailPage } from './../pages/immunization-detail/immunization-detail';
 import { ImmunizationHistoryPage } from './../pages/immunization-history/immunization-history';
 import { SocialHistoryPage } from '../pages/social-history/social-history';
+import { SocialHistoryCategoryPage } from '../pages/social-history-category/social-history-category';
+import { SocialHistoryDetailPage } from '../pages/social-history-detail/social-history-detail';
 import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-notes';
 import { DoctorVisitNotesDetailPage } from '../pages/doctor-visit-notes-detail/doctor-visit-notes-detail';
 import { MedicationPage } from '../pages/medication/medication';
+import { MedicationDetailPage } from '../pages/medication-detail/medication-detail';
+import { TestResultsPage } from '../pages/test-results/test-results';
+import { DiagnosticProcedurePage } from '../pages/diagnostic-procedure/diagnostic-procedure';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -55,6 +61,7 @@ import { AllergyClassificationProvider } from '../providers/allergy-classificati
 import { ImmunizationClassificationProvider } from '../providers/immunization-classification/immunization-classification';
 import { UserProvider } from '../providers/user/user';
 import { AppointmentProvider } from '../providers/appointment/appointment';
+import { SocialHistoryClassificationProvider } from '../providers/social-history-classification/social-history-classification';
 
 import { QuestionOptionProvider } from '../providers/question-option/question-option';
 import { QuestionControlProvider } from '../providers/question-control/question-control';
@@ -70,13 +77,14 @@ import { CalendarComponent } from './../components/calendar/calendar';
   declarations: [
     MyApp,
     TrackersPage,
+    TrackerDetailPage,
     MedicalrecordPage,
+    MedicalRecordDetailPage,
     FoodtrackerPage,
     CustomPanelPage,
     AlcoholtrackerPage,
     CreateTrackerPage,
     CustomtrackerPage,
-    MedicalRecordDetailPage,
     TileComponent,
     DashboardPage,
     AllergyPage,
@@ -106,9 +114,14 @@ import { CalendarComponent } from './../components/calendar/calendar';
     ImmunizationHistoryPage,
     ImmunizationDetailPage,
     SocialHistoryPage,
+    SocialHistoryCategoryPage,
+    SocialHistoryDetailPage,
     DoctorVisitNotesPage,
     DoctorVisitNotesDetailPage,
-    MedicationPage
+    MedicationPage,
+    MedicationDetailPage,
+    TestResultsPage,
+    DiagnosticProcedurePage
   ],
   imports: [
     BrowserModule,
@@ -123,13 +136,14 @@ import { CalendarComponent } from './../components/calendar/calendar';
   entryComponents: [
     MyApp,
     TrackersPage,
+    TrackerDetailPage,
     MedicalrecordPage,
+    MedicalRecordDetailPage,
     FoodtrackerPage,
     CustomPanelPage,
     AlcoholtrackerPage,
     CreateTrackerPage,
     CustomtrackerPage,
-    MedicalRecordDetailPage,
     DashboardPage,
     AllergyPage,
     AllergyDetailPage,
@@ -155,9 +169,14 @@ import { CalendarComponent } from './../components/calendar/calendar';
     ImmunizationHistoryPage,
     ImmunizationDetailPage,
     SocialHistoryPage,
+    SocialHistoryCategoryPage,
+    SocialHistoryDetailPage,
     DoctorVisitNotesPage,
     DoctorVisitNotesDetailPage,
-    MedicationPage
+    MedicationPage,
+    MedicationDetailPage,
+    TestResultsPage,
+    DiagnosticProcedurePage
   ],
   providers: [
     StatusBar,
@@ -174,7 +193,8 @@ import { CalendarComponent } from './../components/calendar/calendar';
     ContactsProvider,
     QuestionOptionProvider,
     UserProvider,
-    AppointmentProvider
+    AppointmentProvider,
+    SocialHistoryClassificationProvider
   ]
 })
 export class AppModule {}

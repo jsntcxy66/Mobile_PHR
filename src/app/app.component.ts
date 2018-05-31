@@ -21,6 +21,7 @@ import { ImmunizationHistoryPage } from '../pages/immunization-history/immunizat
 import { SocialHistoryPage } from '../pages/social-history/social-history';
 import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-notes';
 import { MedicationPage } from '../pages/medication/medication';
+import { TestResultsPage } from '../pages/test-results/test-results';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,8 +29,8 @@ import { MedicationPage } from '../pages/medication/medication';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // rootPage: any = WelcomePage;
-  rootPage: any = DashboardPage;
+  rootPage: any = WelcomePage;
+  // rootPage: any = DashboardPage;
 
   pages: Pages[];
   onelevelPages: Pages[];
@@ -48,9 +49,9 @@ export class MyApp {
         open: false,
         children: [
           {
-            title: 'Test Result',
+            title: 'Test Results',
             icon: 'medkit-outline',
-            component: MedicalrecordPage
+            component: TestResultsPage
           },
           {
             title: 'Doctor Visit Notes',

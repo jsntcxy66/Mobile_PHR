@@ -45,6 +45,17 @@
         </ion-select>
       </ion-item>
       <ion-item>
+        <ion-label stacked color="primary">Race and Ethnicity</ion-label>
+        <ion-select formControlName="race">
+          <ion-option>Hispanic or Latino</ion-option>
+          <ion-option>White</ion-option>
+          <ion-option>Black or African American</ion-option>
+          <ion-option>Native Hawaiian or Other Pacific Islander</ion-option>
+          <ion-option>Asian</ion-option>
+          <ion-option>American Indian or Alaskan Native</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-label stacked color="primary">Email<span class="color-red">*</span></ion-label>
         <ion-input value="{{profile.email}}" type="email" formControlName="email"></ion-input>
       </ion-item>

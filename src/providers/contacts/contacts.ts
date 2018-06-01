@@ -29,7 +29,7 @@ export class ContactsProvider {
   }
 
   getDoctors(id: number): Observable<any> {
-    return this.http.get(baseurl + 'contacts/doctors/' + id)
+    return this.http.get(baseurl + 'contacts/doctor/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 }

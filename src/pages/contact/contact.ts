@@ -28,16 +28,16 @@ export class ContactPage {
         name: 'emergency'
       },
       {
-        category: 'Friends',
-        name: 'friends'
+        category: 'Friend',
+        name: 'friend'
       },
       {
         category: 'Family Members',
         name: 'family'
       },
       {
-        category: 'Doctors',
-        name: 'doctors'
+        category: 'Doctor',
+        name: 'doctor'
       }
     ]
 

@@ -50,11 +50,11 @@ export class ContactDetailPage {
         tel: "4123457680",
         fax: "4123457680",
         relation: "",
-        specialization: "physician",
+        specialty: "physician",
         location1: "5542 Walnut St",
         location2: "5819 Elwood St",
         location3: "1001 Fifth Ave",
-        group: "friends,doctors"
+        group: "friend,doctor"
       },
       {
         firstname: "Alivia",
@@ -62,7 +62,7 @@ export class ContactDetailPage {
         tel: "4123457680",
         fax: "",
         relation: "husband",
-        specialization: "",
+        specialty: "",
         location1: "999 N Negley Str",
         location2: "",
         location3: "",
@@ -74,7 +74,7 @@ export class ContactDetailPage {
         tel: "4123457680",
         fax: "",
         relation: "father",
-        specialization: "",
+        specialty: "",
         location1: "132 Centre Ave",
         location2: "",
         location3: "",
@@ -86,21 +86,22 @@ export class ContactDetailPage {
         tel: "4123457680",
         fax: "4123457680",
         relation: "",
-        specialization: "dermatologist",
+        specialty: "dermatologist",
         location1: "1100 Fifth Ave",
         location2: "1090 Centre Ave",
         location3: "",
-        group: "doctors"
+        group: "doctor"
       },
     ];
 
     // get all contacts' data
     this.contactsProvider.getContactsDetail(this.userId)
-      .subscribe(contacts => this.contacts = contacts,
+      .subscribe(contacts => {
+        this.contacts = contacts;
+        this.getTelArray();
+        this.getFaxArray();
+      },
         errmess => this.errMess = <any>errmess);
-
-    this.getTelArray();
-    this.getFaxArray();
   }
 
   ionViewDidLoad() {
@@ -146,7 +147,7 @@ export class ContactDetailPage {
   checkDoctor(i): boolean {
     let groups = this.contacts[i].group.split(",");
     for (let j = 0; j < groups.length; j++) {
-      if (groups[j] == "doctors") return true;
+      if (groups[j] == "doctor") return true;
     }
     return false;
   }

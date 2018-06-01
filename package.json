@@ -1,8 +1,8 @@
 {
-  "name": "MobilePHR",
+  "name": "pitt-mobile-phr",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Xinyi Chen",
+  "homepage": "https://github.com/jsntcxy66",
   "private": true,
   "scripts": {
     "start": "ionic serve --lab",

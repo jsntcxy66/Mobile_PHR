@@ -3,25 +3,25 @@
   <ion-menu [content]="content">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Health Manager</ion-title>
+        <ion-title>PHR</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
       <div class="sidemenu">
-        <button menuClose ion-item color="primary-pale" (click)="goToDashboard()">
+        <button class="font" menuClose ion-item color="primary-pale" (click)="goToDashboard()">
           <ion-icon item-left name="analytics"></ion-icon>
           Dashboard
         </button>
         <!-- Two levels buttons -->
         <ion-list *ngFor="let page of pages; let i = index" class="section" no-lines no-padding>
-          <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-open': page.open, 'section-close': !page.open}">
+          <button class="font" ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-open': page.open, 'section-close': !page.open}">
             <ion-icon item-left name="arrow-forward" *ngIf="!page.open"></ion-icon>
             <ion-icon item-left name="arrow-down" *ngIf="page.open"></ion-icon>
             {{page.title}}
           </button>
           <ion-list *ngIf="page.children && page.open" class="section" no-padding>
-            <button menuClose ion-item *ngFor="let p of page.children" (click)="openPage(p)">
+            <button class="font" menuClose ion-item *ngFor="let p of page.children" (click)="openPage(p)">
               <ion-icon [name]="p.icon" item-left></ion-icon>
               {{p.title}}
             </button>
@@ -29,13 +29,13 @@
         </ion-list>
         <!-- One level buttons -->
         <ion-list class="section" *ngFor="let page of onelevelPages; let i = index" no-lines no-padding>
-          <button menuClose ion-item color="primary-pale" (click)="openPage(page)">
+          <button class="font" menuClose ion-item color="primary-pale" (click)="openPage(page)">
             <ion-icon item-left [name]='page.icon'></ion-icon>
             {{page.title}}
           </button>
         </ion-list>
       </div>
-      <button class="logout" menuClose ion-button icon-start clear (click)="logout()">
+      <button class="logout font" menuClose ion-button icon-start clear (click)="logout()">
         <ion-icon item-left name="log-out"></ion-icon>
         Logout
       </button>

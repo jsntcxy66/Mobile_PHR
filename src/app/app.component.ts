@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Pages } from '../shared/pages';
 
 import { TrackersPage } from './../pages/trackers/trackers';
-import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ContactPage } from '../pages/contact/contact';
 import { AppointmentPage } from '../pages/appointment/appointment';

@@ -621,13 +621,20 @@ export class QuestionProvider {
         order: 3
       }),
 
+      new ToggleQuestion({
+        key: 'abnormal',
+        label: 'Abnormal?',
+        value: false,
+        order: 4
+      }),
+
       new TextareaQuestion({
         key: 'note',
         label: 'Notes',
         value: '',
         rows: 4,
         required: false,
-        order: 4
+        order: 5
       }),
 
     ];

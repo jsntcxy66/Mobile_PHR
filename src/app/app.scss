@@ -36,6 +36,11 @@ $background-pale: rgb(201, 210, 241);
   // bottom: 10px;
   color: black;
 }
+
+.font {
+  font-size: 20px;
+}
+
 .card-md .item-md.item-block:not(:last-child) .item-inner,
 .card-ios .item-ios.item-block:not(:last-child) .item-inner {
     box-shadow: inset 0 -1px 0 0 #dedede;

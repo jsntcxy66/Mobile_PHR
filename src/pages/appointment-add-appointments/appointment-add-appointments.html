@@ -42,17 +42,16 @@
         </ion-label>
         <ion-radio value="{{doctor.id}}" (ionSelect)="selectDoctor($event)"></ion-radio>
       </ion-item>
-      <div *ngIf="!doctors || doctors==''">
-        <ion-item>
-          <h2>No Doctor Record!</h2>
-          <button ion-button block type="button" (click)="addContact()">Add Contacts</button>
-        </ion-item>
-      </div>
+      <button ion-button type="button" clear color="primary" (click)="addContact()">Add Contact</button>
+      <ion-item *ngIf="!doctors || doctors.length==0">
+        <h2>No Doctor Record!</h2>
+        <button ion-button block type="button" (click)="addContact()">Add Contacts</button>
+      </ion-item>
     </ion-list>
     <ion-list radio-group formControlName="location">
       <ion-list-header>Choose one Location</ion-list-header>
       <ion-item *ngFor="let location of locations">
-        <ion-label>
+        <ion-label text-wrap>
           <h2>{{location}}</h2>
         </ion-label>
         <ion-radio value="{{location}}"></ion-radio>

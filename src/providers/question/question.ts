@@ -350,14 +350,14 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
-  getImmunizationQuestions() {
+  getImmunizationQuestions(vaccine: string) {
     let questions: QuestionBase<any>[] = [
 
       new TextboxQuestion({
         key: 'vaccine',
         label: 'Vaccine',
         type: 'text',
-        value: '',
+        value: vaccine,
         required: true,
         order: 1
       }),
@@ -728,7 +728,7 @@ export class QuestionProvider {
       questions = [
 
         new TextboxQuestion({
-          key: 'name',
+          key: 'subtest',
           label: 'Test Name',
           type: 'text',
           value: title,
@@ -777,7 +777,7 @@ export class QuestionProvider {
       questions = [
 
         new TextboxQuestion({
-          key: 'name',
+          key: 'subtest',
           label: 'Test Name',
           type: 'text',
           value: title,

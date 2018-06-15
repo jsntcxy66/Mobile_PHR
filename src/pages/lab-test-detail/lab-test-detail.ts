@@ -27,7 +27,7 @@ export class LabTestDetailPage {
   unit: string;
   isnumber: boolean;
   subtest: Array<string>;
-  tab: string = "form";
+  tab: string;
   questions: any[];
   form: FormGroup;
   errMess: string;
@@ -36,7 +36,7 @@ export class LabTestDetailPage {
   navcolor: string;
 
   records: Array<any>;
-  data: Array<any>;
+  data: Array<any> = [];
   date: Array<any> = [];
   results: Array<any> = [];
   abnormalColor: Array<string> = [];
@@ -63,6 +63,7 @@ export class LabTestDetailPage {
       this.presentAlert('Please login first.');
     }
 
+    this.tab = navParams.get('tab');
     this.title = navParams.get('title');
     this.id = navParams.get('id');
     this.unit = navParams.get('unit');
@@ -72,147 +73,136 @@ export class LabTestDetailPage {
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 
-    this.data = [
-      {
-        "subtest": "ANA",
-        "open": true,
-        "results": [
-          {
-            "id": 0,
-            "result": 22,
-            "abnormal": true,
-            "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-            "date": "2011-12-02T17:57:28.556094Z"
-          },
-          {
-            "id": 1,
-            "result": 30,
-            "abnormal": false,
-            "note": ':):):)',
-            "date": "2011-12-03T17:57:28.556094Z"
-          },
-          {
-            "id": 2,
-            "result": 40,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-04T17:57:28.556094Z"
-          },
-          {
-            "id": 3,
-            "result": 24,
-            "abnormal": true,
-            "note": ':D',
-            "date": "2011-12-05T17:57:28.556094Z"
-          },
-          {
-            "id": 4,
-            "result": 18,
-            "abnormal": true,
-            "note": '',
-            "date": "2011-12-06T02:08:21.199Z"
-          },
-          {
-            "id": 5,
-            "result": 26,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-07T02:14:16.365Z"
-          },
-          {
-            "id": 6,
-            "result": 36,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-08T02:30:10.570Z"
-          },
-          {
-            "id": 7,
-            "result": 45,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-09T02:52:17.718Z"
-          },
-          {
-            "id": 8,
-            "result": 35,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-10T01:38:47.452Z"
-          }
-        ]
-      },
-      {
-        "subtest": "ANA(Other)",
-        "open": false,
-        "results": [
-          {
-            "id": 0,
-            "result": 12,
-            "abnormal": true,
-            "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-            "date": "2011-12-02T17:57:28.556094Z"
-          },
-          {
-            "id": 1,
-            "result": 53,
-            "abnormal": false,
-            "note": ':):):)',
-            "date": "2011-12-03T17:57:28.556094Z"
-          },
-          {
-            "id": 2,
-            "result": 88,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-04T17:57:28.556094Z"
-          },
-          {
-            "id": 3,
-            "result": 26,
-            "abnormal": true,
-            "note": ':D',
-            "date": "2011-12-05T17:57:28.556094Z"
-          },
-          {
-            "id": 4,
-            "result": 40,
-            "abnormal": true,
-            "note": '',
-            "date": "2011-12-06T02:08:21.199Z"
-          },
-          {
-            "id": 5,
-            "result": 30,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-07T02:14:16.365Z"
-          },
-          {
-            "id": 6,
-            "result": 29,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-08T02:30:10.570Z"
-          },
-          {
-            "id": 7,
-            "result": 55,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-09T02:52:17.718Z"
-          },
-          {
-            "id": 8,
-            "result": 11,
-            "abnormal": false,
-            "note": '',
-            "date": "2011-12-10T01:38:47.452Z"
-          }
-        ]
-      }
-    ];
+    if (this.id == 2) {
+      this.data = [
+        {
+          "subtest": "BMP (Basic Metabolic Panel)",
+          "open": true,
+          "results": [
+            {
+              "result": 22,
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-10T17:57:28.556094Z"
+            },
+            {
+              "result": 30,
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-09T17:57:28.556094Z"
+            },
+            {
+              "result": 40,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-08T17:57:28.556094Z"
+            },
+            {
+              "result": 24,
+              "abnormal": true,
+              "note": ':D',
+              "date": "2011-12-07T17:57:28.556094Z"
+            },
+            {
+              "result": 18,
+              "abnormal": true,
+              "note": '',
+              "date": "2011-12-06T02:08:21.199Z"
+            },
+            {
+              "result": 26,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-05T02:14:16.365Z"
+            },
+            {
+              "result": 36,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-04T02:30:10.570Z"
+            },
+            {
+              "result": 45,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-03T02:52:17.718Z"
+            },
+            {
+              "result": 35,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-02T01:38:47.452Z"
+            }
+          ]
+        },
+        {
+          "subtest": "BMP (Basic Metabolic Panel) (Other)",
+          "open": false,
+          "results": [
+            {
+              "result": 12,
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-10T17:57:28.556094Z"
+            },
+            {
+              "result": 53,
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-09T17:57:28.556094Z"
+            },
+            {
+              "result": 88,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-08T17:57:28.556094Z"
+            },
+            {
+              "result": 26,
+              "abnormal": true,
+              "note": ':D',
+              "date": "2011-12-07T17:57:28.556094Z"
+            },
+            {
+              "result": 40,
+              "abnormal": true,
+              "note": '',
+              "date": "2011-12-06T02:08:21.199Z"
+            },
+            {
+              "result": 30,
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-05T02:14:16.365Z"
+            }
+          ]
+        }
+      ];
+    }
 
+    this.drawcanvas();
+
+
+    this.trp.getLabtTest(this.auth.userId, this.id)
+      .subscribe(records => {
+        this.records = records;
+        // set extension panel of first category in record history in 'open' status
+        this.records[0]['open'] = true;
+        for (let i = 1; i < this.records.length; i++) {
+          this.records[i]['open'] = false;
+        }
+        this.data = this.records;
+        this.drawcanvas();
+      },
+        errmess => this.errMess = <any>errmess);
+
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LabTestDetailPage');
+  }
+
+  drawcanvas() {
     this.data.forEach(data => {
       this.date = [];
       this.results = [];
@@ -244,20 +234,8 @@ export class LabTestDetailPage {
         lineChartLegend: this.lineChartLegend,
         lineChartType: this.lineChartType
       });
-      console.log(this.lineChartData);
-      console.log(this.lineChartLabels);
       console.log(this.charts);
     });
-
-
-    this.trp.getLabtTest(this.auth.userId, this.id)
-      .subscribe(records => this.records = records,
-        errmess => this.errMess = <any>errmess)
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LabTestDetailPage');
   }
 
   toggleSection(i) {
@@ -290,7 +268,16 @@ export class LabTestDetailPage {
           this.loading.dismiss();
           this.presentToast('Successfully added!');
           this.trp.getLabtTest(this.auth.userId, this.id)
-            .subscribe(records => this.records = records,
+            .subscribe(records => {
+              this.records = records;
+              // set extension panel of first category in record history in 'open' status
+              this.records[0]['open'] = true;
+              for (let i = 1; i < this.records.length; i++) {
+                this.records[i]['open'] = false;
+              }
+              this.data = this.records;
+              this.drawcanvas();
+            },
               errmess => this.errMess = <any>errmess)
         },
         err => {

@@ -9,7 +9,7 @@
       </ion-card>
       <ion-card class="fix-card" *ngIf="tile.end" [ngStyle]="{'background-color': color[i%3]}" (click)="goToRecord(tile)">
         <div class="item_size" color="primary">
-          <p class="break">{{tile.name | titlecase}}</p>
+          <p class="break">{{tile.name}}</p>
         </div>
       </ion-card>
     </ion-col>

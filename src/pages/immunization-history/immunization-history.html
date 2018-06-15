@@ -18,19 +18,19 @@
 
 
 <ion-content padding>
-  <ion-list *ngIf="records">
+  <ion-list *ngIf="records.length!=0">
     <ion-list-header>Immunization History</ion-list-header>
     <ion-item *ngFor="let record of records">
       <div class="white-space">
         <h3>Vaccine: {{record.vaccine}}</h3>
         <h3>Schedule: {{record.schedule}}</h3>
-        <p>Date: {{record.date}}</p>
+        <p>Date: {{record.date | date}}</p>
       </div>
       <p item-end>{{record.ageGroup}}</p>
     </ion-item>
   </ion-list>
 
-  <ion-card [hidden]="records">
+  <ion-card [hidden]="records.length!=0">
     <ion-card-header>No immunization record.</ion-card-header>
   </ion-card>
 

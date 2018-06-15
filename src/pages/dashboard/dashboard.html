@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>Recent Events</ion-list-header>
-    <ion-card *ngIf="appointments">
+    <ion-card *ngIf="appointments.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
@@ -38,26 +38,28 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="labtests">
+    <ion-card *ngIf="labtests.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
             <ion-icon item-start>
               <i class="fas fa-file-medical-alt"></i>
             </ion-icon>
-            <span>Lab Test</span>
+            <span>Abnormal Lab Test</span>
           </ion-item>
         </ion-card-title>
         <ion-list *ngFor="let labtest of labtests; let i = index;">
           <ion-item (click)="goToLabtest(i)">
-            <h2>{{labtest.name}}</h2>
-            <h3>{{labtest.result}}</h3>
+            <h2>{{labtest.subtest}}</h2>
+            <h3>{{labtest.result}}
+              <span *ngIf="labtest.isnumber"> {{labtest.unit}}</span>
+            </h3>
             <p>{{labtest.date | date}}</p>
           </ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="medications">
+    <ion-card *ngIf="medications.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
@@ -76,7 +78,7 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="immunizations">
+    <ion-card *ngIf="immunizations.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>

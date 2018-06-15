@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
 import { MedicationDetailPage } from '../medication-detail/medication-detail';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
+import { MedicationProvider } from '../../providers/medication/medication';
 
 /**
  * Generated class for the MedicationPage page.
@@ -18,12 +19,14 @@ import { WelcomePage } from '../welcome/welcome';
 })
 export class MedicationPage {
 
-  records: any[];
+  errMess: string;
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
     private auth: AuthServiceProvider,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private medicationProvider: MedicationProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
@@ -42,6 +45,10 @@ export class MedicationPage {
         date: '2018/04/03'
       }
     ];
+
+    this.medicationProvider.getRecords(this.auth.userId)
+      .subscribe(records => this.records = records,
+        errmess => this.errMess = <any>errmess);
   }
 
   ionViewDidLoad() {
@@ -51,6 +58,13 @@ export class MedicationPage {
   addMedication() {
     let modal = this.modalCtrl.create(MedicationDetailPage);
     modal.present();
+    modal.onWillDismiss(
+      () => {
+        this.medicationProvider.getRecords(this.auth.userId)
+          .subscribe(records => this.records = records,
+            errmess => this.errMess = <any>errmess);
+      }
+    );
   }
 
   presentAlert(msg) {

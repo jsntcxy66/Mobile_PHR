@@ -19,7 +19,7 @@ export class TestResultsProvider {
   }
 
   getLabTestCategory(): Observable<any> {
-    return this.http.get(baseurl + 'labtest')
+    return this.http.get(baseurl + 'labtest/category')
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
@@ -33,4 +33,8 @@ export class TestResultsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  getRecentLabTest(userid: number): Observable<any> {
+    return this.http.get(baseurl + 'labtest/' + userid)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
 }

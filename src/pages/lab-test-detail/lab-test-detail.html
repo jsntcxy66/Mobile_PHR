@@ -55,29 +55,42 @@
       </ion-card>
     </div>
     <div *ngSwitchCase="'history'">
-      <ion-list>
+      <ion-list *ngIf="data.length!=0">
         <ion-card *ngFor="let d of data; let i = index">
           <ion-card-header>
             <ion-item (click)="toggleSection(i)" no-padding>
-              <ion-label item-left>{{d.subtest}}</ion-label>
+              <ion-label text-wrap>{{d.subtest}}</ion-label>
               <ion-icon item-right name="arrow-forward" *ngIf="!d.open"></ion-icon>
               <ion-icon item-right name="arrow-down" *ngIf="d.open"></ion-icon>
             </ion-item>
           </ion-card-header>
           <ion-list *ngIf="d.open && d.results" no-padding>
             <ion-item *ngFor="let r of d.results; let j = index" (click)="showNotes(i, j)">
-              <h3>{{r.result}} {{unit}}</h3>
-              <p>{{r.date | date}}</p>
+              <h3 *ngIf="!r.abnormal">{{r.result}}
+                <span *ngIf="isnumber"> {{unit}}</span>
+              </h3>
+              <h3 *ngIf="r.abnormal" style="color:red">{{r.result}}
+                <span *ngIf="isnumber"> {{unit}}</span>
+              </h3>
+              <ion-note item-right>{{r.date | date}}</ion-note>
             </ion-item>
           </ion-list>
         </ion-card>
       </ion-list>
+      <ion-card [hidden]="data.length!=0">
+        <ion-card-header>No record.</ion-card-header>
+      </ion-card>
     </div>
     <div *ngSwitchCase="'chart'">
-      <div *ngFor="let chart of charts" style="display: block;">
-        <canvas baseChart [datasets]="chart.lineChartData" [labels]="chart.lineChartLabels" [options]="chart.lineChartOptions" [colors]="chart.lineChartColors"
-          [legend]="chart.lineChartLegend" [chartType]="chart.lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      <div *ngIf="data.length!=0">
+        <div *ngFor="let chart of charts" style="display: block;">
+          <canvas baseChart [datasets]="chart.lineChartData" [labels]="chart.lineChartLabels" [options]="chart.lineChartOptions" [colors]="chart.lineChartColors"
+            [legend]="chart.lineChartLegend" [chartType]="chart.lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
       </div>
+      <ion-card [hidden]="data.length!=0">
+        <ion-card-header>No record.</ion-card-header>
+      </ion-card>
     </div>
   </div>
 </ion-content>

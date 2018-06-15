@@ -108,7 +108,6 @@ export class AppointmentAddAppointmentsPage implements OnInit {
         this.doctors = <any[]>await this.contactsProvider.getDoctors(this.auth.userId).toPromise();
       }
     );
-    this.dismiss();
   }
 
   check_valid(): boolean {

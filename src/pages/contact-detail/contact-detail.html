@@ -25,12 +25,12 @@
         <ion-icon item-end name="call" (click)="callNumber(i)"></ion-icon>
       </ion-item>
       <ion-item *ngIf="contact.fax&&contact.fax!=''">Fax: {{fax[i]}}</ion-item>
-      <ion-item *ngIf="checkDoctor(i)">Specialty: {{contact.specialty}}</ion-item>
-      <ion-item *ngIf="!((contact.location2&&contact.location2!='') || (contact.location3&&contact.location3!=''))">Address: {{contact.location1}}</ion-item>
-      <ion-item *ngIf="(contact.location2&&contact.location2!='') || (contact.location3&&contact.location3!='')">Address1: {{contact.location1}}</ion-item>
-      <ion-item *ngIf="contact.location2&&contact.location2!=''">Address2: {{contact.location2}}</ion-item>
-      <ion-item *ngIf="contact.location3&&contact.location3!=''">Address3: {{contact.location3}}</ion-item>
-      <ion-item *ngIf="checkFamilyorEmergency(i)">Relationship: {{contact.relationship}}</ion-item>
+      <ion-item *ngIf="checkDoctor(i)" text-wrap>Specialty: {{contact.specialty}}</ion-item>
+      <ion-item *ngIf="!((contact.location2&&contact.location2!='') || (contact.location3&&contact.location3!=''))" text-wrap>Address: {{contact.location1}}</ion-item>
+      <ion-item *ngIf="(contact.location2&&contact.location2!='') || (contact.location3&&contact.location3!='')" text-wrap>Address1: {{contact.location1}}</ion-item>
+      <ion-item *ngIf="contact.location2&&contact.location2!=''" text-wrap>Address2: {{contact.location2}}</ion-item>
+      <ion-item *ngIf="contact.location3&&contact.location3!=''" text-wrap>Address3: {{contact.location3}}</ion-item>
+      <ion-item *ngIf="checkFamilyorEmergency(i)" text-wrap>Relationship: {{contact.relationship}}</ion-item>
     </div>
   </ion-list>
   <!-- <ion-card [hidden]="matchCategory">

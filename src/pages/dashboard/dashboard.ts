@@ -7,6 +7,9 @@ import { ImmunizationHistoryPage } from '../immunization-history/immunization-hi
 import { AppointmentProvider } from '../../providers/appointment/appointment';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
+import { ImmunizationProvider } from '../../providers/immunization/immunization';
+import { MedicationProvider } from '../../providers/medication/medication';
+import { TestResultsProvider } from '../../providers/test-results/test-results';
 
 /**
  * Generated class for the DashboardPage page.
@@ -23,13 +26,16 @@ import { WelcomePage } from '../welcome/welcome';
 export class DashboardPage {
 
   errMess: string;
-  appointments: any[];
-  labtests: any[];
-  medications: any[];
-  immunizations: any[];
+  appointments: any[] = [];
+  labtests: any[] = [];
+  medications: any[] = [];
+  immunizations: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private ap: AppointmentProvider,
+    private ip: ImmunizationProvider,
+    private medicationProvider: MedicationProvider,
+    private trp: TestResultsProvider,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController) {
 
@@ -37,34 +43,27 @@ export class DashboardPage {
       this.presentAlert('Please login first.');
     }
 
-    // this.appointments = [
-    //   {
-    //     date: "2018-06-01",
-    //     time: "21:00",
-    //     firstname: "Scott",
-    //     lastname: "Williamson",
-    //     location: "111 Fifth Ave"
-    //   },
-    //   {
-    //     date: "2018-06-03",
-    //     time: "10:30",
-    //     firstname: "Aaric",
-    //     lastname: "Falconi",
-    //     location: "515 S Aiken Ave",
-    //   },
-    //   {
-    //     date: "2018-06-19",
-    //     time: "09:20",
-    //     firstname: "Scott",
-    //     lastname: "Williamson",
-    //     location: "111 Fifth Ave"
-    //   }
-    // ];
-
     this.labtests = [
       {
-        name: 'antigentic',
-        result: '22mg/dl',
+        id: 2,
+        name: "BMP (Basic Metabolic Panel)",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: "BMP (Basic Metabolic Panel)",
+        result: '22',
+        abnormal: true,
+        note: 'XDXDXDXDXDXD',
+        date: '2011-12-02T17:57:28.556094Z'
+      },
+      {
+        id: 2,
+        name: "BMP (Basic Metabolic Panel)",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: "BMP (Basic Metabolic Panel)",
+        result: '22',
+        abnormal: true,
+        note: 'XDXDXDXDXDXD',
         date: '2011-12-02T17:57:28.556094Z'
       }
     ];
@@ -87,19 +86,42 @@ export class DashboardPage {
         vaccine: 'MMR',
         schedule: '1 or 2 doses depending on indication',
         ageGroup: 'Adult',
-        date: '2018/02/08'
+        date: '2018/02/08',
+        age: 30
       },
       {
         vaccine: 'Influenza',
         schedule: 'Annual vaccination (IIV) 1 or 2 doses',
         ageGroup: 'Child and Adolescent',
-        date: '2018/04/15'
+        date: '2018/04/15',
+        age: 12
       }
     ];
 
     this.ap.getAppointment(this.auth.userId)
       .subscribe(app => this.appointments = app,
         errmess => this.errMess = <any>errmess);
+
+    this.trp.getRecentLabTest(this.auth.userId)
+      .subscribe(records => this.labtests = records,
+        errmess => this.errMess = <any>errmess);
+
+    this.medicationProvider.getRecords(this.auth.userId)
+      .subscribe(records => this.medications = records,
+        errmess => this.errMess = <any>errmess);
+
+    this.ip.getRecords(this.auth.userId)
+      .subscribe(records => {
+        this.immunizations = records;
+        this.immunizations.forEach(immunization => {
+          if (immunization.age > 18)
+            immunization['ageGroup'] = "Adult";
+          else
+            immunization['ageGroup'] = "Child and Adolescent";
+        });
+      },
+        errmess => this.errMess = <any>errmess);
+
   }
 
   ionViewDidLoad() {
@@ -113,7 +135,10 @@ export class DashboardPage {
   goToLabtest(i) {
     this.navCtrl.push(LabTestDetailPage, {
       'title': this.labtests[i].name,
-      'id': i
+      'id': this.labtests[i].id,
+      'isnumber': this.labtests[i].isnumber,
+      'unit': this.labtests[i].unit,
+      'tab': 'history'
     });
   }
 

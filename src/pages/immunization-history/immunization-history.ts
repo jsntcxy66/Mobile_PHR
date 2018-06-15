@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { ImmunizationPage } from '../immunization/immunization';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { ImmunizationProvider } from '../../providers/immunization/immunization';
 
 /**
  * Generated class for the ImmunizationHistoryPage page.
@@ -18,11 +19,13 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class ImmunizationHistoryPage {
 
-  records: any[];
+  errMess: string;
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private auth: AuthServiceProvider,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private ip: ImmunizationProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
@@ -34,19 +37,47 @@ export class ImmunizationHistoryPage {
         vaccine: 'MMR',
         schedule: '1 or 2 doses depending on indication',
         ageGroup: 'Adult',
-        date: '2018/02/08'
+        date: '2018/02/08',
+        age: 30
       },
       {
         vaccine: 'Influenza',
         schedule: 'Annual vaccination (IIV) 1 or 2 doses',
         ageGroup: 'Child and Adolescent',
-        date: '2018/04/15'
+        date: '2018/04/15',
+        age: 12
       }
     ];
+
+    this.ip.getRecords(this.auth.userId)
+      .subscribe(records => {
+        this.records = records;
+        this.records.forEach(record => {
+          if (record.age > 18)
+            record['ageGroup'] = "Adult";
+          else
+            record['ageGroup'] = "Child and Adolescent";
+        });
+      },
+        errmess => this.errMess = <any>errmess);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImmunizationHistoryPage');
+  }
+
+  ionViewWillEnter() {
+    this.ip.getRecords(this.auth.userId)
+      .subscribe(records => {
+        this.records = records;
+        this.records.forEach(record => {
+          if (record.age > 18)
+            record['ageGroup'] = "Adult";
+          else
+            record['ageGroup'] = "Child and Adolescent";
+        });
+      },
+        errmess => this.errMess = <any>errmess);
   }
 
   addImmunization() {

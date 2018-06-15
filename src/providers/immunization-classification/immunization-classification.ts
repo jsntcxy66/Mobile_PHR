@@ -31,7 +31,8 @@ export class ImmunizationClassificationProvider {
         { id: 11, name: 'HepB', menu: 'immunization', end: true },
         { id: 12, name: 'MenACWY', menu: 'immunization', end: true },
         { id: 13, name: 'MenB', menu: 'immunization', end: true },
-        { id: 14, name: 'Hib', menu: 'immunization', end: true }
+        { id: 14, name: 'Hib', menu: 'immunization', end: true },
+        { id: 15, name: 'Other Vaccine', menu: 'immunization', end: true }
       ];
     }
     return arr;

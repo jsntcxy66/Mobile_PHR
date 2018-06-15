@@ -79,6 +79,8 @@ import { DynamicFormComponent } from './../components/dynamic-form/dynamic-form'
 import { CalendarComponent } from './../components/calendar/calendar';
 
 import * as moment from 'moment';
+import { MedicationProvider } from '../providers/medication/medication';
+import { ImmunizationProvider } from '../providers/immunization/immunization';
 
 @NgModule({
   declarations: [
@@ -207,7 +209,9 @@ import * as moment from 'moment';
     AllergyProvider,
     SurgicalHistoryProvider,
     DoctorVisitNotesProvider,
-    TestResultsProvider
+    TestResultsProvider,
+    MedicationProvider,
+    ImmunizationProvider
   ]
 })
 export class AppModule {}

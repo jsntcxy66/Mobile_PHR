@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the SocialHistoryDetailPage page.
@@ -24,13 +25,14 @@ export class SocialHistoryDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private qp: QuestionProvider,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    private auth: AuthServiceProvider) {
 
-      this.title = navParams.get('title');
-      this.id = navParams.get('id');
-      console.log(this.id);
-      this.questions = qp.getSocialHistoryQuestions(this.id);
-      this.navcolor = this.color[(this.id-1)%3];
+    this.title = navParams.get('title');
+    this.id = navParams.get('id');
+    console.log(this.id);
+    this.questions = this.qp.getSocialHistoryQuestions(this.id);
+    this.navcolor = this.color[(this.id - 1) % 3];
   }
 
   ionViewDidLoad() {

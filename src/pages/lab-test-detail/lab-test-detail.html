@@ -1,0 +1,83 @@
+<!--
+  Generated template for the MedicalRecordDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar [color]="navcolor">
+    <ion-title>{{title | titlecase}}</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar [color]="navcolor">
+    <ion-segment color="light" [(ngModel)]="tab">
+      <ion-segment-button value="form">
+        TRACK
+      </ion-segment-button>
+      <ion-segment-button value="history">
+        HISTORY
+      </ion-segment-button>
+      <ion-segment-button value="chart">
+        CHART
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content color="primary" pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher> -->
+  <div [ngSwitch]="tab">
+    <div *ngSwitchCase="'form'">
+      <ion-card>
+        <ion-card-content>
+          <div>
+            <form [formGroup]='form' (ngSubmit)="onSubmit()">
+
+              <div *ngFor="let question of questions">
+                <ion-item>
+                  <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
+                </ion-item>
+              </div>
+
+              <div>
+                <button ion-button type="submit" [disabled]="!form.valid" color="slate-grey">Record</button>
+              </div>
+
+            </form>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'history'">
+      <ion-list>
+        <ion-card *ngFor="let d of data; let i = index">
+          <ion-card-header>
+            <ion-item (click)="toggleSection(i)" no-padding>
+              <ion-label item-left>{{d.subtest}}</ion-label>
+              <ion-icon item-right name="arrow-forward" *ngIf="!d.open"></ion-icon>
+              <ion-icon item-right name="arrow-down" *ngIf="d.open"></ion-icon>
+            </ion-item>
+          </ion-card-header>
+          <ion-list *ngIf="d.open && d.results" no-padding>
+            <ion-item *ngFor="let r of d.results; let j = index" (click)="showNotes(i, j)">
+              <h3>{{r.result}} {{unit}}</h3>
+              <p>{{r.date | date}}</p>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'chart'">
+      <div *ngFor="let chart of charts" style="display: block;">
+        <canvas baseChart [datasets]="chart.lineChartData" [labels]="chart.lineChartLabels" [options]="chart.lineChartOptions" [colors]="chart.lineChartColors"
+          [legend]="chart.lineChartLegend" [chartType]="chart.lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </div>
+</ion-content>

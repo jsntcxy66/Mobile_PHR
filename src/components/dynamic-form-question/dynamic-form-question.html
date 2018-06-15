@@ -1,20 +1,24 @@
 <!-- Generated template for the DynamicFormQuestionComponent component -->
 <div [formGroup]="form" class="fix-underline" [ngClass]="{'red-underline': ((!form.controls[question.key].pristine) && (!isValid))}">
-  <label class="width color" [attr.for]="question.key" [ngClass]="{'full-width': (question.controlType=='textarea')}">{{question.label}}</label>
+  <label class="width color" [attr.for]="question.key" [ngClass]="{'full-width': (question.controlType=='textarea')}">{{question.label}}<span *ngIf="question.required" class="color-red">*</span></label>
   <div class="width" [ngSwitch]="question.controlType" [ngClass]="{'full-width': (question.controlType=='textarea')}">
 
-    <input class="input" *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    <div class="flexlayout" *ngSwitchCase="'textbox'">
+      <input [formControlName]="question.key" [id]="question.key" [type]="question.type">
+      <div class="right-justify" *ngIf="question.unit.length!=0">{{question.unit}}</div>
+    </div>
 
     <ion-select class="select-width left-pull" [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key" [multiple]="question.multiple">
       <ion-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</ion-option>
     </ion-select>
 
-    <ion-datetime class="left-pull" *ngSwitchCase="'datetime'" [formControlName]="question.key" [id]="question.key" displayFormat="MM/DD/YYYY"></ion-datetime>
+    <ion-datetime class="left-pull" *ngSwitchCase="'datetime'" [formControlName]="question.key" [id]="question.key" [displayFormat]="question.display"></ion-datetime>
 
-    <textarea class="input" *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key" [rows]="question.rows"></textarea>
-
-    <ion-toggle class="right-pull" *ngSwitchCase="'toggle'" [formControlName]="question.key" [id]="question.key" color="slate-grey"></ion-toggle>
-
+    <textarea *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key" [rows]="question.rows" [placeholder]="question.placeholder" [readonly]="question.readonly"></textarea>
+    
+    <div *ngSwitchCase="'toggle'" style="text-align: right">
+      <ion-toggle style="display:inline-block; vertical-align: middle" [formControlName]="question.key" [id]="question.key" color="slate-grey"></ion-toggle>
+    </div>
   </div>
   
   <!-- <div *ngIf="(!form.controls[question.key].pristine) && (!isValid)">{{question.label}} is required</div> -->

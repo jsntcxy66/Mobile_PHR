@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AllergyPage } from '../allergy/allergy';
+import { AllergyProvider } from '../../providers/allergy/allergy';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WelcomePage } from '../welcome/welcome';
 
 /**
  * Generated class for the AllergyHistoryPage page.
@@ -16,10 +19,17 @@ import { AllergyPage } from '../allergy/allergy';
 })
 export class AllergyHistoryPage {
 
+  errMess: string;
   records: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private allergyProvider: AllergyProvider,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController) {
 
+      if (!this.auth.userId) {
+        this.presentAlert('Please login first.');
+      }
     // get sorted records
     this.records = [
       {
@@ -45,6 +55,10 @@ export class AllergyHistoryPage {
       }
     ];
 
+    this.allergyProvider.getAllergy(this.auth.userId)
+      .subscribe(allergy => this.records = allergy,
+        errmess => this.errMess = <any>errmess);
+
   }
 
   ionViewDidLoad() {
@@ -57,5 +71,22 @@ export class AllergyHistoryPage {
 
   addAllergy() {
     this.navCtrl.push(AllergyPage);
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

@@ -17,7 +17,7 @@ import { ContactAddContactsPage } from '../contact-add-contacts/contact-add-cont
 })
 export class ContactPage {
 
-  contacts: any;
+  contacts: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController) {

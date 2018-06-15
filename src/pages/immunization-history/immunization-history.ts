@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ImmunizationPage } from '../immunization/immunization';
+import { WelcomePage } from '../welcome/welcome';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the ImmunizationHistoryPage page.
@@ -18,7 +20,13 @@ export class ImmunizationHistoryPage {
 
   records: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController) {
+
+    if (!this.auth.userId) {
+      this.presentAlert('Please login first.');
+    }
 
     //get records
     this.records = [
@@ -43,5 +51,22 @@ export class ImmunizationHistoryPage {
 
   addImmunization() {
     this.navCtrl.push(ImmunizationPage);
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

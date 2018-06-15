@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>Recent Events</ion-list-header>
-    <ion-card>
+    <ion-card *ngIf="appointments">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
@@ -29,12 +29,16 @@
             <span>Appointment</span>
           </ion-item>
         </ion-card-title>
-        <h2>May 29, 2018 at 10:30</h2>
-        <h3>111 Fifth Ave</h3>
-        <p>Scott Williamson</p>
+        <ion-list *ngFor="let appointment of appointments">
+          <ion-item (click)="goToAppointment()">
+            <h2>{{appointment.date | date}} at {{appointment.time}}</h2>
+            <h3>{{appointment.location}}</h3>
+            <p>{{appointment.firstname | titlecase}} {{appointment.lastname | titlecase}}</p>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card *ngIf="labtests">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
@@ -44,12 +48,16 @@
             <span>Lab Test</span>
           </ion-item>
         </ion-card-title>
-        <h2>Antigenic</h2>
-        <h3>May 1, 2018</h3>
-        <p>18 mg/dl</p>
+        <ion-list *ngFor="let labtest of labtests; let i = index;">
+          <ion-item (click)="goToLabtest(i)">
+            <h2>{{labtest.name}}</h2>
+            <h3>{{labtest.result}}</h3>
+            <p>{{labtest.date | date}}</p>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card *ngIf="medications">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
@@ -59,12 +67,16 @@
             <span>Medication</span>
           </ion-item>
         </ion-card-title>
-        <h2>Antigenic</h2>
-        <h3>18 mg/dl</h3>
-        <p>3 times per day</p>
+        <ion-list *ngFor="let medication of medications">
+          <ion-item (click)="goToMedication()">
+            <h2>{{medication.name}}</h2>
+            <h3>{{medication.frequency}}</h3>
+            <p>{{medication.date}}</p>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card *ngIf="immunizations">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
@@ -74,9 +86,13 @@
             <span>Immunization</span>
           </ion-item>
         </ion-card-title>
-        <h2>MMR</h2>
-        <h3>1st dose</h3>
-        <p>A week later</p>
+        <ion-list *ngFor="let immunization of immunizations">
+          <ion-item (click)="goToImmunization()">
+            <h2>{{immunization.vaccine}}</h2>
+            <h3>{{immunization.schedule}}</h3>
+            <p>{{immunization.date}}</p>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
   </ion-list>

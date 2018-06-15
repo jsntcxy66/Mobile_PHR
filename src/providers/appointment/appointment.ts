@@ -22,7 +22,7 @@ export class AppointmentProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
-  addAppointment(appointment, id: number): Observable<any> {
+  addAppointment(id: number, appointment: Object): Observable<any> {
     return this.http.post(baseurl + 'appointment/' + id, appointment)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }

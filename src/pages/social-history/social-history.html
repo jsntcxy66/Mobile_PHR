@@ -37,9 +37,9 @@
       </div>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="pill != ''">
-    <ion-list-header>Pill History</ion-list-header>
-    <ion-item *ngFor="let p of pill">
+  <ion-list *ngIf="drug != ''">
+    <ion-list-header>Drug History</ion-list-header>
+    <ion-item *ngFor="let p of drug">
       <div class="white-space">
         <h3>Name: {{p.name}}</h3>
         <h3>Amount: {{p.amount}}</h3>
@@ -68,7 +68,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-card [hidden]="smoking!='' || alcohol!='' || pill!='' || travel!='' || housing!=''">
+  <ion-card [hidden]="smoking!='' || alcohol!='' || drug!='' || travel!='' || housing!=''">
     <ion-card-header>No record.</ion-card-header>
   </ion-card>
 

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { SurgicalHistoryDetailPage } from '../surgical-history-detail/surgical-history-detail';
+import { SurgicalHistoryProvider } from '../../providers/surgical-history/surgical-history';
+import { WelcomePage } from './../welcome/welcome';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the SurgicalHistoryPage page.
@@ -16,10 +19,15 @@ import { SurgicalHistoryDetailPage } from '../surgical-history-detail/surgical-h
 })
 export class SurgicalHistoryPage {
 
+  errMess: string;
   records: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private modalCtrl: ModalController) {
+    private modalCtrl: ModalController,
+    private shp: SurgicalHistoryProvider,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController) {
+
 
     // get sorted records
     this.records = [
@@ -35,6 +43,10 @@ export class SurgicalHistoryPage {
       }
     ];
 
+    this.shp.getRecords(this.auth.userId)
+      .subscribe(records => this.records = records,
+        errmess => this.errMess = <any>errmess);
+
   }
 
   ionViewDidLoad() {
@@ -44,5 +56,27 @@ export class SurgicalHistoryPage {
   addSurgicalHistory() {
     let modal = this.modalCtrl.create(SurgicalHistoryDetailPage);
     modal.present();
+    modal.onWillDismiss(
+      () => this.shp.getRecords(this.auth.userId)
+        .subscribe(records => this.records = records,
+          errmess => this.errMess = <any>errmess)
+    );
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

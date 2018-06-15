@@ -22,7 +22,7 @@ export class SocialHistoryCategoryPage {
     private scp: SocialHistoryClassificationProvider) {
 
     // get Main Menu
-    this.tiles = scp.getMenu(0);
+    this.tiles = this.scp.getMenu(0);
   }
 
   ionViewDidLoad() {

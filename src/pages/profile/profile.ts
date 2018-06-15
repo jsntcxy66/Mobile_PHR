@@ -1,8 +1,9 @@
-import { Subpages } from './../../shared/subpages';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { ProfileEditablePage } from '../profile-editable/profile-editable';
 import { UserProvider } from '../../providers/user/user';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WelcomePage } from '../welcome/welcome';
 
 /**
  * Generated class for the ProfilePage page.
@@ -19,29 +20,32 @@ import { UserProvider } from '../../providers/user/user';
 export class ProfilePage {
 
   profile: any = {};
-  userId: number;
   errMess: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
-    private userProvider: UserProvider) {
+    private userProvider: UserProvider,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController) {
 
-    this.userId = 1;
+    if (!this.auth.userId) {
+      this.presentAlert('Please login first.');
+    }
 
-    this.profile = {
-      username: "km111",
-      firstname: "Kelly",
-      lastname: "Marsh",
-      gender: "male",
-      race: "White",
-      email: "KellyM@gmail.com",
-      tel: "4125890011",
-      address: "100 Fifth Ave\nApt 119",
-      birthday: "11/11/1911"
-    };
+    // this.profile = {
+    //   username: "km111",
+    //   firstname: "Kelly",
+    //   lastname: "Marsh",
+    //   gender: "male",
+    //   race: "White",
+    //   email: "KellyM@gmail.com",
+    //   tel: "4125890011",
+    //   address: "100 Fifth Ave\nApt 119",
+    //   birthday: "11/11/1911"
+    // };
 
     //get profile from database
-    this.userProvider.getProfile(this.userId)
+    this.userProvider.getProfile(this.auth.userId)
       .subscribe(profile => this.profile = profile,
         errmess => this.errMess = <any>errmess);
   }
@@ -55,7 +59,7 @@ export class ProfilePage {
     modal.present();
     modal.onWillDismiss(
       () => {
-        this.userProvider.getProfile(this.userId)
+        this.userProvider.getProfile(this.auth.userId)
           .subscribe(profile => this.profile = profile,
             errmess => this.errMess = <any>errmess);
       }
@@ -64,6 +68,23 @@ export class ProfilePage {
 
   resetPassword() {
 
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

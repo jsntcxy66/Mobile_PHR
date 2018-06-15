@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AllergyClassificationProvider } from './../../providers/allergy-classification/allergy-classification';
-import { DashboardPage } from '../dashboard/dashboard';
 
 /**
  * Generated class for the AllergyPage page.
@@ -22,7 +21,7 @@ export class AllergyPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private acp: AllergyClassificationProvider) {
     // get Main Menu
-    this.tiles = acp.getMenu(0);
+    this.tiles = this.acp.getMenu(0);
   }
 
   ionViewDidLoad() {

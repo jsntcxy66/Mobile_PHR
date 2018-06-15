@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the FamilyHistoryDetailPage page.
@@ -20,9 +21,10 @@ export class FamilyHistoryDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private qp: QuestionProvider,
-    private viewCtrl: ViewController) {
-      
-      this.questions = qp.getFamilyHistoryQuestions();
+    private viewCtrl: ViewController,
+    private auth: AuthServiceProvider) {
+
+    this.questions = this.qp.getFamilyHistoryQuestions();
   }
 
   ionViewDidLoad() {

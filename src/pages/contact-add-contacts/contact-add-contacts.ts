@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContactsProvider } from '../../providers/contacts/contacts';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the ContactAddContactsPage page.
@@ -17,12 +18,12 @@ import { ContactsProvider } from '../../providers/contacts/contacts';
 })
 export class ContactAddContactsPage {
 
-  userId: number;
   addContactForm: FormGroup;
   groups: Array<string> = [];
   isDoctor: boolean = false;
   isFamilyorEmergency: boolean = false;
   address: Array<number> = [];
+  loading: any;
 
   formErrors = {
     "firstname": '',
@@ -30,7 +31,7 @@ export class ContactAddContactsPage {
     "relationship": '',
     "tel": '',
     "fax": '',
-    "specialization": '',
+    "specialty": '',
     "group": ''
   };
   validationMessages = {
@@ -47,8 +48,8 @@ export class ContactAddContactsPage {
     "relationship": {
       "required": "Relationship is required."
     },
-    "specialization": {
-      "required": "Specialization is required."
+    "specialty": {
+      "required": "Specialty is required."
     },
     "tel": {
       "required": "Tel number is required.",
@@ -66,10 +67,9 @@ export class ContactAddContactsPage {
     private fb: FormBuilder,
     private viewCtrl: ViewController,
     private toastCtrl: ToastController,
-    private contactsProvider: ContactsProvider) {
-
-    //get userId from storage
-    this.userId = 1;
+    private loadingCtrl: LoadingController,
+    private contactsProvider: ContactsProvider,
+    private auth: AuthServiceProvider) {
 
     this.addContactForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -77,7 +77,7 @@ export class ContactAddContactsPage {
       relationship: ['', Validators.required],
       tel: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       fax: ['', Validators.pattern('[0-9]{10}')],
-      specialization: ['', Validators.required],
+      specialty: ['', Validators.required],
       location1: [''],
       location2: [''],
       location3: [''],
@@ -116,12 +116,12 @@ export class ContactAddContactsPage {
     if (this.groups.includes("doctor")) {
       this.isDoctor = true;
       this.addContactForm.patchValue({
-        specialization: ""
+        specialty: ""
       });
     } else {
       this.isDoctor = false;
       this.addContactForm.patchValue({
-        specialization: "0"
+        specialty: "0"
       });
     }
 
@@ -154,28 +154,43 @@ export class ContactAddContactsPage {
   }
 
   onSubmit() {
+    this.showLoader('Adding...');
     let contact = this.addContactForm.value;
     contact.group = this.addContactForm.get("group").value.toString();
     console.log(contact);
     // post new contact info
-    this.contactsProvider.addContacts(contact, this.userId)
+    this.contactsProvider.addContacts(this.auth.userId, contact)
       .subscribe(
         contact => {
-          this.toastCtrl.create({
-            message: 'Successfully add new contact',
-            position: 'bottom',
-            duration: 2000
-          }).present();
+          this.loading.dismiss();
+          this.presentToast('Successfully added a new contact.');
           this.viewCtrl.dismiss();
         },
         error => {
-          this.toastCtrl.create({
-            message: 'Failed to add new contact',
-            position: 'bottom',
-            duration: 2000
-          }).present();
+          this.loading.dismiss();
+          this.presentToast('Failed to add a new contact.');
         }
       );
+  }
+
+  showLoader(msg) {
+    this.loading = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 
 }

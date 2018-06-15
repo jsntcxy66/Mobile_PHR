@@ -22,6 +22,8 @@ export class MedicalRecordDetailPage {
   questions: any[];
   color = ['dark-salmon', 'rosy-brown', 'slate-grey'];
   navcolor: string;
+  isnumber = true;
+  unit = "222";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
@@ -30,8 +32,8 @@ export class MedicalRecordDetailPage {
 
     this.title = navParams.get('title');
     this.id = navParams.get('id');
-    this.questions = qp.getLabTestQuestions();
-    this.navcolor = this.color[(this.id+1)%3];
+    this.questions = this.qp.getLabTestQuestions(this.isnumber, this.unit, this.title);
+    this.navcolor = this.color[(this.id + 1) % 3];
     this.createForm();
   }
 

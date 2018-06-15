@@ -19,7 +19,7 @@ export class SocialHistoryClassificationProvider {
       arr = [
         { id: 1, name: 'Smoking', menu: 'socialhistory', end: true },
         { id: 2, name: 'Alcohol', menu: 'socialhistory', end: true },
-        { id: 3, name: 'Pill', menu: 'socialhistory', end: true },
+        { id: 3, name: 'Drug', menu: 'socialhistory', end: true },
         { id: 4, name: 'Travel', menu: 'socialhistory', end: true },
         { id: 5, name: 'Housing', menu: 'socialhistory', end: true }
       ];

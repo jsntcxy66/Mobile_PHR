@@ -47,21 +47,21 @@
         </div>
         <ion-item>
           <ion-label stacked>Security Question<span class="color-red">*</span></ion-label>
-          <ion-select formControlName="secQues">
+          <ion-select formControlName="securityQuestion">
             <ion-option *ngFor="let sq of secQuestions" [value]="sq.question">
               {{sq.question}}
             </ion-option>
           </ion-select>
         </ion-item>
         <div class="pull-right color-red">
-          <span [hidden]="!(formErrors.secQues)">{{formErrors.secQues}}</span>
+          <span [hidden]="!(formErrors.securityQuestion)">{{formErrors.securityQuestion}}</span>
         </div>
         <ion-item>
           <ion-label stacked>Security Answer<span class="color-red">*</span></ion-label>
-          <ion-input type="text" formControlName="secAns"></ion-input>
+          <ion-input type="text" formControlName="securityAnswer"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
-          <span [hidden]="!(formErrors.secAns)">{{formErrors.secAns}}</span>
+          <span [hidden]="!(formErrors.securityAnswer)">{{formErrors.securityAnswer}}</span>
         </div>
         <ion-item>
           <ion-label stacked>First Name</ion-label>

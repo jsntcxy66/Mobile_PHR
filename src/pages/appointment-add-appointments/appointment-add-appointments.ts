@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController, ViewController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, ViewController, LoadingController } from 'ionic-angular';
 import { ContactAddContactsPage } from '../contact-add-contacts/contact-add-contacts';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactsProvider } from '../../providers/contacts/contacts';
 import { AppointmentProvider } from '../../providers/appointment/appointment';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the AppointmentAddAppointmentsPage page.
@@ -17,30 +18,33 @@ import { AppointmentProvider } from '../../providers/appointment/appointment';
   selector: 'page-appointment-add-appointments',
   templateUrl: 'appointment-add-appointments.html',
 })
-export class AppointmentAddAppointmentsPage {
+export class AppointmentAddAppointmentsPage implements OnInit {
 
-  userId: number;
   errMess: string;
   doctors: any[] = [];
-  newAppointmentForm: FormGroup;
+  newAppointmentForm: FormGroup = new FormGroup({});
   date: Date;
   locations: Array<string> = [];
+  loading: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
     private fb: FormBuilder,
     private viewCtrl: ViewController,
     private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
     private contactsProvider: ContactsProvider,
-    private ap: AppointmentProvider) {
+    private ap: AppointmentProvider,
+    private auth: AuthServiceProvider) {
 
-    this.userId = 1;
+    // this.storage.get('userId').then(userId => {
+    //   if (userId)
+    //     this.userId = userId;
+    //   else
+    //     console.log('userId not defined');
+    // });
 
     //get doctors in such structure
-    this.contactsProvider.getDoctors(this.userId)
-      .subscribe(doctors => this.doctors = doctors,
-        errmess => this.errMess = <any>errmess);
-
     // this.doctors = [
     //   {
     //     id: 0,
@@ -74,6 +78,10 @@ export class AppointmentAddAppointmentsPage {
     console.log('ionViewDidLoad AppointmentAddAppointmentsPage');
   }
 
+  async ngOnInit() {
+    this.doctors = <any[]>await this.contactsProvider.getDoctors(this.auth.userId).toPromise();
+  }
+
   selectDate($event) {
     this.date = $event;
     console.log(this.date);
@@ -96,13 +104,17 @@ export class AppointmentAddAppointmentsPage {
     let modal = this.modalCtrl.create(ContactAddContactsPage);
     modal.present();
     modal.onWillDismiss(
-      () => {
-        this.contactsProvider.getDoctors(this.userId)
-          .subscribe(doctors => this.doctors = doctors,
-            errmess => this.errMess = <any>errmess);
+      async () => {
+        this.doctors = <any[]>await this.contactsProvider.getDoctors(this.auth.userId).toPromise();
       }
     );
     this.dismiss();
+  }
+
+  check_valid(): boolean {
+    if (this.date == undefined)
+      return false;
+    else return true;
   }
 
   dismiss() {
@@ -110,6 +122,7 @@ export class AppointmentAddAppointmentsPage {
   }
 
   onSubmit() {
+    this.showLoader('Adding...');
     //http post date + form.value
     let appForm = this.newAppointmentForm.value;
     let firstname, lastname;
@@ -127,29 +140,38 @@ export class AppointmentAddAppointmentsPage {
       location: appForm.location
     };
     console.log(app);
-    this.ap.addAppointment(app, this.userId)
+    this.ap.addAppointment(this.auth.userId, app)
       .subscribe(
         app => {
-          this.toastCtrl.create({
-            message: 'Successfully added a new appointment',
-            position: 'bottom',
-            duration: 2000
-          }).present();
+          this.loading.dismiss();
+          this.presentToast('Successfully added a new appointment.');
           this.viewCtrl.dismiss();
         },
         error => {
-          this.toastCtrl.create({
-            message: 'Failed to add a new appointment',
-            position: 'bottom',
-            duration: 2000
-          }).present();
+          this.loading.dismiss();
+          this.presentToast('Failed to add a new appointment.');
         }
       );
   }
 
-  check_valid(): boolean {
-    if (this.date == undefined)
-      return false;
-    else return true;
+  showLoader(msg) {
+    this.loading = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loading.present();
   }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
+  }
+
 }

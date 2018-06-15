@@ -17,12 +17,12 @@ export class UserProvider {
     private processHttpmsgService: ProcessHttpmsgProvider) { }
 
   getProfile(id: number): Observable<any> {
-    return this.http.get(baseurl + 'profile/' + id)
+    return this.http.get(baseurl + 'users/profile/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
-  editProfile(profile, id: number): Observable<any> {
-    return this.http.post(baseurl + 'profile/' + id, profile)
+  editProfile(id: number, profile: Object): Observable<any> {
+    return this.http.post(baseurl + 'users/profile/' + id, profile)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 }

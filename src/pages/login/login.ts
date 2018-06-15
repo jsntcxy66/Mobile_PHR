@@ -1,7 +1,8 @@
-import { DashboardPage } from './../dashboard/dashboard';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { DashboardPage } from './../dashboard/dashboard';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,15 +19,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginPage {
 
   loginForm: FormGroup;
+  loading: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
-    private menuCtrl: MenuController) {
+    private menuCtrl: MenuController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
+    private authService: AuthServiceProvider) {
 
-      this.loginForm = this.fb.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
-      });
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   ionViewDidLoad() {
@@ -37,8 +42,40 @@ export class LoginPage {
   }
 
   onSubmit() {
-    this.navCtrl.setRoot(DashboardPage);
-    this.menuCtrl.enable(true);
+    this.showLoader('Authenticating...');
+    let credentials = this.loginForm.value;
+    this.authService.login(credentials)
+      .subscribe((res: number) => {
+        this.loading.dismiss();
+        this.navCtrl.setRoot(DashboardPage);
+        this.menuCtrl.enable(true);
+      },
+        err => {
+          this.loading.dismiss();
+          this.presentToast('Login failed! Please try again. ' + err);
+          console.log(err);
+        }
+      );
+  }
+
+  showLoader(msg) {
+    this.loading = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 
 }

@@ -7,14 +7,13 @@ import { IonicStorageModule } from '@ionic/storage';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CalendarModule } from "ion2-calendar";
 import { CallNumber } from '@ionic-native/call-number';
+import { ChartsModule } from 'ng2-charts';
 
 import { MyApp } from './app.component';
 import { TrackersPage } from './../pages/trackers/trackers';
 import { TrackerDetailPage } from '../pages/tracker-detail/tracker-detail';
 import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
-import { FoodtrackerPage } from './../pages/foodtracker/foodtracker';
 import { CustomPanelPage } from './../pages/custom-panel/custom-panel';
-import { AlcoholtrackerPage } from './../pages/alcoholtracker/alcoholtracker';
 import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
 import { CustomtrackerPage } from './../pages/customtracker/customtracker';
 import { MedicalRecordDetailPage } from './../pages/medical-record-detail/medical-record-detail';
@@ -51,38 +50,42 @@ import { MedicationPage } from '../pages/medication/medication';
 import { MedicationDetailPage } from '../pages/medication-detail/medication-detail';
 import { TestResultsPage } from '../pages/test-results/test-results';
 import { DiagnosticProcedurePage } from '../pages/diagnostic-procedure/diagnostic-procedure';
+import { LabTestPage } from '../pages/lab-test/lab-test';
+import { LabTestDetailPage } from '../pages/lab-test-detail/lab-test-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TrackersProvider } from '../providers/trackers/trackers';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
+import { QuestionOptionProvider } from '../providers/question-option/question-option';
+import { QuestionControlProvider } from '../providers/question-control/question-control';
+import { QuestionProvider } from '../providers/question/question';
+import { ContactsProvider } from '../providers/contacts/contacts';
 import { MedicalClassificationProvider } from '../providers/medical-classification/medical-classification';
 import { AllergyClassificationProvider } from '../providers/allergy-classification/allergy-classification';
 import { ImmunizationClassificationProvider } from '../providers/immunization-classification/immunization-classification';
 import { UserProvider } from '../providers/user/user';
 import { AppointmentProvider } from '../providers/appointment/appointment';
 import { SocialHistoryClassificationProvider } from '../providers/social-history-classification/social-history-classification';
-
-import { QuestionOptionProvider } from '../providers/question-option/question-option';
-import { QuestionControlProvider } from '../providers/question-control/question-control';
-import { QuestionProvider } from '../providers/question/question';
-import { ContactsProvider } from '../providers/contacts/contacts';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { AllergyProvider } from '../providers/allergy/allergy';
+import { SurgicalHistoryProvider } from '../providers/surgical-history/surgical-history';
+import { DoctorVisitNotesProvider } from '../providers/doctor-visit-notes/doctor-visit-notes';
+import { TestResultsProvider } from '../providers/test-results/test-results';
 
 import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
 import { DynamicFormComponent } from './../components/dynamic-form/dynamic-form';
 import { CalendarComponent } from './../components/calendar/calendar';
 
+import * as moment from 'moment';
+
 @NgModule({
   declarations: [
     MyApp,
     TrackersPage,
     TrackerDetailPage,
-    MedicalrecordPage,
-    MedicalRecordDetailPage,
-    FoodtrackerPage,
     CustomPanelPage,
-    AlcoholtrackerPage,
     CreateTrackerPage,
     CustomtrackerPage,
     TileComponent,
@@ -121,7 +124,11 @@ import { CalendarComponent } from './../components/calendar/calendar';
     MedicationPage,
     MedicationDetailPage,
     TestResultsPage,
-    DiagnosticProcedurePage
+    DiagnosticProcedurePage,
+    LabTestPage,
+    LabTestDetailPage,
+    MedicalrecordPage,
+    MedicalRecordDetailPage
   ],
   imports: [
     BrowserModule,
@@ -130,18 +137,15 @@ import { CalendarComponent } from './../components/calendar/calendar';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     NgxEchartsModule,
-    CalendarModule
+    CalendarModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     TrackersPage,
     TrackerDetailPage,
-    MedicalrecordPage,
-    MedicalRecordDetailPage,
-    FoodtrackerPage,
     CustomPanelPage,
-    AlcoholtrackerPage,
     CreateTrackerPage,
     CustomtrackerPage,
     DashboardPage,
@@ -176,7 +180,11 @@ import { CalendarComponent } from './../components/calendar/calendar';
     MedicationPage,
     MedicationDetailPage,
     TestResultsPage,
-    DiagnosticProcedurePage
+    DiagnosticProcedurePage,
+    LabTestPage,
+    LabTestDetailPage,
+    MedicalrecordPage,
+    MedicalRecordDetailPage
   ],
   providers: [
     StatusBar,
@@ -194,7 +202,12 @@ import { CalendarComponent } from './../components/calendar/calendar';
     QuestionOptionProvider,
     UserProvider,
     AppointmentProvider,
-    SocialHistoryClassificationProvider
+    SocialHistoryClassificationProvider,
+    AuthServiceProvider,
+    AllergyProvider,
+    SurgicalHistoryProvider,
+    DoctorVisitNotesProvider,
+    TestResultsProvider
   ]
 })
 export class AppModule {}

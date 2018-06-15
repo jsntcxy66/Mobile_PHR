@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
-import { Storage } from '@ionic/storage';
 import { ContactsProvider } from '../../providers/contacts/contacts';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WelcomePage } from '../welcome/welcome';
 
 /**
  * Generated class for the ContactDetailPage page.
@@ -18,7 +19,6 @@ import { ContactsProvider } from '../../providers/contacts/contacts';
 })
 export class ContactDetailPage {
 
-  userId: number;
   errMess: string;
   category: string;
   contacts: any[] = [];
@@ -27,81 +27,77 @@ export class ContactDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private call: CallNumber,
-    private storage: Storage,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController,
     private contactsProvider: ContactsProvider) {
+
+    if (!this.auth.userId) {
+      this.presentAlert('Please login first.');
+    }
 
     this.category = this.navParams.get('name');
     console.log(this.category);
 
-    // get userId from local storage
-    // this.storage.get('id').then(id => {
-    //   if (id) {
-    //     this.userId = id;
-    //   } else {
-    //     console.log('UserId not defined');
-    //   }
-    // });
-    this.userId = 1;
-
-    this.contacts = [
-      {
-        firstname: "Aaric",
-        lastname: "Falconi",
-        tel: "4123457680",
-        fax: "4123457680",
-        relation: "",
-        specialty: "physician",
-        location1: "5542 Walnut St",
-        location2: "5819 Elwood St",
-        location3: "1001 Fifth Ave",
-        group: "friend,doctor"
-      },
-      {
-        firstname: "Alivia",
-        lastname: "Ryan",
-        tel: "4123457680",
-        fax: "",
-        relation: "husband",
-        specialty: "",
-        location1: "999 N Negley Str",
-        location2: "",
-        location3: "",
-        group: "family,emergency"
-      },
-      {
-        firstname: "Martin",
-        lastname: "DOUGLAS",
-        tel: "4123457680",
-        fax: "",
-        relation: "father",
-        specialty: "",
-        location1: "132 Centre Ave",
-        location2: "",
-        location3: "",
-        group: "family"
-      },
-      {
-        firstname: "Scott",
-        lastname: "Williamson",
-        tel: "4123457680",
-        fax: "4123457680",
-        relation: "",
-        specialty: "dermatologist",
-        location1: "1100 Fifth Ave",
-        location2: "1090 Centre Ave",
-        location3: "",
-        group: "doctor"
-      },
-    ];
+    // this.contacts = [
+    //   {
+    //     firstname: "Aaric",
+    //     lastname: "Falconi",
+    //     tel: "4123457680",
+    //     fax: "4123457680",
+    //     relationship: "",
+    //     specialty: "physician",
+    //     location1: "5542 Walnut St",
+    //     location2: "5819 Elwood St",
+    //     location3: "1001 Fifth Ave",
+    //     group: "friend,doctor"
+    //   },
+    //   {
+    //     firstname: "Alivia",
+    //     lastname: "Ryan",
+    //     tel: "4123457680",
+    //     fax: "",
+    //     relationship: "husband",
+    //     specialty: "",
+    //     location1: "999 N Negley Str",
+    //     location2: "",
+    //     location3: "",
+    //     group: "family,emergency"
+    //   },
+    //   {
+    //     firstname: "Martin",
+    //     lastname: "DOUGLAS",
+    //     tel: "4123457680",
+    //     fax: "",
+    //     relationship: "father",
+    //     specialty: "",
+    //     location1: "132 Centre Ave",
+    //     location2: "",
+    //     location3: "",
+    //     group: "family"
+    //   },
+    //   {
+    //     firstname: "Scott",
+    //     lastname: "Williamson",
+    //     tel: "4123457680",
+    //     fax: "4123457680",
+    //     relationship: "",
+    //     specialty: "dermatologist",
+    //     location1: "1100 Fifth Ave",
+    //     location2: "1090 Centre Ave",
+    //     location3: "",
+    //     group: "doctor"
+    //   },
+    // ];
 
     // get all contacts' data
-    this.contactsProvider.getContactsDetail(this.userId)
+    this.contactsProvider.getContactsDetail(this.auth.userId)
       .subscribe(contacts => {
         this.contacts = contacts;
         this.getTelArray();
         this.getFaxArray();
       },
-        errmess => this.errMess = <any>errmess);
+        errmess => this.errMess = <any>errmess
+      );
   }
 
   ionViewDidLoad() {
@@ -156,6 +152,23 @@ export class ContactDetailPage {
     this.call.callNumber(this.contacts[i].tel, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
+  }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { AppointmentAddAppointmentsPage } from '../appointment-add-appointments/appointment-add-appointments';
 import { AppointmentProvider } from '../../providers/appointment/appointment';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WelcomePage } from '../welcome/welcome';
 
 /**
  * Generated class for the AppointmentPage page.
@@ -17,15 +19,18 @@ import { AppointmentProvider } from '../../providers/appointment/appointment';
 })
 export class AppointmentPage {
 
-  userId: number;
   errMess: string;
   appointments: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
-    private ap: AppointmentProvider) {
+    private ap: AppointmentProvider,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController) {
 
-    this.userId = 1;
+    if (!this.auth.userId) {
+      this.presentAlert('Please login first.');
+    }
 
     this.appointments = [
       {
@@ -52,7 +57,7 @@ export class AppointmentPage {
     ];
 
     //get appointments which have already been sorted by time
-    this.ap.getAppointment(this.userId)
+    this.ap.getAppointment(this.auth.userId)
       .subscribe(app => this.appointments = app,
         errmess => this.errMess = <any>errmess);
   }
@@ -66,10 +71,28 @@ export class AppointmentPage {
     modal.present();
     modal.onWillDismiss(
       () => {
-        this.ap.getAppointment(this.userId)
+        this.ap.getAppointment(this.auth.userId)
           .subscribe(app => this.appointments = app,
             errmess => this.errMess = <any>errmess);
       }
     );
   }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
 }

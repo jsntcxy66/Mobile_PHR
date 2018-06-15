@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, App, AlertController, ToastController } from 'ionic-angular';
+import { Nav, Platform, App, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -21,6 +21,7 @@ import { SocialHistoryPage } from '../pages/social-history/social-history';
 import { DoctorVisitNotesPage } from '../pages/doctor-visit-notes/doctor-visit-notes';
 import { MedicationPage } from '../pages/medication/medication';
 import { TestResultsPage } from '../pages/test-results/test-results';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,16 +29,19 @@ import { TestResultsPage } from '../pages/test-results/test-results';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WelcomePage;
-  // rootPage: any = DashboardPage;
+  // rootPage: any = WelcomePage;
+  rootPage: any = DashboardPage;
 
   pages: Pages[];
   onelevelPages: Pages[];
+  loading: any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
     public app: App,
+    private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController) {
     this.initializeApp();
 
     // used for ngFor and navigation
@@ -157,9 +161,7 @@ export class MyApp {
   }
 
   logout() {
-    // const root = this.app.getRootNav();
-    // root.popToRoot();
-    let confirm = this.alertCtrl.create({
+    let alert = this.alertCtrl.create({
       title: 'Confirm Logout',
       message: 'Are you sure to log out?',
       buttons: [
@@ -173,17 +175,36 @@ export class MyApp {
         {
           text: 'Logout',
           handler: () => {
-            let toast = this.toastCtrl.create({
-              message: 'Log out successfully',
-              duration: 2000
-            });
-            toast.present();
+            this.showLoader('Logging out...');
+            this.auth.logout();
+            this.loading.dismiss();
+            this.presentToast('Log out successfully');
             this.nav.push(WelcomePage);
           }
         }
       ]
     });
-    confirm.present();
+    alert.present();
+  }
+
+  showLoader(msg) {
+    this.loading = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 
 }

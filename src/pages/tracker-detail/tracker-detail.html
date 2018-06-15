@@ -35,11 +35,16 @@
         <ion-card *ngFor="let record of records">
           <ion-item>
             <ion-row>
-              <h2>{{record.food}} {{record.amount}}</h2>
+              <h2 *ngIf="record.food">{{record.food}} {{record.amount}}</h2>
+              <h2 *ngIf="record.exercise">{{record.exercise}} {{record.duration}}</h2>
+              <h2 *ngIf="record.weight">{{record.weight}}</h2>
+              <h2 *ngIf="record.height">{{record.height}}</h2>
             </ion-row>
             <ion-row>
               <ion-note>
-                {{record.timeperiod}} - {{record.date | date}}
+                <span *ngIf="record.timeperiod">{{record.timeperiod}} - </span>
+                <span *ngIf="record.datetime">{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</span>
+                <span *ngIf="record.date">{{record.date | date}}</span>
               </ion-note>
             </ion-row>
           </ion-item>
@@ -52,7 +57,21 @@
     <div *ngSwitchCase="'track'">
       <ion-card>
         <ion-card-content>
-          <dynamic-form [questions]="questions"></dynamic-form>
+          <div>
+            <form [formGroup]='form' (ngSubmit)="onSubmit()">
+
+              <div *ngFor="let question of questions">
+                <ion-item>
+                  <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
+                </ion-item>
+              </div>
+
+              <div>
+                <button ion-button type="submit" [disabled]="!form.valid" color="slate-grey">Record</button>
+              </div>
+
+            </form>
+          </div>
         </ion-card-content>
       </ion-card>
     </div>

@@ -23,13 +23,13 @@ export class ContactsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
-  addContacts(contact, id: number): Observable<any> {
+  addContacts(id: number, contact: Object): Observable<any> {
     return this.http.post(baseurl + 'contacts/' + id, contact)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
   getDoctors(id: number): Observable<any> {
-    return this.http.get(baseurl + 'contacts/doctor/' + id)
+    return this.http.get(baseurl + 'contacts/doctors/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 }

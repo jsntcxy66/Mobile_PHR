@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlProvider } from './../../providers/question-control/question-control';
 
@@ -19,7 +19,6 @@ export class DynamicFormComponent {
 @Input() questions: QuestionBase<any>[] = [];
 
   form: FormGroup;
-  payLoad = '';
 
   constructor(private qcp: QuestionControlProvider,
     private viewCtrl: ViewController,
@@ -32,8 +31,8 @@ export class DynamicFormComponent {
   }
 
   onSubmit() {
-    this.payLoad = this.form.value;
-    console.log(this.payLoad);
+    let payLoad = this.form.value;
+    console.log(payLoad);
     this.toastCtrl.create({
       message: 'Successfully added',
       position: 'bottom',

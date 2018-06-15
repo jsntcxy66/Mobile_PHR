@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { SocialHistoryCategoryPage } from '../social-history-category/social-history-category';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WelcomePage } from '../welcome/welcome';
 
 /**
  * Generated class for the SocialHistoryPage page.
@@ -18,11 +20,17 @@ export class SocialHistoryPage {
 
   smoking: any[] = [];
   alcohol: any[] = [];
-  pill: any[] = [];
+  drug: any[] = [];
   travel: any[] = [];
   housing: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertController) {
+
+    if (!this.auth.userId) {
+      this.presentAlert('Please login first.');
+    }
 
     // get sorted records
     this.smoking = [
@@ -68,4 +76,20 @@ export class SocialHistoryPage {
     this.navCtrl.push(SocialHistoryCategoryPage);
   }
 
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Oops!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push(WelcomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 }

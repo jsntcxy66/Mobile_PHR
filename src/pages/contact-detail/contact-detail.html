@@ -30,7 +30,7 @@
       <ion-item *ngIf="(contact.location2&&contact.location2!='') || (contact.location3&&contact.location3!='')">Address1: {{contact.location1}}</ion-item>
       <ion-item *ngIf="contact.location2&&contact.location2!=''">Address2: {{contact.location2}}</ion-item>
       <ion-item *ngIf="contact.location3&&contact.location3!=''">Address3: {{contact.location3}}</ion-item>
-      <ion-item *ngIf="checkFamilyorEmergency(i)">Relation: {{contact.relation}}</ion-item>
+      <ion-item *ngIf="checkFamilyorEmergency(i)">Relationship: {{contact.relationship}}</ion-item>
     </div>
   </ion-list>
   <!-- <ion-card [hidden]="matchCategory">

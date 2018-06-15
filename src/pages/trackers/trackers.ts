@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { FoodtrackerPage } from './../foodtracker/foodtracker';
 import { CustomPanelPage } from './../custom-panel/custom-panel';
-import { AlcoholtrackerPage } from './../alcoholtracker/alcoholtracker';
 import { CustomtrackerPage } from './../customtracker/customtracker';
 import { DashboardPage } from '../dashboard/dashboard';
 import { TrackerDetailPage } from '../tracker-detail/tracker-detail';

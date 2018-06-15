@@ -20,7 +20,7 @@ export class ImmunizationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private icp: ImmunizationClassificationProvider) {
-    this.tiles = icp.getMenu(0);
+    this.tiles = this.icp.getMenu(0);
   }
 
   ionViewDidLoad() {

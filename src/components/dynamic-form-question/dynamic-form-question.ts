@@ -24,10 +24,5 @@ export class DynamicFormQuestionComponent implements OnInit{
   }
   ngOnInit() {
     console.log(this.question);
-    this.form.patchValue(
-      {
-        datetime: new Date().toISOString()
-      }
-    );
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 import { QuestionOptionProvider } from '../question-option/question-option';
 
@@ -32,7 +33,7 @@ export class QuestionProvider {
           required: true,
           order: 1
         }),
-  
+
         new TextboxQuestion({
           key: 'amount',
           label: 'Amount',
@@ -41,7 +42,7 @@ export class QuestionProvider {
           required: true,
           order: 2
         }),
-  
+
         new DropdownQuestion({
           key: 'timeperiod',
           label: 'Time Period',
@@ -53,19 +54,21 @@ export class QuestionProvider {
             { key: 'dinner', value: 'Dinner' },
             { key: 'snack', value: 'Snack' }
           ],
+          required: true,
           order: 3
         }),
-  
+
         new DatetimeQuestion({
-          key: 'date',
+          key: 'datetime',
           label: 'Date',
-          value: new Date(),
+          display: 'MMM DD, YYYY HH:mm',
+          value: moment().format(),
           required: true,
           order: 4
         }),
-  
+
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
     else if (id == 2) {
@@ -79,7 +82,7 @@ export class QuestionProvider {
           required: true,
           order: 1
         }),
-  
+
         new TextboxQuestion({
           key: 'duration',
           label: 'Duration',
@@ -88,17 +91,18 @@ export class QuestionProvider {
           required: true,
           order: 2
         }),
-  
+
         new DatetimeQuestion({
-          key: 'date',
+          key: 'datetime',
           label: 'Date',
-          value: new Date(),
+          display: 'MMM DD, YYYY HH:mm',
+          value: moment().format(),
           required: true,
           order: 3
         }),
-  
+
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
     else if (id == 3) {
@@ -112,17 +116,18 @@ export class QuestionProvider {
           required: true,
           order: 1
         }),
-  
+
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
-          value: new Date(),
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 2
         }),
-  
+
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
     else if (id == 4) {
@@ -136,17 +141,18 @@ export class QuestionProvider {
           required: true,
           order: 1
         }),
-  
+
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
-          value: new Date(),
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 2
         }),
-  
+
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
   }
@@ -176,13 +182,15 @@ export class QuestionProvider {
         key: 'threatening',
         label: 'Life Threatening',
         value: false,
+        required: true,
         order: 3
       }),
 
       new DatetimeQuestion({
-        key: 'datetime',
+        key: 'date',
         label: 'Onset Date',
-        value: '',
+        display: 'MM/DD/YYYY',
+        value: moment().format(),
         required: true,
         order: 4
       }),
@@ -232,7 +240,8 @@ export class QuestionProvider {
       new DatetimeQuestion({
         key: 'date',
         label: 'Onset Date',
-        value: '',
+        display: 'MM/DD/YYYY',
+        value: moment().format(),
         required: true,
         order: 5
       }),
@@ -257,7 +266,8 @@ export class QuestionProvider {
       new DatetimeQuestion({
         key: 'date',
         label: 'Onset Date',
-        value: '',
+        display: 'MM/DD/YYYY',
+        value: moment().format(),
         required: true,
         order: 2
       }),
@@ -267,37 +277,75 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
-  getSurgicalHistoryQuestions() {
-    let option = this.qop.getDoctorOption();
-    let questions: QuestionBase<any>[] = [
+  async getSurgicalHistoryQuestions(id: number) {
+    let option = <{ key: number, value: string }[]>await this.qop.getDoctorOption(id);
+    let questions: QuestionBase<any>[];
+    if (option.length != 0) {
+      questions = [
 
-      new TextboxQuestion({
-        key: 'sugery',
-        label: 'Sugery',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 1
-      }),
+        new TextboxQuestion({
+          key: 'surgery',
+          label: 'Surgery',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
 
-      new DropdownQuestion({
-        key: 'doctor',
-        label: 'Doctor',
-        value: '',
-        multiple: false,
-        options: option,
-        order: 2
-      }),
+        new DropdownQuestion({
+          key: 'doctor',
+          label: 'Doctor',
+          value: '',
+          multiple: false,
+          options: option,
+          required: true,
+          order: 2
+        }),
 
-      new DatetimeQuestion({
-        key: 'date',
-        label: 'Onset Date',
-        value: '',
-        required: true,
-        order: 3
-      }),
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Onset Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 3
+        }),
 
-    ];
+      ];
+    } else {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'surgery',
+          label: 'Surgery',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextareaQuestion({
+          key: 'doctor',
+          label: 'Doctor',
+          readonly: true,
+          placeholder: 'Doctor contact not found.',
+          rows: 1,
+          required: true,
+          order: 2
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Onset Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 3
+        }),
+
+      ];
+    }
+
 
     return questions.sort((a, b) => a.order - b.order);
   }
@@ -335,7 +383,8 @@ export class QuestionProvider {
       new DatetimeQuestion({
         key: 'date',
         label: 'Date',
-        value: '',
+        display: 'MM/DD/YYYY',
+        value: moment().format(),
         required: true,
         order: 4
       }),
@@ -344,55 +393,111 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
-  getDoctorVisitNotesQuestions() {
-    let option = this.qop.getDoctorOption();
-    let questions: QuestionBase<any>[] = [
+  async getDoctorVisitNotesQuestions(id: number) {
+    let option = <{ key: number, value: string }[]>await this.qop.getDoctorOption(id);
+    let questions: QuestionBase<any>[];
+    if (option.length != 0) {
+      questions = [
 
-      new TextboxQuestion({
-        key: 'diagnosis',
-        label: 'Diagnosis',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 1
-      }),
+        new TextboxQuestion({
+          key: 'diagnosis',
+          label: 'Diagnosis',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
 
-      new DropdownQuestion({
-        key: 'doctor',
-        label: 'Doctor',
-        value: '',
-        multiple: false,
-        options: option,
-        order: 2
-      }),
+        new DropdownQuestion({
+          key: 'doctor',
+          label: 'Doctor',
+          value: '',
+          multiple: false,
+          options: option,
+          required: true,
+          order: 2
+        }),
 
-      new TextboxQuestion({
-        key: 'prescription',
-        label: 'Prescription',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 3
-      }),
+        new TextboxQuestion({
+          key: 'prescription',
+          label: 'Prescription',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 3
+        }),
 
-      new DatetimeQuestion({
-        key: 'date',
-        label: 'Date',
-        value: '',
-        required: true,
-        order: 4
-      }),
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 4
+        }),
 
-      new TextareaQuestion({
-        key: 'reason',
-        label: 'Reason of Visit',
-        value: '',
-        rows: 9,
-        required: false,
-        order: 5
-      }),
+        new TextareaQuestion({
+          key: 'reason',
+          label: 'Reason of Visit',
+          value: '',
+          rows: 7,
+          required: false,
+          order: 5
+        }),
 
-    ];
+      ];
+    } else {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'diagnosis',
+          label: 'Diagnosis',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextareaQuestion({
+          key: 'doctor',
+          label: 'Doctor',
+          readonly: true,
+          placeholder: 'Doctor contact not found.',
+          rows: 1,
+          required: true,
+          order: 2
+        }),
+
+        new TextboxQuestion({
+          key: 'prescription',
+          label: 'Prescription',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 3
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 4
+        }),
+
+        new TextareaQuestion({
+          key: 'reason',
+          label: 'Reason of Visit',
+          value: '',
+          rows: 7,
+          required: false,
+          order: 5
+        }),
+
+      ];
+    }
+
 
     return questions.sort((a, b) => a.order - b.order);
   }
@@ -413,7 +518,8 @@ export class QuestionProvider {
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
-          value: '',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 2
         }),
@@ -454,7 +560,8 @@ export class QuestionProvider {
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
-          value: '',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 4
         }),
@@ -486,9 +593,19 @@ export class QuestionProvider {
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
-          value: '',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 3
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Note',
+          value: '',
+          rows: 3,
+          required: false,
+          order: 4
         }),
       ];
 
@@ -518,7 +635,8 @@ export class QuestionProvider {
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
-          value: '',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 3
         }),
@@ -541,7 +659,8 @@ export class QuestionProvider {
         new DatetimeQuestion({
           key: 'moveindate',
           label: 'Move in',
-          value: '',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
           required: true,
           order: 2
         }),
@@ -549,9 +668,19 @@ export class QuestionProvider {
         new DatetimeQuestion({
           key: 'moveoutdate',
           label: 'Move out',
+          display: 'MM/DD/YYYY',
           value: '',
-          required: true,
+          required: false,
           order: 3
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Note',
+          value: '',
+          rows: 3,
+          required: false,
+          order: 4
         }),
       ];
 
@@ -583,7 +712,8 @@ export class QuestionProvider {
       new DatetimeQuestion({
         key: 'date',
         label: 'Date',
-        value: new Date(),
+        display: 'MM/DD/YYYY',
+        value: moment().format(),
         required: true,
         order: 3
       }),
@@ -592,52 +722,106 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
-  getLabTestQuestions() {
-    let questions: QuestionBase<any>[] = [
+  getLabTestQuestions(isnumber: boolean, unit: string, title: string) {
+    let questions: QuestionBase<any>[];
+    if (isnumber == true) {
+      questions = [
 
-      new TextboxQuestion({
-        key: 'name',
-        label: 'Test Name',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 1
-      }),
+        new TextboxQuestion({
+          key: 'name',
+          label: 'Test Name',
+          type: 'text',
+          value: title,
+          required: true,
+          order: 1
+        }),
 
-      new DatetimeQuestion({
-        key: 'date',
-        label: 'Date',
-        value: new Date(),
-        required: true,
-        order: 2
-      }),
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
 
-      new TextboxQuestion({
-        key: 'result',
-        label: 'Result',
-        type: 'text',
-        value: '',
-        required: true,
-        order: 3
-      }),
+        new TextboxQuestion({
+          key: 'result',
+          label: 'Result',
+          type: 'number',
+          value: '',
+          unit: unit,
+          required: true,
+          order: 3
+        }),
 
-      new ToggleQuestion({
-        key: 'abnormal',
-        label: 'Abnormal?',
-        value: false,
-        order: 4
-      }),
+        new ToggleQuestion({
+          key: 'abnormal',
+          label: 'Abnormal?',
+          value: false,
+          order: 4
+        }),
 
-      new TextareaQuestion({
-        key: 'note',
-        label: 'Notes',
-        value: '',
-        rows: 4,
-        required: false,
-        order: 5
-      }),
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          value: '',
+          rows: 4,
+          required: false,
+          order: 5
+        }),
 
-    ];
+      ];
+    }
+    else {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'name',
+          label: 'Test Name',
+          type: 'text',
+          value: title,
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
+
+        new TextboxQuestion({
+          key: 'result',
+          label: 'Result',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 3
+        }),
+
+        new ToggleQuestion({
+          key: 'abnormal',
+          label: 'Abnormal?',
+          value: false,
+          order: 4
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          value: '',
+          rows: 4,
+          required: false,
+          order: 5
+        }),
+
+      ];
+    }
+
 
     return questions.sort((a, b) => a.order - b.order);
   }

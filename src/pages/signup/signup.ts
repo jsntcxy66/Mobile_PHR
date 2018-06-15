@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DashboardPage } from '../dashboard/dashboard';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the SignupPage page.
@@ -19,13 +20,14 @@ export class SignupPage {
 
   registerForm: FormGroup;
   secQuestions: any;
+  loading: any;
 
   formErrors = {
     "username": '',
     "password": '',
     "email": '',
-    "secQues": '',
-    "secAns": '',
+    "securityQuestion": '',
+    "securityAnswer": '',
     "firstname": '',
     "lastname": '',
     "tel": '',
@@ -45,10 +47,10 @@ export class SignupPage {
       "required": "Email is required.",
       "email": "Please enter a valid email address."
     },
-    "secQues": {
+    "securityQuestion": {
       "required": "Please choose a security question."
     },
-    "secAns": {
+    "securityAnswer": {
       "required": "Please enter the question's answer."
     },
     "firstname": {
@@ -69,7 +71,11 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private fb: FormBuilder,
-    private menuCtrl: MenuController) {
+    private menuCtrl: MenuController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
+    private authService: AuthServiceProvider,
+    private storage: Storage) {
 
     this.secQuestions = [
       {
@@ -106,8 +112,8 @@ export class SignupPage {
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       password: ['', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\!\@\#\$\%\^\&\*\?\"\'\;\:]).*$')]],
       email: ['', [Validators.required, Validators.email]],
-      secQues: ['', Validators.required],
-      secAns: ['', Validators.required],
+      securityQuestion: ['', Validators.required],
+      securityAnswer: ['', Validators.required],
       firstname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
       lastname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
       tel: ['', Validators.pattern('[0-9]{10}')],
@@ -144,9 +150,46 @@ export class SignupPage {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
-    this.navCtrl.setRoot(DashboardPage);
-    this.menuCtrl.enable(true);
+    this.showLoader('Registering...');
+    let register = this.registerForm.value;
+    console.log(register);
+    this.authService.register(register)
+      .subscribe((res: { id: number; exist: boolean }) => {
+        this.loading.dismiss();
+        if (res.exist == false) {
+          this.presentToast('Successfully registered!');
+          this.navCtrl.setRoot(DashboardPage);
+          this.menuCtrl.enable(true);
+        }
+        else {
+          this.presentToast('Username already exists. Please enter another one.');
+        }
+      },
+        err => {
+          this.loading.dismiss();
+          this.presentToast('Connection Error! ' + err);
+          console.log(err);
+        }
+      );
   }
 
+  showLoader(msg) {
+    this.loading = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
+  }
 }

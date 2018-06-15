@@ -1,13 +1,9 @@
-import { Mytracker } from './../../shared/mytracker';
-import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProcessHttpmsgProvider } from './../process-httpmsg/process-httpmsg';
 
-import { Observable } from 'rxjs/Observable';
-
-import { Food } from './../../shared/food';
-import { Alcohol } from './../../shared/alcohol';
-
+import { Mytracker } from './../../shared/mytracker';
 import { baseurl } from '../../shared/baseurl';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -21,38 +17,19 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class TrackersProvider {
 
-  constructor(public http: Http,
+  constructor(public http: HttpClient,
     private processHttpmsgService: ProcessHttpmsgProvider) {
     console.log('Hello TrackersProvider Provider');
   }
 
-  getFoods(): Observable<Food[]> {
-    return this.http.get(baseurl + 'foods')
-      .map(res => { return this.processHttpmsgService.extractData(res); })
+  getRecords(id: number, title: string): Observable<any> {
+    return this.http.get(baseurl + 'trackers/' + title + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
-  }
-  addFood(food) {
-    return this.http.post(baseurl + 'foods', food)
-      .subscribe(res => { console.log(res.json()); });
   }
 
-  getAlcohols(): Observable<Alcohol[]> {
-    return this.http.get(baseurl + 'alcohols')
-      .map(res => { return this.processHttpmsgService.extractData(res); })
+  addRecord(id: number, data: Object) {
+    return this.http.post(baseurl + 'trackers/' + id, data)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
-  }
-  addAlcohol(alcohol) {
-    return this.http.post(baseurl + 'alcohols', alcohol)
-      .subscribe(res => { console.log(res.json()); });
   }
 
-  getMytrackers(): Observable<Mytracker[]> {
-    return this.http.get(baseurl + 'mytrackers')
-      .map(res => { return this.processHttpmsgService.extractData(res); })
-      .catch(error => { return this.processHttpmsgService.handleError(error); })
-  }
-  addMytracker(mytracker) {
-    return this.http.post(baseurl + 'mytrackers', mytracker)
-      .subscribe(res => { console.log(res.json()); });
-  }
 }

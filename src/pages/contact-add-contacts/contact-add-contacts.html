@@ -69,11 +69,11 @@
       <span [hidden]="!(formErrors.fax)">{{formErrors.fax}}</span>
     </div>
     <ion-item *ngIf="isDoctor">
-      <ion-label floating>Specialization<span class="color-red">*</span></ion-label>
-      <ion-input formControlName="specialization"></ion-input>
+      <ion-label floating>Specialty<span class="color-red">*</span></ion-label>
+      <ion-input formControlName="specialty"></ion-input>
     </ion-item>
     <div class="pull-right color-red" *ngIf="isDoctor">
-      <span [hidden]="!(formErrors.specialization)">{{formErrors.specialization}}</span>
+      <span [hidden]="!(formErrors.specialty)">{{formErrors.specialty}}</span>
     </div>
     <ion-item *ngIf="!isDoctor">
       <ion-label floating>Address</ion-label>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the ImmunizationDetailPage page.
@@ -24,12 +25,13 @@ export class ImmunizationDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private qp: QuestionProvider,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    private auth: AuthServiceProvider) {
 
     this.title = navParams.get('title');
     this.id = navParams.get('id');
-    this.questions = qp.getImmunizationQuestions();
-    this.navcolor = this.color[(this.id-1)%3];
+    this.questions = this.qp.getImmunizationQuestions();
+    this.navcolor = this.color[(this.id - 1) % 3];
   }
 
   ionViewDidLoad() {

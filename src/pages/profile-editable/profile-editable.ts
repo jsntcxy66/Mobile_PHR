@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the ProfileEditablePage page.
@@ -17,7 +18,6 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class ProfileEditablePage {
 
-  userId: number;
   errMess: string;
   profileForm: FormGroup;
   profile: any = {};
@@ -53,24 +53,23 @@ export class ProfileEditablePage {
     private fb: FormBuilder,
     private viewCtrl: ViewController,
     private toastCtrl: ToastController,
-    private userProvider: UserProvider) {
+    private userProvider: UserProvider,
+    private auth: AuthServiceProvider) {
 
-    this.userId = 1;
+    // this.profile = {
+    //   username: "km111",
+    //   firstname: "Kelly",
+    //   lastname: "Marsh",
+    //   gender: "male",
+    //   email: "KellyM@gmail.com",
+    //   tel: "4125890011",
+    //   address: "100 Fifth Ave\nApt 119",
+    //   birthday: "11/11/1911",
+    //   race: "White"
+    // };
 
-    this.profile = {
-      username: "km111",
-      firstname: "Kelly",
-      lastname: "Marsh",
-      gender: "male",
-      email: "KellyM@gmail.com",
-      tel: "4125890011",
-      address: "100 Fifth Ave\nApt 119",
-      birthday: "11/11/1911",
-      race: "White"
-    };
-    
     // get profile from database
-    this.userProvider.getProfile(this.userId)
+    this.userProvider.getProfile(this.auth.userId)
       .subscribe(profile => this.profile = profile,
         errmess => this.errMess = <any>errmess);
 
@@ -116,7 +115,7 @@ export class ProfileEditablePage {
     let profile = this.profileForm.value;
     console.log(profile);
     // post edited profile
-    this.userProvider.editProfile(profile, this.userId)
+    this.userProvider.editProfile(this.auth.userId, profile)
       .subscribe(
         profile => {
           this.toastCtrl.create({

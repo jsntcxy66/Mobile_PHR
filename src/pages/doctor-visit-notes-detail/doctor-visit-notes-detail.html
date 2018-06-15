@@ -22,7 +22,22 @@
 <ion-content padding>
   <ion-card>
     <ion-card-content>
-      <dynamic-form [questions]="questions"></dynamic-form>
+      <div>
+        <form [formGroup]='form' (ngSubmit)="onSubmit()">
+
+          <div *ngFor="let question of questions">
+            <ion-item>
+              <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
+            </ion-item>
+          </div>
+
+          <div>
+            <button ion-button type="submit" [disabled]="!form.valid" color="slate-grey">Record</button>
+            <button ion-button type="button" clear color="primary" (click)="addContact()">Add Contact</button>
+          </div>
+
+        </form>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -61,20 +61,20 @@ export class CustomtrackerPage {
   }
 
   ngOnInit() {
-    this.trackerService.getMytrackers()
-      .subscribe(mytrackers => {
-        mytrackers.sort((a: Mytracker, b: Mytracker) => {
-          var shortdate_a = new Date(new Date(a.date).getFullYear(), new Date(a.date).getMonth() - 1, new Date(a.date).getDate());
-          var shortdate_b = new Date(new Date(b.date).getFullYear(), new Date(b.date).getMonth() - 1, new Date(b.date).getDate());
-          if (shortdate_a > shortdate_b) {
-            return -1;
-          }
-          if (shortdate_a < shortdate_b) {
-            return 1;
-          }
-        });
-        this.mytrackers = mytrackers;
-      }, errmess => this.errMess = <any>errmess);
+    // this.trackerService.getMytrackers()
+    //   .subscribe(mytrackers => {
+    //     mytrackers.sort((a: Mytracker, b: Mytracker) => {
+    //       var shortdate_a = new Date(new Date(a.date).getFullYear(), new Date(a.date).getMonth() - 1, new Date(a.date).getDate());
+    //       var shortdate_b = new Date(new Date(b.date).getFullYear(), new Date(b.date).getMonth() - 1, new Date(b.date).getDate());
+    //       if (shortdate_a > shortdate_b) {
+    //         return -1;
+    //       }
+    //       if (shortdate_a < shortdate_b) {
+    //         return 1;
+    //       }
+    //     });
+    //     this.mytrackers = mytrackers;
+    //   }, errmess => this.errMess = <any>errmess);
   }
 
   ionViewDidLoad() {
@@ -82,25 +82,25 @@ export class CustomtrackerPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-    setTimeout(() => {
-      this.trackerService.getMytrackers()
-        .subscribe(mytrackers => {
-          mytrackers.sort((a: Mytracker, b: Mytracker) => {
-            var shortdate_a = new Date(new Date(a.date).getFullYear(), new Date(a.date).getMonth() - 1, new Date(a.date).getDate());
-            var shortdate_b = new Date(new Date(b.date).getFullYear(), new Date(b.date).getMonth() - 1, new Date(b.date).getDate());
-            if (shortdate_a > shortdate_b) {
-              return -1;
-            }
-            if (shortdate_a < shortdate_b) {
-              return 1;
-            }
-          });
-          this.mytrackers = mytrackers;
-        }, errmess => this.errMess = <any>errmess);
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 1500);
+    // console.log('Begin async operation', refresher);
+    // setTimeout(() => {
+    //   this.trackerService.getMytrackers()
+    //     .subscribe(mytrackers => {
+    //       mytrackers.sort((a: Mytracker, b: Mytracker) => {
+    //         var shortdate_a = new Date(new Date(a.date).getFullYear(), new Date(a.date).getMonth() - 1, new Date(a.date).getDate());
+    //         var shortdate_b = new Date(new Date(b.date).getFullYear(), new Date(b.date).getMonth() - 1, new Date(b.date).getDate());
+    //         if (shortdate_a > shortdate_b) {
+    //           return -1;
+    //         }
+    //         if (shortdate_a < shortdate_b) {
+    //           return 1;
+    //         }
+    //       });
+    //       this.mytrackers = mytrackers;
+    //     }, errmess => this.errMess = <any>errmess);
+    //   console.log('Async operation has ended');
+    //   refresher.complete();
+    // }, 1500);
   }
 
   dismiss() {
@@ -109,7 +109,6 @@ export class CustomtrackerPage {
 
   onSubmit() {
     this.mytracker = this.myForm.value;
-    this.trackerService.addMytracker(this.mytracker);
     this.createForm();
   }
 }

@@ -25,8 +25,8 @@ export class TrackerDetailPage {
   id: number;
   questions: any[];
   form: FormGroup;
-  tracker: string = "history";
-  records: any[];
+  tracker: string = "track";
+  records: any[] = [];
   errMess: string;
   loading: any;
 

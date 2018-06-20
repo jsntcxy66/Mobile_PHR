@@ -74,8 +74,7 @@ export class SignupPage {
     private menuCtrl: MenuController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private authService: AuthServiceProvider,
-    private storage: Storage) {
+    private authService: AuthServiceProvider) {
 
     this.secQuestions = [
       {

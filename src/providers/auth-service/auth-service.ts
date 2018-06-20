@@ -32,6 +32,7 @@ export class AuthServiceProvider {
         if (res.exist == false)
           this.userId = res.id;
         else this.userId = undefined;
+        return res;
       })
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }

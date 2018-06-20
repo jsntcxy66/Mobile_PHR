@@ -12,11 +12,11 @@
 
   <ion-toolbar color="primary">
     <ion-segment color="light" [(ngModel)]="tracker">
-      <ion-segment-button value="history">
-        HISTORY
-      </ion-segment-button>
       <ion-segment-button value="track">
         TRACK
+      </ion-segment-button>
+      <ion-segment-button value="history">
+        HISTORY
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -30,30 +30,6 @@
       refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher> -->
   <div [ngSwitch]="tracker">
-    <div *ngSwitchCase="'history'">
-      <ion-list *ngIf="records">
-        <ion-card *ngFor="let record of records">
-          <ion-item>
-            <ion-row>
-              <h2 *ngIf="record.food">{{record.food}} {{record.amount}}</h2>
-              <h2 *ngIf="record.exercise">{{record.exercise}} {{record.duration}}</h2>
-              <h2 *ngIf="record.weight">{{record.weight}}</h2>
-              <h2 *ngIf="record.height">{{record.height}}</h2>
-            </ion-row>
-            <ion-row>
-              <ion-note>
-                <span *ngIf="record.timeperiod">{{record.timeperiod}} - </span>
-                <span *ngIf="record.datetime">{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</span>
-                <span *ngIf="record.date">{{record.date | date}}</span>
-              </ion-note>
-            </ion-row>
-          </ion-item>
-        </ion-card>
-      </ion-list>
-      <ion-card [hidden]="records">
-        <ion-card-header>No {{title}} record.</ion-card-header>
-      </ion-card>
-    </div>
     <div *ngSwitchCase="'track'">
       <ion-card>
         <ion-card-content>
@@ -73,6 +49,30 @@
             </form>
           </div>
         </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'history'">
+      <ion-list *ngIf="records.length!=0">
+        <ion-card *ngFor="let record of records">
+          <ion-item>
+            <ion-row>
+              <h2 *ngIf="record.food">{{record.food}} {{record.amount}}</h2>
+              <h2 *ngIf="record.exercise">{{record.exercise}} {{record.duration}}</h2>
+              <h2 *ngIf="record.weight">{{record.weight}}</h2>
+              <h2 *ngIf="record.height">{{record.height}}</h2>
+            </ion-row>
+            <ion-row>
+              <ion-note>
+                <span *ngIf="record.timeperiod">{{record.timeperiod}} - </span>
+                <span *ngIf="record.datetime">{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</span>
+                <span *ngIf="record.date">{{record.date | date}}</span>
+              </ion-note>
+            </ion-row>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+      <ion-card [hidden]="records.length!=0">
+        <ion-card-header>No {{title}} record.</ion-card-header>
       </ion-card>
     </div>
   </div>

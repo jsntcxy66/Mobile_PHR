@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { MedicalClassificationProvider } from '../../providers/medical-classification/medical-classification';
-import { MedicalRecordDetailPage } from '../../pages/medical-record-detail/medical-record-detail';
 import { AllergyDetailPage } from './../../pages/allergy-detail/allergy-detail';
 import { ImmunizationDetailPage } from '../../pages/immunization-detail/immunization-detail';
 import { SocialHistoryDetailPage } from '../../pages/social-history-detail/social-history-detail';
+import { DiagnosticProcedureDetailPage } from '../../pages/diagnostic-procedure-detail/diagnostic-procedure-detail';
+import { DiagnosticProcedureClassificationProvider } from '../../providers/diagnostic-procedure-classification/diagnostic-procedure-classification';
 
 /**
  * Generated class for the TileComponent component.
@@ -24,19 +24,19 @@ export class TileComponent {
 
   constructor(
     public navCtrl: NavController,
-    public mcp: MedicalClassificationProvider,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private dpcp: DiagnosticProcedureClassificationProvider
   ) {
     console.log('Hello TileComponent Component');
   }
 
   getSub(id: number) {
-    this.tiles = this.mcp.getMenu(id);
+    this.tiles = this.dpcp.getMenu(id);
   }
 
   goToRecord(tile: any) {
-    if (tile.menu == "lab_test") {
-      this.navCtrl.push(MedicalRecordDetailPage,
+    if (tile.menu == "diagnostic-procedure") {
+      this.navCtrl.push(DiagnosticProcedureDetailPage,
         {
           'id': tile.id,
           'title': tile.name

@@ -4,9 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { QuestionProvider } from '../../providers/question/question';
 import { ContactAddContactsPage } from '../contact-add-contacts/contact-add-contacts';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
-import { SurgicalHistoryProvider } from './../../providers/surgical-history/surgical-history';
 import { QuestionBase } from '../../shared/question-base';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HistoryProvider } from '../../providers/history/history';
 
 /**
  * Generated class for the SurgicalHistoryDetailPage page.
@@ -34,7 +34,7 @@ export class SurgicalHistoryDetailPage implements OnInit {
     private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private shp: SurgicalHistoryProvider,
+    private historyProvider: HistoryProvider,
     private auth: AuthServiceProvider) { }
 
   ionViewDidLoad() {
@@ -65,7 +65,7 @@ export class SurgicalHistoryDetailPage implements OnInit {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
     console.log(payLoad);
-    this.shp.addRecord(this.auth.userId, payLoad)
+    this.historyProvider.addSurgicalHistory(this.auth.userId, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();

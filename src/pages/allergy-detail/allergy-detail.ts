@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
-import { AllergyProvider } from './../../providers/allergy/allergy';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HistoryProvider } from '../../providers/history/history';
 
 /**
  * Generated class for the AllergyDetailPage page.
@@ -23,7 +23,7 @@ export class AllergyDetailPage {
   title: string;
   id: number;
   questions: any[];
-  form: FormGroup;
+  form: FormGroup = new FormGroup({});
   color = ['dark-salmon', 'rosy-brown', 'slate-grey'];
   navcolor: string;
   loading: any;
@@ -34,7 +34,7 @@ export class AllergyDetailPage {
     private viewCtrl: ViewController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private allergyProvider: AllergyProvider,
+    private historyProvider: HistoryProvider,
     private auth: AuthServiceProvider) {
 
     this.title = navParams.get('title');
@@ -57,7 +57,7 @@ export class AllergyDetailPage {
     let payLoad = this.form.value;
     payLoad['category'] = this.title;
     console.log(payLoad);
-    this.allergyProvider.addAllergy(this.auth.userId, payLoad)
+    this.historyProvider.addAllergy(this.auth.userId, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the MedicalRecordDetailPage page.
+  Generated template for the DiagnosticProcedureDetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -18,9 +18,6 @@
       <ion-segment-button value="history">
         HISTORY
       </ion-segment-button>
-      <ion-segment-button value="chart" *ngIf="isnumber">
-        CHART
-      </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
@@ -28,10 +25,6 @@
 
 
 <ion-content padding>
-  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content color="primary" pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-      refreshingText="Refreshing..."></ion-refresher-content>
-  </ion-refresher> -->
   <div [ngSwitch]="tab">
     <div *ngSwitchCase="'form'">
       <ion-card>
@@ -55,8 +48,8 @@
       </ion-card>
     </div>
     <div *ngSwitchCase="'history'">
-      <ion-list *ngIf="data.length!=0">
-        <ion-card *ngFor="let d of data; let i = index">
+      <ion-list *ngIf="records.length!=0">
+        <ion-card *ngFor="let d of records; let i = index">
           <ion-card-header>
             <ion-item (click)="toggleSection(i)" no-padding>
               <ion-label text-wrap>{{d.subtest}}</ion-label>
@@ -77,17 +70,6 @@
           </ion-list>
         </ion-card>
       </ion-list>
-      <ion-card [hidden]="data.length!=0">
-        <ion-card-header>No record.</ion-card-header>
-      </ion-card>
-    </div>
-    <div *ngSwitchCase="'chart'">
-      <div *ngIf="data.length!=0">
-        <div *ngFor="let chart of charts" style="display: block;">
-          <canvas baseChart [datasets]="chart.lineChartData" [labels]="chart.lineChartLabels" [options]="chart.lineChartOptions" [colors]="chart.lineChartColors"
-            [legend]="chart.lineChartLegend" [chartType]="chart.lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
       <ion-card [hidden]="data.length!=0">
         <ion-card-header>No record.</ion-card-header>
       </ion-card>

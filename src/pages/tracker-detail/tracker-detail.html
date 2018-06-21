@@ -53,8 +53,8 @@
     </div>
     <div *ngSwitchCase="'history'">
       <ion-list *ngIf="records.length!=0">
-        <ion-card *ngFor="let record of records">
-          <ion-item>
+        <ion-card *ngFor="let record of records; let i = index">
+          <ion-item (click)="showNotes(i)">
             <ion-row>
               <h2 *ngIf="record.food">{{record.food}} {{record.amount}}</h2>
               <h2 *ngIf="record.exercise">{{record.exercise}} {{record.duration}}</h2>

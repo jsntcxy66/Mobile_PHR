@@ -106,16 +106,26 @@ export class TrackerDetailPage {
     console.log('ionViewDidLoad TrackerDetailPage');
   }
 
+  showNotes(i) {
+    let alert = this.alertCtrl.create({
+      message: 'Notes: ' + this.records[i].note,
+      enableBackdropDismiss: true
+    });
+    alert.present();
+  }
+
   onSubmit() {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
-    payLoad['category'] = this.title;
     console.log(payLoad);
-    this.trackerProvider.addRecord(this.auth.userId, payLoad)
+    this.trackerProvider.addRecord(this.auth.userId, this.title, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();
           this.presentToast('Successfully added!');
+          this.trackerProvider.getRecords(this.auth.userId, this.title)
+            .subscribe(records => this.records = records,
+              errmess => this.errMess = <any>errmess);
           this.tracker = 'history';
         },
         err => {

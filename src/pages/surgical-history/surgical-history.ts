@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { SurgicalHistoryDetailPage } from '../surgical-history-detail/surgical-history-detail';
-import { SurgicalHistoryProvider } from '../../providers/surgical-history/surgical-history';
 import { WelcomePage } from './../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HistoryProvider } from '../../providers/history/history';
 
 /**
  * Generated class for the SurgicalHistoryPage page.
@@ -24,7 +24,7 @@ export class SurgicalHistoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
-    private shp: SurgicalHistoryProvider,
+    private historyProvider: HistoryProvider,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController) {
 
@@ -32,18 +32,18 @@ export class SurgicalHistoryPage {
     // get sorted records
     this.records = [
       {
-        sugery: 'appendectomy',
+        surgery: 'appendectomy',
         doctor: 'Aaric Falconi',
         date: '2018/04/26'
       },
       {
-        sugery: 'arthrodesis',
+        surgery: 'arthrodesis',
         doctor: 'Scott Williamson',
         date: '2017/09/11'
       }
     ];
 
-    this.shp.getRecords(this.auth.userId)
+    this.historyProvider.getSurgicalHistory(this.auth.userId)
       .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);
 
@@ -57,7 +57,7 @@ export class SurgicalHistoryPage {
     let modal = this.modalCtrl.create(SurgicalHistoryDetailPage);
     modal.present();
     modal.onWillDismiss(
-      () => this.shp.getRecords(this.auth.userId)
+      () => this.historyProvider.getSurgicalHistory(this.auth.userId)
         .subscribe(records => this.records = records,
           errmess => this.errMess = <any>errmess)
     );

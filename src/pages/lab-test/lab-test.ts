@@ -31,92 +31,176 @@ export class LabTestPage {
         name: "ANA",
         unit: "",
         isnumber: false,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["AAA"]
       },
       {
         id: 2,
         name: "BMP (Basic Metabolic Panel)",
         unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["BMP (Basic Metabolic Panel)", "BMP (Basic Metabolic Panel) (Other)"]
       },
       {
         id: 3,
         name: "CBC (Complete Blood Count)",
         unit: "K/mcL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["CBC (Complete Blood Count)"]
       },
       {
         id: 4,
         name: "CMP (Comprehensive Metabolic Panel)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["CMP (Comprehensive Metabolic Panel)"]
       },
       {
         id: 5,
         name: "ESR (Sedimentation Rate)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["ESR (Sedimentation Rate)"]
       },
       {
         id: 6,
         name: "Flu (Influenza A and B Screen)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["Flu (Influenza A and B Screen)"]
       },
       {
         id: 7,
         name: "Glycohemoglobin (Hemoglobin A1C)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["Glycohemoglobin (Hemoglobin A1C)"]
       },
       {
         id: 8,
         name: "Glucose Level",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["Glucose Level"]
       },
       {
         id: 9,
         name: "HCG",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["HCG"]
       },
       {
         id: 10,
         name: "HIV Antibody (HIV 1/2 Ag/Ab 4th Generation with Reflex)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["HIV Antibody (HIV 1/2 Ag/Ab 4th Generation with Reflex)"]
       },
       {
         id: 11,
         name: "Lipid Panel (or Lipid Profile)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["Lipid Panel (or Lipid Profile)"]
       },
       {
         id: 12,
         name: "Liver Function Panel (LFT)",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
+        subtest: ["Liver Function Panel (LFT)"]
       },
       {
         id: 13,
         name: "Lyme Antibody w/Reflex Immunoblot",
-        unit: "sss",
+        unit: "mg/dL",
         isnumber: true,
-        subtest: ["sss", "sdsdas", "sds"]
-      }
+        subtest: ["Lyme Antibody w/Reflex Immunoblot"]
+      },
+      {
+        id: 14,
+        name: "PTT (Partial Thromboplastin Time)",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: ["PTT (Partial Thromboplastin Time)"]
+      },
+      {
+        id: 15,
+        name: "Microalbumin, Urine",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 16,
+        name: "Mono",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 17,
+        name: "Pap Smear",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 18,
+        name: "PSA (Prostate Specific Antigen)",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 19,
+        name: "PT (Protime)",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 20,
+        name: "Semen Analysis",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 21,
+        name: "Stool Culture",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 22,
+        name: "TSH, High Sensitivity (Thyroid Stimulating Hormone)",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 23,
+        name: "Uric Acid",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 24,
+        name: "Urinalysis",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
+      {
+        id: 25,
+        name: "Urine Culture",
+        unit: "mg/dL",
+        isnumber: true,
+        subtest: []
+      },
     ];
 
     for (let i = 0; i < 26; i++) {
@@ -168,14 +252,18 @@ export class LabTestPage {
 
   goToOtherTest() {
     this.navCtrl.push(LabTestDetailPage, {
-      'id': -1,
-      'title': 'Other Tests'
+      'id': 0,
+      'title': 'Other Tests',
+      'unit': "",
+      'isnumber': false,
+      'subtest': [],
+      'tab': 'form'
     });
   }
 
-  goToHome(ev) {
-    this.navCtrl.setRoot(DashboardPage);
-    this.navCtrl.popToRoot();
-  }
+  // goToHome(ev) {
+  //   this.navCtrl.setRoot(DashboardPage);
+  //   this.navCtrl.popToRoot();
+  // }
 
 }

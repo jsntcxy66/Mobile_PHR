@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AllergyPage } from '../allergy/allergy';
-import { AllergyProvider } from '../../providers/allergy/allergy';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
+import { HistoryProvider } from '../../providers/history/history';
 
 /**
  * Generated class for the AllergyHistoryPage page.
@@ -23,13 +23,13 @@ export class AllergyHistoryPage {
   records: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private allergyProvider: AllergyProvider,
+    private historyProvider: HistoryProvider,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController) {
 
-      if (!this.auth.userId) {
-        this.presentAlert('Please login first.');
-      }
+    if (!this.auth.userId) {
+      this.presentAlert('Please login first.');
+    }
     // get sorted records
     this.records = [
       {
@@ -55,14 +55,19 @@ export class AllergyHistoryPage {
       }
     ];
 
-    this.allergyProvider.getAllergy(this.auth.userId)
+    this.historyProvider.getAllergy(this.auth.userId)
       .subscribe(allergy => this.records = allergy,
         errmess => this.errMess = <any>errmess);
-
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllergyHistoryPage');
+  }
+
+  ionViewWillEnter() {
+    this.historyProvider.getAllergy(this.auth.userId)
+      .subscribe(allergy => this.records = allergy,
+        errmess => this.errMess = <any>errmess);
   }
 
   checkLifeThreatening(i): boolean {

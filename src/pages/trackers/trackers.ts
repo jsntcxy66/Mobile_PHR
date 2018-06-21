@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { Storage } from '@ionic/storage';
 
 import { CustomPanelPage } from './../custom-panel/custom-panel';
-import { CustomtrackerPage } from './../customtracker/customtracker';
-import { DashboardPage } from '../dashboard/dashboard';
 import { TrackerDetailPage } from '../tracker-detail/tracker-detail';
 
 /**
@@ -128,8 +126,4 @@ export class TrackersPage {
     });
   }
 
-  goToHome(ev) {
-    this.navCtrl.setRoot(DashboardPage);
-    this.navCtrl.popToRoot();
-  }
 }

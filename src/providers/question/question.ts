@@ -67,6 +67,14 @@ export class QuestionProvider {
           order: 4
         }),
 
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 5
+        }),
+
       ];
 
       return questions.sort((a, b) => a.order - b.order);
@@ -101,6 +109,14 @@ export class QuestionProvider {
           order: 3
         }),
 
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 4
+        }),
+
       ];
 
       return questions.sort((a, b) => a.order - b.order);
@@ -110,32 +126,7 @@ export class QuestionProvider {
 
         new TextboxQuestion({
           key: 'weight',
-          label: 'Weight(kg)',
-          type: 'number',
-          value: '',
-          required: true,
-          order: 1
-        }),
-
-        new DatetimeQuestion({
-          key: 'date',
-          label: 'Date',
-          display: 'MM/DD/YYYY',
-          value: moment().format(),
-          required: true,
-          order: 2
-        }),
-
-      ];
-
-      return questions.sort((a, b) => a.order - b.order);
-    }
-    else if (id == 4) {
-      let questions: QuestionBase<any>[] = [
-
-        new TextboxQuestion({
-          key: 'height',
-          label: 'Height(inch)',
+          label: 'Weight',
           type: 'text',
           value: '',
           required: true,
@@ -149,6 +140,47 @@ export class QuestionProvider {
           value: moment().format(),
           required: true,
           order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
+        }),
+
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 4) {
+      let questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: 'height',
+          label: 'Height',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
         }),
 
       ];
@@ -601,7 +633,7 @@ export class QuestionProvider {
 
         new TextareaQuestion({
           key: 'note',
-          label: 'Note',
+          label: 'Notes',
           value: '',
           rows: 3,
           required: false,
@@ -625,11 +657,11 @@ export class QuestionProvider {
 
         new TextareaQuestion({
           key: 'note',
-          label: 'Note',
+          label: 'Notes',
           value: '',
           rows: 5,
           required: false,
-          order: 2
+          order: 3
         }),
 
         new DatetimeQuestion({
@@ -638,7 +670,7 @@ export class QuestionProvider {
           display: 'MM/DD/YYYY',
           value: moment().format(),
           required: true,
-          order: 3
+          order: 2
         }),
       ];
 
@@ -676,7 +708,7 @@ export class QuestionProvider {
 
         new TextareaQuestion({
           key: 'note',
-          label: 'Note',
+          label: 'Notes',
           value: '',
           rows: 3,
           required: false,
@@ -822,6 +854,40 @@ export class QuestionProvider {
       ];
     }
 
+
+    return questions.sort((a, b) => a.order - b.order);
+  }
+
+  getDiagnosticProcedureQuestions() {
+    let questions: QuestionBase<any>[] = [
+
+      new TextboxQuestion({
+        key: 'result',
+        label: 'Result',
+        type: 'text',
+        value: '',
+        required: true,
+        order: 1
+      }),
+
+      new DatetimeQuestion({
+        key: 'date',
+        label: 'Date',
+        display: 'MM/DD/YYYY',
+        value: moment().format(),
+        required: true,
+        order: 3
+      }),
+
+      new TextareaQuestion({
+        key: 'note',
+        label: 'Notes',
+        value: '',
+        rows: 5,
+        required: false,
+        order: 3
+      }),
+    ];
 
     return questions.sort((a, b) => a.order - b.order);
   }

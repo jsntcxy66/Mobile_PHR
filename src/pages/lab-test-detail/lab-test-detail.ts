@@ -73,7 +73,48 @@ export class LabTestDetailPage {
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 
-    if (this.id == 2) {
+    if (this.id == 1) {
+      this.data = [
+        {
+          "subtest": "ANA",
+          "open": true,
+          "results": [
+            {
+              "result": "positive",
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-10T17:57:28.556094Z"
+            },
+            {
+              "result": "negative",
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-09T17:57:28.556094Z"
+            },
+            {
+              "result": "negative",
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-08T17:57:28.556094Z"
+            },
+            {
+              "result": "negative",
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-07T17:57:28.556094Z"
+            },
+            {
+              "result": "positive",
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-06T17:57:28.556094Z"
+            }
+          ]
+        }
+      ];
+    }
+
+    else if (this.id == 2) {
       this.data = [
         {
           "subtest": "BMP (Basic Metabolic Panel)",
@@ -179,8 +220,7 @@ export class LabTestDetailPage {
         }
       ];
     }
-
-    this.drawcanvas();
+    if (this.isnumber) this.drawcanvas();
 
 
     this.trp.getLabtTest(this.auth.userId, this.id)
@@ -192,7 +232,7 @@ export class LabTestDetailPage {
           this.records[i]['open'] = false;
         }
         this.data = this.records;
-        this.drawcanvas();
+        if (this.isnumber) this.drawcanvas();
       },
         errmess => this.errMess = <any>errmess);
 

@@ -17,18 +17,18 @@
 
 
 <ion-content padding>
-  <ion-list *ngIf="smoking != ''">
+  <ion-list *ngIf="records.smoking.length!=0">
     <ion-list-header>Smoking History</ion-list-header>
-    <ion-item *ngFor="let s of smoking">
+    <ion-item *ngFor="let s of records.smoking">
       <div class="white-space">
         <h3>Cigarettes: {{s.amount}}</h3>
         <p>{{s.date | date}}</p>
       </div>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="alcohol != ''">
+  <ion-list *ngIf="records.alcohol.length!=0">
     <ion-list-header>Alcohol History</ion-list-header>
-    <ion-item *ngFor="let a of alcohol">
+    <ion-item *ngFor="let a of records.alcohol">
       <div class="white-space">
         <h3>Name: {{a.name}}</h3>
         <h3>Amount: {{a.amount}} oz</h3>
@@ -37,38 +37,40 @@
       </div>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="drug != ''">
+  <ion-list *ngIf="records.drug.length!=0">
     <ion-list-header>Drug History</ion-list-header>
-    <ion-item *ngFor="let p of drug">
+    <ion-item *ngFor="let p of records.drug">
       <div class="white-space">
         <h3>Name: {{p.name}}</h3>
         <h3>Amount: {{p.amount}}</h3>
+        <h3>Notes: {{p.note}}</h3>
         <p>{{p.date | date}}</p>
       </div>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="travel != ''">
+  <ion-list *ngIf="records.travel.length!=0">
     <ion-list-header>Travel History</ion-list-header>
-    <ion-item *ngFor="let t of travel">
+    <ion-item *ngFor="let t of records.travel">
       <div class="white-space">
         <h3>Location: {{t.location}}</h3>
-        <h3>Note: {{t.note}}</h3>
+        <h3>Notes: {{t.note}}</h3>
         <p>{{t.date | date}}</p>
       </div>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="housing != ''">
+  <ion-list *ngIf="records.housing.length!=0">
     <ion-list-header>Housing History</ion-list-header>
-    <ion-item *ngFor="let h of housing">
+    <ion-item *ngFor="let h of records.housing">
       <div class="white-space">
         <h3>Housing Type: {{h.type | titlecase}}</h3>
         <h3>Move in: {{h.moveindate | date}}</h3>
         <h3>Move out: {{h.moveoutdate | date}}</h3>
+        <p>Notes: {{h.note}}</p>
       </div>
     </ion-item>
   </ion-list>
 
-  <ion-card [hidden]="smoking!='' || alcohol!='' || drug!='' || travel!='' || housing!=''">
+  <ion-card [hidden]="records.smoking.length!=0 || records.alcohol.length!=0 || records.drug.length!=0 || records.travel.length!=0 || records.housing.length!=0">
     <ion-card-header>No record.</ion-card-header>
   </ion-card>
 

@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { NgxEchartsModule } from 'ngx-echarts';
 import { CalendarModule } from "ion2-calendar";
 import { CallNumber } from '@ionic-native/call-number';
 import { ChartsModule } from 'ng2-charts';
@@ -12,11 +11,9 @@ import { ChartsModule } from 'ng2-charts';
 import { MyApp } from './app.component';
 import { TrackersPage } from './../pages/trackers/trackers';
 import { TrackerDetailPage } from '../pages/tracker-detail/tracker-detail';
-import { MedicalrecordPage } from './../pages/medicalrecord/medicalrecord';
 import { CustomPanelPage } from './../pages/custom-panel/custom-panel';
 import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
 import { CustomtrackerPage } from './../pages/customtracker/customtracker';
-import { MedicalRecordDetailPage } from './../pages/medical-record-detail/medical-record-detail';
 import { DashboardPage } from './../pages/dashboard/dashboard';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
@@ -50,6 +47,7 @@ import { MedicationPage } from '../pages/medication/medication';
 import { MedicationDetailPage } from '../pages/medication-detail/medication-detail';
 import { TestResultsPage } from '../pages/test-results/test-results';
 import { DiagnosticProcedurePage } from '../pages/diagnostic-procedure/diagnostic-procedure';
+import { DiagnosticProcedureDetailPage } from '../pages/diagnostic-procedure-detail/diagnostic-procedure-detail';
 import { LabTestPage } from '../pages/lab-test/lab-test';
 import { LabTestDetailPage } from '../pages/lab-test-detail/lab-test-detail';
 
@@ -61,17 +59,18 @@ import { QuestionOptionProvider } from '../providers/question-option/question-op
 import { QuestionControlProvider } from '../providers/question-control/question-control';
 import { QuestionProvider } from '../providers/question/question';
 import { ContactsProvider } from '../providers/contacts/contacts';
-import { MedicalClassificationProvider } from '../providers/medical-classification/medical-classification';
 import { AllergyClassificationProvider } from '../providers/allergy-classification/allergy-classification';
 import { ImmunizationClassificationProvider } from '../providers/immunization-classification/immunization-classification';
 import { UserProvider } from '../providers/user/user';
 import { AppointmentProvider } from '../providers/appointment/appointment';
 import { SocialHistoryClassificationProvider } from '../providers/social-history-classification/social-history-classification';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { AllergyProvider } from '../providers/allergy/allergy';
-import { SurgicalHistoryProvider } from '../providers/surgical-history/surgical-history';
 import { DoctorVisitNotesProvider } from '../providers/doctor-visit-notes/doctor-visit-notes';
 import { TestResultsProvider } from '../providers/test-results/test-results';
+import { MedicationProvider } from '../providers/medication/medication';
+import { ImmunizationProvider } from '../providers/immunization/immunization';
+import { HistoryProvider } from '../providers/history/history';
+import { DiagnosticProcedureClassificationProvider } from '../providers/diagnostic-procedure-classification/diagnostic-procedure-classification';
 
 import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
@@ -79,8 +78,8 @@ import { DynamicFormComponent } from './../components/dynamic-form/dynamic-form'
 import { CalendarComponent } from './../components/calendar/calendar';
 
 import * as moment from 'moment';
-import { MedicationProvider } from '../providers/medication/medication';
-import { ImmunizationProvider } from '../providers/immunization/immunization';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @NgModule({
   declarations: [
@@ -127,10 +126,9 @@ import { ImmunizationProvider } from '../providers/immunization/immunization';
     MedicationDetailPage,
     TestResultsPage,
     DiagnosticProcedurePage,
+    DiagnosticProcedureDetailPage,
     LabTestPage,
     LabTestDetailPage,
-    MedicalrecordPage,
-    MedicalRecordDetailPage
   ],
   imports: [
     BrowserModule,
@@ -138,7 +136,6 @@ import { ImmunizationProvider } from '../providers/immunization/immunization';
     HttpModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    NgxEchartsModule,
     CalendarModule,
     ChartsModule
   ],
@@ -183,18 +180,16 @@ import { ImmunizationProvider } from '../providers/immunization/immunization';
     MedicationDetailPage,
     TestResultsPage,
     DiagnosticProcedurePage,
+    DiagnosticProcedureDetailPage,
     LabTestPage,
     LabTestDetailPage,
-    MedicalrecordPage,
-    MedicalRecordDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     TrackersProvider,
     ProcessHttpmsgProvider,
-    MedicalClassificationProvider,
     AllergyClassificationProvider,
     ImmunizationClassificationProvider,
     QuestionControlProvider,
@@ -206,12 +201,12 @@ import { ImmunizationProvider } from '../providers/immunization/immunization';
     AppointmentProvider,
     SocialHistoryClassificationProvider,
     AuthServiceProvider,
-    AllergyProvider,
-    SurgicalHistoryProvider,
     DoctorVisitNotesProvider,
     TestResultsProvider,
     MedicationProvider,
-    ImmunizationProvider
+    ImmunizationProvider,
+    HistoryProvider,
+    DiagnosticProcedureClassificationProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

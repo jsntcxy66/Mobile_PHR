@@ -3,10 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProcessHttpmsgProvider } from './../process-httpmsg/process-httpmsg';
 
-import { Mytracker } from './../../shared/mytracker';
 import { baseurl } from '../../shared/baseurl';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 
 /*
   Generated class for the TrackersProvider provider.
@@ -27,8 +24,8 @@ export class TrackersProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
-  addRecord(id: number, data: Object) {
-    return this.http.post(baseurl + 'trackers/' + id, data)
+  addRecord(id: number, title: string, data: Object) {
+    return this.http.post(baseurl + 'trackers/' + title + '/' + id, data)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 

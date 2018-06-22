@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
 import { DoctorVisitNotesDetailPage } from '../doctor-visit-notes-detail/doctor-visit-notes-detail';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { DoctorVisitNotesProvider } from '../../providers/doctor-visit-notes/doctor-visit-notes';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the DoctorVisitNotesPage page.
@@ -26,7 +26,7 @@ export class DoctorVisitNotesPage {
     private modalCtrl: ModalController,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
-    private dvnp: DoctorVisitNotesProvider) {
+    private hrp: HealthRecordsProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
@@ -42,7 +42,7 @@ export class DoctorVisitNotesPage {
       }
     ];
 
-    this.dvnp.getRecords(this.auth.userId)
+    this.hrp.getDoctorVisitNotes(this.auth.userId)
       .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);
 
@@ -57,7 +57,7 @@ export class DoctorVisitNotesPage {
     modal.present();
     modal.onWillDismiss(
       () => {
-        this.dvnp.getRecords(this.auth.userId)
+        this.hrp.getDoctorVisitNotes(this.auth.userId)
           .subscribe(records => this.records = records,
             errmess => this.errMess = <any>errmess);
       }

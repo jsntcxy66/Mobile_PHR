@@ -73,7 +73,7 @@
           <ion-item (click)="goToMedication()">
             <h2>{{medication.name}}</h2>
             <h3>{{medication.frequency}}</h3>
-            <p>{{medication.date}}</p>
+            <p>{{medication.date | date}}</p>
           </ion-item>
         </ion-list>
       </ion-card-content>
@@ -92,7 +92,26 @@
           <ion-item (click)="goToImmunization()">
             <h2>{{immunization.vaccine}}</h2>
             <h3>{{immunization.schedule}}</h3>
-            <p>{{immunization.date}}</p>
+            <p>{{immunization.date | date}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="dvnotes.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-notes-medical"></i>
+            </ion-icon>
+            <span>Doctor Visit Notes</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list *ngFor="let d of dvnotes">
+          <ion-item (click)="goToDoctorVisitNotes()">
+            <h2>{{d.diagnosis}}</h2>
+            <h3>{{d.doctor}}</h3>
+            <p>{{d.date | date}}</p>
           </ion-item>
         </ion-list>
       </ion-card-content>

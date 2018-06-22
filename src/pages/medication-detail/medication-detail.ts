@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController, L
 import { QuestionProvider } from '../../providers/question/question';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
-import { MedicationProvider } from '../../providers/medication/medication';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the MedicationDetailPage page.
@@ -31,7 +31,7 @@ export class MedicationDetailPage {
     private toastCtrl: ToastController,
     private viewCtrl: ViewController,
     private auth: AuthServiceProvider,
-    private medicationProvider: MedicationProvider) {
+    private hrp: HealthRecordsProvider) {
 
     this.questions = this.qp.getMedicationQuestions();
     this.form = this.qcp.toFormGroup(this.questions);
@@ -49,7 +49,7 @@ export class MedicationDetailPage {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
     console.log(payLoad);
-    this.medicationProvider.addRecord(this.auth.userId, payLoad)
+    this.hrp.addMedication(this.auth.userId, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();

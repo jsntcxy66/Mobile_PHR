@@ -5,9 +5,9 @@ import { QuestionProvider } from '../../providers/question/question';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
-import { TestResultsProvider } from '../../providers/test-results/test-results';
 
 import * as moment from 'moment';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 /**
  * Generated class for the LabTestDetailPage page.
  *
@@ -57,7 +57,7 @@ export class LabTestDetailPage {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    private trp: TestResultsProvider) {
+    private hrp: HealthRecordsProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
@@ -223,7 +223,7 @@ export class LabTestDetailPage {
     if (this.isnumber) this.drawcanvas();
 
 
-    this.trp.getLabtTest(this.auth.userId, this.id)
+    this.hrp.getLabtTest(this.auth.userId, this.id)
       .subscribe(records => {
         this.records = records;
         // set extension panel of first category in record history in 'open' status
@@ -302,12 +302,12 @@ export class LabTestDetailPage {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
     console.log(payLoad);
-    this.trp.addLabTest(this.auth.userId, this.id, payLoad)
+    this.hrp.addLabTest(this.auth.userId, this.id, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();
           this.presentToast('Successfully added!');
-          this.trp.getLabtTest(this.auth.userId, this.id)
+          this.hrp.getLabtTest(this.auth.userId, this.id)
             .subscribe(records => {
               this.records = records;
               // set extension panel of first category in record history in 'open' status

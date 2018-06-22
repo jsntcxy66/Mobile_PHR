@@ -16,33 +16,21 @@ export class QuestionOptionProvider {
     private contactsProvider: ContactsProvider) { }
 
   //get surgical history question Doctor options
-  async getDoctorOption(id: number): Promise<Array<{ key: number, value: string }>> {
+  async getDoctorOption(id: number): Promise<Array<{ key: string, value: string }>> {
 
-    let doctors = [
-      // {
-      //   id: 0,
-      //   firstname: "Scott",
-      //   lastname: "Williamson",
-      //   locations: []
-      // },
-      // {
-      //   id: 1,
-      //   firstname: "Aaric",
-      //   locations: []
-      // }
-    ];
+    let doctors = [];
 
-    let option: Array<{ key: number, value: string }> = [];
+    let option: Array<{ key: string, value: string }> = [];
 
-    doctors = <any> await this.contactsProvider.getDoctors(id).toPromise();
+    doctors = <any>await this.contactsProvider.getDoctors(id).toPromise();
 
     for (let i = 0; i < doctors.length; i++) {
       option[i] = {
-        key: doctors[i].id,
+        key: doctors[i].firstname + ' ' + doctors[i].lastname,
         value: doctors[i].firstname + ' ' + doctors[i].lastname
       };
     }
-    
+
     console.log(option);
     return option;
 

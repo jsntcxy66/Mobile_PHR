@@ -29,8 +29,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // rootPage: any = WelcomePage;
-  rootPage: any = DashboardPage;
+  rootPage: any = WelcomePage;
+  // rootPage: any = DashboardPage;
 
   pages: Pages[];
   onelevelPages: Pages[];

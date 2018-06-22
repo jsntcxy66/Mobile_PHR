@@ -4,8 +4,8 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { QuestionProvider } from '../../providers/question/question';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
-import { TestResultsProvider } from '../../providers/test-results/test-results';
 import { WelcomePage } from '../welcome/welcome';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the DiagnosticProcedureDetailPage page.
@@ -40,7 +40,7 @@ export class DiagnosticProcedureDetailPage {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    private trp: TestResultsProvider) {
+    private hrp: HealthRecordsProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');

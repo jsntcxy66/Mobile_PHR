@@ -65,12 +65,9 @@ import { UserProvider } from '../providers/user/user';
 import { AppointmentProvider } from '../providers/appointment/appointment';
 import { SocialHistoryClassificationProvider } from '../providers/social-history-classification/social-history-classification';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { DoctorVisitNotesProvider } from '../providers/doctor-visit-notes/doctor-visit-notes';
-import { TestResultsProvider } from '../providers/test-results/test-results';
-import { MedicationProvider } from '../providers/medication/medication';
-import { ImmunizationProvider } from '../providers/immunization/immunization';
 import { HistoryProvider } from '../providers/history/history';
 import { DiagnosticProcedureClassificationProvider } from '../providers/diagnostic-procedure-classification/diagnostic-procedure-classification';
+import { HealthRecordsProvider } from '../providers/health-records/health-records';
 
 import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
@@ -201,12 +198,9 @@ import 'rxjs/add/operator/map';
     AppointmentProvider,
     SocialHistoryClassificationProvider,
     AuthServiceProvider,
-    DoctorVisitNotesProvider,
-    TestResultsProvider,
-    MedicationProvider,
-    ImmunizationProvider,
     HistoryProvider,
-    DiagnosticProcedureClassificationProvider
+    DiagnosticProcedureClassificationProvider,
+    HealthRecordsProvider
   ]
 })
 export class AppModule { }

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LabTestDetailPage } from '../lab-test-detail/lab-test-detail';
-import { DashboardPage } from '../dashboard/dashboard';
-import { TestResultsProvider } from '../../providers/test-results/test-results';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the LabTestPage page.
@@ -22,7 +21,7 @@ export class LabTestPage {
   errMess: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private trp: TestResultsProvider) {
+    private hrp: HealthRecordsProvider) {
 
     // get common lab test list
     let list = [
@@ -218,7 +217,7 @@ export class LabTestPage {
       }
     }
 
-    this.trp.getLabTestCategory()
+    this.hrp.getLabTestCategory()
       .subscribe(list => {
         list.forEach(category => {
           this.list[category.name.charCodeAt(0) - 65].category.push(category);

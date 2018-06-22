@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { ImmunizationPage } from '../immunization/immunization';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { ImmunizationProvider } from '../../providers/immunization/immunization';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the ImmunizationHistoryPage page.
@@ -25,7 +25,7 @@ export class ImmunizationHistoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
-    private ip: ImmunizationProvider) {
+    private hrp: HealthRecordsProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
@@ -49,7 +49,7 @@ export class ImmunizationHistoryPage {
       }
     ];
 
-    this.ip.getRecords(this.auth.userId)
+    this.hrp.getImmunization(this.auth.userId)
       .subscribe(records => {
         this.records = records;
         this.records.forEach(record => {
@@ -67,7 +67,7 @@ export class ImmunizationHistoryPage {
   }
 
   ionViewWillEnter() {
-    this.ip.getRecords(this.auth.userId)
+    this.hrp.getImmunization(this.auth.userId)
       .subscribe(records => {
         this.records = records;
         this.records.forEach(record => {

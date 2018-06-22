@@ -34,25 +34,25 @@ export class DiagnosticProcedureClassificationProvider {
     }
     else if (id === 2) {
       arr = [
-        { id: 201, name: 'Mammogram', menu: 'diagnostic-procedure', end: true },
-        { id: 202, name: 'CXR', menu: 'diagnostic-procedure', end: true },
-        { id: 203, name: 'AXR - KUB', menu: 'aldiagnostic-procedurelergy', end: true },
-        { id: 204, name: 'AXR - 4 View', menu: 'diagnostic-procedure', end: true },
-        { id: 205, name: 'X- Ray', menu: 'diagnostic-procedure', end: true },
-        { id: 206, name: 'CT Scan', menu: 'aldiagnostic-procedurelergy', end: true },
-        { id: 207, name: 'MRI', menu: 'diagnostic-procedure', end: true },
-        { id: 208, name: 'Ultrasound', menu: 'diagnostic-procedure', end: true },
-        { id: 209, name: 'Venous Dopplers', menu: 'diagnostic-procedure', end: true },
-        { id: 210, name: 'Arterial Dopllers', menu: 'aldiagnostic-procedurelergy', end: true },
-        { id: 211, name: 'Dexa Scan', menu: 'diagnostic-procedure', end: true },
-        { id: 212, name: 'Bone Scan', menu: 'diagnostic-procedure', end: true },
-        { id: 213, name: 'CT Angiogram', menu: 'aldiagnostic-procedurelergy', end: true }
+        { id: 200, name: 'Mammogram', menu: 'diagnostic-procedure', end: true },
+        { id: 201, name: 'CXR', menu: 'diagnostic-procedure', end: true },
+        { id: 202, name: 'AXR - KUB', menu: 'aldiagnostic-procedurelergy', end: true },
+        { id: 203, name: 'AXR - 4 View', menu: 'diagnostic-procedure', end: true },
+        { id: 204, name: 'X- Ray', menu: 'diagnostic-procedure', end: true },
+        { id: 205, name: 'CT Scan', menu: 'aldiagnostic-procedurelergy', end: true },
+        { id: 206, name: 'MRI', menu: 'diagnostic-procedure', end: true },
+        { id: 207, name: 'Ultrasound', menu: 'diagnostic-procedure', end: true },
+        { id: 208, name: 'Venous Dopplers', menu: 'diagnostic-procedure', end: true },
+        { id: 209, name: 'Arterial Dopllers', menu: 'aldiagnostic-procedurelergy', end: true },
+        { id: 210, name: 'Dexa Scan', menu: 'diagnostic-procedure', end: true },
+        { id: 211, name: 'Bone Scan', menu: 'diagnostic-procedure', end: true },
+        { id: 212, name: 'CT Angiogram', menu: 'aldiagnostic-procedurelergy', end: true }
       ];
     }
     else if (id === 3) {
       arr = [
-        { id: 301, name: 'Sleep Study', menu: 'diagnostic-procedure', end: true },
-        { id: 302, name: 'Pulmonary Function Tests', menu: 'diagnostic-procedure', end: true }
+        { id: 302, name: 'Sleep Study', menu: 'diagnostic-procedure', end: true },
+        { id: 303, name: 'Pulmonary Function Tests', menu: 'diagnostic-procedure', end: true }
       ];
     }
     else if (id === 4) {

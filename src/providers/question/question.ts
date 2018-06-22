@@ -310,7 +310,7 @@ export class QuestionProvider {
   }
 
   async getSurgicalHistoryQuestions(id: number) {
-    let option = <{ key: number, value: string }[]>await this.qop.getDoctorOption(id);
+    let option = <{ key: string, value: string }[]>await this.qop.getDoctorOption(id);
     let questions: QuestionBase<any>[];
     if (option.length != 0) {
       questions = [
@@ -426,7 +426,7 @@ export class QuestionProvider {
   }
 
   async getDoctorVisitNotesQuestions(id: number) {
-    let option = <{ key: number, value: string }[]>await this.qop.getDoctorOption(id);
+    let option = <{ key: string, value: string }[]>await this.qop.getDoctorOption(id);
     let questions: QuestionBase<any>[];
     if (option.length != 0) {
       questions = [

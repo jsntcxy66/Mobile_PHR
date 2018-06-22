@@ -4,9 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { QuestionProvider } from '../../providers/question/question';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
 import { ContactAddContactsPage } from '../contact-add-contacts/contact-add-contacts';
-import { DoctorVisitNotesProvider } from '../../providers/doctor-visit-notes/doctor-visit-notes';
 import { QuestionBase } from '../../shared/question-base';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the DoctorVisitNotesDetailPage page.
@@ -33,7 +33,7 @@ export class DoctorVisitNotesDetailPage implements OnInit {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private viewCtrl: ViewController,
-    private dvnp: DoctorVisitNotesProvider,
+    private hrp: HealthRecordsProvider,
     private auth: AuthServiceProvider) { }
 
   ionViewDidLoad() {
@@ -64,7 +64,7 @@ export class DoctorVisitNotesDetailPage implements OnInit {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
     console.log(payLoad);
-    this.dvnp.addRecord(this.auth.userId, payLoad)
+    this.hrp.addDoctorVisitNotes(this.auth.userId, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();

@@ -32,18 +32,6 @@ export class ProfilePage {
       this.presentAlert('Please login first.');
     }
 
-    // this.profile = {
-    //   username: "km111",
-    //   firstname: "Kelly",
-    //   lastname: "Marsh",
-    //   gender: "male",
-    //   race: "White",
-    //   email: "KellyM@gmail.com",
-    //   tel: "4125890011",
-    //   address: "100 Fifth Ave\nApt 119",
-    //   birthday: "11/11/1911"
-    // };
-
     //get profile from database
     this.userProvider.getProfile(this.auth.userId)
       .subscribe(profile => this.profile = profile,
@@ -66,7 +54,7 @@ export class ProfilePage {
     );
   }
 
-  resetPassword() {
+  editPassword() {
 
   }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
 
@@ -18,7 +18,8 @@ import { SignupPage } from '../signup/signup';
 export class WelcomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private menuCtrl: MenuController) {
+    private menuCtrl: MenuController,
+    private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -37,6 +38,10 @@ export class WelcomePage {
 
   login() {
     this.navCtrl.push(LoginPage);
+  }
+
+  resetPassword() {
+
   }
 
 }

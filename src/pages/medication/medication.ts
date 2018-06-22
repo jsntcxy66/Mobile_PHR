@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
 import { MedicationDetailPage } from '../medication-detail/medication-detail';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
-import { MedicationProvider } from '../../providers/medication/medication';
+import { HealthRecordsProvider } from '../../providers/health-records/health-records';
 
 /**
  * Generated class for the MedicationPage page.
@@ -26,7 +26,7 @@ export class MedicationPage {
     private modalCtrl: ModalController,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
-    private medicationProvider: MedicationProvider) {
+    private hrp: HealthRecordsProvider) {
 
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
@@ -46,7 +46,7 @@ export class MedicationPage {
       }
     ];
 
-    this.medicationProvider.getRecords(this.auth.userId)
+    this.hrp.getMedication(this.auth.userId)
       .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);
   }
@@ -60,7 +60,7 @@ export class MedicationPage {
     modal.present();
     modal.onWillDismiss(
       () => {
-        this.medicationProvider.getRecords(this.auth.userId)
+        this.hrp.getMedication(this.auth.userId)
           .subscribe(records => this.records = records,
             errmess => this.errMess = <any>errmess);
       }

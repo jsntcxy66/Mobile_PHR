@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+import { PasswordRetrievePage } from '../password-retrieve/password-retrieve';
 
 /**
  * Generated class for the WelcomePage page.
@@ -41,7 +42,11 @@ export class WelcomePage {
   }
 
   resetPassword() {
-
+    let modal = this.modalCtrl.create(PasswordRetrievePage, {
+      'id': 0,
+      'type': 'reset'
+    });
+    modal.present();
   }
 
 }

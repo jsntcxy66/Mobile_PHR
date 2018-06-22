@@ -316,7 +316,7 @@ export class LabTestDetailPage {
                 this.records[i]['open'] = false;
               }
               this.data = this.records;
-              this.drawcanvas();
+              if (this.isnumber) this.drawcanvas();
             },
               errmess => this.errMess = <any>errmess)
         },

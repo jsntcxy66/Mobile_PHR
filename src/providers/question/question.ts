@@ -858,33 +858,161 @@ export class QuestionProvider {
     return questions.sort((a, b) => a.order - b.order);
   }
 
-  getDiagnosticProcedureQuestions() {
-    let questions: QuestionBase<any>[] = [
+  getDiagnosticProcedureQuestions(id: number) {
+    let questions: QuestionBase<any>[];
+    if (id == 204 || id == 207 || id == 212 || id == 401) {
+      questions = [
 
+        new TextboxQuestion({
+          key: 'organ',
+          label: 'Organ',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'result',
+          label: 'Result',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 2
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 3
+        }),
+  
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          value: '',
+          rows: 5,
+          required: false,
+          order: 4
+        }),
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (id == 205 || id == 206) {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'organ',
+          label: 'Organ',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'result',
+          label: 'Result',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new ToggleQuestion({
+          key: 'contrast',
+          label: 'With Contrast?',
+          value: false,
+          required: true,
+          order: 3
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 4
+        }),
+  
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          value: '',
+          rows: 5,
+          required: false,
+          order: 5
+        }),
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'result',
+          label: 'Result',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+  
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
+  
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          value: '',
+          rows: 5,
+          required: false,
+          order: 3
+        }),
+      ];
+  
+      return questions.sort((a, b) => a.order - b.order);
+    }
+  }
+
+  getResetPasswordQuestion() {
+    let questions: QuestionBase<any>[] = [
       new TextboxQuestion({
-        key: 'result',
-        label: 'Result',
-        type: 'text',
+        key: 'currentPassword',
+        label: 'Current Password',
+        type: 'password',
         value: '',
         required: true,
         order: 1
       }),
 
-      new DatetimeQuestion({
-        key: 'date',
-        label: 'Date',
-        display: 'MM/DD/YYYY',
-        value: moment().format(),
+      new TextboxQuestion({
+        key: 'newPassword',
+        label: 'New Password',
+        type: 'password',
+        value: '',
         required: true,
-        order: 3
+        order: 2
       }),
 
-      new TextareaQuestion({
-        key: 'note',
-        label: 'Notes',
+      new TextboxQuestion({
+        key: 'confirmPassword',
+        label: 'Confirm Password',
+        type: 'password',
         value: '',
-        rows: 5,
-        required: false,
+        required: true,
         order: 3
       }),
     ];

@@ -39,6 +39,16 @@ export class HealthRecordsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  getDiagnosticProcedure(userid: number, testid: number): Observable<any> {
+    return this.http.get(baseurl + 'records/diagnosticprocedure/' + testid + '/' + userid)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
+  addDiagnosticProcedure(userid: number, testid: number, record: Object): Observable<any> {
+    return this.http.post(baseurl + 'records/diagnosticprocedure/' + testid + '/' + userid, record)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getDoctorVisitNotes(id: number): Observable<any> {
     return this.http.get(baseurl + 'records/doctorvisitnotes/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });

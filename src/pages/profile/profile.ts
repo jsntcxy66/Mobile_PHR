@@ -4,6 +4,7 @@ import { ProfileEditablePage } from '../profile-editable/profile-editable';
 import { UserProvider } from '../../providers/user/user';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
+import { PasswordRetrievePage } from '../password-retrieve/password-retrieve';
 
 /**
  * Generated class for the ProfilePage page.
@@ -55,7 +56,11 @@ export class ProfilePage {
   }
 
   editPassword() {
-
+    let modal = this.modalCtrl.create(PasswordRetrievePage, {
+      'id': 1,
+      'type': 'edit'
+    });
+    modal.present();
   }
 
   presentAlert(msg) {

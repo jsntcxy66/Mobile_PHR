@@ -28,7 +28,7 @@ export class AuthServiceProvider {
 
   register(data: Object): Observable<any> {
     return this.http.post(baseurl + 'users/signup', data)
-      .map((res: {id: number, exist: boolean}) => {
+      .map((res: { id: number, exist: boolean }) => {
         if (res.exist == false)
           this.userId = res.id;
         else this.userId = undefined;
@@ -39,5 +39,10 @@ export class AuthServiceProvider {
 
   logout() {
     this.userId = undefined;
+  }
+
+  resetPassword(id: number, password: Object): Observable<any> {
+    return this.http.post(baseurl + 'users/password/' + id, password)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 }

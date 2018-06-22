@@ -31,7 +31,6 @@ export class DiagnosticProcedureDetailPage {
   color = ['dark-salmon', 'rosy-brown', 'slate-grey'];
   navcolor: string;
   records: Array<any> = [];
-  data: Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private qp: QuestionProvider,
@@ -48,14 +47,156 @@ export class DiagnosticProcedureDetailPage {
 
     this.title = navParams.get('title');
     this.id = navParams.get('id');
-    this.questions = this.qp.getDiagnosticProcedureQuestions();
+    this.questions = this.qp.getDiagnosticProcedureQuestions(this.id);
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
-    
+
+
+    if (this.id == 204 || this.id == 207 || this.id == 212 || this.id == 401) {
+      this.records = [
+        {
+          "organ": "liver",
+          "results": [
+            {
+              "result": "BB",
+              "date": "2018-06-15T01:37:58-04:00",
+              "note": ""
+            },
+            {
+              "result": "BBB",
+              "date": "2018-06-12T01:37:58-04:00",
+              "note": ""
+            }
+          ]
+        },
+        {
+          "organ": "lung",
+          "results": [
+            {
+              "result": "BB",
+              "date": "2018-06-15T01:37:58-04:00",
+              "note": ""
+            }
+          ]
+        }
+      ];
+    }
+    else if (this.id == 205 || this.id == 206) {
+      this.records = [
+        {
+          "organ": "liver",
+          "results": [
+            {
+              "result": "AA",
+              "contrast": true,
+              "date": "2018-06-15T01:37:58-04:00",
+              "note": ":("
+            },
+            {
+              "result": "AAA",
+              "contrast": false,
+              "date": "2018-06-12T01:37:58-04:00",
+              "note": ""
+            }
+          ]
+        },
+        {
+          "organ": "lung",
+          "results": [
+            {
+              "result": "AA",
+              "contrast": true,
+              "date": "2018-06-15T01:37:58-04:00",
+              "note": ""
+            }
+          ]
+        }
+      ]
+    }
+    else {
+      this.records = [
+        {
+          "result": "AAA",
+          "date": "2018-06-15T01:37:58-04:00",
+          "note": ""
+        },
+        {
+          "result": "BBB",
+          "date": "2018-06-12T01:37:58-04:00",
+          "note": ""
+        }
+      ];
+    }
+
+    if (!this.categoryNormal()) {
+      this.records[0]['open'] = true;
+      for (let i = 1; i < this.records.length; i++) {
+        this.records[i]['open'] = false;
+      }
+    }
+
+    this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
+      .subscribe(records => this.records = records,
+        errmess => this.errMess = <any>errmess);
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiagnosticProcedureDetailPage');
+  }
+
+  categoryNormal(): boolean {
+    return !(this.id == 204 || this.id == 207 || this.id == 212 || this.id == 401 || this.id == 205 || this.id == 206);
+  }
+
+  toggleSection(i) {
+    if (!this.categoryNormal()) {
+      this.records[i].open = !this.records[i].open;
+    }
+  }
+
+  showNotes(i, j) {
+    let alert;
+    if (j == -1) {
+      alert = this.alertCtrl.create({
+        message: 'Notes: ' + this.records[i].note,
+      });
+    }
+    else {
+      alert = this.alertCtrl.create({
+        message: 'Notes: ' + this.records[i].results[j].note,
+        enableBackdropDismiss: true
+      });
+    }
+    alert.present();
+  }
+
+  onSubmit() {
+    this.showLoader('Adding...');
+    let payLoad = this.form.value;
+    console.log(payLoad);
+    this.hrp.addDiagnosticProcedure(this.auth.userId, this.id, payLoad)
+      .subscribe(
+        res => {
+          this.loading.dismiss();
+          this.presentToast('Successfully added!');
+          this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
+            .subscribe(records => {
+              this.records = records;
+              if (!this.categoryNormal()) {
+                this.records[0]['open'] = true;
+                for (let i = 1; i < this.records.length; i++) {
+                  this.records[i]['open'] = false;
+                }
+              }
+            },
+              errmess => this.errMess = <any>errmess)
+        },
+        err => {
+          this.loading.dismiss();
+          this.presentToast('Failed to add the record.');
+        }
+      );
   }
 
   showLoader(msg) {

@@ -20,7 +20,7 @@ import { HealthRecordsProvider } from '../../providers/health-records/health-rec
 export class DoctorVisitNotesPage {
 
   errMess: string;
-  records: any[];
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
@@ -32,15 +32,15 @@ export class DoctorVisitNotesPage {
       this.presentAlert('Please login first.');
     }
 
-    this.records = [
-      {
-        diagnosis: 'influenza',
-        doctor: 'Aaric Falconi',
-        prescription: 'Have some rest',
-        date: '2018/05/21',
-        reason: 'feel a headache'
-      }
-    ];
+    // this.records = [
+    //   {
+    //     diagnosis: 'influenza',
+    //     doctor: 'Aaric Falconi',
+    //     prescription: 'Have some rest',
+    //     date: '2018/05/21',
+    //     reason: 'feel a headache'
+    //   }
+    // ];
 
     this.hrp.getDoctorVisitNotes(this.auth.userId)
       .subscribe(records => this.records = records,

@@ -20,7 +20,7 @@ import { HistoryProvider } from '../../providers/history/history';
 export class AllergyHistoryPage {
 
   errMess: string;
-  records: any[];
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private historyProvider: HistoryProvider,
@@ -30,31 +30,32 @@ export class AllergyHistoryPage {
     if (!this.auth.userId) {
       this.presentAlert('Please login first.');
     }
-    // get sorted records
-    this.records = [
-      {
-        category: 'Food Allergy',
-        trigger: 'Eggs',
-        symptom: 'Shortness of breath',
-        threatening: true,
-        date: '2018/01/09'
-      },
-      {
-        category: 'Pet Allergy',
-        trigger: 'Cat',
-        symptom: 'Sneezing',
-        threatening: false,
-        date: '2017/10/21'
-      },
-      {
-        category: 'Drug Allergy',
-        trigger: 'Penicillin and related antibiotics',
-        symptom: 'Skin rash',
-        threatening: false,
-        date: '2017/12/12'
-      }
-    ];
 
+    // this.records = [
+    //   {
+    //     category: 'Food Allergy',
+    //     trigger: 'Eggs',
+    //     symptom: 'Shortness of breath',
+    //     threatening: true,
+    //     date: '2018/01/09'
+    //   },
+    //   {
+    //     category: 'Pet Allergy',
+    //     trigger: 'Cat',
+    //     symptom: 'Sneezing',
+    //     threatening: false,
+    //     date: '2017/10/21'
+    //   },
+    //   {
+    //     category: 'Drug Allergy',
+    //     trigger: 'Penicillin and related antibiotics',
+    //     symptom: 'Skin rash',
+    //     threatening: false,
+    //     date: '2017/12/12'
+    //   }
+    // ];
+
+    // get sorted records
     this.historyProvider.getAllergy(this.auth.userId)
       .subscribe(allergy => this.records = allergy,
         errmess => this.errMess = <any>errmess);

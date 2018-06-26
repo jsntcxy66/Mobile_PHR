@@ -34,7 +34,7 @@ export class HistoryProvider {
   }
 
   addMedicalHistory(id: number, record: Object): Observable<any> {
-    return this.http.post(baseurl + 'history/allergy/' + id, record)
+    return this.http.post(baseurl + 'history/medical/' + id, record)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 

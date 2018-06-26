@@ -20,7 +20,7 @@ import { HistoryProvider } from '../../providers/history/history';
 export class MedicalHistoryPage {
 
   errMess: string;
-  records: any[];
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
@@ -32,18 +32,18 @@ export class MedicalHistoryPage {
       this.presentAlert('Please login first.');
     }
 
-    // get sorted records
-    this.records = [
-      {
-        diagnosis: 'diabetes',
-        date: '2008/08/26'
-      },
-      {
-        diagnosis: 'hypertension',
-        date: '2017/02/19'
-      }
-    ];
+    // this.records = [
+    //   {
+    //     diagnosis: 'diabetes',
+    //     date: '2008/08/26'
+    //   },
+    //   {
+    //     diagnosis: 'hypertension',
+    //     date: '2017/02/19'
+    //   }
+    // ];
 
+    // get sorted records
     this.historyProvider.getMedicalHistory(this.auth.userId)
       .subscribe(record => this.records = record,
         errmess => this.errMess = <any>errmess);

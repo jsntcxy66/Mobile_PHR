@@ -31,24 +31,24 @@ export class ImmunizationHistoryPage {
       this.presentAlert('Please login first.');
     }
 
-    //get records
-    this.records = [
-      {
-        vaccine: 'MMR',
-        schedule: '1 or 2 doses depending on indication',
-        ageGroup: 'Adult',
-        date: '2018/02/08',
-        age: 30
-      },
-      {
-        vaccine: 'Influenza',
-        schedule: 'Annual vaccination (IIV) 1 or 2 doses',
-        ageGroup: 'Child and Adolescent',
-        date: '2018/04/15',
-        age: 12
-      }
-    ];
+    // this.records = [
+    //   {
+    //     vaccine: 'MMR',
+    //     schedule: '1 or 2 doses depending on indication',
+    //     ageGroup: 'Adult',
+    //     date: '2018/02/08',
+    //     age: 30
+    //   },
+    //   {
+    //     vaccine: 'Influenza',
+    //     schedule: 'Annual vaccination (IIV) 1 or 2 doses',
+    //     ageGroup: 'Child and Adolescent',
+    //     date: '2018/04/15',
+    //     age: 12
+    //   }
+    // ];
 
+    // get records
     this.hrp.getImmunization(this.auth.userId)
       .subscribe(records => {
         this.records = records;

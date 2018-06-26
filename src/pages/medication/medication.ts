@@ -32,20 +32,20 @@ export class MedicationPage {
       this.presentAlert('Please login first.');
     }
 
-    //get records
-    this.records = [
-      {
-        name: 'Aspirin',
-        frequency: 'Take 1 with food',
-        date: '2018/02/08'
-      },
-      {
-        name: 'Lyrica',
-        frequency: '75mg, Take 1 with food',
-        date: '2018/04/03'
-      }
-    ];
+    // this.records = [
+    //   {
+    //     name: 'Aspirin',
+    //     frequency: 'Take 1 with food',
+    //     date: '2018/02/08'
+    //   },
+    //   {
+    //     name: 'Lyrica',
+    //     frequency: '75mg, Take 1 with food',
+    //     date: '2018/04/03'
+    //   }
+    // ];
 
+    // get records
     this.hrp.getMedication(this.auth.userId)
       .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);

@@ -73,153 +73,153 @@ export class LabTestDetailPage {
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 
-    if (this.id == 1) {
-      this.data = [
-        {
-          "subtest": "ANA",
-          "open": true,
-          "results": [
-            {
-              "result": "positive",
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-10T17:57:28.556094Z"
-            },
-            {
-              "result": "negative",
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-09T17:57:28.556094Z"
-            },
-            {
-              "result": "negative",
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-08T17:57:28.556094Z"
-            },
-            {
-              "result": "negative",
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-07T17:57:28.556094Z"
-            },
-            {
-              "result": "positive",
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-06T17:57:28.556094Z"
-            }
-          ]
-        }
-      ];
-    }
+    // if (this.id == 1) {
+    //   this.data = [
+    //     {
+    //       "subtest": "ANA",
+    //       "open": true,
+    //       "results": [
+    //         {
+    //           "result": "positive",
+    //           "abnormal": true,
+    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+    //           "date": "2011-12-10T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "negative",
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-09T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "negative",
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-08T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "negative",
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-07T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "positive",
+    //           "abnormal": true,
+    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+    //           "date": "2011-12-06T17:57:28.556094Z"
+    //         }
+    //       ]
+    //     }
+    //   ];
+    // }
 
-    else if (this.id == 2) {
-      this.data = [
-        {
-          "subtest": "BMP (Basic Metabolic Panel)",
-          "open": true,
-          "results": [
-            {
-              "result": 22,
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-10T17:57:28.556094Z"
-            },
-            {
-              "result": 30,
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-09T17:57:28.556094Z"
-            },
-            {
-              "result": 40,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-08T17:57:28.556094Z"
-            },
-            {
-              "result": 24,
-              "abnormal": true,
-              "note": ':D',
-              "date": "2011-12-07T17:57:28.556094Z"
-            },
-            {
-              "result": 18,
-              "abnormal": true,
-              "note": '',
-              "date": "2011-12-06T02:08:21.199Z"
-            },
-            {
-              "result": 26,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-05T02:14:16.365Z"
-            },
-            {
-              "result": 36,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-04T02:30:10.570Z"
-            },
-            {
-              "result": 45,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-03T02:52:17.718Z"
-            },
-            {
-              "result": 35,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-02T01:38:47.452Z"
-            }
-          ]
-        },
-        {
-          "subtest": "BMP (Basic Metabolic Panel) (Other)",
-          "open": false,
-          "results": [
-            {
-              "result": 12,
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-10T17:57:28.556094Z"
-            },
-            {
-              "result": 53,
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-09T17:57:28.556094Z"
-            },
-            {
-              "result": 88,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-08T17:57:28.556094Z"
-            },
-            {
-              "result": 26,
-              "abnormal": true,
-              "note": ':D',
-              "date": "2011-12-07T17:57:28.556094Z"
-            },
-            {
-              "result": 40,
-              "abnormal": true,
-              "note": '',
-              "date": "2011-12-06T02:08:21.199Z"
-            },
-            {
-              "result": 30,
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-05T02:14:16.365Z"
-            }
-          ]
-        }
-      ];
-    }
+    // else if (this.id == 2) {
+    //   this.data = [
+    //     {
+    //       "subtest": "BMP (Basic Metabolic Panel)",
+    //       "open": true,
+    //       "results": [
+    //         {
+    //           "result": 22,
+    //           "abnormal": true,
+    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+    //           "date": "2011-12-10T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 30,
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-09T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 40,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-08T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 24,
+    //           "abnormal": true,
+    //           "note": ':D',
+    //           "date": "2011-12-07T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 18,
+    //           "abnormal": true,
+    //           "note": '',
+    //           "date": "2011-12-06T02:08:21.199Z"
+    //         },
+    //         {
+    //           "result": 26,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-05T02:14:16.365Z"
+    //         },
+    //         {
+    //           "result": 36,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-04T02:30:10.570Z"
+    //         },
+    //         {
+    //           "result": 45,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-03T02:52:17.718Z"
+    //         },
+    //         {
+    //           "result": 35,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-02T01:38:47.452Z"
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "subtest": "BMP (Basic Metabolic Panel) (Other)",
+    //       "open": false,
+    //       "results": [
+    //         {
+    //           "result": 12,
+    //           "abnormal": true,
+    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+    //           "date": "2011-12-10T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 53,
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-09T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 88,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-08T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 26,
+    //           "abnormal": true,
+    //           "note": ':D',
+    //           "date": "2011-12-07T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": 40,
+    //           "abnormal": true,
+    //           "note": '',
+    //           "date": "2011-12-06T02:08:21.199Z"
+    //         },
+    //         {
+    //           "result": 30,
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-05T02:14:16.365Z"
+    //         }
+    //       ]
+    //     }
+    //   ];
+    // }
     if (this.isnumber) this.drawcanvas();
 
 
@@ -232,6 +232,7 @@ export class LabTestDetailPage {
           this.records[i]['open'] = false;
         }
         this.data = this.records;
+        console.log(this.data);
         if (this.isnumber) this.drawcanvas();
       },
         errmess => this.errMess = <any>errmess);

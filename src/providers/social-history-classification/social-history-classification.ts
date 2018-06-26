@@ -17,11 +17,11 @@ export class SocialHistoryClassificationProvider {
     let arr = [];
     if (id === 0) {
       arr = [
-        { id: 1, name: 'Smoking', menu: 'socialhistory', end: true },
-        { id: 2, name: 'Alcohol', menu: 'socialhistory', end: true },
-        { id: 3, name: 'Drug', menu: 'socialhistory', end: true },
-        { id: 4, name: 'Travel', menu: 'socialhistory', end: true },
-        { id: 5, name: 'Housing', menu: 'socialhistory', end: true }
+        { id: 1, name: 'smoking', menu: 'socialhistory', end: true },
+        { id: 2, name: 'alcohol', menu: 'socialhistory', end: true },
+        { id: 3, name: 'drug', menu: 'socialhistory', end: true },
+        { id: 4, name: 'travel', menu: 'socialhistory', end: true },
+        { id: 5, name: 'housing', menu: 'socialhistory', end: true }
       ];
     }
     return arr;

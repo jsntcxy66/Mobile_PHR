@@ -20,7 +20,7 @@ import { HistoryProvider } from '../../providers/history/history';
 export class FamilyHistoryPage {
 
   errMess: string;
-  records: any[];
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
@@ -33,22 +33,22 @@ export class FamilyHistoryPage {
     }
 
     // get sorted records
-    this.records = [
-      {
-        relationship: 'Father',
-        name: 'Martin Perkins',
-        alive: true,
-        disease: 'diabetes',
-        date: '2008/08/26'
-      },
-      {
-        relationship: 'Sister',
-        name: 'Ross Perkins',
-        alive: true,
-        disease: 'hypertension',
-        date: '2017/02/19'
-      }
-    ];
+    // this.records = [
+    //   {
+    //     relationship: 'Father',
+    //     name: 'Martin Perkins',
+    //     alive: true,
+    //     disease: 'diabetes',
+    //     date: '2008/08/26'
+    //   },
+    //   {
+    //     relationship: 'Sister',
+    //     name: 'Ross Perkins',
+    //     alive: true,
+    //     disease: 'hypertension',
+    //     date: '2017/02/19'
+    //   }
+    // ];
 
     this.historyProvider.getFamilyHistory(this.auth.userId)
       .subscribe(record => this.records = record,

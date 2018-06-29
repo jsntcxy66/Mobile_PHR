@@ -32,42 +32,42 @@ export class SocialHistoryPage {
     }
 
     // get sorted records
-    this.records = {
-      smoking: [
-        {
-          amount: 3,
-          date: '2018/01/09'
-        },
-        {
-          amount: 7,
-          date: '2018/01/01'
-        }
-      ],
-      alcohol: [
-        {
-          name: 'wine',
-          amount: '6',
-          alcohol: '13.8',
-          date: '2018/04/18'
-        }
-      ],
-      drug: [],
-      travel: [
-        {
-          location: 'New York City',
-          note: 'Nice experience',
-          date: '2018/05/01'
-        }
-      ],
-      housing: [
-        {
-          type: 'apartment',
-          moveindate: '2017/08/01',
-          moveoutdate: '2018/01/01',
-          note: ''
-        }
-      ]
-    };
+    // this.records = {
+    //   smoking: [
+    //     {
+    //       amount: 3,
+    //       date: '2018/01/09'
+    //     },
+    //     {
+    //       amount: 7,
+    //       date: '2018/01/01'
+    //     }
+    //   ],
+    //   alcohol: [
+    //     {
+    //       name: 'wine',
+    //       amount: '6',
+    //       alcohol: '13.8',
+    //       date: '2018/04/18'
+    //     }
+    //   ],
+    //   drug: [],
+    //   travel: [
+    //     {
+    //       location: 'New York City',
+    //       note: 'Nice experience',
+    //       date: '2018/05/01'
+    //     }
+    //   ],
+    //   housing: [
+    //     {
+    //       type: 'apartment',
+    //       moveindate: '2017/08/01',
+    //       moveoutdate: '2018/01/01',
+    //       note: ''
+    //     }
+    //   ]
+    // };
 
     this.historyProvider.getSocialHistory(this.auth.userId)
       .subscribe(record => this.records = record,

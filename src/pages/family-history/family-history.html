@@ -17,7 +17,7 @@
 
 
 <ion-content padding>
-  <ion-list *ngIf="records">
+  <ion-list *ngIf="records.length!=0">
     <ion-list-header>Family History</ion-list-header>
     <ion-item *ngFor="let record of records; let i = index">
       <div class="white-space">
@@ -29,7 +29,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-card [hidden]="records">
+  <ion-card [hidden]="records.length!=0">
     <ion-card-header>No family history record.</ion-card-header>
   </ion-card>
 

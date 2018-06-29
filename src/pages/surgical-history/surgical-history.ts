@@ -20,7 +20,7 @@ import { HistoryProvider } from '../../providers/history/history';
 export class SurgicalHistoryPage {
 
   errMess: string;
-  records: any[];
+  records: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController,
@@ -30,18 +30,18 @@ export class SurgicalHistoryPage {
 
 
     // get sorted records
-    this.records = [
-      {
-        surgery: 'appendectomy',
-        doctor: 'Aaric Falconi',
-        date: '2018/04/26'
-      },
-      {
-        surgery: 'arthrodesis',
-        doctor: 'Scott Williamson',
-        date: '2017/09/11'
-      }
-    ];
+    // this.records = [
+    //   {
+    //     surgery: 'appendectomy',
+    //     doctor: 'Aaric Falconi',
+    //     date: '2018/04/26'
+    //   },
+    //   {
+    //     surgery: 'arthrodesis',
+    //     doctor: 'Scott Williamson',
+    //     date: '2017/09/11'
+    //   }
+    // ];
 
     this.historyProvider.getSurgicalHistory(this.auth.userId)
       .subscribe(records => this.records = records,

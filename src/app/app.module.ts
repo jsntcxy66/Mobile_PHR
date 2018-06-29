@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CalendarModule } from "ion2-calendar";
 import { CallNumber } from '@ionic-native/call-number';
 import { ChartsModule } from 'ng2-charts';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 import { TrackersPage } from './../pages/trackers/trackers';
@@ -203,7 +204,8 @@ import 'rxjs/add/operator/map';
     AuthServiceProvider,
     HistoryProvider,
     DiagnosticProcedureClassificationProvider,
-    HealthRecordsProvider
+    HealthRecordsProvider,
+    InAppBrowser
   ]
 })
 export class AppModule { }

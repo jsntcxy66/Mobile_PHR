@@ -35,7 +35,7 @@ export class HealthRecordsProvider {
   }
 
   getRecentLabTest(userid: number): Observable<any> {
-    return this.http.get(baseurl + 'records/labtest/30days' + userid)
+    return this.http.get(baseurl + 'records/labtest/30days/' + userid)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 

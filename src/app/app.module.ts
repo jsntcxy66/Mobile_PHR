@@ -51,7 +51,8 @@ import { DiagnosticProcedurePage } from '../pages/diagnostic-procedure/diagnosti
 import { DiagnosticProcedureDetailPage } from '../pages/diagnostic-procedure-detail/diagnostic-procedure-detail';
 import { LabTestPage } from '../pages/lab-test/lab-test';
 import { LabTestDetailPage } from '../pages/lab-test-detail/lab-test-detail';
-import { PasswordRetrievePage } from '../pages/password-retrieve/password-retrieve';
+import { PasswordEditPage } from '../pages/password-edit/password-edit';
+import { PasswordResetPage } from '../pages/password-reset/password-reset';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -128,7 +129,8 @@ import 'rxjs/add/operator/map';
     DiagnosticProcedureDetailPage,
     LabTestPage,
     LabTestDetailPage,
-    PasswordRetrievePage
+    PasswordEditPage,
+    PasswordResetPage
   ],
   imports: [
     BrowserModule,
@@ -183,7 +185,8 @@ import 'rxjs/add/operator/map';
     DiagnosticProcedureDetailPage,
     LabTestPage,
     LabTestDetailPage,
-    PasswordRetrievePage
+    PasswordEditPage,
+    PasswordResetPage
   ],
   providers: [
     StatusBar,

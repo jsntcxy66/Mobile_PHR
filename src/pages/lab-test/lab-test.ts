@@ -24,6 +24,14 @@ export class LabTestPage {
     private hrp: HealthRecordsProvider) {
 
     // get common lab test list
+    
+    // let list = [
+    //   {
+    //     id: 1,
+    //     name: "ANA",
+    //     subset: ["ANA"]
+    //   }
+    // ];
     let list = [
       {
         id: 1,

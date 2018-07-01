@@ -880,7 +880,7 @@ export class QuestionProvider {
           required: true,
           order: 2
         }),
-  
+
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
@@ -889,7 +889,7 @@ export class QuestionProvider {
           required: true,
           order: 3
         }),
-  
+
         new TextareaQuestion({
           key: 'note',
           label: 'Notes',
@@ -899,7 +899,7 @@ export class QuestionProvider {
           order: 4
         }),
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
     else if (id == 205 || id == 206) {
@@ -930,7 +930,7 @@ export class QuestionProvider {
           required: true,
           order: 3
         }),
-  
+
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
@@ -939,7 +939,7 @@ export class QuestionProvider {
           required: true,
           order: 4
         }),
-  
+
         new TextareaQuestion({
           key: 'note',
           label: 'Notes',
@@ -949,7 +949,7 @@ export class QuestionProvider {
           order: 5
         }),
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
     else {
@@ -963,7 +963,7 @@ export class QuestionProvider {
           required: true,
           order: 1
         }),
-  
+
         new DatetimeQuestion({
           key: 'date',
           label: 'Date',
@@ -972,7 +972,7 @@ export class QuestionProvider {
           required: true,
           order: 2
         }),
-  
+
         new TextareaQuestion({
           key: 'note',
           label: 'Notes',
@@ -982,41 +982,79 @@ export class QuestionProvider {
           order: 3
         }),
       ];
-  
+
       return questions.sort((a, b) => a.order - b.order);
     }
   }
 
-  getResetPasswordQuestion() {
-    let questions: QuestionBase<any>[] = [
-      new TextboxQuestion({
-        key: 'currentPassword',
-        label: 'Current Password',
-        type: 'password',
-        value: '',
-        required: true,
-        order: 1
-      }),
+  getResetPasswordQuestion(typeid: number) {
+    let questions: QuestionBase<any>[];
+    if (typeid == 0) {
+      let secQues = "What is your first pet's name sadasdadasdassadasdadasdasda ???????";
+      questions = [
+        new TextboxQuestion({
+          key: 'email',
+          label: 'Email Address',
+          type: 'email',
+          value: '',
+          required: true,
+          order: 1
+        }),
 
-      new TextboxQuestion({
-        key: 'newPassword',
-        label: 'New Password',
-        type: 'password',
-        value: '',
-        required: true,
-        order: 2
-      }),
+        new TextareaQuestion({
+          key: 'securityQuestion',
+          label: 'Security Question',
+          type: 'text',
+          value: secQues,
+          rows: 1,
+          readonly: true,
+          order: 2
+        }),
 
-      new TextboxQuestion({
-        key: 'confirmPassword',
-        label: 'Confirm Password',
-        type: 'password',
-        value: '',
-        required: true,
-        order: 3
-      }),
-    ];
+        new TextareaQuestion({
+          key: 'securityAnswer',
+          label: 'Security Answer',
+          type: 'text',
+          value: '',
+          rows: 1,
+          required: true,
+          order: 3
+        }),
+      ];
 
-    return questions.sort((a, b) => a.order - b.order);
+      return questions.sort((a, b) => a.order - b.order);
+    }
+    else if (typeid == 1) {
+      questions = [
+        new TextboxQuestion({
+          key: 'currentPassword',
+          label: 'Current Password',
+          type: 'password',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'newPassword',
+          label: 'New Password',
+          type: 'password',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new TextboxQuestion({
+          key: 'confirmPassword',
+          label: 'Confirm Password',
+          type: 'password',
+          value: '',
+          required: true,
+          order: 3
+        }),
+      ];
+
+      return questions.sort((a, b) => a.order - b.order);
+    }
   }
 }

@@ -25,6 +25,7 @@ export class SignupPage {
   formErrors = {
     "username": '',
     "password": '',
+    "confirmPassword": '',
     "email": '',
     "securityQuestion": '',
     "securityAnswer": '',
@@ -42,6 +43,10 @@ export class SignupPage {
     "password": {
       "required": "Password is required.",
       "pattern": "Password must be 8-17 characters long and contains at least one number, one letter and one unique character such as !@#$%^&*?\"';:"
+    },
+    "confirmPassword": {
+      "required": "Confirm password is required.",
+      "notEquivalent": "Password doesn't match."
     },
     "email": {
       "required": "Email is required.",
@@ -110,6 +115,7 @@ export class SignupPage {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       password: ['', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\!\@\#\$\%\^\&\*\?\"\'\;\:]).*$')]],
+      confirmPassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       securityQuestion: ['', Validators.required],
       securityAnswer: ['', Validators.required],
@@ -120,7 +126,8 @@ export class SignupPage {
       birthday: ['', Validators.pattern('(^(((0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-8]))|((0[13578]|1[02])/(29|30|31))|((0[469]|11)/(29|30)))/(19|20)\\d\\d$)|(^02/29/(19(04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)|20(([02468][048])|([13579][26])))$)')],
       gender: [''],
       race: ['']
-    });
+    },
+      { validator: this.pwdMatchValidator('password', 'confirmPassword') });
     this.registerForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
   }
@@ -148,9 +155,23 @@ export class SignupPage {
     }
   }
 
+  pwdMatchValidator(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+      let passwordInput = group.controls[passwordKey],
+        passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ notEquivalent: true })
+      }
+      else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    }
+  }
+
   onSubmit() {
     this.showLoader('Registering...');
     let register = this.registerForm.value;
+    delete register.confirmPassword;
     console.log(register);
     this.authService.register(register)
       .subscribe((res: { id: number; exist: boolean }) => {

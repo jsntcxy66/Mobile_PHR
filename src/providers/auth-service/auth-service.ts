@@ -41,8 +41,23 @@ export class AuthServiceProvider {
     this.userId = undefined;
   }
 
+  editPassword(id: number, password: Object): Observable<any> {
+    return this.http.post(baseurl + 'users/editpassword/' + id, password)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   resetPassword(id: number, password: Object): Observable<any> {
-    return this.http.post(baseurl + 'users/password/' + id, password)
+    return this.http.post(baseurl + 'users/resetpassword/' + id, password)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
+  verifyEmail_getSecQues(email: string) {
+    return this.http.post(baseurl + 'users/email/', email)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
+  verifySecAns(id: number, secAns: string) {
+    return this.http.post(baseurl + 'users/securityanswer/' + id, secAns)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 }

@@ -31,6 +31,13 @@
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.password)">{{formErrors.password}}</span>
         </div>
+        <ion-item>
+          <ion-label floating>Confirm Password<span class="color-red">*</span></ion-label>
+          <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <div class="pull-right color-red">
+          <span [hidden]="!(formErrors.confirmPassword)">{{formErrors.confirmPassword}}</span>
+        </div>
       </ion-card-content>
     </ion-card>
     <ion-card>

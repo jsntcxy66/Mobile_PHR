@@ -22,7 +22,9 @@
       <ion-list-header>{{contact.firstname}} {{contact.lastname}}</ion-list-header>
       <ion-item>
         Tel: {{tel[i]}}
-        <ion-icon item-end name="call" (click)="callNumber(i)"></ion-icon>
+        <a href="tel:{{contact.tel}}" item-end>
+          <ion-icon name="call"></ion-icon>
+        </a>
       </ion-item>
       <ion-item *ngIf="contact.fax&&contact.fax!=''">Fax: {{fax[i]}}</ion-item>
       <ion-item *ngIf="checkDoctor(i)" text-wrap>Specialty: {{contact.specialty}}</ion-item>

@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { CalendarModule } from "ion2-calendar";
-import { CallNumber } from '@ionic-native/call-number';
 import { ChartsModule } from 'ng2-charts';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
@@ -198,7 +197,6 @@ import 'rxjs/add/operator/map';
     ImmunizationClassificationProvider,
     QuestionControlProvider,
     QuestionProvider,
-    CallNumber,
     ContactsProvider,
     QuestionOptionProvider,
     UserProvider,

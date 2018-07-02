@@ -32,6 +32,7 @@ export class ContactAddContactsPage {
     "tel": '',
     "fax": '',
     "specialty": '',
+    "location1": '',
     "group": ''
   };
   validationMessages = {
@@ -58,6 +59,9 @@ export class ContactAddContactsPage {
     "fax": {
       "pattern": "Please enter a valid fax number."
     },
+    "location1": {
+      "required": "Address is required."
+    },
     "group": {
       "required": "Contact group is required."
     }
@@ -78,7 +82,7 @@ export class ContactAddContactsPage {
       tel: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       fax: ['', Validators.pattern('[0-9]{10}')],
       specialty: ['', Validators.required],
-      location1: [''],
+      location1: ['', Validators.required],
       location2: [''],
       location3: [''],
       group: ['', Validators.required]

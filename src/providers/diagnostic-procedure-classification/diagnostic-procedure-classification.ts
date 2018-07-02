@@ -15,52 +15,56 @@ export class DiagnosticProcedureClassificationProvider {
     let arr = [];
     if (id === 0) {
       arr = [
-        { id: 1, name: 'Cardiology', menu: 'diagnostic-procedure', end: false },
-        { id: 2, name: 'Radiology', menu: 'diagnostic-procedure', end: false },
-        { id: 3, name: 'Pulmonary Diagnostic Studies', menu: 'diagnostic-procedure', end: false },
-        { id: 4, name: 'Miscellaneous', menu: 'diagnostic-procedure', end: false }
+        { id: 1, name: 'ECG', menu: 'diagnostic-procedure', end: true },
+        { id: 2, name: 'X-Ray', menu: 'diagnostic-procedure', end: true },
+        { id: 3, name: 'CT Scan', menu: 'diagnostic-procedure', end: true },
+        { id: 4, name: 'MRI', menu: 'diagnostic-procedure', end: true },
+        { id: 5, name: 'Ultrasound', menu: 'diagnostic-procedure', end: true },
+        { id: 6, name: 'Sleep Study', menu: 'diagnostic-procedure', end: true },
+        { id: 7, name: 'Pulmonary Function Tests', menu: 'diagnostic-procedure', end: true },
+        { id: 8, name: 'Miscellaneous', menu: 'diagnostic-procedure', end: true }
       ];
     }
-    else if (id === 1) {
-      arr = [
-        { id: 101, name: 'ECG', menu: 'diagnostic-procedure', end: true },
-        { id: 102, name: 'Echocardiogram', menu: 'diagnostic-procedure', end: true },
-        { id: 103, name: '24 Hour Holter', menu: 'diagnostic-procedure', end: true },
-        { id: 104, name: '30 Day Event Monitor', menu: 'diagnostic-procedure', end: true },
-        { id: 105, name: 'Nuclear exercise stress test - Lexiscan', menu: 'diagnostic-procedure', end: true },
-        { id: 106, name: 'Nuclear stress test - Adenosine', menu: 'diagnostic-procedure', end: true },
-        { id: 107, name: 'Stress echocardiogram', menu: 'diagnostic-procedure', end: true }
-      ];
-    }
-    else if (id === 2) {
-      arr = [
-        { id: 200, name: 'Mammogram', menu: 'diagnostic-procedure', end: true },
-        { id: 201, name: 'CXR', menu: 'diagnostic-procedure', end: true },
-        { id: 202, name: 'AXR - KUB', menu: 'diagnostic-procedure', end: true },
-        { id: 203, name: 'AXR - 4 View', menu: 'diagnostic-procedure', end: true },
-        { id: 204, name: 'X- Ray', menu: 'diagnostic-procedure', end: true },
-        { id: 205, name: 'CT Scan', menu: 'diagnostic-procedure', end: true },
-        { id: 206, name: 'MRI', menu: 'diagnostic-procedure', end: true },
-        { id: 207, name: 'Ultrasound', menu: 'diagnostic-procedure', end: true },
-        { id: 208, name: 'Venous Dopplers', menu: 'diagnostic-procedure', end: true },
-        { id: 209, name: 'Arterial Dopllers', menu: 'diagnostic-procedure', end: true },
-        { id: 210, name: 'Dexa Scan', menu: 'diagnostic-procedure', end: true },
-        { id: 211, name: 'Bone Scan', menu: 'diagnostic-procedure', end: true },
-        { id: 212, name: 'CT Angiogram', menu: 'diagnostic-procedure', end: true }
-      ];
-    }
-    else if (id === 3) {
-      arr = [
-        { id: 302, name: 'Sleep Study', menu: 'diagnostic-procedure', end: true },
-        { id: 303, name: 'Pulmonary Function Tests', menu: 'diagnostic-procedure', end: true }
-      ];
-    }
-    else if (id === 4) {
-      arr = [
-        { id: 401, name: "EMG and NCV's", menu: 'diagnostic-procedure', end: true },
-        { id: 402, name: 'Other Tests', menu: 'diagnostic-procedure', end: true }
-      ];
-    }
+    // else if (id === 1) {
+    //   arr = [
+    //     { id: 101, name: 'ECG', menu: 'diagnostic-procedure', end: true },
+    //     { id: 102, name: 'Echocardiogram', menu: 'diagnostic-procedure', end: true },
+    //     { id: 103, name: '24 Hour Holter', menu: 'diagnostic-procedure', end: true },
+    //     { id: 104, name: '30 Day Event Monitor', menu: 'diagnostic-procedure', end: true },
+    //     { id: 105, name: 'Nuclear exercise stress test - Lexiscan', menu: 'diagnostic-procedure', end: true },
+    //     { id: 106, name: 'Nuclear stress test - Adenosine', menu: 'diagnostic-procedure', end: true },
+    //     { id: 107, name: 'Stress echocardiogram', menu: 'diagnostic-procedure', end: true }
+    //   ];
+    // }
+    // else if (id === 2) {
+    //   arr = [
+    //     { id: 200, name: 'Mammogram', menu: 'diagnostic-procedure', end: true },
+    //     { id: 201, name: 'CXR', menu: 'diagnostic-procedure', end: true },
+    //     { id: 202, name: 'AXR - KUB', menu: 'diagnostic-procedure', end: true },
+    //     { id: 203, name: 'AXR - 4 View', menu: 'diagnostic-procedure', end: true },
+    //     { id: 204, name: 'X- Ray', menu: 'diagnostic-procedure', end: true },
+    //     { id: 205, name: 'CT Scan', menu: 'diagnostic-procedure', end: true },
+    //     { id: 206, name: 'MRI', menu: 'diagnostic-procedure', end: true },
+    //     { id: 207, name: 'Ultrasound', menu: 'diagnostic-procedure', end: true },
+    //     { id: 208, name: 'Venous Dopplers', menu: 'diagnostic-procedure', end: true },
+    //     { id: 209, name: 'Arterial Dopllers', menu: 'diagnostic-procedure', end: true },
+    //     { id: 210, name: 'Dexa Scan', menu: 'diagnostic-procedure', end: true },
+    //     { id: 211, name: 'Bone Scan', menu: 'diagnostic-procedure', end: true },
+    //     { id: 212, name: 'CT Angiogram', menu: 'diagnostic-procedure', end: true }
+    //   ];
+    // }
+    // else if (id === 3) {
+    //   arr = [
+    //     { id: 302, name: 'Sleep Study', menu: 'diagnostic-procedure', end: true },
+    //     { id: 303, name: 'Pulmonary Function Tests', menu: 'diagnostic-procedure', end: true }
+    //   ];
+    // }
+    // else if (id === 4) {
+    //   arr = [
+    //     { id: 401, name: "EMG and NCV's", menu: 'diagnostic-procedure', end: true },
+    //     { id: 402, name: 'Other Tests', menu: 'diagnostic-procedure', end: true }
+    //   ];
+    // }
     return arr;
   }
 }

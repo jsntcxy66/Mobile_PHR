@@ -18,7 +18,7 @@
       <ion-segment-button value="history">
         HISTORY
       </ion-segment-button>
-      <ion-segment-button value="chart" *ngIf="isnumber">
+      <ion-segment-button value="chart" *ngIf="data.length!=0">
         CHART
       </ion-segment-button>
     </ion-segment>
@@ -66,12 +66,8 @@
           </ion-card-header>
           <ion-list *ngIf="d.open && d.results" no-padding>
             <ion-item *ngFor="let r of d.results; let j = index" (click)="showNotes(i, j)">
-              <h3 *ngIf="!r.abnormal">{{r.result}}
-                <span *ngIf="isnumber"> {{unit}}</span>
-              </h3>
-              <h3 *ngIf="r.abnormal" style="color:red">{{r.result}}
-                <span *ngIf="isnumber"> {{unit}}</span>
-              </h3>
+              <h3 *ngIf="!r.abnormal">{{r.result}} {{unit[i]}}</h3>
+              <h3 *ngIf="r.abnormal" style="color:red">{{r.result}} {{unit[i]}}</h3>
               <ion-note item-right>{{r.date | date}}</ion-note>
             </ion-item>
           </ion-list>

@@ -76,13 +76,13 @@
       <span [hidden]="!(formErrors.specialty)">{{formErrors.specialty}}</span>
     </div>
     <ion-item *ngIf="!isDoctor">
-      <ion-label floating>Address</ion-label>
+      <ion-label floating>Address<span class="color-red">*</span></ion-label>
       <ion-input formControlName="location1"></ion-input>
     </ion-item>
     <ion-item *ngIf="isDoctor">
-      <ion-label floating>Address1</ion-label>
+      <ion-label floating>Address1<span class="color-red">*</span></ion-label>
       <ion-input formControlName="location1"></ion-input>
-      <ion-icon color="primary" name="add-circle" (click)="addAddress()" item-end></ion-icon>
+      <ion-icon color="primary" name="add-circle" (click)="addAddress()" item-right></ion-icon>
     </ion-item>
     <ion-item *ngIf="address[0] && isDoctor">
       <ion-label floating>Address2</ion-label>

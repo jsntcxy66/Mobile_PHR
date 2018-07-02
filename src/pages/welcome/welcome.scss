@@ -1,15 +1,17 @@
 page-welcome {
-  .title {
-    margin-top: 40px;
-  }
-
   a {
-      font-size: 40px;
-      color: black;
+    font-size: 10vw;
+    color: black;
   }
-
-  .btns {
-      margin-top: 130px;
+  .title-wrapper {
+    margin-top: 8vh;
+    min-height: 52vh;
   }
-
+  .botton-space {
+    margin-top: 2vh;
+  }
+  button {
+    height: 7vh !important;
+    font-size: 4vw !important;
+  }
 }

@@ -47,97 +47,110 @@ export class DiagnosticProcedureDetailPage {
 
     this.title = navParams.get('title');
     this.id = navParams.get('id');
-    this.questions = this.qp.getDiagnosticProcedureQuestions(this.id);
+    this.questions = this.qp.getDiagnosticProcedureQuestions(this.title, this.id);
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 
 
-    if (this.id == 204 || this.id == 207 || this.id == 212 || this.id == 401) {
-      this.records = [
-        {
-          "organ": "liver",
-          "results": [
-            {
-              "result": "BB",
-              "date": "2018-06-15T01:37:58-04:00",
-              "note": ""
-            },
-            {
-              "result": "BBB",
-              "date": "2018-06-12T01:37:58-04:00",
-              "note": ""
-            }
-          ]
-        },
-        {
-          "organ": "lung",
-          "results": [
-            {
-              "result": "BB",
-              "date": "2018-06-15T01:37:58-04:00",
-              "note": ""
-            }
-          ]
-        }
-      ];
-    }
-    else if (this.id == 205 || this.id == 206) {
-      this.records = [
-        {
-          "organ": "liver",
-          "results": [
-            {
-              "result": "AA",
-              "contrast": true,
-              "date": "2018-06-15T01:37:58-04:00",
-              "note": ":("
-            },
-            {
-              "result": "AAA",
-              "contrast": false,
-              "date": "2018-06-12T01:37:58-04:00",
-              "note": ""
-            }
-          ]
-        },
-        {
-          "organ": "lung",
-          "results": [
-            {
-              "result": "AA",
-              "contrast": true,
-              "date": "2018-06-15T01:37:58-04:00",
-              "note": ""
-            }
-          ]
-        }
-      ]
-    }
-    else {
-      this.records = [
-        {
-          "result": "AAA",
-          "date": "2018-06-15T01:37:58-04:00",
-          "note": ""
-        },
-        {
-          "result": "BBB",
-          "date": "2018-06-12T01:37:58-04:00",
-          "note": ""
-        }
-      ];
-    }
+    // if (this.id == 2 || this.id == 5) {
+    //   this.records = [
+    //     {
+    //       "organ": "liver",
+    //       "results": [
+    //         {
+    //           "result": "BB",
+    //           "date": "2018-06-15T01:37:58-04:00",
+    //           "note": ""
+    //         },
+    //         {
+    //           "result": "BBB",
+    //           "date": "2018-06-12T01:37:58-04:00",
+    //           "note": ""
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "organ": "lung",
+    //       "results": [
+    //         {
+    //           "result": "BB",
+    //           "date": "2018-06-15T01:37:58-04:00",
+    //           "note": ""
+    //         }
+    //       ]
+    //     }
+    //   ];
+    // }
+    // else if (this.id == 3 || this.id == 4) {
+    //   this.records = [
+    //     {
+    //       "organ": "liver",
+    //       "results": [
+    //         {
+    //           "result": "AA",
+    //           "contrast": true,
+    //           "date": "2018-06-15T01:37:58-04:00",
+    //           "note": ":("
+    //         },
+    //         {
+    //           "result": "AAA",
+    //           "contrast": false,
+    //           "date": "2018-06-12T01:37:58-04:00",
+    //           "note": ""
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "organ": "lung",
+    //       "results": [
+    //         {
+    //           "result": "AA",
+    //           "contrast": true,
+    //           "date": "2018-06-15T01:37:58-04:00",
+    //           "note": ""
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // }
+    // else {
+    //   this.records = [
+    //     {
+    //       "name": "Sleep Study",
+    //       "results": [
+    //         {
+    //           "result": "AAA",
+    //           "date": "2018-06-15T01:37:58-04:00",
+    //           "note": ""
+    //         },
+    //         {
+    //           "result": "BBB",
+    //           "date": "2018-06-12T01:37:58-04:00",
+    //           "note": ""
+    //         }
+    //       ]
+    //     }
+    //   ];
+    // }
 
-    if (!this.categoryNormal()) {
-      this.records[0]['open'] = true;
-      for (let i = 1; i < this.records.length; i++) {
-        this.records[i]['open'] = false;
-      }
-    }
+    // this.records[0]['open'] = true;
+    // for (let i = 1; i < this.records.length; i++) {
+    //   this.records[i]['open'] = false;
+    // }
 
     this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
-      .subscribe(records => this.records = records,
+      .subscribe(records => {
+        this.records = records;
+        this.records[0]['open'] = true;
+        if (this.records.length > 1) {
+          for (let i = 1; i < this.records.length; i++) {
+            this.records[i]['open'] = false;
+          }
+        }
+      },
         errmess => this.errMess = <any>errmess);
+
+    console.log(this.records);
 
   }
 
@@ -145,29 +158,16 @@ export class DiagnosticProcedureDetailPage {
     console.log('ionViewDidLoad DiagnosticProcedureDetailPage');
   }
 
-  categoryNormal(): boolean {
-    return !(this.id == 204 || this.id == 207 || this.id == 212 || this.id == 401 || this.id == 205 || this.id == 206);
-  }
-
   toggleSection(i) {
-    if (!this.categoryNormal()) {
-      this.records[i].open = !this.records[i].open;
-    }
+    this.records[i].open = !this.records[i].open;
   }
 
   showNotes(i, j) {
-    let alert;
-    if (j == -1) {
-      alert = this.alertCtrl.create({
-        message: 'Notes: ' + this.records[i].note,
-      });
-    }
-    else {
-      alert = this.alertCtrl.create({
-        message: 'Notes: ' + this.records[i].results[j].note,
-        enableBackdropDismiss: true
-      });
-    }
+    let alert = this.alertCtrl.create({
+      message: 'Notes: ' + this.records[i].results[j].note,
+      enableBackdropDismiss: true
+    });
+
     alert.present();
   }
 
@@ -183,8 +183,8 @@ export class DiagnosticProcedureDetailPage {
           this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
             .subscribe(records => {
               this.records = records;
-              if (!this.categoryNormal()) {
-                this.records[0]['open'] = true;
+              this.records[0]['open'] = true;
+              if (this.records.length > 1) {
                 for (let i = 1; i < this.records.length; i++) {
                   this.records[i]['open'] = false;
                 }
@@ -194,7 +194,7 @@ export class DiagnosticProcedureDetailPage {
         },
         err => {
           this.loading.dismiss();
-          this.presentToast('Failed to add the record.');
+          this.presentToast('Error: ' + err);
         }
       );
   }

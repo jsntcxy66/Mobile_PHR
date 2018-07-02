@@ -29,7 +29,8 @@ export class PasswordEditPage {
       "required": "Current password is required."
     },
     "newPassword": {
-      "required": "New password is required."
+      "required": "New password is required.",
+      "pattern": "Password must be 8-17 characters long and contains at least one number, one letter and one unique character such as !@#$%^&*?\"';:"
     },
     "confirmPassword": {
       "required": "Please enter your password again.",
@@ -46,8 +47,8 @@ export class PasswordEditPage {
 
     this.editpasswordForm = this.fb.group({
       currentPassword: ['', Validators.required],
-      newPassword: ['', Validators.required],
-      confirmPassword: ['', [Validators.required]]
+      newPassword: ['', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\!\@\#\$\%\^\&\*\?\"\'\;\:]).*$')]],
+      confirmPassword: ['', Validators.required]
     }, {validator: this.pwdMatchValidator('newPassword', 'confirmPassword')});
     this.editpasswordForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();

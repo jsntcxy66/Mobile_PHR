@@ -24,8 +24,7 @@ export class LabTestDetailPage {
 
   title: string;
   id: number;
-  unit: string;
-  isnumber: boolean;
+  unit: string[] = [];
   subtest: Array<string>;
   tab: string;
   questions: any[];
@@ -66,10 +65,8 @@ export class LabTestDetailPage {
     this.tab = navParams.get('tab');
     this.title = navParams.get('title');
     this.id = navParams.get('id');
-    this.unit = navParams.get('unit');
-    this.isnumber = navParams.get('isnumber');
     this.subtest = navParams.get('subtest');
-    this.questions = this.qp.getLabTestQuestions(this.isnumber, this.unit, this.title);
+    this.questions = this.qp.getLabTestQuestions(this.title);
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 
@@ -114,128 +111,165 @@ export class LabTestDetailPage {
     //   ];
     // }
 
-    // else if (this.id == 2) {
-    //   this.data = [
-    //     {
-    //       "subtest": "BMP (Basic Metabolic Panel)",
-    //       "open": true,
-    //       "results": [
-    //         {
-    //           "result": 22,
-    //           "abnormal": true,
-    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-    //           "date": "2011-12-10T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 30,
-    //           "abnormal": false,
-    //           "note": ':):):)',
-    //           "date": "2011-12-09T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 40,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-08T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 24,
-    //           "abnormal": true,
-    //           "note": ':D',
-    //           "date": "2011-12-07T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 18,
-    //           "abnormal": true,
-    //           "note": '',
-    //           "date": "2011-12-06T02:08:21.199Z"
-    //         },
-    //         {
-    //           "result": 26,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-05T02:14:16.365Z"
-    //         },
-    //         {
-    //           "result": 36,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-04T02:30:10.570Z"
-    //         },
-    //         {
-    //           "result": 45,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-03T02:52:17.718Z"
-    //         },
-    //         {
-    //           "result": 35,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-02T01:38:47.452Z"
-    //         }
-    //       ]
-    //     },
-    //     {
-    //       "subtest": "BMP (Basic Metabolic Panel) (Other)",
-    //       "open": false,
-    //       "results": [
-    //         {
-    //           "result": 12,
-    //           "abnormal": true,
-    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-    //           "date": "2011-12-10T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 53,
-    //           "abnormal": false,
-    //           "note": ':):):)',
-    //           "date": "2011-12-09T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 88,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-08T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 26,
-    //           "abnormal": true,
-    //           "note": ':D',
-    //           "date": "2011-12-07T17:57:28.556094Z"
-    //         },
-    //         {
-    //           "result": 40,
-    //           "abnormal": true,
-    //           "note": '',
-    //           "date": "2011-12-06T02:08:21.199Z"
-    //         },
-    //         {
-    //           "result": 30,
-    //           "abnormal": false,
-    //           "note": '',
-    //           "date": "2011-12-05T02:14:16.365Z"
-    //         }
-    //       ]
+    if (this.id == 2) {
+      this.data = [
+        {
+          "subtest": "BMP (Basic Metabolic Panel)",
+          "open": true,
+          "unit": "mg/dL",
+          "results": [
+            {
+              "result": "22",
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-10T17:57:28.556094Z"
+            },
+            {
+              "result": "30",
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-09T17:57:28.556094Z"
+            },
+            {
+              "result": "40",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-08T17:57:28.556094Z"
+            },
+            {
+              "result": "24",
+              "abnormal": true,
+              "note": ':D',
+              "date": "2011-12-07T17:57:28.556094Z"
+            },
+            {
+              "result": "18",
+              "abnormal": true,
+              "note": '',
+              "date": "2011-12-06T02:08:21.199Z"
+            },
+            {
+              "result": "26",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-05T02:14:16.365Z"
+            },
+            {
+              "result": "36",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-04T02:30:10.570Z"
+            },
+            {
+              "result": "45",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-03T02:52:17.718Z"
+            },
+            {
+              "result": "35",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-02T01:38:47.452Z"
+            }
+          ]
+        },
+        {
+          "subtest": "BMP 3",
+          "open": false,
+          "unit": "",
+          "results": [
+            {
+              "result": "negative",
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-10T17:57:28.556094Z"
+            },
+            {
+              "result": "positive",
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-09T17:57:28.556094Z"
+            },
+            {
+              "result": "positive",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-08T17:57:28.556094Z"
+            }
+          ]
+        },
+        {
+          "subtest": "BMP (Basic Metabolic Panel) (Other)",
+          "open": false,
+          "unit": "mg/dL",
+          "results": [
+            {
+              "result": "12",
+              "abnormal": true,
+              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+              "date": "2011-12-10T17:57:28.556094Z"
+            },
+            {
+              "result": "53",
+              "abnormal": false,
+              "note": ':):):)',
+              "date": "2011-12-09T17:57:28.556094Z"
+            },
+            {
+              "result": "88",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-08T17:57:28.556094Z"
+            },
+            {
+              "result": "26",
+              "abnormal": true,
+              "note": ':D',
+              "date": "2011-12-07T17:57:28.556094Z"
+            },
+            {
+              "result": "40",
+              "abnormal": true,
+              "note": '',
+              "date": "2011-12-06T02:08:21.199Z"
+            },
+            {
+              "result": "30",
+              "abnormal": false,
+              "note": '',
+              "date": "2011-12-05T02:14:16.365Z"
+            }
+          ]
+        },
+      ];
+    }
+    this.unit = [];
+    this.data.forEach(record => {
+      this.unit.push(record.unit);
+    });
+    console.log(this.unit);
+    this.drawcanvas();
+
+
+    // this.hrp.getLabtTest(this.auth.userId, this.id)
+    //   .subscribe(records => {
+    //     this.records = records;
+    //     // set extension panel of first category in record history in 'open' status
+    //     this.records[0]['open'] = true;
+    //     for (let i = 1; i < this.records.length; i++) {
+    //       this.records[i]['open'] = false;
     //     }
-    //   ];
-    // }
-    if (this.isnumber) this.drawcanvas();
-
-
-    this.hrp.getLabtTest(this.auth.userId, this.id)
-      .subscribe(records => {
-        this.records = records;
-        // set extension panel of first category in record history in 'open' status
-        this.records[0]['open'] = true;
-        for (let i = 1; i < this.records.length; i++) {
-          this.records[i]['open'] = false;
-        }
-        this.data = this.records;
-        console.log(this.data);
-        if (this.isnumber) this.drawcanvas();
-      },
-        errmess => this.errMess = <any>errmess);
+    //     //get unit array
+    //     this.unit = [];
+    //     records.forEach(record => {
+    //       this.unit.push(record.unit);
+    //     });
+    //     this.data = this.records;
+    //     console.log(this.data);
+    //     this.drawcanvas();
+    //   },
+    //     errmess => this.errMess = <any>errmess);
 
   }
 
@@ -244,39 +278,43 @@ export class LabTestDetailPage {
   }
 
   drawcanvas() {
-    this.data.forEach(data => {
+    for (var i = 0; i < this.data.length; i++) {
       this.date = [];
       this.results = [];
       this.abnormalColor = [];
-      data.results.forEach(result => {
-        this.date.push(moment(result.date).format('MM/DD'));
-        this.results.push(result.result);
-        if (result.abnormal == true)
-          this.abnormalColor.push('red');
-        else
-          this.abnormalColor.push('rgba(148,159,177,1)');
-      });
-      console.log(this.abnormalColor);
-      this.lineChartLabels = this.date;
-      this.lineChartData = [{ data: this.results, label: data.subtest }];
-      this.lineChartColors = [{
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: 'rgba(148,159,177,1)',
-        pointBackgroundColor: this.abnormalColor,
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-      }];
-      this.charts.push({
-        lineChartData: this.lineChartData,
-        lineChartLabels: this.lineChartLabels,
-        lineChartOptions: this.lineChartOptions,
-        lineChartColors: this.lineChartColors,
-        lineChartLegend: this.lineChartLegend,
-        lineChartType: this.lineChartType
-      });
+
+      if (this.data[i].unit.length != 0) {
+        this.data[i].results.forEach(result => {
+          this.date.push(moment(result.date).format('MM/DD'));
+          this.results.push(result.result);
+          if (result.abnormal == true)
+            this.abnormalColor.push('red');
+          else
+            this.abnormalColor.push('rgba(148,159,177,1)');
+        });
+        console.log(this.abnormalColor);
+        this.lineChartLabels = this.date;
+        this.lineChartData = [{ data: this.results, label: this.data[i].subtest }];
+        this.lineChartColors = [{
+          backgroundColor: 'rgba(148,159,177,0.2)',
+          borderColor: 'rgba(148,159,177,1)',
+          pointBackgroundColor: this.abnormalColor,
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+        }];
+        this.charts.push({
+          lineChartData: this.lineChartData,
+          lineChartLabels: this.lineChartLabels,
+          lineChartOptions: this.lineChartOptions,
+          lineChartColors: this.lineChartColors,
+          lineChartLegend: this.lineChartLegend,
+          lineChartType: this.lineChartType
+        });
+      }
       console.log(this.charts);
-    });
+    }
+
   }
 
   toggleSection(i) {
@@ -316,14 +354,19 @@ export class LabTestDetailPage {
               for (let i = 1; i < this.records.length; i++) {
                 this.records[i]['open'] = false;
               }
+              //get unit array
+              this.unit = [];
+              records.forEach(record => {
+                this.unit.push(record.unit);
+              });
               this.data = this.records;
-              if (this.isnumber) this.drawcanvas();
+              this.drawcanvas();
             },
               errmess => this.errMess = <any>errmess)
         },
         err => {
           this.loading.dismiss();
-          this.presentToast('Failed to add the record.');
+          this.presentToast('Error: ' + err);
         }
       );
   }

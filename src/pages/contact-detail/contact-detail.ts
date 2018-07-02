@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { CallNumber } from '@ionic-native/call-number';
 import { ContactsProvider } from '../../providers/contacts/contacts';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
@@ -26,7 +25,6 @@ export class ContactDetailPage {
   fax: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private call: CallNumber,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
     private contactsProvider: ContactsProvider) {
@@ -146,12 +144,6 @@ export class ContactDetailPage {
       if (groups[j] == "doctor") return true;
     }
     return false;
-  }
-
-  callNumber(i) {
-    this.call.callNumber(this.contacts[i].tel, true)
-      .then(res => console.log('Launched dialer!', res))
-      .catch(err => console.log('Error launching dialer', err));
   }
 
   presentAlert(msg) {

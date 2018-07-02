@@ -49,11 +49,12 @@
     </div>
     <div *ngSwitchCase="'history'">
       <ion-list *ngIf="records.length!=0">
-        <div *ngIf="!categoryNormal()">
+        <div>
           <ion-card *ngFor="let d of records; let i = index">
             <ion-card-header>
               <ion-item (click)="toggleSection(i)" no-padding>
-                <ion-label text-wrap>{{d.organ}}</ion-label>
+                <ion-label *ngIf="d.organ" text-wrap>{{d.organ}}</ion-label>
+                <ion-label *ngIf="d.name" text-wrap>{{d.name}}</ion-label>
                 <ion-icon item-right name="arrow-forward" *ngIf="!d.open"></ion-icon>
                 <ion-icon item-right name="arrow-down" *ngIf="d.open"></ion-icon>
               </ion-item>
@@ -68,14 +69,6 @@
                 <ion-note *ngIf="r.contrast==true" item-right>With Contrast</ion-note>
               </ion-item>
             </ion-list>
-          </ion-card>
-        </div>
-        <div *ngIf="categoryNormal()">
-          <ion-card *ngFor="let d of records; let i = index">
-            <ion-item (click)="showNotes(i, -1)">
-              <h3 text-wrap>{{d.result}}</h3>
-              <ion-note item-right>{{d.date | date}}</ion-note>
-            </ion-item>
           </ion-card>
         </div>
       </ion-list>

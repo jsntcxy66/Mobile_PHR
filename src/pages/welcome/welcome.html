@@ -1,16 +1,18 @@
 <ion-content padding class="content">
-  <div class="title">
-    <a>PITT</a>
-    <br>
-    <a>MOBILE</a>
-    <br>
-    <a>PHR</a>
+  <div class="title-wrapper">
+    <div>
+      <a>PITT</a>
+      <br>
+      <a>MOBILE</a>
+      <br>
+      <a>PHR</a>
+    </div>
+    <p class="font">A way to manage your health data</p>
   </div>
-  <h5>A way to manage your health data</h5>
 
-  <div class="btns">
+  <div class="botton-wrapper">
     <button ion-button block (click)="signup()">SIGNUP</button>
-    <button ion-button block color="primary-pale" (click)="login()">LOGIN</button>
+    <button ion-button class="botton-space" block color="primary-pale" (click)="login()">LOGIN</button>
     <button ion-button clear color="primary" (click)="resetPassword()" no-padding>Forget password?</button>
   </div>
 </ion-content>

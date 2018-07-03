@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -20,7 +20,7 @@ import { HealthRecordsProvider } from '../../providers/health-records/health-rec
   selector: 'page-lab-test-detail',
   templateUrl: 'lab-test-detail.html',
 })
-export class LabTestDetailPage {
+export class LabTestDetailPage implements OnInit {
 
   title: string;
   id: number;
@@ -70,207 +70,189 @@ export class LabTestDetailPage {
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 
-    // if (this.id == 1) {
+    // if (this.id == 2) {
     //   this.data = [
     //     {
-    //       "subtest": "ANA",
+    //       "subtest": "BMP (Basic Metabolic Panel)",
     //       "open": true,
+    //       "unit": "mg/dL",
     //       "results": [
     //         {
-    //           "result": "positive",
+    //           "result": "22",
     //           "abnormal": true,
     //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
     //           "date": "2011-12-10T17:57:28.556094Z"
     //         },
     //         {
-    //           "result": "negative",
+    //           "result": "30",
     //           "abnormal": false,
     //           "note": ':):):)',
     //           "date": "2011-12-09T17:57:28.556094Z"
     //         },
     //         {
-    //           "result": "negative",
+    //           "result": "40",
     //           "abnormal": false,
-    //           "note": ':):):)',
+    //           "note": '',
     //           "date": "2011-12-08T17:57:28.556094Z"
     //         },
     //         {
-    //           "result": "negative",
-    //           "abnormal": false,
-    //           "note": ':):):)',
+    //           "result": "24",
+    //           "abnormal": true,
+    //           "note": ':D',
     //           "date": "2011-12-07T17:57:28.556094Z"
     //         },
     //         {
-    //           "result": "positive",
+    //           "result": "18",
     //           "abnormal": true,
-    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-    //           "date": "2011-12-06T17:57:28.556094Z"
+    //           "note": '',
+    //           "date": "2011-12-06T02:08:21.199Z"
+    //         },
+    //         {
+    //           "result": "26",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-05T02:14:16.365Z"
+    //         },
+    //         {
+    //           "result": "36",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-04T02:30:10.570Z"
+    //         },
+    //         {
+    //           "result": "45",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-03T02:52:17.718Z"
+    //         },
+    //         {
+    //           "result": "35",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-02T01:38:47.452Z"
     //         }
     //       ]
-    //     }
+    //     },
+    //     {
+    //       "subtest": "BMP 3",
+    //       "open": false,
+    //       "unit": "",
+    //       "results": [
+    //         {
+    //           "result": "negative",
+    //           "abnormal": true,
+    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+    //           "date": "2011-12-10T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "positive",
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-09T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "positive",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-08T17:57:28.556094Z"
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "subtest": "BMP (Basic Metabolic Panel) (Other)",
+    //       "open": false,
+    //       "unit": "mg/dL",
+    //       "results": [
+    //         {
+    //           "result": "12",
+    //           "abnormal": true,
+    //           "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
+    //           "date": "2011-12-10T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "53",
+    //           "abnormal": false,
+    //           "note": ':):):)',
+    //           "date": "2011-12-09T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "88",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-08T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "26",
+    //           "abnormal": true,
+    //           "note": ':D',
+    //           "date": "2011-12-07T17:57:28.556094Z"
+    //         },
+    //         {
+    //           "result": "40",
+    //           "abnormal": true,
+    //           "note": '',
+    //           "date": "2011-12-06T02:08:21.199Z"
+    //         },
+    //         {
+    //           "result": "30",
+    //           "abnormal": false,
+    //           "note": '',
+    //           "date": "2011-12-05T02:14:16.365Z"
+    //         }
+    //       ]
+    //     },
     //   ];
     // }
-
-    if (this.id == 2) {
-      this.data = [
-        {
-          "subtest": "BMP (Basic Metabolic Panel)",
-          "open": true,
-          "unit": "mg/dL",
-          "results": [
-            {
-              "result": "22",
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-10T17:57:28.556094Z"
-            },
-            {
-              "result": "30",
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-09T17:57:28.556094Z"
-            },
-            {
-              "result": "40",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-08T17:57:28.556094Z"
-            },
-            {
-              "result": "24",
-              "abnormal": true,
-              "note": ':D',
-              "date": "2011-12-07T17:57:28.556094Z"
-            },
-            {
-              "result": "18",
-              "abnormal": true,
-              "note": '',
-              "date": "2011-12-06T02:08:21.199Z"
-            },
-            {
-              "result": "26",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-05T02:14:16.365Z"
-            },
-            {
-              "result": "36",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-04T02:30:10.570Z"
-            },
-            {
-              "result": "45",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-03T02:52:17.718Z"
-            },
-            {
-              "result": "35",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-02T01:38:47.452Z"
-            }
-          ]
-        },
-        {
-          "subtest": "BMP 3",
-          "open": false,
-          "unit": "",
-          "results": [
-            {
-              "result": "negative",
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-10T17:57:28.556094Z"
-            },
-            {
-              "result": "positive",
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-09T17:57:28.556094Z"
-            },
-            {
-              "result": "positive",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-08T17:57:28.556094Z"
-            }
-          ]
-        },
-        {
-          "subtest": "BMP (Basic Metabolic Panel) (Other)",
-          "open": false,
-          "unit": "mg/dL",
-          "results": [
-            {
-              "result": "12",
-              "abnormal": true,
-              "note": 'XDXDXDXDXDXDXDXDXDXDXDXDXDXDXDXD',
-              "date": "2011-12-10T17:57:28.556094Z"
-            },
-            {
-              "result": "53",
-              "abnormal": false,
-              "note": ':):):)',
-              "date": "2011-12-09T17:57:28.556094Z"
-            },
-            {
-              "result": "88",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-08T17:57:28.556094Z"
-            },
-            {
-              "result": "26",
-              "abnormal": true,
-              "note": ':D',
-              "date": "2011-12-07T17:57:28.556094Z"
-            },
-            {
-              "result": "40",
-              "abnormal": true,
-              "note": '',
-              "date": "2011-12-06T02:08:21.199Z"
-            },
-            {
-              "result": "30",
-              "abnormal": false,
-              "note": '',
-              "date": "2011-12-05T02:14:16.365Z"
-            }
-          ]
-        },
-      ];
-    }
-    this.unit = [];
-    this.data.forEach(record => {
-      this.unit.push(record.unit);
-    });
-    console.log(this.unit);
-    this.drawcanvas();
+    // this.unit = [];
+    // this.data.forEach(record => {
+    //   this.unit.push(record.unit);
+    // });
+    // console.log(this.unit);
+    // this.drawcanvas();
 
 
     // this.hrp.getLabtTest(this.auth.userId, this.id)
     //   .subscribe(records => {
     //     this.records = records;
-    //     // set extension panel of first category in record history in 'open' status
-    //     this.records[0]['open'] = true;
-    //     for (let i = 1; i < this.records.length; i++) {
-    //       this.records[i]['open'] = false;
+    //     console.log(this.records);
+    //     if (this.records.length != 0) {
+    //       // set extension panel of first category in record history in 'open' status
+    //       this.records[0]['open'] = true;
+    //       for (let i = 1; i < this.records.length; i++) {
+    //         this.records[i]['open'] = false;
+    //       }
+    //       //get unit array
+    //       this.unit = [];
+    //       this.records.forEach(record => {
+    //         this.unit.push(record.unit);
+    //       });
     //     }
-    //     //get unit array
-    //     this.unit = [];
-    //     records.forEach(record => {
-    //       this.unit.push(record.unit);
-    //     });
     //     this.data = this.records;
     //     console.log(this.data);
-    //     this.drawcanvas();
+    //     if (this.data.length != 0) this.drawcanvas();
     //   },
     //     errmess => this.errMess = <any>errmess);
 
+  }
+
+  async ngOnInit() {
+    this.records = <any[]>await this.hrp.getLabtTest(this.auth.userId, this.id).toPromise();
+    console.log(this.records);
+    if (this.records.length != 0) {
+      // set extension panel of first category in record history in 'open' status
+      this.records[0]['open'] = true;
+      for (let i = 1; i < this.records.length; i++) {
+        this.records[i]['open'] = false;
+      }
+      //get unit array
+      this.unit = [];
+      this.records.forEach(record => {
+        this.unit.push(record.unit);
+      });
+    }
+    this.data = this.records;
+    console.log(this.data);
+    if (this.data.length != 0) this.drawcanvas();
   }
 
   ionViewDidLoad() {
@@ -337,6 +319,15 @@ export class LabTestDetailPage {
 
   }
 
+  showChart(): boolean {
+    if (this.data.length != 0) {
+      this.data.forEach(record => {
+        if (record.unit.length != 0) return true;
+      });
+      return false;
+    } else return false;
+  }
+
   onSubmit() {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
@@ -349,20 +340,25 @@ export class LabTestDetailPage {
           this.hrp.getLabtTest(this.auth.userId, this.id)
             .subscribe(records => {
               this.records = records;
-              // set extension panel of first category in record history in 'open' status
-              this.records[0]['open'] = true;
-              for (let i = 1; i < this.records.length; i++) {
-                this.records[i]['open'] = false;
+              console.log(this.records);
+              if (this.records.length != 0) {
+                // set extension panel of first category in record history in 'open' status
+                this.records[0]['open'] = true;
+                for (let i = 1; i < this.records.length; i++) {
+                  this.records[i]['open'] = false;
+                }
+                //get unit array
+                this.unit = [];
+                this.records.forEach(record => {
+                  this.unit.push(record.unit);
+                });
               }
-              //get unit array
-              this.unit = [];
-              records.forEach(record => {
-                this.unit.push(record.unit);
-              });
               this.data = this.records;
-              this.drawcanvas();
+              console.log(this.data);
+              if (this.data.length != 0) this.drawcanvas();
+              this.tab = 'history';
             },
-              errmess => this.errMess = <any>errmess)
+              errmess => this.errMess = <any>errmess);
         },
         err => {
           this.loading.dismiss();

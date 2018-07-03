@@ -66,7 +66,8 @@ export class SocialHistoryDetailPage {
         },
         err => {
           this.loading.dismiss();
-          this.presentToast('Failed to add record.');
+          this.presentToast('Error: ' + err)
+          console.log(err);
         }
       );
   }

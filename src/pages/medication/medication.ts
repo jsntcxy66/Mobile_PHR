@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { MedicationDetailPage } from '../medication-detail/medication-detail';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
@@ -26,6 +26,7 @@ export class MedicationPage {
     private modalCtrl: ModalController,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private hrp: HealthRecordsProvider) {
 
     if (!this.auth.userId) {
@@ -67,6 +68,29 @@ export class MedicationPage {
     );
   }
 
+  deleteRecord(i) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this record?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.hrp.deleteMedication(this.auth.userId, i)
+              .subscribe(res => this.presentToast('Delete successfully.'),
+                err => this.presentToast('Error: ' + err));
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Oops!',
@@ -82,5 +106,18 @@ export class MedicationPage {
       ]
     });
     alert.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { FamilyHistoryDetailPage } from '../family-history-detail/family-history-detail';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
@@ -26,6 +26,7 @@ export class FamilyHistoryPage {
     private modalCtrl: ModalController,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private historyProvider: HistoryProvider) {
 
     if (!this.auth.userId) {
@@ -71,6 +72,29 @@ export class FamilyHistoryPage {
     );
   }
 
+  deleteRecord(i) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this record?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.historyProvider.deleteFamilyHistory(this.auth.userId, i)
+              .subscribe(res => this.presentToast('Delete successfully.'),
+                err => this.presentToast('Error: ' + err));
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Oops!',
@@ -86,6 +110,19 @@ export class FamilyHistoryPage {
       ]
     });
     alert.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 
 }

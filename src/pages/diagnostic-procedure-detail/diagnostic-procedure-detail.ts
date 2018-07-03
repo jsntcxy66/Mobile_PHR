@@ -142,6 +142,7 @@ export class DiagnosticProcedureDetailPage {
       .subscribe(records => {
         this.records = records;
         this.records[0]['open'] = true;
+        console.log(this.records);
         if (this.records.length > 1) {
           for (let i = 1; i < this.records.length; i++) {
             this.records[i]['open'] = false;
@@ -189,6 +190,7 @@ export class DiagnosticProcedureDetailPage {
                   this.records[i]['open'] = false;
                 }
               }
+              this.tab = 'history';
             },
               errmess => this.errMess = <any>errmess)
         },

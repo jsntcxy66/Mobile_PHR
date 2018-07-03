@@ -20,11 +20,19 @@
 <ion-content padding>
   <ion-list *ngIf="records.length!=0">
     <ion-list-header>Medication History</ion-list-header>
-    <ion-item *ngFor="let record of records">
-      <h3>Medication: {{record.name}}</h3>
-      <h3>Frequency: {{record.frequency}}</h3>
-      <p>Date: {{record.date | date}}</p>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let i = index">
+      <ion-item>
+        <h3>Medication: {{record.name}}</h3>
+        <h3>Frequency: {{record.frequency}}</h3>
+        <p>Date: {{record.date | date}}</p>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord(i)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-card [hidden]="records.length!=0">

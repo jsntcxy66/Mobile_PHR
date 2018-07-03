@@ -18,7 +18,7 @@
       <ion-segment-button value="history">
         HISTORY
       </ion-segment-button>
-      <ion-segment-button value="chart" *ngIf="data.length!=0">
+      <ion-segment-button value="chart" *ngIf="showChart()">
         CHART
       </ion-segment-button>
     </ion-segment>
@@ -84,9 +84,6 @@
             [legend]="chart.lineChartLegend" [chartType]="chart.lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-      <ion-card [hidden]="data.length!=0">
-        <ion-card-header>No record.</ion-card-header>
-      </ion-card>
     </div>
   </div>
 </ion-content>

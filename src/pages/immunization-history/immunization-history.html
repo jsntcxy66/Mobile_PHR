@@ -20,14 +20,22 @@
 <ion-content padding>
   <ion-list *ngIf="records.length!=0">
     <ion-list-header>Immunization History</ion-list-header>
-    <ion-item *ngFor="let record of records">
-      <div class="white-space">
-        <h3>Vaccine: {{record.vaccine}}</h3>
-        <h3>Schedule: {{record.schedule}}</h3>
-        <p>Date: {{record.date | date}}</p>
-      </div>
-      <p item-end>{{record.ageGroup}}</p>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let i = index">
+      <ion-item>
+        <div class="white-space">
+          <h3>Vaccine: {{record.vaccine}}</h3>
+          <h3>Schedule: {{record.schedule}}</h3>
+          <p>Date: {{record.date | date}}</p>
+        </div>
+        <p item-end>{{record.ageGroup}}</p>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord(i)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-card [hidden]="records.length!=0">

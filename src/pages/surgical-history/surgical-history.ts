@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { SurgicalHistoryDetailPage } from '../surgical-history-detail/surgical-history-detail';
 import { WelcomePage } from './../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -26,7 +26,8 @@ export class SurgicalHistoryPage {
     private modalCtrl: ModalController,
     private historyProvider: HistoryProvider,
     private auth: AuthServiceProvider,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController) {
 
 
     // get sorted records
@@ -63,6 +64,29 @@ export class SurgicalHistoryPage {
     );
   }
 
+  deleteRecord(i) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this record?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.historyProvider.deleteSurgicalHistory(this.auth.userId, i)
+              .subscribe(res => this.presentToast('Delete successfully.'),
+                err => this.presentToast('Error: ' + err));
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Oops!',
@@ -78,5 +102,18 @@ export class SurgicalHistoryPage {
       ]
     });
     alert.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 }

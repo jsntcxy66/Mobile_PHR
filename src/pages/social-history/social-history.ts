@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { SocialHistoryCategoryPage } from '../social-history-category/social-history-category';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
@@ -25,6 +25,7 @@ export class SocialHistoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private auth: AuthServiceProvider,
     private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private historyProvider: HistoryProvider) {
 
     if (!this.auth.userId) {
@@ -88,6 +89,29 @@ export class SocialHistoryPage {
     this.navCtrl.push(SocialHistoryCategoryPage);
   }
 
+  deleteRecord(type: string, i: number) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this record?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.historyProvider.deleteSocialHistory(this.auth.userId, type, i)
+              .subscribe(res => this.presentToast('Delete successfully.'),
+                err => this.presentToast('Error: ' + err));
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Oops!',
@@ -103,5 +127,18 @@ export class SocialHistoryPage {
       ]
     });
     alert.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 }

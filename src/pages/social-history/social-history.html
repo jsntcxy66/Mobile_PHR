@@ -19,55 +19,95 @@
 <ion-content padding>
   <ion-list *ngIf="records.smoking.length!=0">
     <ion-list-header>Smoking History</ion-list-header>
-    <ion-item *ngFor="let s of records.smoking">
-      <div class="white-space">
-        <h3>Cigarettes: {{s.amount}}</h3>
-        <p>{{s.date | date}}</p>
-      </div>
-    </ion-item>
+    <ion-item-sliding *ngFor="let s of records.smoking; let i = index">
+      <ion-item>
+        <div class="white-space">
+          <h3>Cigarettes: {{s.amount}}</h3>
+          <p>{{s.date | date}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord('smoking', i)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-list *ngIf="records.alcohol.length!=0">
     <ion-list-header>Alcohol History</ion-list-header>
-    <ion-item *ngFor="let a of records.alcohol">
-      <div class="white-space">
-        <h3>Name: {{a.name}}</h3>
-        <h3>Amount: {{a.amount}} oz</h3>
-        <h3>Alcohol: {{a.alcohol}} %</h3>
-        <p>{{a.date | date}}</p>
-      </div>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let j = index">
+      <ion-item *ngFor="let a of records.alcohol">
+        <div class="white-space">
+          <h3>Name: {{a.name}}</h3>
+          <h3>Amount: {{a.amount}} oz</h3>
+          <h3>Alcohol: {{a.alcohol}} %</h3>
+          <p>{{a.date | date}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord('alcohol', j)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-list *ngIf="records.drug.length!=0">
     <ion-list-header>Drug History</ion-list-header>
-    <ion-item *ngFor="let p of records.drug">
-      <div class="white-space">
-        <h3>Name: {{p.name}}</h3>
-        <h3>Amount: {{p.amount}}</h3>
-        <h3>Notes: {{p.note}}</h3>
-        <p>{{p.date | date}}</p>
-      </div>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let k = index">
+      <ion-item *ngFor="let p of records.drug">
+        <div class="white-space">
+          <h3>Name: {{p.name}}</h3>
+          <h3>Amount: {{p.amount}}</h3>
+          <h3>Notes: {{p.note}}</h3>
+          <p>{{p.date | date}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord('drug', k)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-list *ngIf="records.travel.length!=0">
     <ion-list-header>Travel History</ion-list-header>
-    <ion-item *ngFor="let t of records.travel">
-      <div class="white-space">
-        <h3>Location: {{t.location}}</h3>
-        <h3>Notes: {{t.note}}</h3>
-        <p>{{t.date | date}}</p>
-      </div>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let u = index">
+      <ion-item *ngFor="let t of records.travel">
+        <div class="white-space">
+          <h3>Location: {{t.location}}</h3>
+          <h3>Notes: {{t.note}}</h3>
+          <p>{{t.date | date}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord('travel', u)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-list *ngIf="records.housing.length!=0">
     <ion-list-header>Housing History</ion-list-header>
-    <ion-item *ngFor="let h of records.housing">
-      <div class="white-space">
-        <h3>Housing Type: {{h.type | titlecase}}</h3>
-        <h3>Move in: {{h.moveindate | date}}</h3>
-        <h3>Move out: {{h.moveoutdate | date}}</h3>
-        <p>Notes: {{h.note}}</p>
-      </div>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let v = index">
+      <ion-item *ngFor="let h of records.housing">
+        <div class="white-space">
+          <h3>Housing Type: {{h.type | titlecase}}</h3>
+          <h3>Move in: {{h.moveindate | date}}</h3>
+          <h3>Move out: {{h.moveoutdate | date}}</h3>
+          <p>Notes: {{h.note}}</p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord('housing', v)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-card [hidden]="records.smoking.length!=0 || records.alcohol.length!=0 || records.drug.length!=0 || records.travel.length!=0 || records.housing.length!=0">

@@ -20,20 +20,28 @@
 <ion-content padding>
   <ion-list *ngIf="records.length!=0">
     <ion-list-header>Allergy History</ion-list-header>
-    <ion-item *ngFor="let record of records; let i = index">
-      <div class="white-space">
-        <h3 *ngIf="checkLifeThreatening(i)">Symptom:
-          <span style="color:red">{{record.symptom}}</span>
-        </h3>
-        <h3 *ngIf="!checkLifeThreatening(i)">Symptom: {{record.symptom}}</h3>
-        <h3 *ngIf="checkLifeThreatening(i)">Trigger:
-          <span style="color:red">{{record.trigger}}</span>
-        </h3>
-        <h3 *ngIf="!checkLifeThreatening(i)">Trigger: {{record.trigger}}</h3>
-        <p>{{record.date | date}}</p>
-      </div>
-      <p item-end>{{record.category}}</p>
-    </ion-item>
+    <ion-item-sliding *ngFor="let record of records; let i = index">
+      <ion-item>
+        <div class="white-space">
+          <h3 *ngIf="checkLifeThreatening(i)">Symptom:
+            <span style="color:red">{{record.symptom}}</span>
+          </h3>
+          <h3 *ngIf="!checkLifeThreatening(i)">Symptom: {{record.symptom}}</h3>
+          <h3 *ngIf="checkLifeThreatening(i)">Trigger:
+            <span style="color:red">{{record.trigger}}</span>
+          </h3>
+          <h3 *ngIf="!checkLifeThreatening(i)">Trigger: {{record.trigger}}</h3>
+          <p>{{record.date | date}}</p>
+        </div>
+        <p item-end>{{record.category}}</p>
+      </ion-item>
+      <ion-item-options side="right" icon-start>
+        <button ion-button color="danger" (click)="deleteRecord(i)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-card [hidden]="records.length!=0">

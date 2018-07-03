@@ -28,6 +28,11 @@ export class HistoryProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  deleteAllergy(id: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/allergy/' + recordid + '/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getMedicalHistory(id: number): Observable<any> {
     return this.http.get(baseurl + 'history/medical/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
@@ -35,6 +40,11 @@ export class HistoryProvider {
 
   addMedicalHistory(id: number, record: Object): Observable<any> {
     return this.http.post(baseurl + 'history/medical/' + id, record)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
+  deleteMedicalHistory(id: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/medical/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
@@ -48,6 +58,11 @@ export class HistoryProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  deleteSocialHistory(id: number, type: string, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/medical/' + type + '/' + recordid + '/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getSurgicalHistory(id: number): Observable<any> {
     return this.http.get(baseurl + 'history/surgical/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
@@ -58,6 +73,11 @@ export class HistoryProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  deleteSurgicalHistory(id: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/surgical/' + recordid + '/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getFamilyHistory(id: number): Observable<any> {
     return this.http.get(baseurl + 'history/family/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
@@ -65,6 +85,11 @@ export class HistoryProvider {
 
   addFamilyHistory(id: number, record: Object): Observable<any> {
     return this.http.post(baseurl + 'history/family/' + id, record)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
+  deleteFamilyHistory(id: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/family/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 }

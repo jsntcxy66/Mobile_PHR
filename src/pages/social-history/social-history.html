@@ -36,8 +36,8 @@
   </ion-list>
   <ion-list *ngIf="records.alcohol.length!=0">
     <ion-list-header>Alcohol History</ion-list-header>
-    <ion-item-sliding *ngFor="let record of records; let j = index">
-      <ion-item *ngFor="let a of records.alcohol">
+    <ion-item-sliding *ngFor="let a of records.alcohol; let j = index">
+      <ion-item>
         <div class="white-space">
           <h3>Name: {{a.name}}</h3>
           <h3>Amount: {{a.amount}} oz</h3>
@@ -55,8 +55,8 @@
   </ion-list>
   <ion-list *ngIf="records.drug.length!=0">
     <ion-list-header>Drug History</ion-list-header>
-    <ion-item-sliding *ngFor="let record of records; let k = index">
-      <ion-item *ngFor="let p of records.drug">
+    <ion-item-sliding *ngFor="let p of records.drug; let k = index">
+      <ion-item>
         <div class="white-space">
           <h3>Name: {{p.name}}</h3>
           <h3>Amount: {{p.amount}}</h3>
@@ -74,8 +74,8 @@
   </ion-list>
   <ion-list *ngIf="records.travel.length!=0">
     <ion-list-header>Travel History</ion-list-header>
-    <ion-item-sliding *ngFor="let record of records; let u = index">
-      <ion-item *ngFor="let t of records.travel">
+    <ion-item-sliding *ngFor="let t of records.travel; let u = index">
+      <ion-item>
         <div class="white-space">
           <h3>Location: {{t.location}}</h3>
           <h3>Notes: {{t.note}}</h3>
@@ -92,8 +92,8 @@
   </ion-list>
   <ion-list *ngIf="records.housing.length!=0">
     <ion-list-header>Housing History</ion-list-header>
-    <ion-item-sliding *ngFor="let record of records; let v = index">
-      <ion-item *ngFor="let h of records.housing">
+    <ion-item-sliding *ngFor="let h of records.housing; let v = index">
+      <ion-item>
         <div class="white-space">
           <h3>Housing Type: {{h.type | titlecase}}</h3>
           <h3>Move in: {{h.moveindate | date}}</h3>

@@ -25,6 +25,7 @@ export class LabTestDetailPage implements OnInit {
   title: string;
   id: number;
   unit: string[] = [];
+  showChart: boolean = false;
   subtest: Array<string>;
   tab: string;
   questions: any[];
@@ -238,18 +239,26 @@ export class LabTestDetailPage implements OnInit {
   async ngOnInit() {
     this.records = <any[]>await this.hrp.getLabtTest(this.auth.userId, this.id).toPromise();
     console.log(this.records);
+
     if (this.records.length != 0) {
+
       // set extension panel of first category in record history in 'open' status
       this.records[0]['open'] = true;
       for (let i = 1; i < this.records.length; i++) {
         this.records[i]['open'] = false;
       }
-      //get unit array
+
       this.unit = [];
       this.records.forEach(record => {
+        // get unit array
         this.unit.push(record.unit);
+        // control chart display
+        if (record.unit.length != 0) this.showChart = true;
       });
+      console.log(this.showChart);
+
     }
+
     this.data = this.records;
     console.log(this.data);
     if (this.data.length != 0) this.drawcanvas();
@@ -260,6 +269,7 @@ export class LabTestDetailPage implements OnInit {
   }
 
   drawcanvas() {
+    this.charts = [];
     for (var i = 0; i < this.data.length; i++) {
       this.date = [];
       this.results = [];
@@ -275,7 +285,7 @@ export class LabTestDetailPage implements OnInit {
             this.abnormalColor.push('rgba(148,159,177,1)');
         });
         console.log(this.abnormalColor);
-        this.lineChartLabels = this.date;
+        this.lineChartLabels = this.date.reverse();
         this.lineChartData = [{ data: this.results, label: this.data[i].subtest }];
         this.lineChartColors = [{
           backgroundColor: 'rgba(148,159,177,0.2)',
@@ -319,15 +329,6 @@ export class LabTestDetailPage implements OnInit {
 
   }
 
-  showChart(): boolean {
-    if (this.data.length != 0) {
-      this.data.forEach(record => {
-        if (record.unit.length != 0) return true;
-      });
-      return false;
-    } else return false;
-  }
-
   onSubmit() {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
@@ -342,16 +343,21 @@ export class LabTestDetailPage implements OnInit {
               this.records = records;
               console.log(this.records);
               if (this.records.length != 0) {
+
                 // set extension panel of first category in record history in 'open' status
                 this.records[0]['open'] = true;
                 for (let i = 1; i < this.records.length; i++) {
                   this.records[i]['open'] = false;
                 }
-                //get unit array
+
                 this.unit = [];
                 this.records.forEach(record => {
+                  // get unit array
                   this.unit.push(record.unit);
+                  // control chart display
+                  if (record.unit.length != 0) this.showChart = true;
                 });
+
               }
               this.data = this.records;
               console.log(this.data);
@@ -365,6 +371,29 @@ export class LabTestDetailPage implements OnInit {
           this.presentToast('Error: ' + err);
         }
       );
+  }
+
+  deleteRecord(i, j) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this record?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.hrp.deleteLabTest(this.auth.userId, i, j)
+              .subscribe(res => this.presentToast('Delete successfully.'),
+                err => this.presentToast('Error: ' + err));
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   showLoader(msg) {

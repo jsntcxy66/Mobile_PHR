@@ -54,7 +54,7 @@ export class HistoryProvider {
   }
 
   addSocialHistory(id: number, title: string, record: Object): Observable<any> {
-    return this.http.post(baseurl + 'history/social/' + title + '/' + id, record)
+    return this.http.post(baseurl + 'history/social/' + title + '/' + id, record, { responseType: "text" })
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 

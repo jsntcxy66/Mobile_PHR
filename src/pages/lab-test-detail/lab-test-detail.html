@@ -18,7 +18,7 @@
       <ion-segment-button value="history">
         HISTORY
       </ion-segment-button>
-      <ion-segment-button value="chart" *ngIf="showChart()">
+      <ion-segment-button value="chart">
         CHART
       </ion-segment-button>
     </ion-segment>
@@ -65,11 +65,19 @@
             </ion-item>
           </ion-card-header>
           <ion-list *ngIf="d.open && d.results" no-padding>
-            <ion-item *ngFor="let r of d.results; let j = index" (click)="showNotes(i, j)">
-              <h3 *ngIf="!r.abnormal">{{r.result}} {{unit[i]}}</h3>
-              <h3 *ngIf="r.abnormal" style="color:red">{{r.result}} {{unit[i]}}</h3>
-              <ion-note item-right>{{r.date | date}}</ion-note>
-            </ion-item>
+            <ion-item-sliding *ngFor="let r of d.results; let j = index">
+              <ion-item (click)="showNotes(i, j)">
+                <h3 *ngIf="!r.abnormal">{{r.result}} {{unit[i]}}</h3>
+                <h3 *ngIf="r.abnormal" style="color:red">{{r.result}} {{unit[i]}}</h3>
+                <ion-note item-right>{{r.date | date}}</ion-note>
+              </ion-item>
+              <ion-item-options side="right" icon-start>
+                <button ion-button color="danger" (click)="deleteRecord(i, j)">
+                  <ion-icon name="trash"></ion-icon>
+                  Delete
+                </button>
+              </ion-item-options>
+            </ion-item-sliding>
           </ion-list>
         </ion-card>
       </ion-list>
@@ -78,12 +86,15 @@
       </ion-card>
     </div>
     <div *ngSwitchCase="'chart'">
-      <div *ngIf="data.length!=0">
+      <div *ngIf="showChart">
         <div *ngFor="let chart of charts" style="display: block;">
           <canvas baseChart [datasets]="chart.lineChartData" [labels]="chart.lineChartLabels" [options]="chart.lineChartOptions" [colors]="chart.lineChartColors"
             [legend]="chart.lineChartLegend" [chartType]="chart.lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
+      <ion-card [hidden]="showChart">
+        <ion-card-header>No record.</ion-card-header>
+      </ion-card>
     </div>
   </div>
 </ion-content>

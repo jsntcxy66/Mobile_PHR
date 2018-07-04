@@ -34,6 +34,11 @@ export class HealthRecordsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  deleteLabTest(id: number, subtestid: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/labtest/'+ subtestid + '/' + recordid + '/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getRecentLabTest(userid: number): Observable<any> {
     return this.http.get(baseurl + 'records/labtest/30days/' + userid)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
@@ -46,6 +51,11 @@ export class HealthRecordsProvider {
 
   addDiagnosticProcedure(userid: number, testid: number, record: Object): Observable<any> {
     return this.http.post(baseurl + 'records/diagnosticprocedure/' + testid + '/' + userid, record)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
+  deleteDiagnosticProcedure(id: number, subtestid: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'history/diagnosticprocedure/'+ subtestid + '/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 

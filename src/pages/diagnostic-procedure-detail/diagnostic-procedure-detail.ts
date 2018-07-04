@@ -201,6 +201,29 @@ export class DiagnosticProcedureDetailPage {
       );
   }
 
+  deleteRecord(i, j) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this record?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.hrp.deleteDiagnosticProcedure(this.auth.userId, i, j)
+              .subscribe(res => this.presentToast('Delete successfully.'),
+                err => this.presentToast('Error: ' + err));
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   showLoader(msg) {
     this.loading = this.loadingCtrl.create({
       content: msg

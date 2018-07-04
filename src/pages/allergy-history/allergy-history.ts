@@ -94,7 +94,12 @@ export class AllergyHistoryPage {
           text: 'Delete',
           handler: () => {
             this.historyProvider.deleteAllergy(this.auth.userId, i)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.historyProvider.getAllergy(this.auth.userId)
+                  .subscribe(allergy => this.records = allergy,
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -125,7 +130,7 @@ export class AllergyHistoryPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

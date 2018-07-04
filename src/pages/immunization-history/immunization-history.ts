@@ -99,7 +99,20 @@ export class ImmunizationHistoryPage {
           text: 'Delete',
           handler: () => {
             this.hrp.deleteImmunization(this.auth.userId, i)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.hrp.getImmunization(this.auth.userId)
+                  .subscribe(records => {
+                    this.records = records;
+                    this.records.forEach(record => {
+                      if (record.age > 18)
+                        record['ageGroup'] = "Adult";
+                      else
+                        record['ageGroup'] = "Child and Adolescent";
+                    });
+                  },
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -130,7 +143,7 @@ export class ImmunizationHistoryPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

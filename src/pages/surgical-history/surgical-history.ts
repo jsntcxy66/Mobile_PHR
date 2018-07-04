@@ -78,7 +78,12 @@ export class SurgicalHistoryPage {
           text: 'Delete',
           handler: () => {
             this.historyProvider.deleteSurgicalHistory(this.auth.userId, i)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.historyProvider.getSurgicalHistory(this.auth.userId)
+                  .subscribe(records => this.records = records,
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -109,7 +114,7 @@ export class SurgicalHistoryPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

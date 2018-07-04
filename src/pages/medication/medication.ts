@@ -82,7 +82,12 @@ export class MedicationPage {
           text: 'Delete',
           handler: () => {
             this.hrp.deleteMedication(this.auth.userId, i)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.hrp.getMedication(this.auth.userId)
+                  .subscribe(records => this.records = records,
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -113,7 +118,7 @@ export class MedicationPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

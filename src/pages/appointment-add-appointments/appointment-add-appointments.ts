@@ -165,7 +165,7 @@ export class AppointmentAddAppointmentsPage implements OnInit {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

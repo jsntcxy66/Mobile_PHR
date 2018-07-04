@@ -26,4 +26,9 @@ export class AppointmentProvider {
     return this.http.post(baseurl + 'appointment/' + id, appointment)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
+
+  deleteAppointment(id: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'appointment/' + recordid + '/' + id)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
 }

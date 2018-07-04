@@ -34,8 +34,8 @@ export class HealthRecordsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
-  deleteLabTest(id: number, subtestid: number, recordid: number): Observable<any> {
-    return this.http.delete(baseurl + 'history/labtest/'+ subtestid + '/' + recordid + '/' + id)
+  deleteLabTest(id: number, testid: number, subtestid: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'records/labtest/' + testid + '/' + subtestid + '/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
@@ -54,8 +54,8 @@ export class HealthRecordsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
-  deleteDiagnosticProcedure(id: number, subtestid: number, recordid: number): Observable<any> {
-    return this.http.delete(baseurl + 'history/diagnosticprocedure/'+ subtestid + '/' + recordid + '/' + id)
+  deleteDiagnosticProcedure(id: number, testid: number, subtestid: number, recordid: number): Observable<any> {
+    return this.http.delete(baseurl + 'records/diagnosticprocedure/' + testid + '/' + subtestid + '/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
@@ -70,7 +70,7 @@ export class HealthRecordsProvider {
   }
 
   deleteDoctorVisitNotes(id: number, recordid: number): Observable<any> {
-    return this.http.delete(baseurl + 'history/doctorvisitnotes/' + recordid + '/' + id)
+    return this.http.delete(baseurl + 'records/doctorvisitnotes/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
@@ -85,7 +85,7 @@ export class HealthRecordsProvider {
   }
 
   deleteMedication(id: number, recordid: number): Observable<any> {
-    return this.http.delete(baseurl + 'history/medication/' + recordid + '/' + id)
+    return this.http.delete(baseurl + 'records/medication/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
@@ -100,7 +100,7 @@ export class HealthRecordsProvider {
   }
 
   deleteImmunization(id: number, recordid: number): Observable<any> {
-    return this.http.delete(baseurl + 'history/immunization/' + recordid + '/' + id)
+    return this.http.delete(baseurl + 'records/immunization/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 

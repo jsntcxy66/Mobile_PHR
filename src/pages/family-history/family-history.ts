@@ -86,7 +86,12 @@ export class FamilyHistoryPage {
           text: 'Delete',
           handler: () => {
             this.historyProvider.deleteFamilyHistory(this.auth.userId, i)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.historyProvider.getFamilyHistory(this.auth.userId)
+                  .subscribe(record => this.records = record,
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -117,7 +122,7 @@ export class FamilyHistoryPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

@@ -79,7 +79,12 @@ export class DoctorVisitNotesPage {
           text: 'Delete',
           handler: () => {
             this.hrp.deleteDoctorVisitNotes(this.auth.userId, i)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.hrp.getDoctorVisitNotes(this.auth.userId)
+                  .subscribe(records => this.records = records,
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -110,7 +115,7 @@ export class DoctorVisitNotesPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

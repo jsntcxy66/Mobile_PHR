@@ -101,6 +101,42 @@ export class DashboardPage {
     this.navCtrl.push(DoctorVisitNotesPage);
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    setTimeout(() => {
+      this.ap.getAppointment(this.auth.userId)
+        .subscribe(app => this.appointments = app,
+          errmess => this.errMess = <any>errmess);
+
+      this.hrp.getRecentLabTest(this.auth.userId)
+        .subscribe(records => this.labtests = records,
+          errmess => this.errMess = <any>errmess);
+
+      this.hrp.getMedication(this.auth.userId)
+        .subscribe(records => this.medications = records,
+          errmess => this.errMess = <any>errmess);
+
+      this.hrp.getImmunization(this.auth.userId)
+        .subscribe(records => {
+          this.immunizations = records;
+          this.immunizations.forEach(immunization => {
+            if (immunization.age > 18)
+              immunization['ageGroup'] = "Adult";
+            else
+              immunization['ageGroup'] = "Child and Adolescent";
+          });
+        },
+          errmess => this.errMess = <any>errmess);
+
+      this.hrp.getDoctorVisitNotes(this.auth.userId)
+        .subscribe(records => this.dvnotes = records,
+          errmess => this.errMess = <any>errmess);
+
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1500);
+  }
+
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Oops!',

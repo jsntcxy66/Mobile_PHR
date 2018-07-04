@@ -192,7 +192,7 @@ export class DiagnosticProcedureDetailPage {
               }
               this.tab = 'history';
             },
-              errmess => this.errMess = <any>errmess)
+              errmess => this.errMess = <any>errmess);
         },
         err => {
           this.loading.dismiss();
@@ -214,8 +214,22 @@ export class DiagnosticProcedureDetailPage {
         {
           text: 'Delete',
           handler: () => {
-            this.hrp.deleteDiagnosticProcedure(this.auth.userId, i, j)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+            this.hrp.deleteDiagnosticProcedure(this.auth.userId, this.id, i, j)
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
+                  .subscribe(records => {
+                    this.records = records;
+                    this.records[0]['open'] = true;
+                    if (this.records.length > 1) {
+                      for (let i = 1; i < this.records.length; i++) {
+                        this.records[i]['open'] = false;
+                      }
+                    }
+                    this.tab = 'history';
+                  },
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -236,7 +250,7 @@ export class DiagnosticProcedureDetailPage {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

@@ -386,8 +386,37 @@ export class LabTestDetailPage implements OnInit {
         {
           text: 'Delete',
           handler: () => {
-            this.hrp.deleteLabTest(this.auth.userId, i, j)
-              .subscribe(res => this.presentToast('Delete successfully.'),
+            this.hrp.deleteLabTest(this.auth.userId, this.id, i, j)
+              .subscribe(res => {
+                this.presentToast('Delete successfully.');
+                this.hrp.getLabtTest(this.auth.userId, this.id)
+                  .subscribe(records => {
+                    this.records = records;
+                    console.log(this.records);
+                    if (this.records.length != 0) {
+
+                      // set extension panel of first category in record history in 'open' status
+                      this.records[0]['open'] = true;
+                      for (let i = 1; i < this.records.length; i++) {
+                        this.records[i]['open'] = false;
+                      }
+
+                      this.unit = [];
+                      this.records.forEach(record => {
+                        // get unit array
+                        this.unit.push(record.unit);
+                        // control chart display
+                        if (record.unit.length != 0) this.showChart = true;
+                      });
+
+                    }
+                    this.data = this.records;
+                    console.log(this.data);
+                    if (this.data.length != 0) this.drawcanvas();
+                    this.tab = 'history';
+                  },
+                    errmess => this.errMess = <any>errmess);
+              },
                 err => this.presentToast('Error: ' + err));
           }
         }
@@ -408,7 +437,7 @@ export class LabTestDetailPage implements OnInit {
       message: msg,
       duration: 3000,
       position: 'bottom',
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');

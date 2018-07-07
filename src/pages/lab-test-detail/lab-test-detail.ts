@@ -284,8 +284,11 @@ export class LabTestDetailPage implements OnInit {
           else
             this.abnormalColor.push('rgba(148,159,177,1)');
         });
+        this.date.reverse();
+        this.results.reverse();
+        this.abnormalColor.reverse();
         console.log(this.abnormalColor);
-        this.lineChartLabels = this.date.reverse();
+        this.lineChartLabels = this.date;
         this.lineChartData = [{ data: this.results, label: this.data[i].subtest }];
         this.lineChartColors = [{
           backgroundColor: 'rgba(148,159,177,0.2)',

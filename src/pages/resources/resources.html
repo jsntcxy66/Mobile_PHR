@@ -22,9 +22,8 @@
     <ion-card-content>
       <ion-list *ngFor="let r of resources; let i = index;" no-padding>
         <ion-item text-wrap>
-          <h3>{{r.title}}</h3>
           <h3>
-            <a href="#" (click)="openLink(i)">{{r.link}}</a>
+            <a href="#" (click)="openLink(i)">{{r.title}}</a>
           </h3>
         </ion-item>
       </ion-list>

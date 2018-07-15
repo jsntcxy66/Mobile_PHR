@@ -24,8 +24,8 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-6 *ngFor="let t of customtrackers; let i = index">
-        <ion-card color="primary" (click)="selectTracker(i)">
+      <ion-col col-6 *ngFor="let t of customtrackers">
+        <ion-card color="primary" (click)="selectTracker(t.id)">
           <ion-item class="item-size" color="primary">
             <i class="{{t.icon}}"></i>
             <p text-wrap>{{t.name | uppercase}}</p>

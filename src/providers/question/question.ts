@@ -282,7 +282,7 @@ export class QuestionProvider {
           key: 'SBP',
           label: 'Systolic pressure (SBP)',
           type: 'number',
-          unit: 'mmHg',
+          unit: 'mm Hg',
           value: '',
           required: true,
           order: 1
@@ -292,7 +292,7 @@ export class QuestionProvider {
           key: 'DBP',
           label: 'Diastolic pressure (DBP)',
           type: 'number',
-          unit: 'mmHg',
+          unit: 'mm Hg',
           value: '',
           required: true,
           order: 2
@@ -417,13 +417,13 @@ export class QuestionProvider {
           value: '',
           multiple: false,
           options: [
-            { key: 1, value: "1 - Everything's OK. I'm maintaining." },
-            { key: 2, value: "2 - I've had a rough day." },
-            { key: 3, value: "3 - Significant life event/stress. It may take longer time to cope." },
-            { key: 4, value: "4 - I've been down for a while and I don't exactly know why." },
-            { key: 5, value: "5 - I'm not doing well and I'd like someone to keep an eye on me/check-in regularly." },
-            { key: 6, value: "6 - I'm in crisis. Please call or come over right away." },
-            { key: 7, value: "7 - Call 911. I may hurt myself or others. Do NOT wait." }
+            { key: "1 - Everything's OK. I'm maintaining.", value: "1 - Everything's OK. I'm maintaining." },
+            { key: "2 - I've had a rough day.", value: "2 - I've had a rough day." },
+            { key: "3 - Significant life event/stress. It may take longer time to cope.", value: "3 - Significant life event/stress. It may take longer time to cope." },
+            { key: "4 - I've been down for a while and I don't exactly know why.", value: "4 - I've been down for a while and I don't exactly know why." },
+            { key: "5 - I'm not doing well and I'd like someone to keep an eye on me/check-in regularly.", value: "5 - I'm not doing well and I'd like someone to keep an eye on me/check-in regularly." },
+            { key: "6 - I'm in crisis. Please call or come over right away.", value: "6 - I'm in crisis. Please call or come over right away." },
+            { key: "7 - Call 911. I may hurt myself or others. Do NOT wait.", value: "7 - Call 911. I may hurt myself or others. Do NOT wait." }
           ],
           required: true,
           order: 1

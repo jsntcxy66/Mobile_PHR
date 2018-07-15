@@ -54,21 +54,67 @@
     <div *ngSwitchCase="'history'">
       <ion-list *ngIf="records.length!=0">
         <ion-card *ngFor="let record of records; let i = index">
-          <ion-item (click)="showNotes(i)">
-            <ion-row>
-              <h2 *ngIf="record.food">{{record.food}} {{record.amount}}</h2>
-              <h2 *ngIf="record.exercise">{{record.exercise}} {{record.duration}}</h2>
-              <h2 *ngIf="record.weight">{{record.weight}}</h2>
-              <h2 *ngIf="record.height">{{record.height}}</h2>
-            </ion-row>
-            <ion-row>
-              <ion-note>
-                <span *ngIf="record.timeperiod">{{record.timeperiod}} - </span>
-                <span *ngIf="record.datetime">{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</span>
-                <span *ngIf="record.date">{{record.date | date}}</span>
-              </ion-note>
-            </ion-row>
+
+          <ion-item *ngIf="id==1" (click)="showNotes(i)">
+            <h2>{{record.food}} {{record.amount}}</h2>
+            <h2 *ngIf="record.calories.length!=0">{{record.calories}}</h2>
+            <ion-note>{{record.timeperiod}} - {{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</ion-note>
           </ion-item>
+
+          <ion-item *ngIf="id==2" (click)="showNotes(i)">
+            <h2>{{record.drink}} {{record.amount}}{{record.unit}}</h2>
+            <ion-note>{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==3" (click)="showNotes(i)">
+            <h2>{{record.weight}} lb</h2>
+            <ion-note item-right>{{record.date | date}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==4" (click)="showNotes(i)">
+            <h2>{{record.height}}</h2>
+            <ion-note item-right>{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==5" (click)="showNotes(i)">
+            <h2>{{record.bedtime | date: 'shortTime'}} ~ {{record.wakeuptime | date: 'shortTime'}}</h2>
+            <ion-note>{{record.bedtime | date: 'mediumDate'}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==6" (click)="showNotes(i)">
+            <h2>{{record.exercise}} {{record.duration}}</h2>
+            <ion-note>{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==7" (click)="showNotes(i)">
+            <h2>{{record.SBP}}/{{record.DBP}}</h2>
+            <ion-note item-right>{{record.date | date}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==8" (click)="showNotes(i)">
+            <h2>{{record.bloodsugar}} mg/dl</h2>
+            <ion-note item-right>{{record.date | date}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==9" (click)="showNotes(i)">
+            <h2>level {{record.pain}}</h2>
+            <ion-note item-right>{{record.date | date}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==10">
+            <ion-note>{{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</ion-note>
+            <h2 text-wrap>{{record.note}}</h2>
+          </ion-item>
+
+          <ion-item *ngIf="id==11" (click)="showNotes(i)">
+            <h2 text-wrap>{{record.mood}}</h2>
+            <ion-note>{{record.date | date}}</ion-note>
+          </ion-item>
+
+          <ion-item *ngIf="id==12" (click)="showNotes(i)">
+            <h2>{{record.begindate | date}} ~ {{record.enddate | date}}</h2>
+          </ion-item>
+
         </ion-card>
       </ion-list>
       <ion-card [hidden]="records.length!=0">

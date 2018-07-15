@@ -45,54 +45,7 @@ export class TrackerDetailPage {
     this.form = this.qcp.toFormGroup(this.questions);
 
     // get particular records sorted by date from database
-    // if (this.id == 1) {
-    //   this.records = [
-    //     {
-    //       food: 'Burger',
-    //       amount: '300g',
-    //       timeperiod: 'lunch',
-    //       datetime: '2018-06-06T15:08:57-04:00'
-    //     },
-    //     {
-    //       food: 'Jelly',
-    //       amount: '15g',
-    //       timeperiod: 'snack',
-    //       datetime: '2018-06-04T15:08:57-04:00'
-    //     },
-    //     {
-    //       food: 'Milk',
-    //       amount: '150ml',
-    //       timeperiod: 'breakfast',
-    //       datetime: '2018-06-01T15:08:57-04:00'
-    //     }
-    //   ];
-    // }
-    // else if (this.id == 2) {
-    //   this.records = [
-    //     {
-    //       exercise: 'Basketball',
-    //       duration: '2hrs',
-    //       datetime: '2018-06-01T15:08:57-04:00'
-    //     }
-    //   ];
-    // }
-    // else if (this.id == 3) {
-    //   this.records = [
-    //     {
-    //       weight: '45kg',
-    //       date: '2018-06-01T15:08:57-04:00'
-    //     }
-    //   ];
-    // }
-    // else if (this.id == 4) {
-    //   this.records = [
-    //     {
-    //       height: "5'3",
-    //       date: '2018-06-01T15:08:57-04:00'
-    //     }
-    //   ];
-    // }
-    this.trackerProvider.getRecords(this.auth.userId, this.title)
+    this.trackerProvider.getRecords(this.auth.userId, this.id)
       .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);
 
@@ -151,20 +104,4 @@ export class TrackerDetailPage {
     toast.present();
   }
 
-  presentAlert(msg) {
-    let alert = this.alertCtrl.create({
-      title: 'Oops!',
-      message: msg,
-      enableBackdropDismiss: false,
-      buttons: [
-        {
-          text: 'Ok',
-          handler: () => {
-            this.navCtrl.push(WelcomePage);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
 }

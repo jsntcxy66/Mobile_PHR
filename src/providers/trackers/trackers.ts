@@ -19,13 +19,13 @@ export class TrackersProvider {
     console.log('Hello TrackersProvider Provider');
   }
 
-  getRecords(id: number, title: string): Observable<any> {
-    return this.http.get(baseurl + 'trackers/' + title + '/' + id)
+  getRecords(userid: number, id: number): Observable<any> {
+    return this.http.get(baseurl + 'trackers/' + id + '/' + userid)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
-  addRecord(id: number, title: string, data: Object) {
-    return this.http.post(baseurl + 'trackers/' + title + '/' + id, data)
+  addRecord(userid: number, id: string, data: Object) {
+    return this.http.post(baseurl + 'trackers/' + id + '/' + userid, data)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 

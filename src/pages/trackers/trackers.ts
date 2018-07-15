@@ -88,11 +88,11 @@ export class TrackersPage {
     console.log('ionViewDidLoad TrackersPage');
   }
 
-  selectTracker(i: number) {
+  selectTracker(id: number) {
     this.navCtrl.push(TrackerDetailPage,
       {
-        'id': this.trackers[i].id,
-        'title': this.trackers[i].name
+        'id': id,
+        'title': this.trackers[id - 1].name
       });
     // this.navCtrl.push(this.customtrackers[index].component);
   }

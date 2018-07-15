@@ -72,7 +72,7 @@ export class TrackerDetailPage {
         res => {
           this.loading.dismiss();
           this.presentToast('Successfully added!');
-          this.trackerProvider.getRecords(this.auth.userId, this.title)
+          this.trackerProvider.getRecords(this.auth.userId, this.id)
             .subscribe(records => this.records = records,
               errmess => this.errMess = <any>errmess);
           this.tracker = 'history';

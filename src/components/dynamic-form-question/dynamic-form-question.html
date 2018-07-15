@@ -1,7 +1,7 @@
 <!-- Generated template for the DynamicFormQuestionComponent component -->
 <div [formGroup]="form" class="fix-underline" [ngClass]="{'red-underline': ((!form.controls[question.key].pristine) && (!isValid))}">
-  <label class="width color" [attr.for]="question.key" [ngClass]="{'full-width': (question.controlType=='textarea')}">{{question.label}}<span *ngIf="question.required" class="color-red">*</span></label>
-  <div class="width" [ngSwitch]="question.controlType" [ngClass]="{'full-width': (question.controlType=='textarea')}">
+  <label class="width color" [attr.for]="question.key" [ngClass]="{'full-width': (question.controlType=='textarea' || question.controlType=='range')}">{{question.label}}<span *ngIf="question.required" class="color-red">*</span></label>
+  <div class="width" [ngSwitch]="question.controlType" [ngClass]="{'full-width': (question.controlType=='textarea' || question.controlType=='range')}">
 
     <div class="flexlayout" *ngSwitchCase="'textbox'">
       <input [formControlName]="question.key" [id]="question.key" [type]="question.type">
@@ -19,6 +19,12 @@
     <div *ngSwitchCase="'toggle'" style="text-align: right">
       <ion-toggle style="display:inline-block; vertical-align: middle" [formControlName]="question.key" [id]="question.key" color="slate-grey"></ion-toggle>
     </div>
+
+    <!-- <ion-range *ngSwitchCase="'range'" [formControlName]="question.key" [id]="question.key" min="0" max="10" step="1" snaps="true" pin="true" color="primary"> -->
+    <ion-range *ngSwitchCase="'range'" [formControlName]="question.key" [id]="question.key" [min]="question.min" [max]="question.max" [step]="question.step" [snaps]="question.snaps" [pin]="question.pin" [color]="question.color">
+      <ion-icon range-left small [name]="question.iconleft"></ion-icon>
+      <ion-icon range-right [name]="question.iconright"></ion-icon>
+    </ion-range>
   </div>
   
   <!-- <div *ngIf="(!form.controls[question.key].pristine) && (!isValid)">{{question.label}} is required</div> -->

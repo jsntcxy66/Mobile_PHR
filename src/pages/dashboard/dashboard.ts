@@ -41,16 +41,25 @@ export class DashboardPage {
       this.presentAlert('Please login first.');
     }
 
+  }
+
+  ionViewCanEnter() {
     this.ap.getAppointment(this.auth.userId)
-      .subscribe(app => this.appointments = app,
+      .subscribe(app => {
+        this.appointments = app;
+      },
         errmess => this.errMess = <any>errmess);
 
-    this.hrp.getRecentLabTest(this.auth.userId)
-      .subscribe(records => this.labtests = records,
+    this.hrp.getRecentLabTest(this.auth.userId, 30)
+      .subscribe(records => {
+        this.labtests = records;
+      },
         errmess => this.errMess = <any>errmess);
 
     this.hrp.getMedication(this.auth.userId)
-      .subscribe(records => this.medications = records,
+      .subscribe(records => {
+        this.medications = records;
+      },
         errmess => this.errMess = <any>errmess);
 
     this.hrp.getImmunization(this.auth.userId)
@@ -66,9 +75,12 @@ export class DashboardPage {
         errmess => this.errMess = <any>errmess);
 
     this.hrp.getDoctorVisitNotes(this.auth.userId)
-      .subscribe(records => this.dvnotes = records,
+      .subscribe(records => {
+        this.dvnotes = records;
+      },
         errmess => this.errMess = <any>errmess);
 
+    return true;
   }
 
   ionViewDidLoad() {
@@ -108,7 +120,7 @@ export class DashboardPage {
         .subscribe(app => this.appointments = app,
           errmess => this.errMess = <any>errmess);
 
-      this.hrp.getRecentLabTest(this.auth.userId)
+      this.hrp.getRecentLabTest(this.auth.userId, 30)
         .subscribe(records => this.labtests = records,
           errmess => this.errMess = <any>errmess);
 

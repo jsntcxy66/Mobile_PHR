@@ -9,6 +9,7 @@ import { DatetimeQuestion } from './../../components/dynamic-form-types/question
 import { DropdownQuestion } from './../../components/dynamic-form-types/question-dropdown';
 import { TextareaQuestion } from './../../components/dynamic-form-types/question-textarea';
 import { ToggleQuestion } from './../../components/dynamic-form-types/question-toggle';
+import { RangeQuestion } from './../../components/dynamic-form-types/question-range';
 
 /*
   Generated class for the QuestionProvider provider.
@@ -22,8 +23,9 @@ export class QuestionProvider {
   constructor(private qop: QuestionOptionProvider) { }
 
   getTrackersQuestions(id: number) {
+    let questions: QuestionBase<any>[];
     if (id == 1) {
-      let questions: QuestionBase<any>[] = [
+      questions = [
 
         new TextboxQuestion({
           key: 'food',
@@ -43,6 +45,15 @@ export class QuestionProvider {
           order: 2
         }),
 
+        new TextboxQuestion({
+          key: 'calories',
+          label: 'Calories',
+          type: 'number',
+          value: '',
+          required: false,
+          order: 3
+        }),
+
         new DropdownQuestion({
           key: 'timeperiod',
           label: 'Time Period',
@@ -54,6 +65,56 @@ export class QuestionProvider {
             { key: 'dinner', value: 'Dinner' },
             { key: 'snack', value: 'Snack' }
           ],
+          required: true,
+          order: 4
+        }),
+
+        new DatetimeQuestion({
+          key: 'datetime',
+          label: 'Date',
+          display: 'MMM DD, YYYY HH:mm',
+          value: moment().format(),
+          required: true,
+          order: 5
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 6
+        }),
+
+      ];
+
+    }
+    else if (id == 2) {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'drink',
+          label: 'Drink',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'amount',
+          label: 'Amount',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new TextboxQuestion({
+          key: 'unit',
+          label: 'Unit',
+          type: 'text',
+          value: '',
           required: true,
           order: 3
         }),
@@ -76,11 +137,105 @@ export class QuestionProvider {
         }),
 
       ];
-
-      return questions.sort((a, b) => a.order - b.order);
     }
-    else if (id == 2) {
-      let questions: QuestionBase<any>[] = [
+    else if (id == 3) {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'weight',
+          label: 'Weight',
+          type: 'number',
+          unit: 'lb',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
+        }),
+
+      ];
+
+    }
+    else if (id == 4) {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'height',
+          label: 'Height',
+          type: 'text',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
+        }),
+
+      ];
+
+    }
+    else if (id == 5) {
+      questions = [
+
+        new DatetimeQuestion({
+          key: 'bedtime',
+          label: 'Bedtime',
+          display: 'MMM DD, YYYY HH:mm',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'wakeuptime',
+          label: 'Wake-up time',
+          display: 'MMM DD, YYYY HH:mm',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
+        }),
+
+      ];
+    }
+    else if (id == 6) {
+      questions = [
 
         new TextboxQuestion({
           key: 'exercise',
@@ -119,15 +274,57 @@ export class QuestionProvider {
 
       ];
 
-      return questions.sort((a, b) => a.order - b.order);
     }
-    else if (id == 3) {
-      let questions: QuestionBase<any>[] = [
+    else if (id == 7) {
+      questions = [
 
         new TextboxQuestion({
-          key: 'weight',
-          label: 'Weight',
-          type: 'text',
+          key: 'SBP',
+          label: 'Systolic pressure (SBP)',
+          type: 'number',
+          unit: 'mmHg',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new TextboxQuestion({
+          key: 'DBP',
+          label: 'Diastolic pressure (DBP)',
+          type: 'number',
+          unit: 'mmHg',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 3
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 4
+        }),
+
+      ];
+    }
+    else if (id == 8) {
+      questions = [
+
+        new TextboxQuestion({
+          key: 'bloodsugar',
+          label: 'Blood sugar',
+          type: 'number',
+          unit: 'mg/dl',
           value: '',
           required: true,
           order: 1
@@ -151,17 +348,21 @@ export class QuestionProvider {
         }),
 
       ];
-
-      return questions.sort((a, b) => a.order - b.order);
     }
-    else if (id == 4) {
-      let questions: QuestionBase<any>[] = [
+    else if (id == 9) {
+      questions = [
 
-        new TextboxQuestion({
-          key: 'height',
-          label: 'Height',
-          type: 'text',
-          value: '',
+        new RangeQuestion({
+          key: 'pain',
+          label: 'Pain level',
+          min: 0,
+          max: 10,
+          step: 1,
+          snaps: true,
+          pin: true,
+          color: 'primary',
+          iconleft: 'sad',
+          iconright: 'happy',
           required: true,
           order: 1
         }),
@@ -184,9 +385,102 @@ export class QuestionProvider {
         }),
 
       ];
-
-      return questions.sort((a, b) => a.order - b.order);
     }
+    else if (id == 10) {
+      questions = [
+
+        new DatetimeQuestion({
+          key: 'datetime',
+          label: 'Date',
+          display: 'MMM DD, YYYY HH:mm',
+          value: moment().format(),
+          required: true,
+          order: 1
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 5,
+          required: true,
+          order: 2
+        }),
+
+      ];
+    }
+    else if (id == 11) {
+      questions = [
+
+        new DropdownQuestion({
+          key: 'mood',
+          label: 'Mood',
+          value: '',
+          multiple: false,
+          options: [
+            { key: 1, value: "1 - Everything's OK. I'm maintaining." },
+            { key: 2, value: "2 - I've had a rough day." },
+            { key: 3, value: "3 - Significant life event/stress. It may take longer time to cope." },
+            { key: 4, value: "4 - I've been down for a while and I don't exactly know why." },
+            { key: 5, value: "5 - I'm not doing well and I'd like someone to keep an eye on me/check-in regularly." },
+            { key: 6, value: "6 - I'm in crisis. Please call or come over right away." },
+            { key: 7, value: "7 - Call 911. I may hurt myself or others. Do NOT wait." }
+          ],
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'date',
+          label: 'Date',
+          display: 'MM/DD/YYYY',
+          value: moment().format(),
+          required: true,
+          order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
+        }),
+
+      ];
+    }
+    else if (id == 12) {
+      questions = [
+
+        new DatetimeQuestion({
+          key: 'begindate',
+          label: 'Begin date',
+          display: 'MM/DD/YYYY',
+          value: '',
+          required: true,
+          order: 1
+        }),
+
+        new DatetimeQuestion({
+          key: 'enddate',
+          label: 'End date',
+          display: 'MM/DD/YYYY',
+          value: '',
+          required: true,
+          order: 2
+        }),
+
+        new TextareaQuestion({
+          key: 'note',
+          label: 'Notes',
+          rows: 3,
+          required: false,
+          order: 3
+        }),
+
+      ];
+    }
+
+    return questions.sort((a, b) => a.order - b.order);
   }
 
   getAllergyQuestions() {
@@ -947,131 +1241,6 @@ export class QuestionProvider {
     }
 
     return questions.sort((a, b) => a.order - b.order);
-    // if (id == 204 || id == 207 || id == 212 || id == 401) {
-    // questions = [
-
-    //   new TextboxQuestion({
-    //     key: 'organ',
-    //     label: 'Organ',
-    //     type: 'text',
-    //     value: '',
-    //     required: true,
-    //     order: 1
-    //   }),
-
-    //   new TextboxQuestion({
-    //     key: 'result',
-    //     label: 'Result',
-    //     type: 'text',
-    //     value: '',
-    //     required: true,
-    //     order: 2
-    //   }),
-
-    //   new DatetimeQuestion({
-    //     key: 'date',
-    //     label: 'Date',
-    //     display: 'MM/DD/YYYY',
-    //     value: moment().format(),
-    //     required: true,
-    //     order: 3
-    //   }),
-
-    //   new TextareaQuestion({
-    //     key: 'note',
-    //     label: 'Notes',
-    //     value: '',
-    //     rows: 5,
-    //     required: false,
-    //     order: 4
-    //   }),
-    // ];
-
-    //   return questions.sort((a, b) => a.order - b.order);
-    // }
-    // else if (id == 205 || id == 206) {
-    //   questions = [
-
-    //     new TextboxQuestion({
-    //       key: 'organ',
-    //       label: 'Organ',
-    //       type: 'text',
-    //       value: '',
-    //       required: true,
-    //       order: 1
-    //     }),
-
-    //     new TextboxQuestion({
-    //       key: 'result',
-    //       label: 'Result',
-    //       type: 'text',
-    //       value: '',
-    //       required: true,
-    //       order: 2
-    //     }),
-
-        // new ToggleQuestion({
-        //   key: 'contrast',
-        //   label: 'With Contrast?',
-        //   value: false,
-        //   required: true,
-        //   order: 3
-        // }),
-
-    //     new DatetimeQuestion({
-    //       key: 'date',
-    //       label: 'Date',
-    //       display: 'MM/DD/YYYY',
-    //       value: moment().format(),
-    //       required: true,
-    //       order: 4
-    //     }),
-
-    //     new TextareaQuestion({
-    //       key: 'note',
-    //       label: 'Notes',
-    //       value: '',
-    //       rows: 5,
-    //       required: false,
-    //       order: 5
-    //     }),
-    //   ];
-
-    //   return questions.sort((a, b) => a.order - b.order);
-    // }
-    // else {
-    // questions = [
-
-    //   new TextboxQuestion({
-    //     key: 'result',
-    //     label: 'Result',
-    //     type: 'text',
-    //     value: '',
-    //     required: true,
-    //     order: 1
-    //   }),
-
-    //   new DatetimeQuestion({
-    //     key: 'date',
-    //     label: 'Date',
-    //     display: 'MM/DD/YYYY',
-    //     value: moment().format(),
-    //     required: true,
-    //     order: 2
-    //   }),
-
-    //   new TextareaQuestion({
-    //     key: 'note',
-    //     label: 'Notes',
-    //     value: '',
-    //     rows: 5,
-    //     required: false,
-    //     order: 3
-    //   }),
-    // ];
-
-    //   return questions.sort((a, b) => a.order - b.order);
-    // }
   }
 
   getResetPasswordQuestion(typeid: number) {

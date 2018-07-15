@@ -39,8 +39,8 @@ export class HealthRecordsProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
-  getRecentLabTest(userid: number): Observable<any> {
-    return this.http.get(baseurl + 'records/labtest/30days/' + userid)
+  getRecentLabTest(userid: number, duration: number): Observable<any> {
+    return this.http.get(baseurl + 'records/labtest/' + duration + 'days/' + userid)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 

@@ -9,9 +9,8 @@ import { ChartsModule } from 'ng2-charts';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
-import { TrackersPage } from './../pages/trackers/trackers';
+import { TrackersPage, PanelPage } from './../pages/trackers/trackers';
 import { TrackerDetailPage } from '../pages/tracker-detail/tracker-detail';
-import { CustomPanelPage } from './../pages/custom-panel/custom-panel';
 import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
 import { CustomtrackerPage } from './../pages/customtracker/customtracker';
 import { DashboardPage } from './../pages/dashboard/dashboard';
@@ -85,7 +84,7 @@ import 'rxjs/add/operator/map';
     MyApp,
     TrackersPage,
     TrackerDetailPage,
-    CustomPanelPage,
+    PanelPage,
     CreateTrackerPage,
     CustomtrackerPage,
     TileComponent,
@@ -145,7 +144,7 @@ import 'rxjs/add/operator/map';
     MyApp,
     TrackersPage,
     TrackerDetailPage,
-    CustomPanelPage,
+    PanelPage,
     CreateTrackerPage,
     CustomtrackerPage,
     DashboardPage,

@@ -24,7 +24,7 @@ export class TrackersProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
-  addRecord(userid: number, id: string, data: Object) {
+  addRecord(userid: number, id: number, data: Object) {
     return this.http.post(baseurl + 'trackers/' + id + '/' + userid, data)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }

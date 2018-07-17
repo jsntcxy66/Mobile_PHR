@@ -27,7 +27,7 @@ export class LabTestDetailPage implements OnInit {
   unit: string[] = [];
   showChart: boolean = false;
   subtest: Array<string>;
-  tab: string;
+  tab: string = 'form';
   questions: any[];
   form: FormGroup;
   errMess: string;
@@ -63,7 +63,6 @@ export class LabTestDetailPage implements OnInit {
       this.presentAlert('Please login first.');
     }
 
-    this.tab = navParams.get('tab');
     this.title = navParams.get('title');
     this.id = navParams.get('id');
     this.subtest = navParams.get('subtest');
@@ -237,7 +236,7 @@ export class LabTestDetailPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.records = <any[]>await this.hrp.getLabtTest(this.auth.userId, this.id).toPromise();
+    this.records = <any[]>await this.hrp.getLabTest(this.auth.userId, this.id).toPromise();
     console.log(this.records);
 
     if (this.records.length != 0) {
@@ -341,7 +340,7 @@ export class LabTestDetailPage implements OnInit {
         res => {
           this.loading.dismiss();
           this.presentToast('Successfully added!');
-          this.hrp.getLabtTest(this.auth.userId, this.id)
+          this.hrp.getLabTest(this.auth.userId, this.id)
             .subscribe(records => {
               this.records = records;
               console.log(this.records);
@@ -392,7 +391,7 @@ export class LabTestDetailPage implements OnInit {
             this.hrp.deleteLabTest(this.auth.userId, this.id, i, j)
               .subscribe(res => {
                 this.presentToast('Delete successfully.');
-                this.hrp.getLabtTest(this.auth.userId, this.id)
+                this.hrp.getLabTest(this.auth.userId, this.id)
                   .subscribe(records => {
                     this.records = records;
                     console.log(this.records);

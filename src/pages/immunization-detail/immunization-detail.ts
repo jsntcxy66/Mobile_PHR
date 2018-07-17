@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { QuestionControlProvider } from '../../providers/question-control/question-control';
 import { HealthRecordsProvider } from '../../providers/health-records/health-records';
+
+import * as moment from 'moment';
 
 /**
  * Generated class for the ImmunizationDetailPage page.
@@ -30,7 +31,6 @@ export class ImmunizationDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private qp: QuestionProvider,
-    private qcp: QuestionControlProvider,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private viewCtrl: ViewController,
@@ -40,12 +40,29 @@ export class ImmunizationDetailPage {
     this.title = navParams.get('title');
     this.id = navParams.get('id');
     this.questions = this.qp.getImmunizationQuestions(this.title);
-    this.form = this.qcp.toFormGroup(this.questions);
+    this.form = this.toFormGroup();
     this.navcolor = this.color[(this.id - 1) % 3];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImmunizationDetailPage');
+  }
+
+  toFormGroup() {
+    let group: any = {};
+
+    for (let i = 0; i < this.questions.length; i++) {
+      let val = (this.questions[i].value == undefined) ? '' : this.questions[i].value;
+      if (i == 1) {
+        group[this.questions[i].selectkey] = new FormControl(this.questions[i].selectvalue, Validators.required);
+        group[this.questions[i].inputkey] = new FormControl(this.questions[i].inputvalue, Validators.required);
+        group[this.questions[i].datetimekey] = new FormControl(this.questions[i].datetimevalue, Validators.required);
+      } else {
+        group[this.questions[i].key] = this.questions[i].required ? new FormControl(val, Validators.required) : new FormControl(val);
+      }
+    }
+
+    return new FormGroup(group);
   }
 
   dismiss() {
@@ -55,6 +72,7 @@ export class ImmunizationDetailPage {
   onSubmit() {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
+    payLoad['date'] = moment().format();
     console.log(payLoad);
     this.hrp.addImmunization(this.auth.userId, payLoad)
       .subscribe(
@@ -65,7 +83,7 @@ export class ImmunizationDetailPage {
         },
         err => {
           this.loading.dismiss();
-          this.presentToast('Failed to add the record.');
+          this.presentToast('Error: ' + err);
         }
       );
   }

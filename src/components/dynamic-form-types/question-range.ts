@@ -13,8 +13,8 @@ export class RangeQuestion extends QuestionBase<string> {
 
     constructor(options: {} = {}) {
         super(options);
-        this.min = options['min'] || 100;
-        this.max = options['max'] || 0;
+        this.min = options['min'] || 0;
+        this.max = options['max'] || 100;
         this.step = options['step'] || 1;
         this.snaps = options['snaps'] || false;
         this.pin = options['pin'] || false;

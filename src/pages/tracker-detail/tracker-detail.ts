@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { QuestionProvider } from '../../providers/question/question';
 import { QuestionControlProvider } from '../../providers/question-control/question-control';
 import { TrackersProvider } from '../../providers/trackers/trackers';
-import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
@@ -67,7 +66,7 @@ export class TrackerDetailPage {
     this.showLoader('Adding...');
     let payLoad = this.form.value;
     console.log(payLoad);
-    this.trackerProvider.addRecord(this.auth.userId, this.title, payLoad)
+    this.trackerProvider.addRecord(this.auth.userId, this.id, payLoad)
       .subscribe(
         res => {
           this.loading.dismiss();

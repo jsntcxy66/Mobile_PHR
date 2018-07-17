@@ -32,7 +32,10 @@ export class ImmunizationClassificationProvider {
         { id: 12, name: 'MenACWY', menu: 'immunization', end: true },
         { id: 13, name: 'MenB', menu: 'immunization', end: true },
         { id: 14, name: 'Hib', menu: 'immunization', end: true },
-        { id: 15, name: 'Other Vaccine', menu: 'immunization', end: true }
+        { id: 15, name: 'DTaP', menu: 'immunization', end: true },
+        { id: 16, name: 'Rotavirus (RV)', menu: 'immunization', end: true },
+        { id: 17, name: 'IPV', menu: 'immunization', end: true },
+        { id: 18, name: 'Other Vaccine', menu: 'immunization', end: true }
       ];
     }
     return arr;

@@ -61,8 +61,7 @@ export class LabTestPage {
     this.navCtrl.push(LabTestDetailPage, {
       'id': this.list[i].category[j].id,
       'title': this.list[i].category[j].name,
-      'subtest': this.list[i].category[j].subtest,
-      'tab': 'form'
+      'subtest': this.list[i].category[j].subtest
     });
   }
 
@@ -70,8 +69,7 @@ export class LabTestPage {
     this.navCtrl.push(LabTestDetailPage, {
       'id': 0,
       'title': 'Other Tests',
-      'subtest': [],
-      'tab': 'form'
+      'subtest': []
     });
   }
 

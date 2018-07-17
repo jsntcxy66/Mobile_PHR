@@ -10,6 +10,7 @@ import { DropdownQuestion } from './../../components/dynamic-form-types/question
 import { TextareaQuestion } from './../../components/dynamic-form-types/question-textarea';
 import { ToggleQuestion } from './../../components/dynamic-form-types/question-toggle';
 import { RangeQuestion } from './../../components/dynamic-form-types/question-range';
+import { ComplexQuestion } from '../../components/dynamic-form-types/question-complex';
 
 /*
   Generated class for the QuestionProvider provider.
@@ -688,32 +689,41 @@ export class QuestionProvider {
         order: 1
       }),
 
-      new TextboxQuestion({
-        key: 'age',
-        label: 'Age',
+      new ComplexQuestion({
+        selectkey: 'recordtype',
+        selectlabel: 'Record option',
+        selectvalue: 'age',
+        selectrequired: true,
+        multiple: false,
+        options: [
+          { key: 'age', value: 'Age' },
+          { key: 'scheduledate', value: 'Date' }
+        ],
+        
+        inputkey: 'age',
+        inputlabel: 'Age',
+        inputvalue: '',
+        inputrequired: true,
         type: 'number',
-        value: '',
+        
+        datetimekey: 'scheduledate',
+        datetimelabel: 'Schedule date',
+        datetimevalue: '',
+        datetimerequired: true,
+        display: 'MMM YYYY',
+
         required: true,
         order: 2
       }),
 
-      new TextboxQuestion({
-        key: 'schedule',
-        label: 'Schedule',
-        type: 'text',
-        value: '',
-        required: true,
+      new TextareaQuestion({
+        key: 'note',
+        label: 'Notes',
+        rows: 3,
+        required: false,
         order: 3
       }),
 
-      new DatetimeQuestion({
-        key: 'date',
-        label: 'Date',
-        display: 'MM/DD/YYYY',
-        value: moment().format(),
-        required: true,
-        order: 4
-      }),
     ];
 
     return questions.sort((a, b) => a.order - b.order);

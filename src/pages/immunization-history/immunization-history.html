@@ -24,9 +24,10 @@
       <ion-item>
         <div class="white-space">
           <h3>Vaccine: {{record.vaccine}}</h3>
-          <h3>Schedule: {{record.schedule}}</h3>
+          <h3 *ngIf="record.age.length!=0">Age: {{record.age}}</h3>
+          <h3 *ngIf="record.scheduledate.length!=0">Schedule Date: {{record.scheduledate | date: 'MMM yyyy'}}</h3>
+          <h3>Note: {{record.note}}</h3>
         </div>
-        <p item-end>{{record.ageGroup}}</p>
       </ion-item>
       <ion-item-options side="right" icon-start>
         <button ion-button color="danger" (click)="deleteRecord(i)">

@@ -35,9 +35,10 @@ export class DynamicFormQuestionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.form.get('scheduledate').setValidators(null);
-    this.form.get('scheduledate').updateValueAndValidity();
-
+    if (this.question.controlType == 'complex') {
+      this.form.get('scheduledate').setValidators(null);
+      this.form.get('scheduledate').updateValueAndValidity();
+    }
     console.log(this.question);
   }
 

@@ -95,7 +95,6 @@ export class DashboardPage {
     this.navCtrl.push(LabTestDetailPage, {
       'title': this.labtests[i].name,
       'id': this.labtests[i].id,
-      'isnumber': this.labtests[i].isnumber,
       'unit': this.labtests[i].unit,
       'tab': 'history'
     });

@@ -64,9 +64,13 @@ export class LabTestDetailPage implements OnInit {
     }
 
     this.title = navParams.get('title');
+    let shortTitle;
+    if (this.title.indexOf('(') != -1) {
+      shortTitle = this.title.slice(0, this.title.indexOf('(') - 1);
+    } else shortTitle = this.title;
     this.id = navParams.get('id');
     this.subtest = navParams.get('subtest');
-    this.questions = this.qp.getLabTestQuestions(this.title);
+    this.questions = this.qp.getLabTestQuestions(shortTitle);
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
 

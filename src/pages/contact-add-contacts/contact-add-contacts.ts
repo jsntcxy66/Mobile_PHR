@@ -54,7 +54,7 @@ export class ContactAddContactsPage {
     },
     "tel": {
       "required": "Tel number is required.",
-      "pattern": "Please enter a valid phone number."
+      "pattern": "Please enter a valid 10-digit phone number. For example: 4123456789."
     },
     "fax": {
       "pattern": "Please enter a valid fax number."

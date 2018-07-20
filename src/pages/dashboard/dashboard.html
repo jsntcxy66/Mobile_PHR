@@ -56,7 +56,7 @@
           <ion-item (click)="goToLabtest(i)">
             <h2>{{labtest.subtest}}</h2>
             <h3>{{labtest.result}}
-              <span *ngIf="labtest.isnumber"> {{labtest.unit}}</span>
+              <span *ngIf="labtest.unit.length!=0"> {{labtest.unit}}</span>
             </h3>
             <p>{{labtest.date | date}}</p>
           </ion-item>

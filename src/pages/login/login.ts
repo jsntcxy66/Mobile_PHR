@@ -44,6 +44,8 @@ export class LoginPage {
   onSubmit() {
     this.showLoader('Authenticating...');
     let credentials = this.loginForm.value;
+    credentials['username'] = this.loginForm.value.username.toLowerCase();
+    console.log(credentials);
     this.authService.login(credentials)
       .subscribe((res: number) => {
         this.loading.dismiss();

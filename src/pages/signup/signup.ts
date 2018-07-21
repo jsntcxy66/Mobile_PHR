@@ -171,6 +171,7 @@ export class SignupPage {
   onSubmit() {
     this.showLoader('Registering...');
     let register = this.registerForm.value;
+    register['username'] = this.registerForm.value.username.toLowerCase();
     delete register.confirmPassword;
     console.log(register);
     this.authService.register(register)

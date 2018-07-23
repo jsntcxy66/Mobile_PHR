@@ -43,7 +43,7 @@
           <span *ngIf="question.selectrequired" class="color-red">*</span>
         </label>
         <div class="width">
-          <ion-select class="select-width left-pull" [formControlName]="question.selectkey" [id]="question.selectkey" [multiple]="question.selectmultiple">
+          <ion-select class="select-width left-pull" [formControlName]="question.selectkey" [id]="question.selectkey" [multiple]="question.selectmultiple" [selectOptions]="question.selectOptions">
             <ion-option *ngFor="let opt of question.options" [value]="opt.key" (ionSelect)="selectedValue($event)">{{opt.value}}</ion-option>
           </ion-select>
         </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="position fix-underline" *ngIf="selectedOption=='scheduledate'">
+      <div class="position fix-underline" *ngIf="selectedOption=='immunizationdate'">
         <label class="width color" [attr.for]="question.datetimekey">{{question.datetimelabel}}
           <span *ngIf="question.datetimerequired" class="color-red">*</span>
         </label>

@@ -9,6 +9,7 @@ export class ComplexQuestion extends QuestionBase<string>  {
     selectrequired: boolean;
     multiple: boolean;
     options: { key: string, value: string }[] = [];
+    selectOptions: any;
 
     inputvalue: any;
     inputkey: string;
@@ -33,6 +34,7 @@ export class ComplexQuestion extends QuestionBase<string>  {
         this.selectrequired = !!options['selectrequired'];
         this.multiple = options['multiple'] || false;
         this.options = options['options'] || [];
+        this.selectOptions = options['selectOptions'] || {};
 
         this.inputvalue = options['inputvalue'] || '';
         this.inputkey = options['inputkey'] || '';

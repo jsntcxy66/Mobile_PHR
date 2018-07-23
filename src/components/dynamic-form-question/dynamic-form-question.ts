@@ -35,24 +35,26 @@ export class DynamicFormQuestionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // dynamically change select option validators for immunization
     if (this.question.controlType == 'complex') {
-      this.form.get('scheduledate').setValidators(null);
-      this.form.get('scheduledate').updateValueAndValidity();
+      this.form.get('immunizationdate').setValidators(null);
+      this.form.get('immunizationdate').updateValueAndValidity();
     }
     console.log(this.question);
   }
 
+  // dynamically change select option validators for immunization
   selectedValue(ev) {
     console.log(ev);
     this.selectedOption = ev;
     if (this.selectedOption == 'age') {
-      this.form.get('scheduledate').setValidators(null);
+      this.form.get('immunizationdate').setValidators(null);
       this.form.get('age').setValidators(Validators.required);
     } else {
       this.form.get('age').setValidators(null);
-      this.form.get('scheduledate').setValidators(Validators.required);
+      this.form.get('immunizationdate').setValidators(Validators.required);
     }
-    this.form.get('scheduledate').updateValueAndValidity();
+    this.form.get('immunizationdate').updateValueAndValidity();
     this.form.get('age').updateValueAndValidity();
   }
 

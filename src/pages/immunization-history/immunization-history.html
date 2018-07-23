@@ -25,7 +25,7 @@
         <div class="white-space">
           <h3>Vaccine: {{record.vaccine}}</h3>
           <h3 *ngIf="record.age.length!=0">Age: {{record.age}}</h3>
-          <h3 *ngIf="record.scheduledate.length!=0">Schedule Date: {{record.scheduledate | date: 'MMM yyyy'}}</h3>
+          <h3 *ngIf="record.immunizationdate.length!=0">Schedule Date: {{record.immunizationdate | date: 'MMM yyyy'}}</h3>
           <h3>Note: {{record.note}}</h3>
         </div>
       </ion-item>

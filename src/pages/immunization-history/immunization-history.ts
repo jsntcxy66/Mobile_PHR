@@ -51,15 +51,7 @@ export class ImmunizationHistoryPage {
 
     // get records
     this.hrp.getImmunization(this.auth.userId)
-      .subscribe(records => {
-        this.records = records;
-        this.records.forEach(record => {
-          if (record.age > 18)
-            record['ageGroup'] = "Adult";
-          else
-            record['ageGroup'] = "Child and Adolescent";
-        });
-      },
+      .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);
   }
 
@@ -69,15 +61,7 @@ export class ImmunizationHistoryPage {
 
   ionViewWillEnter() {
     this.hrp.getImmunization(this.auth.userId)
-      .subscribe(records => {
-        this.records = records;
-        this.records.forEach(record => {
-          if (record.age > 18)
-            record['ageGroup'] = "Adult";
-          else
-            record['ageGroup'] = "Child and Adolescent";
-        });
-      },
+      .subscribe(records => this.records = records,
         errmess => this.errMess = <any>errmess);
   }
 
@@ -102,15 +86,7 @@ export class ImmunizationHistoryPage {
               .subscribe(res => {
                 this.presentToast('Delete successfully.');
                 this.hrp.getImmunization(this.auth.userId)
-                  .subscribe(records => {
-                    this.records = records;
-                    this.records.forEach(record => {
-                      if (record.age > 18)
-                        record['ageGroup'] = "Adult";
-                      else
-                        record['ageGroup'] = "Child and Adolescent";
-                    });
-                  },
+                  .subscribe(records => this.records = records,
                     errmess => this.errMess = <any>errmess);
               },
                 err => this.presentToast('Error: ' + err));

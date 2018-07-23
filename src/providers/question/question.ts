@@ -697,17 +697,18 @@ export class QuestionProvider {
         multiple: false,
         options: [
           { key: 'age', value: 'Age' },
-          { key: 'scheduledate', value: 'Date' }
+          { key: 'immunizationdate', value: 'Date' }
         ],
-        
+        selectOptions: { title: 'Record option' },
+
         inputkey: 'age',
         inputlabel: 'Age',
         inputvalue: '',
         inputrequired: true,
         type: 'number',
-        
-        datetimekey: 'scheduledate',
-        datetimelabel: 'Schedule date',
+
+        datetimekey: 'immunizationdate',
+        datetimelabel: 'Immunization date',
         datetimevalue: '',
         datetimerequired: true,
         display: 'MMM YYYY',

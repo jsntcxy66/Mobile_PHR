@@ -63,7 +63,7 @@
       </div>
       <ion-item>
         <ion-label stacked color="primary">Phone</ion-label>
-        <ion-input value="{{profile.tel}}" type="tel" formControlName="tel"></ion-input>
+        <ion-input value="{{profile.tel}}" type="tel" formControlName="tel" placeholder="enter only numbers"></ion-input>
       </ion-item>
       <div class="pull-right color-red">
         <span [hidden]="!(formErrors.tel)">{{formErrors.tel}}</span>

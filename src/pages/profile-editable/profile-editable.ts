@@ -42,7 +42,7 @@ export class ProfileEditablePage {
       "email": "Please enter a valid email address."
     },
     "tel": {
-      "pattern": "Please enter a valid phone number."
+      "pattern": "Please enter a valid 10-digit phone number. For example: 4123456789."
     },
     "birthday": {
       "pattern": "Please enter your birthday in MM/DD/YYYY format."

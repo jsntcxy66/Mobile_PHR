@@ -63,9 +63,9 @@ export class SurgicalHistoryDetailPage implements OnInit {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    console.log(payLoad);
-    this.historyProvider.addSurgicalHistory(this.auth.userId, payLoad)
+    let payload = this.form.value;
+    console.log(payload);
+    this.historyProvider.addSurgicalHistory(this.auth.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CalendarModule } from "ion2-calendar";
 import { ChartsModule } from 'ng2-charts';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AutoCompleteModule } from 'ionic2-auto-complete';
 
 import { MyApp } from './app.component';
 import { TrackersPage, PanelPage } from './../pages/trackers/trackers';
@@ -69,6 +70,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { HistoryProvider } from '../providers/history/history';
 import { DiagnosticProcedureClassificationProvider } from '../providers/diagnostic-procedure-classification/diagnostic-procedure-classification';
 import { HealthRecordsProvider } from '../providers/health-records/health-records';
+import { EncryptionProvider } from '../providers/encryption/encryption';
 
 import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
@@ -137,7 +139,8 @@ import 'rxjs/add/operator/map';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     CalendarModule,
-    ChartsModule
+    ChartsModule,
+    AutoCompleteModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -205,7 +208,8 @@ import 'rxjs/add/operator/map';
     HistoryProvider,
     DiagnosticProcedureClassificationProvider,
     HealthRecordsProvider,
-    InAppBrowser
+    InAppBrowser,
+    EncryptionProvider
   ]
 })
 export class AppModule { }

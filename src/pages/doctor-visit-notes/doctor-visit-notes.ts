@@ -82,7 +82,7 @@ export class DoctorVisitNotesPage {
               .subscribe(res => {
                 this.presentToast('Delete successfully.');
                 this.hrp.getDoctorVisitNotes(this.auth.userId)
-                  .subscribe(records => this.records = records,
+                  .subscribe(records => { console.log(records); this.records = records; },
                     errmess => this.errMess = <any>errmess);
               },
                 err => this.presentToast('Error: ' + err));

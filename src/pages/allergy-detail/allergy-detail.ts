@@ -54,10 +54,10 @@ export class AllergyDetailPage {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    payLoad['category'] = this.title;
-    console.log(payLoad);
-    this.historyProvider.addAllergy(this.auth.userId, payLoad)
+    let payload = this.form.value;
+    payload['category'] = this.title;
+    console.log(payload);
+    this.historyProvider.addAllergy(this.auth.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

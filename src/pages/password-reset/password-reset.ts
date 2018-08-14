@@ -142,10 +142,10 @@ export class PasswordResetPage {
 
   onSubmit() {
     this.showLoader('Authenticating...');
-    let payLoad = this.resetpasswordForm.value;
-    delete payLoad.confirmPassword;
-    console.log(payLoad);
-    this.auth.resetPassword(this.userId, payLoad)
+    let payload = this.resetpasswordForm.value;
+    delete payload.confirmPassword;
+    console.log(payload);
+    this.auth.resetPassword(this.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

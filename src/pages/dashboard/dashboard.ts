@@ -56,6 +56,12 @@ export class DashboardPage {
       },
         errmess => this.errMess = <any>errmess);
 
+    this.hrp.getRecentDiagnosticProcedure(this.auth.userId, 30)
+      .subscribe(records => {
+        this.labtests = records;
+      },
+        errmess => this.errMess = <any>errmess);
+
     this.hrp.getMedication(this.auth.userId)
       .subscribe(records => {
         this.medications = records;

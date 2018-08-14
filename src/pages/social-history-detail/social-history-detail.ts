@@ -55,9 +55,9 @@ export class SocialHistoryDetailPage {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    console.log(payLoad);
-    this.historyProvider.addSocialHistory(this.auth.userId, this.title, payLoad)
+    let payload = this.form.value;
+    console.log(payload);
+    this.historyProvider.addSocialHistory(this.auth.userId, this.title, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

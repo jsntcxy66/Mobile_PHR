@@ -47,9 +47,9 @@ export class MedicationDetailPage {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    console.log(payLoad);
-    this.hrp.addMedication(this.auth.userId, payLoad)
+    let payload = this.form.value;
+    console.log(payload);
+    this.hrp.addMedication(this.auth.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

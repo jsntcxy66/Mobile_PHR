@@ -20,20 +20,7 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-list-header>Choose a Date</ion-list-header>
-    <ion-card>
-      <calendar (selectDate)="selectDate($event)"></calendar>
-    </ion-card>
-  </ion-list>
   <form [formGroup]="newAppointmentForm" (ngSubmit)="onSubmit()">
-    <ion-list>
-      <ion-list-header>Choose the time</ion-list-header>
-      <ion-item>
-        <ion-label fixed>Time</ion-label>
-        <ion-datetime displayFormat="hh:mm A" formControlName="time"></ion-datetime>
-      </ion-item>
-    </ion-list>
     <ion-list radio-group formControlName="doctor">
       <ion-list-header>Choose one doctor</ion-list-header>
       <ion-item *ngFor="let doctor of doctors">
@@ -51,6 +38,19 @@
           <h2>{{location}}</h2>
         </ion-label>
         <ion-radio value="{{location}}"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Choose a Date</ion-list-header>
+      <ion-card>
+        <calendar (selectDate)="selectDate($event)"></calendar>
+      </ion-card>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Choose the time</ion-list-header>
+      <ion-item>
+        <ion-label fixed>Time</ion-label>
+        <ion-datetime displayFormat="hh:mm A" formControlName="time"></ion-datetime>
       </ion-item>
     </ion-list>
     <button ion-button block type="submit" [disabled]="!check_valid() || !newAppointmentForm.valid">Create</button>

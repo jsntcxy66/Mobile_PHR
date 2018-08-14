@@ -362,8 +362,8 @@ export class QuestionProvider {
           snaps: true,
           pin: true,
           color: 'primary',
-          iconleft: 'sad',
-          iconright: 'happy',
+          iconleft: 'happy',
+          iconright: 'sad',
           required: true,
           order: 1
         }),
@@ -631,7 +631,7 @@ export class QuestionProvider {
 
         new DatetimeQuestion({
           key: 'date',
-          label: 'Onset Date',
+          label: 'Surgery Date',
           display: 'MM/DD/YYYY',
           value: moment().format(),
           required: true,
@@ -663,7 +663,7 @@ export class QuestionProvider {
 
         new DatetimeQuestion({
           key: 'date',
-          label: 'Onset Date',
+          label: 'Surgery Date',
           display: 'MM/DD/YYYY',
           value: moment().format(),
           required: true,
@@ -1124,7 +1124,7 @@ export class QuestionProvider {
       questions = [
 
         new TextboxQuestion({
-          key: 'name',
+          key: 'testname',
           label: 'Test Name',
           type: 'text',
           value: title,

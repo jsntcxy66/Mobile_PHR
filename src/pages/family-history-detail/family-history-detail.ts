@@ -47,9 +47,9 @@ export class FamilyHistoryDetailPage {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    console.log(payLoad);
-    this.historyProvider.addFamilyHistory(this.auth.userId, payLoad)
+    let payload = this.form.value;
+    console.log(payload);
+    this.historyProvider.addFamilyHistory(this.auth.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

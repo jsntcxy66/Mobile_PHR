@@ -93,10 +93,10 @@ export class PasswordEditPage {
 
   onSubmit() {
     this.showLoader('Editing...');
-    let payLoad = this.editpasswordForm.value;
-    delete payLoad.confirmPassword;
-    console.log(payLoad);
-    this.auth.editPassword(this.auth.userId, payLoad)
+    let payload = this.editpasswordForm.value;
+    delete payload.confirmPassword;
+    console.log(payload);
+    this.auth.editPassword(this.auth.userId, payload)
       .subscribe(
         res => {
           if (res == -1) {

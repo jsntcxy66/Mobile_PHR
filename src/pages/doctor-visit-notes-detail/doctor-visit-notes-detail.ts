@@ -62,9 +62,9 @@ export class DoctorVisitNotesDetailPage implements OnInit {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    console.log(payLoad);
-    this.hrp.addDoctorVisitNotes(this.auth.userId, payLoad)
+    let payload = this.form.value;
+    console.log(payload);
+    this.hrp.addDoctorVisitNotes(this.auth.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

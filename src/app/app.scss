@@ -13,6 +13,8 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@import "../../node_modules/ionic2-auto-complete/auto-complete";
+
 $background-pale: rgb(201, 210, 241);
 .section-open {
   background-color: $background-pale;

@@ -174,9 +174,9 @@ export class DiagnosticProcedureDetailPage {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    console.log(payLoad);
-    this.hrp.addDiagnosticProcedure(this.auth.userId, this.id, payLoad)
+    let payload = this.form.value;
+    console.log(payload);
+    this.hrp.addDiagnosticProcedure(this.auth.userId, this.id, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

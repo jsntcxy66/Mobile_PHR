@@ -71,10 +71,10 @@ export class ImmunizationDetailPage {
 
   onSubmit() {
     this.showLoader('Adding...');
-    let payLoad = this.form.value;
-    payLoad['date'] = moment().format();
-    console.log(payLoad);
-    this.hrp.addImmunization(this.auth.userId, payLoad)
+    let payload = this.form.value;
+    payload['date'] = moment().format();
+    console.log(payload);
+    this.hrp.addImmunization(this.auth.userId, payload)
       .subscribe(
         res => {
           this.loading.dismiss();

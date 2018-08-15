@@ -1,5 +1,8 @@
 page-lab-test {
-    ion-auto-complete {
-        width: 100%;
+  ion-auto-complete {
+    width: 100%;
+    ul {
+        left: 0;
     }
+  }
 }

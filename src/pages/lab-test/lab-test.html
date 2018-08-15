@@ -7,9 +7,6 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Lab Test</ion-title>
   </ion-navbar>
 
@@ -17,21 +14,9 @@
 
 
 <ion-content>
-  <!-- <ion-alpha-scroll *ngIf="breeds" [listData]="breeds" key="name" [itemTemplate]="alphaScrollItemTemplate" [currentPageClass]="currentPageClass"
-    [highlight]="true" [triggerChange]="triggerAlphaScrollChange">
-  </ion-alpha-scroll> -->
 
-  <!-- <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{ option }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form> -->
-  <!-- <ion-auto-complete></ion-auto-complete> -->
+  <ion-auto-complete [dataProvider]="sfp" (itemSelected)="onItemSelected($event)" #searchbar></ion-auto-complete>
+
   <ion-list>
     <ion-list-header>Common Tests</ion-list-header>
     <ion-item-group *ngFor="let l of list; let i = index">

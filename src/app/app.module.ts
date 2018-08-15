@@ -80,6 +80,7 @@ import { CalendarComponent } from './../components/calendar/calendar';
 import * as moment from 'moment';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { SearchFilterProvider } from '../providers/search-filter/search-filter';
 
 @NgModule({
   declarations: [
@@ -209,7 +210,8 @@ import 'rxjs/add/operator/map';
     DiagnosticProcedureClassificationProvider,
     HealthRecordsProvider,
     InAppBrowser,
-    EncryptionProvider
+    EncryptionProvider,
+    SearchFilterProvider
   ]
 })
 export class AppModule { }

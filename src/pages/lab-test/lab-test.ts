@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LabTestDetailPage } from '../lab-test-detail/lab-test-detail';
 import { HealthRecordsProvider } from '../../providers/health-records/health-records';
+import { SearchFilterProvider } from '../../providers/search-filter/search-filter';
 
 /**
  * Generated class for the LabTestPage page.
@@ -15,13 +16,15 @@ import { HealthRecordsProvider } from '../../providers/health-records/health-rec
   selector: 'page-lab-test',
   templateUrl: 'lab-test.html',
 })
-export class LabTestPage {
+export class LabTestPage{
 
+  myInput: any;
   list: any[] = [];
   errMess: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private hrp: HealthRecordsProvider) {
+    private hrp: HealthRecordsProvider,
+    private sfp: SearchFilterProvider) {
 
     // set an empty array with 26 initials.
     for (let i = 0; i < 26; i++) {
@@ -51,10 +54,21 @@ export class LabTestPage {
       },
         errmess => this.errMess = <any>errmess);
 
+    console.log(this.list);
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LabTestPage');
+  }
+
+  onItemSelected(event) {
+    console.log(event);
+    this.navCtrl.push(LabTestDetailPage, {
+      'id': event.id,
+      'title': event.name,
+      'subtest': event.subtest
+    });
   }
 
   goToCategory(i, j) {

@@ -26,6 +26,7 @@ import { AppointmentAddAppointmentsPage } from '../pages/appointment-add-appoint
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileEditablePage } from '../pages/profile-editable/profile-editable';
 import { ResourcesPage } from '../pages/resources/resources';
+import { ResourcesAddResourcesPage } from '../pages/resources-add-resources/resources-add-resources';
 import { AllergyPage } from './../pages/allergy/allergy';
 import { AllergyDetailPage } from '../pages/allergy-detail/allergy-detail';
 import { AllergyHistoryPage } from '../pages/allergy-history/allergy-history';
@@ -71,6 +72,8 @@ import { HistoryProvider } from '../providers/history/history';
 import { DiagnosticProcedureClassificationProvider } from '../providers/diagnostic-procedure-classification/diagnostic-procedure-classification';
 import { HealthRecordsProvider } from '../providers/health-records/health-records';
 import { EncryptionProvider } from '../providers/encryption/encryption';
+import { SearchFilterProvider } from '../providers/search-filter/search-filter';
+import { ResourcesProvider } from '../providers/resources/resources';
 
 import { TileComponent } from '../components/tile/tile';
 import { DynamicFormQuestionComponent } from './../components/dynamic-form-question/dynamic-form-question';
@@ -80,7 +83,6 @@ import { CalendarComponent } from './../components/calendar/calendar';
 import * as moment from 'moment';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { SearchFilterProvider } from '../providers/search-filter/search-filter';
 
 @NgModule({
   declarations: [
@@ -108,6 +110,7 @@ import { SearchFilterProvider } from '../providers/search-filter/search-filter';
     ProfilePage,
     ProfileEditablePage,
     ResourcesPage,
+    ResourcesAddResourcesPage,
     AllergyHistoryPage,
     FamilyHistoryPage,
     FamilyHistoryDetailPage,
@@ -165,6 +168,7 @@ import { SearchFilterProvider } from '../providers/search-filter/search-filter';
     ProfilePage,
     ProfileEditablePage,
     ResourcesPage,
+    ResourcesAddResourcesPage,
     AllergyHistoryPage,
     FamilyHistoryPage,
     FamilyHistoryDetailPage,
@@ -211,7 +215,8 @@ import { SearchFilterProvider } from '../providers/search-filter/search-filter';
     HealthRecordsProvider,
     InAppBrowser,
     EncryptionProvider,
-    SearchFilterProvider
+    SearchFilterProvider,
+    ResourcesProvider
   ]
 })
 export class AppModule { }

@@ -29,4 +29,31 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  <ion-card *ngIf="customizeResources.length!=0">
+    <ion-card-header>My Resources</ion-card-header>
+    <ion-card-content>
+      <ion-list no-padding>
+        <ion-item-sliding *ngFor="let cr of customizeResources; let j = index;">
+          <ion-item text-wrap>
+            <h3>
+              <a href="#" (click)="openCustomizeLink(j)">{{cr.title}}</a>
+            </h3>
+          </ion-item>
+          <ion-item-options side="right" icon-start>
+            <button ion-button color="danger" (click)="deleteRecord(j)">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addResource()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

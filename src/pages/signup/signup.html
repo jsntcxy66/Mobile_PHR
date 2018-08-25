@@ -18,21 +18,21 @@
     <ion-card>
       <ion-card-content>
         <ion-item>
-          <ion-label floating>Username<span class="color-red">*</span></ion-label>
+          <ion-label stacked>Username<span class="color-red">*</span></ion-label>
           <ion-input type="text" formControlName="username"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.username)">{{formErrors.username}}</span>
         </div>
         <ion-item>
-          <ion-label floating>Password<span class="color-red">*</span></ion-label>
+          <ion-label stacked>Password<span class="color-red">*</span></ion-label>
           <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
         <div class="pull-right color-red">
           <span [hidden]="!(formErrors.password)">{{formErrors.password}}</span>
         </div>
         <ion-item>
-          <ion-label floating>Confirm Password<span class="color-red">*</span></ion-label>
+          <ion-label stacked>Confirm Password<span class="color-red">*</span></ion-label>
           <ion-input type="password" formControlName="confirmPassword"></ion-input>
         </ion-item>
         <div class="pull-right color-red">

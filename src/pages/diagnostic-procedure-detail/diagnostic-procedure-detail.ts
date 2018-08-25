@@ -141,13 +141,13 @@ export class DiagnosticProcedureDetailPage {
     this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
       .subscribe(records => {
         this.records = records;
-        this.records[0]['open'] = true;
-        console.log(this.records);
-        if (this.records.length > 1) {
+        if (this.records.length != 0) {
+          this.records[0]['open'] = true;
           for (let i = 1; i < this.records.length; i++) {
             this.records[i]['open'] = false;
           }
         }
+        console.log(this.records);
       },
         errmess => this.errMess = <any>errmess);
 
@@ -184,12 +184,13 @@ export class DiagnosticProcedureDetailPage {
           this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
             .subscribe(records => {
               this.records = records;
-              this.records[0]['open'] = true;
-              if (this.records.length > 1) {
+              if (this.records.length != 0) {
+                this.records[0]['open'] = true;
                 for (let i = 1; i < this.records.length; i++) {
                   this.records[i]['open'] = false;
                 }
               }
+              console.log(this.records);
               this.tab = 'history';
             },
               errmess => this.errMess = <any>errmess);
@@ -220,12 +221,13 @@ export class DiagnosticProcedureDetailPage {
                 this.hrp.getDiagnosticProcedure(this.auth.userId, this.id)
                   .subscribe(records => {
                     this.records = records;
-                    this.records[0]['open'] = true;
-                    if (this.records.length > 1) {
+                    if (this.records.length != 0) {
+                      this.records[0]['open'] = true;
                       for (let i = 1; i < this.records.length; i++) {
                         this.records[i]['open'] = false;
                       }
                     }
+                    console.log(this.records);
                     this.tab = 'history';
                   },
                     errmess => this.errMess = <any>errmess);

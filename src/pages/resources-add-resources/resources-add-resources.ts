@@ -96,7 +96,7 @@ export class ResourcesAddResourcesPage {
         },
         error => {
           this.loading.dismiss();
-          this.presentToast('Failed to add a new resource.');
+          this.presentToast('Error: ' + error);
         }
       );
   }

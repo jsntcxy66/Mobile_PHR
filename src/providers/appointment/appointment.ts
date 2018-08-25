@@ -39,6 +39,12 @@ export class AppointmentProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
+  editAppointment(id: number, recordid: number, appointment: Object): Observable<any> {
+    this.ep.traversal(appointment, 0);
+    return this.http.post(baseurl + 'appointment/' + recordid + '/' + id, appointment)
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getRecentAppointment(userid: number, duration: number): Observable<any> {
     return this.http.get(baseurl + 'appointment/days/' + duration + '/' + userid)
       .map(records => {

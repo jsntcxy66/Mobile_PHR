@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { AppointmentAddAppointmentsPage } from '../appointment-add-appointments/appointment-add-appointments';
+import { AppointmentEditPage } from './../appointment-edit/appointment-edit';
 import { AppointmentProvider } from '../../providers/appointment/appointment';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
@@ -45,6 +46,20 @@ export class AppointmentPage {
 
   addAppointment() {
     let modal = this.modalCtrl.create(AppointmentAddAppointmentsPage);
+    modal.present();
+    modal.onWillDismiss(
+      () => {
+        this.ap.getAppointment(this.auth.userId)
+          .subscribe(app => this.appointments = app,
+            errmess => this.errMess = <any>errmess);
+      }
+    );
+  }
+
+  editRecord(i) {
+    let modal = this.modalCtrl.create(AppointmentEditPage, {
+      "recordid": i
+    });
     modal.present();
     modal.onWillDismiss(
       () => {

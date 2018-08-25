@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, ViewController, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, ViewController, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { TrackerDetailPage } from '../tracker-detail/tracker-detail';
@@ -180,7 +180,6 @@ export class TrackersPage {
         <ion-checkbox formControlName="{{f.name}}"></ion-checkbox>
       </ion-item>
       <button ion-button clear type="submit">OK</button>
-      <!-- <button ion-button clear (click)="createTracker()">Create My Tracker</button> -->
     </ion-list>
   </form>
   `
@@ -195,8 +194,7 @@ export class PanelPage {
   constructor(public navParams: NavParams,
     public viewCtrl: ViewController,
     private fb: FormBuilder,
-    private storage: Storage,
-    private modalCtrl: ModalController) {
+    private storage: Storage) {
 
     this.panels = this.navParams.data;
     console.log(this.panels);

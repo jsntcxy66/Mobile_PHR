@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -19,6 +19,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 export class ProfileEditablePage {
 
   errMess: string;
+  loading: any;
   profileForm: FormGroup;
   profile: any = {};
   formErrors = {
@@ -53,6 +54,7 @@ export class ProfileEditablePage {
     private fb: FormBuilder,
     private viewCtrl: ViewController,
     private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
     private userProvider: UserProvider,
     private auth: AuthServiceProvider) {
 
@@ -112,26 +114,41 @@ export class ProfileEditablePage {
   }
 
   onSubmit() {
+    this.showLoader('editing...');
     let profile = this.profileForm.value;
     console.log(profile);
     // post edited profile
     this.userProvider.editProfile(this.auth.userId, profile)
       .subscribe(
         profile => {
-          this.toastCtrl.create({
-            message: 'Successfully edited.',
-            position: 'bottom',
-            duration: 2000
-          }).present();
+          this.loading.dismiss();
+          this.presentToast('Successfully edited.');
           this.viewCtrl.dismiss();
         },
         error => {
-          this.toastCtrl.create({
-            message: 'Failed to edit.',
-            position: 'bottom',
-            duration: 2000
-          }).present();
+          this.loading.dismiss();
+          this.presentToast('Error: ' + error);
         }
       );
+  }
+
+  showLoader(msg) {
+    this.loading = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: false
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
   }
 }

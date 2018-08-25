@@ -37,13 +37,6 @@ export class AppointmentAddAppointmentsPage implements OnInit {
     private ap: AppointmentProvider,
     private auth: AuthServiceProvider) {
 
-    // this.storage.get('userId').then(userId => {
-    //   if (userId)
-    //     this.userId = userId;
-    //   else
-    //     console.log('userId not defined');
-    // });
-
     //get doctors in such structure
     // this.doctors = [
     //   {
@@ -132,6 +125,7 @@ export class AppointmentAddAppointmentsPage implements OnInit {
       }
     });
     let app = {
+      doctorid: appForm.doctor,
       date: this.date,
       time: appForm.time,
       firstname: firstname,
@@ -148,7 +142,7 @@ export class AppointmentAddAppointmentsPage implements OnInit {
         },
         error => {
           this.loading.dismiss();
-          this.presentToast('Failed to add a new appointment.');
+          this.presentToast('Error: ' + error);
         }
       );
   }

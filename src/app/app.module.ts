@@ -12,8 +12,6 @@ import { AutoCompleteModule } from 'ionic2-auto-complete';
 import { MyApp } from './app.component';
 import { TrackersPage, PanelPage } from './../pages/trackers/trackers';
 import { TrackerDetailPage } from '../pages/tracker-detail/tracker-detail';
-import { CreateTrackerPage } from './../pages/create-tracker/create-tracker';
-import { CustomtrackerPage } from './../pages/customtracker/customtracker';
 import { DashboardPage } from './../pages/dashboard/dashboard';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
@@ -23,6 +21,7 @@ import { ContactDetailPage } from './../pages/contact-detail/contact-detail';
 import { ContactAddContactsPage } from '../pages/contact-add-contacts/contact-add-contacts';
 import { AppointmentPage } from './../pages/appointment/appointment';
 import { AppointmentAddAppointmentsPage } from '../pages/appointment-add-appointments/appointment-add-appointments';
+import { AppointmentEditPage } from './../pages/appointment-edit/appointment-edit';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileEditablePage } from '../pages/profile-editable/profile-editable';
 import { ResourcesPage } from '../pages/resources/resources';
@@ -90,8 +89,6 @@ import 'rxjs/add/operator/map';
     TrackersPage,
     TrackerDetailPage,
     PanelPage,
-    CreateTrackerPage,
-    CustomtrackerPage,
     TileComponent,
     DashboardPage,
     AllergyPage,
@@ -106,6 +103,7 @@ import 'rxjs/add/operator/map';
     ContactAddContactsPage,
     AppointmentPage,
     AppointmentAddAppointmentsPage,
+    AppointmentEditPage,
     CalendarComponent,
     ProfilePage,
     ProfileEditablePage,
@@ -152,8 +150,6 @@ import 'rxjs/add/operator/map';
     TrackersPage,
     TrackerDetailPage,
     PanelPage,
-    CreateTrackerPage,
-    CustomtrackerPage,
     DashboardPage,
     AllergyPage,
     AllergyDetailPage,
@@ -165,6 +161,7 @@ import 'rxjs/add/operator/map';
     ContactAddContactsPage,
     AppointmentPage,
     AppointmentAddAppointmentsPage,
+    AppointmentEditPage,
     ProfilePage,
     ProfileEditablePage,
     ResourcesPage,

@@ -1,7 +1,16 @@
 page-welcome {
+  .content {
+    background-image: url("../../assets/imgs/phr-welcome1.jpg");
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   a {
     font-size: 10vw;
-    color: black;
+    color: white;
+  }
+  p {
+    color: white;
   }
   .title-wrapper {
     margin-top: 8vh;

@@ -9,7 +9,7 @@
 
     <ion-content>
       <div class="sidemenu">
-        <button class="font" menuClose ion-item color="primary-pale" (click)="goToDashboard()">
+        <button class="font" menuClose ion-item  (click)="goToDashboard()">
           <ion-icon item-left name="analytics"></ion-icon>
           Dashboard
         </button>
@@ -29,7 +29,7 @@
         </ion-list>
         <!-- One level buttons -->
         <ion-list class="section" *ngFor="let page of onelevelPages; let i = index" no-lines no-padding>
-          <button class="font" menuClose ion-item color="primary-pale" (click)="openPage(page)">
+          <button class="font" menuClose ion-item  (click)="openPage(page)">
             <ion-icon item-left [name]='page.icon'></ion-icon>
             {{page.title}}
           </button>

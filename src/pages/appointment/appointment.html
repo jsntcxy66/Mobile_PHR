@@ -27,6 +27,10 @@
         <!-- <ion-note item-end>{{appointment.gender | titlecase}}</ion-note> -->
       </ion-item>
       <ion-item-options side="right" icon-start>
+        <button ion-button color="primary" (click)="editRecord(i)">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
         <button ion-button color="danger" (click)="deleteRecord(i)">
           <ion-icon name="trash"></ion-icon>
           Delete

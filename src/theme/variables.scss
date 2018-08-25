@@ -23,8 +23,8 @@ $app-direction: ltr;
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 // rgb(140, 179, 217);
-$refresher-text-color: rgb(140, 158, 217);
-$refresher-icon-color: rgb(140, 158, 217);
+$refresher-text-color: #3789eb;
+$refresher-icon-color: #3789eb;
 
 
 
@@ -37,8 +37,10 @@ $refresher-icon-color: rgb(140, 158, 217);
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    rgb(140, 158, 217),
-  primary-pale: rgb(201, 210, 241),
+  // primary:    rgb(140, 158, 217),
+  primary:    #3789eb,
+  primary-pale: #A0DEFB,
+  // primary-pale: rgb(201, 210, 241),
   dark-salmon: darksalmon,
   rosy-brown: rosybrown,
   slate-grey: slategrey,

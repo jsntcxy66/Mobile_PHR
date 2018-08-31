@@ -33,7 +33,12 @@ export class EncryptionProvider {
       "securityQuestion": "securityQuestion",
       "securityAnswer": "securityAnswer",
       "socialType": "socialType",
-      "historytype": "historytype"
+      "historytype": "historytype",
+      "typeid": "typeid",
+      "group": "group",
+      "location1": "location1",
+      "location2": "location2",
+      "location3": "location3"
     };
   }
 

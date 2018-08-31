@@ -29,12 +29,6 @@
         </ion-label>
         <ion-radio value="{{doctor.id}}" (ionSelect)="selectDoctor($event)" [checked]="doctor.id==appointment.doctor"></ion-radio>
       </ion-item>
-      <!-- <ion-item>
-        <ion-label>
-          <h2>Test Name</h2>
-        </ion-label>
-        <ion-radio [value]="0" checked></ion-radio> 
-      </ion-item> -->
       <button ion-button type="button" clear color="primary" (click)="addContact()">Add Contact</button>
     </ion-list>
     <ion-list radio-group formControlName="location">
@@ -48,9 +42,10 @@
     </ion-list>
     <ion-list>
       <ion-list-header>Choose a Date</ion-list-header>
-      <ion-card>
-        <calendar (selectDate)="selectDate($event)" ></calendar>
-      </ion-card>
+      <ion-item>
+        <ion-label fixed>Date</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
+      </ion-item>
     </ion-list>
     <ion-list>
       <ion-list-header>Choose the time</ion-list-header>
@@ -59,6 +54,6 @@
         <ion-datetime displayFormat="hh:mm A" formControlName="time"></ion-datetime>
       </ion-item>
     </ion-list>
-    <button ion-button block type="submit" [disabled]="!check_valid() || !appointmentForm.valid">Create</button>
+    <button ion-button block type="submit" [disabled]="!appointmentForm.valid">Edit</button>
   </form>
 </ion-content>

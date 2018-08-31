@@ -21,7 +21,7 @@ export class ResourcesProvider {
   }
 
   getResources(id: number): Observable<any> {
-    return this.http.get(baseurl + 'resources/' + id)
+    return this.http.get(baseurl + 'resource/' + id)
       .map(records => {
         this.ep.traversal(records, 1);
         return records;
@@ -31,12 +31,12 @@ export class ResourcesProvider {
 
   addResource(id: number, resource: Object): Observable<any> {
     this.ep.traversal(resource, 0);
-    return this.http.post(baseurl + 'resources/' + id, resource)
+    return this.http.post(baseurl + 'resource/' + id, resource)
       .catch(error => { return this.processHttpmsgService.handleError(error); })
   }
 
   deleteResource(id: number, recordid: number): Observable<any> {
-    return this.http.delete(baseurl + 'resources/' + recordid + '/' + id)
+    return this.http.delete(baseurl + 'resource/' + recordid + '/' + id)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 }

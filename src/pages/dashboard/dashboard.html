@@ -78,15 +78,15 @@
         <ion-list>
           <ion-item *ngFor="let dp of dp; let j = index;" (click)="goToDiagnosticProcedure(j)">
             <div>
-              <div *ngIf="dp.dptype==2 || dp.dptype==3 || dp.type==4 || dp.type==5">
+              <div *ngIf="dp.typeid==2 || dp.typeid==3 || dp.typeid==4 || dp.typeid==5">
                 <h2 text-wrap>{{dp.organ}} {{dp.result}}</h2>
               </div>
-              <div *ngIf="dp.dptype==1 || dp.dptype==6 || dp.type==7 || dp.type==8">
-                <h2 text-wrap>{{dp.name}} {{dp.result}}</h2>
+              <div *ngIf="dp.typeid==1 || dp.typeid==6 || dp.typeid==7 || dp.typeid==8">
+                <h2 text-wrap>{{dp.testname}} {{dp.result}}</h2>
               </div>
               <p>{{dp.date | date}}</p>
             </div>
-            <p text-wrap item-end>{{dpName[dp.dptype-1]}}</p>
+            <p text-wrap item-end>{{dpName[dp.typeid-1]}}</p>
           </ion-item>
         </ion-list>
       </ion-card-content>

@@ -54,7 +54,7 @@
             <ion-card-header>
               <ion-item (click)="toggleSection(i)" no-padding>
                 <ion-label *ngIf="d.organ" text-wrap>{{d.organ}}</ion-label>
-                <ion-label *ngIf="d.name" text-wrap>{{d.name}}</ion-label>
+                <ion-label *ngIf="d.testname" text-wrap>{{d.testname}}</ion-label>
                 <ion-icon item-right name="arrow-forward" *ngIf="!d.open"></ion-icon>
                 <ion-icon item-right name="arrow-down" *ngIf="d.open"></ion-icon>
               </ion-item>

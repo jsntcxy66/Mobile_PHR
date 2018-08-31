@@ -1,8 +1,8 @@
-import { DiagnosticProcedureDetailPage } from './../diagnostic-procedure-detail/diagnostic-procedure-detail';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AppointmentPage } from '../appointment/appointment';
 import { LabTestDetailPage } from '../lab-test-detail/lab-test-detail';
+import { DiagnosticProcedureDetailPage } from './../diagnostic-procedure-detail/diagnostic-procedure-detail';
 import { MedicationPage } from '../medication/medication';
 import { ImmunizationHistoryPage } from '../immunization-history/immunization-history';
 import { WelcomePage } from '../welcome/welcome';
@@ -75,7 +75,7 @@ export class DashboardPage {
         errmess => this.errMess = <any>errmess);
 
     this.hrp.getRecentDiagnosticProcedure(this.auth.userId, 30)
-      .subscribe(records => { this.dp = records; },
+      .subscribe(records => { this.dp = records; console.log(this.dp);},
         errmess => this.errMess = <any>errmess);
 
     this.hrp.getMedication(this.auth.userId)
@@ -143,8 +143,8 @@ export class DashboardPage {
 
   goToDiagnosticProcedure(j) {
     this.navCtrl.push(DiagnosticProcedureDetailPage, {
-      'title': this.dpName[this.dp[j].dptype - 1],
-      'id': this.dp[j].dptype
+      'title': this.dpName[this.dp[j].typeid - 1],
+      'id': this.dp[j].typeid
     })
   }
 

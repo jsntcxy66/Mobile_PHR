@@ -26,10 +26,8 @@ export class AppointmentEditPage implements OnInit {
   appointment: any = {};
   doctors: any[] = [];
   appointmentForm: FormGroup = new FormGroup({});
-  date: Date;
   locations: Array<string> = [];
   recordid: number;
-  defalutTime: string;
   loading: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -49,20 +47,22 @@ export class AppointmentEditPage implements OnInit {
         this.appointment = app[this.recordid];
         console.log(this.appointment);
         this.locations = [app[this.recordid].location];
-        this.defalutTime = moment(this.appointment.date + " " + this.appointment.time).format();
         this.appointmentForm.patchValue({
-          time: this.defalutTime
+          date: this.appointment.date,
+          doctor: this.appointment.doctorid,
+          time: moment(this.appointment.date + " " + this.appointment.time).format(),
+          location: this.appointment.location
         })
       },
         errmess => this.errMess = <any>errmess);
 
     this.appointmentForm = this.fb.group({
+      date: ['', Validators.required],
       time: ['', Validators.required],
-      doctor: [this.appointment.doctorid, Validators.required],
-      location: [this.appointment.location, Validators.required]
+      doctor: ['', Validators.required],
+      location: ['', Validators.required]
     });
     console.log(this.appointmentForm);
-    console.log(this.defalutTime);
   }
 
   async ngOnInit() {
@@ -71,11 +71,6 @@ export class AppointmentEditPage implements OnInit {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AppointmentEditPage');
-  }
-
-  selectDate($event) {
-    this.date = $event;
-    console.log(this.date);
   }
 
   selectDoctor($event) {
@@ -101,12 +96,6 @@ export class AppointmentEditPage implements OnInit {
     );
   }
 
-  check_valid(): boolean {
-    if (this.date == undefined)
-      return false;
-    else return true;
-  }
-
   dismiss() {
     this.viewCtrl.dismiss();
   }
@@ -122,10 +111,17 @@ export class AppointmentEditPage implements OnInit {
         lastname = doctor.lastname;
       }
     });
+    console.log(appForm.time);
+    // format time
+    let newTime;
+    if (appForm.time.length > 6) {
+      newTime = moment(appForm.time).format('HH:mm');
+    } else newTime = appForm.time;
+
     let app = {
       doctorid: appForm.doctor,
-      date: this.date,
-      time: appForm.time,
+      date: appForm.date,
+      time: newTime,
       firstname: firstname,
       lastname: lastname,
       location: appForm.location

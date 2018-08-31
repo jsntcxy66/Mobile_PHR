@@ -72,14 +72,20 @@ export class ProfileEditablePage {
 
     // get profile from database
     this.userProvider.getProfile(this.auth.userId)
-      .subscribe(profile => this.profile = profile,
+      .subscribe(profile => {
+        this.profile = profile;
+        this.profileForm.patchValue({
+          gender: this.profile.gender,
+          race: this.profile.race
+        });
+      },
         errmess => this.errMess = <any>errmess);
 
     this.profileForm = this.fb.group({
       firstname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
       lastname: ['', [Validators.minLength(2), Validators.maxLength(25)]],
-      gender: [this.profile.gender],
-      race: [this.profile.race],
+      gender: [''],
+      race: [''],
       email: ['', [Validators.required, Validators.email]],
       tel: ['', Validators.pattern('[0-9]{10}')],
       address: [''],

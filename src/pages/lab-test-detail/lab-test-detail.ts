@@ -69,7 +69,7 @@ export class LabTestDetailPage implements OnInit {
       shortTitle = this.title.slice(0, this.title.indexOf('(') - 1);
     } else shortTitle = this.title;
     this.id = navParams.get('id');
-    this.subtest = navParams.get('subtest');
+    // this.subtest = navParams.get('subtest');
     this.questions = this.qp.getLabTestQuestions(shortTitle);
     this.form = this.qcp.toFormGroup(this.questions);
     this.navcolor = this.color[(this.id + 1) % 3];
@@ -214,29 +214,6 @@ export class LabTestDetailPage implements OnInit {
     // console.log(this.unit);
     // this.drawcanvas();
 
-
-    // this.hrp.getLabtTest(this.auth.userId, this.id)
-    //   .subscribe(records => {
-    //     this.records = records;
-    //     console.log(this.records);
-    //     if (this.records.length != 0) {
-    //       // set extension panel of first category in record history in 'open' status
-    //       this.records[0]['open'] = true;
-    //       for (let i = 1; i < this.records.length; i++) {
-    //         this.records[i]['open'] = false;
-    //       }
-    //       //get unit array
-    //       this.unit = [];
-    //       this.records.forEach(record => {
-    //         this.unit.push(record.unit);
-    //       });
-    //     }
-    //     this.data = this.records;
-    //     console.log(this.data);
-    //     if (this.data.length != 0) this.drawcanvas();
-    //   },
-    //     errmess => this.errMess = <any>errmess);
-
   }
 
   async ngOnInit() {
@@ -287,9 +264,9 @@ export class LabTestDetailPage implements OnInit {
           else
             this.abnormalColor.push('rgba(148,159,177,1)');
         });
-        this.date.reverse();
-        this.results.reverse();
-        this.abnormalColor.reverse();
+        // this.date.reverse();
+        // this.results.reverse();
+        // this.abnormalColor.reverse();
         console.log(this.abnormalColor);
         this.lineChartLabels = this.date;
         this.lineChartData = [{ data: this.results, label: this.data[i].subtest }];
@@ -327,13 +304,9 @@ export class LabTestDetailPage implements OnInit {
     alert.present();
   }
 
-  chartHovered($event) {
+  chartHovered($event) { }
 
-  }
-
-  chartClicked($event) {
-
-  }
+  chartClicked($event) { }
 
   onSubmit() {
     this.showLoader('Adding...');

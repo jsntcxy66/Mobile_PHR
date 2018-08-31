@@ -23,18 +23,19 @@
   </ion-refresher>
   <ion-list>
     <ion-list-header>Recent Events</ion-list-header>
+
     <ion-card *ngIf="appointments.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
             <ion-icon item-start>
-              <i class="far fa-calendar-alt dashboard-icon"></i>
+              <i class="far fa-calendar-alt"></i>
             </ion-icon>
             <span>Appointment</span>
           </ion-item>
         </ion-card-title>
-        <ion-list *ngFor="let appointment of appointments">
-          <ion-item (click)="goToAppointment()">
+        <ion-list>
+          <ion-item *ngFor="let appointment of appointments" (click)="goToAppointment()">
             <h2>{{appointment.date | date}} at {{appointment.time}}</h2>
             <h3>{{appointment.location}}</h3>
             <p>{{appointment.firstname | titlecase}} {{appointment.lastname | titlecase}}</p>
@@ -42,39 +43,67 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+
     <ion-card *ngIf="labtests.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
             <ion-icon item-start>
-              <i class="fas fa-file-medical-alt dashboard-icon"></i>
+              <i class="fas fa-file-medical-alt"></i>
             </ion-icon>
             <span>Abnormal Lab Test</span>
           </ion-item>
         </ion-card-title>
-        <ion-list *ngFor="let labtest of labtests; let i = index;">
-          <ion-item (click)="goToLabtest(i)">
-            <h2>{{labtest.subtest}}</h2>
-            <h3>{{labtest.result}}
+        <ion-list>
+          <ion-item *ngFor="let labtest of labtests; let i = index;" (click)="goToLabtest(i)">
+            <h2 text-wrap>{{labtest.subtest}} {{labtest.result}}
               <span *ngIf="labtest.unit.length!=0"> {{labtest.unit}}</span>
-            </h3>
+            </h2>
             <p>{{labtest.date | date}}</p>
           </ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
+
+    <ion-card *ngIf="dp.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-file-medical-alt"></i>
+            </ion-icon>
+            <span>Diagnostic Procedure</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list>
+          <ion-item *ngFor="let dp of dp; let j = index;" (click)="goToDiagnosticProcedure(j)">
+            <div>
+              <div *ngIf="dp.dptype==2 || dp.dptype==3 || dp.type==4 || dp.type==5">
+                <h2 text-wrap>{{dp.organ}} {{dp.result}}</h2>
+              </div>
+              <div *ngIf="dp.dptype==1 || dp.dptype==6 || dp.type==7 || dp.type==8">
+                <h2 text-wrap>{{dp.name}} {{dp.result}}</h2>
+              </div>
+              <p>{{dp.date | date}}</p>
+            </div>
+            <p text-wrap item-end>{{dpName[dp.dptype-1]}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
     <ion-card *ngIf="medications.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
             <ion-icon item-start>
-              <i class="fas fa-capsules dashboard-icon"></i>
+              <i class="fas fa-capsules"></i>
             </ion-icon>
             <span>Medication</span>
           </ion-item>
         </ion-card-title>
-        <ion-list *ngFor="let medication of medications">
-          <ion-item (click)="goToMedication()">
+        <ion-list>
+          <ion-item *ngFor="let medication of medications" (click)="goToMedication()">
             <h2>{{medication.name}}</h2>
             <h3>{{medication.frequency}}</h3>
             <p>{{medication.date | date}}</p>
@@ -82,18 +111,19 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+
     <ion-card *ngIf="immunizations.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
             <ion-icon item-start>
-              <i class="fas fa-syringe dashboard-icon"></i>
+              <i class="fas fa-syringe"></i>
             </ion-icon>
             <span>Immunization</span>
           </ion-item>
         </ion-card-title>
-        <ion-list *ngFor="let immunization of immunizations">
-          <ion-item (click)="goToImmunization()">
+        <ion-list>
+          <ion-item *ngFor="let immunization of immunizations" (click)="goToImmunization()">
             <h2>{{immunization.vaccine}}</h2>
             <h3>{{immunization.schedule}}</h3>
             <p>{{immunization.date | date}}</p>
@@ -101,18 +131,19 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+
     <ion-card *ngIf="dvnotes.length!=0">
       <ion-card-content>
         <ion-card-title>
           <ion-item no-padding>
             <ion-icon item-start>
-              <i class="fas fa-notes-medical dashboard-icon"></i>
+              <i class="fas fa-user-md"></i>
             </ion-icon>
             <span>Doctor Visit Notes</span>
           </ion-item>
         </ion-card-title>
-        <ion-list *ngFor="let d of dvnotes">
-          <ion-item (click)="goToDoctorVisitNotes()">
+        <ion-list>
+          <ion-item *ngFor="let d of dvnotes" (click)="goToDoctorVisitNotes()">
             <h2>{{d.diagnosis}}</h2>
             <h3>{{d.doctor}}</h3>
             <p>{{d.date | date}}</p>
@@ -120,5 +151,119 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+
+    <ion-card *ngIf="allergy.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-allergies"></i>
+            </ion-icon>
+            <span>Allergy History</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list>
+          <ion-item *ngFor="let al of allergy" (click)="goToAllergy()">
+            <h2>{{al.category}}</h2>
+            <p>{{al.date | date}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="medical.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-file-medical"></i>
+            </ion-icon>
+            <span>Medical History</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list>
+          <ion-item *ngFor="let me of medical" (click)="goToMedical()">
+            <h2>{{me.diagnosis}}</h2>
+            <p>{{me.date | date}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="social.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-file-medical"></i>
+            </ion-icon>
+            <span>Social History</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list>
+          <ion-item *ngFor="let so of social" (click)="goToSocial()">
+            <div>
+              <div *ngIf="so.socialType=='smoking'">
+                <h2>{{so.amount}} cigarettes</h2>
+              </div>
+              <div *ngIf="so.socialType=='alcohol'">
+                <h2>{{so.name}}</h2>
+              </div>
+              <div *ngIf="so.socialType=='drug'">
+                <h2>{{so.amount}} {{so.name}}</h2>
+              </div>
+              <div *ngIf="so.socialType=='travel'">
+                <h2>{{so.location}}</h2>
+              </div>
+              <p *ngIf="so.date">{{so.date | date}}</p>
+            </div>
+            <p item-end>{{so.socialType | titlecase}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="surgical.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-file-medical"></i>
+            </ion-icon>
+            <span>Surgical History</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list>
+          <ion-item *ngFor="let su of surgical" (click)="goToSurgical()">
+            <h2>{{su.surgery}}</h2>
+            <h3>{{su.doctor}}</h3>
+            <p>{{su.date | date}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="family.length!=0">
+      <ion-card-content>
+        <ion-card-title>
+          <ion-item no-padding>
+            <ion-icon item-start>
+              <i class="fas fa-file-medical"></i>
+            </ion-icon>
+            <span>Family History</span>
+          </ion-item>
+        </ion-card-title>
+        <ion-list>
+          <ion-item *ngFor="let fa of family" (click)="goToFamily()">
+            <div>
+              <h3>{{fa.disease}}</h3>
+              <p>{{fa.date | date}}</p>
+            </div>
+            <p item-end>{{fa.relationship}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
   </ion-list>
 </ion-content>

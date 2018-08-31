@@ -19,9 +19,6 @@
 $primary: #3789eb;
 $background-pale: #A0DEFB;
 
-.dashboard-icon {
-  // color: $primary;
-}
 .section-open {
   background-color: $background-pale;
   transition: 0.2s linear;
@@ -46,19 +43,13 @@ $background-pale: #A0DEFB;
 .font {
   font-size: 20px;
 }
-// .card-md .item-md.item-block:not(:last-child) .item-inner,
-// .card-ios .item-ios.item-block:not(:last-child) .item-inner
-.card-md .item-md.item-block .item-inner,
-.card-ios .item-ios.item-block .item-inner {
-    // box-shadow: inset 0 -1px 0 0 #dedede;
-    // box-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.8);
-    // border-bottom-color: #dedede !important;
-    border-bottom: 1px solid #dedede;
+.card-md .item-md.item-block:not(:last-child) .item-inner,
+.card-ios .item-ios.item-block:not(:last-child) .item-inner {
+  border-bottom: 1px solid #dedede;
 }
 
 .card-ios, .card-md {
   box-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.8);
-  // border-bottom: 1px solid #dedede;
 }
 
 .alert-ios .alert-radio-label{ white-space: normal;}
@@ -68,10 +59,3 @@ $background-pale: #A0DEFB;
 .label {
   width: 100%;
 }
-
-// ion-content {
-//   background-image: url("../../assets/imgs/phr-welcome.jpg");
-//   background-position: 60%;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }

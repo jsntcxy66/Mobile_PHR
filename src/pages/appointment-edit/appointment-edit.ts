@@ -50,6 +50,9 @@ export class AppointmentEditPage implements OnInit {
         console.log(this.appointment);
         this.locations = [app[this.recordid].location];
         this.defalutTime = moment(this.appointment.date + " " + this.appointment.time).format();
+        this.appointmentForm.patchValue({
+          time: this.defalutTime
+        })
       },
         errmess => this.errMess = <any>errmess);
 

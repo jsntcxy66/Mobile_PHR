@@ -5,4 +5,7 @@ page-signup {
     .color-red {
         color: #f53d3d;
     }
+    ion-input, ion-textarea, ion-select {
+        border-bottom: 1px solid #dedede;
+    }
 }

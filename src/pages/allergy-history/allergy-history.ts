@@ -72,10 +72,6 @@ export class AllergyHistoryPage {
         errmess => this.errMess = <any>errmess);
   }
 
-  checkLifeThreatening(i): boolean {
-    return this.records[i].threatening;
-  }
-
   addAllergy() {
     this.navCtrl.push(AllergyPage);
   }

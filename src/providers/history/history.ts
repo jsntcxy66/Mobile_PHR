@@ -20,6 +20,15 @@ export class HistoryProvider {
     console.log('Hello HistoryProvider Provider');
   }
 
+  getRecentHistory(userid: number, duration: number): Observable<any> {
+    return this.http.get(baseurl + 'history/days/' + duration + '/' + userid)
+      .map(records => {
+        this.ep.traversal(records, 1);
+        return records
+      })
+      .catch(error => { return this.processHttpmsgService.handleError(error); });
+  }
+
   getAllergy(id: number): Observable<any> {
     return this.http.get(baseurl + 'history/allergy/' + id)
       .map(records => {

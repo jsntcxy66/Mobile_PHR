@@ -98,7 +98,7 @@ export class PasswordResetPage {
   verifyEmail() {
     this.showLoader('Authenticating...');
     console.log(this.emailAddress);
-    this.auth.verifyEmail_getSecQues(this.emailAddress)
+    this.auth.verifyEmail_getSecQues({ "email": this.emailAddress })
       .subscribe(
         res => {
           if (res == -1) {
@@ -121,7 +121,7 @@ export class PasswordResetPage {
   verifySecQues() {
     this.showLoader('Authenticating...');
     console.log(this.securityAnswer);
-    this.auth.verifySecAns(this.userId, this.securityAnswer)
+    this.auth.verifySecAns(this.userId, { "securityanswer": this.securityAnswer })
       .subscribe(
         res => {
           if (res == -1) {

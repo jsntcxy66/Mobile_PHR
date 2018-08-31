@@ -21,6 +21,7 @@ export class EncryptionProvider {
     // this.iv = CryptoJS.enc.Hex.parse("213abf798605cceadad32b7dab01632f");
     this.exProperty = {
       "id": "id",
+      "testid": "testid",
       "date": "date",
       "datetime": "datetime",
       "subtest": "subtest",
@@ -30,7 +31,9 @@ export class EncryptionProvider {
       "password": "password",
       "email": "email",
       "securityQuestion": "securityQuestion",
-      "securityAnswer": "securityAnswer"
+      "securityAnswer": "securityAnswer",
+      "socialType": "socialType",
+      "historytype": "historytype"
     };
   }
 
@@ -44,7 +47,6 @@ export class EncryptionProvider {
         continue;
       if (typeof payload[property] == "string" || typeof payload[property] == "boolean" || typeof payload[property] == "number") {
         payload[property] = payload[property].toString();
-        console.log(typeof payload[property]);
         if (mode == 0) {
           console.log(payload[property]);
           payload[property] = this.encrypt(payload[property]);

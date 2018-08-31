@@ -54,12 +54,12 @@ export class AuthServiceProvider {
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
-  verifyEmail_getSecQues(email: string) {
+  verifyEmail_getSecQues(email: Object) {
     return this.http.post(baseurl + 'users/email/', email)
       .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
-  verifySecAns(id: number, secAns: string) {
+  verifySecAns(id: number, secAns: Object) {
     return this.http.post(baseurl + 'users/securityanswer/' + id, secAns)
       .map(records => {
         this.ep.traversal(records, 1);

@@ -848,6 +848,7 @@ export class QuestionProvider {
           label: 'Amount',
           type: 'number',
           value: '',
+          unit: 'cigarettes',
           required: true,
           order: 1
         }),
@@ -921,7 +922,7 @@ export class QuestionProvider {
         new TextboxQuestion({
           key: 'amount',
           label: 'Amount',
-          type: 'number',
+          type: 'text',
           value: '',
           required: true,
           order: 2

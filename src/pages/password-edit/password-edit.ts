@@ -110,6 +110,7 @@ export class PasswordEditPage {
         },
         err => {
           this.loading.dismiss();
+          console.log(err);
           this.presentToast('Error: ' + err);
         }
       );

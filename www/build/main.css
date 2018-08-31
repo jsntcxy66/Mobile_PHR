@@ -42198,8 +42198,8 @@ ion-auto-complete ul li:hover {
   font-size: 20px;
 }
 
-.card-md .item-md.item-block .item-inner,
-.card-ios .item-ios.item-block .item-inner {
+.card-md .item-md.item-block:not(:last-child) .item-inner,
+.card-ios .item-ios.item-block:not(:last-child) .item-inner {
   border-bottom: 1px solid #dedede;
 }
 
@@ -42442,6 +42442,10 @@ page-signup .pull-right {
 
 page-signup .color-red {
   color: #f53d3d;
+}
+
+page-signup ion-input, page-signup ion-textarea, page-signup ion-select {
+  border-bottom: 1px solid #dedede;
 }
 
 page-social-history .white-space {

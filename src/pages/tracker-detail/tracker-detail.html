@@ -57,7 +57,7 @@
 
           <ion-item *ngIf="id==1" (click)="showNotes(i)">
             <h2>{{record.food}} {{record.amount}}</h2>
-            <h2 *ngIf="record.calories.length!=0">{{record.calories}}</h2>
+            <h2 *ngIf="record.calories.length!=0">{{record.calories}} Cal</h2>
             <ion-note>{{record.timeperiod | titlecase}} - {{record.datetime | date:'mediumDate'}} {{record.datetime | date:'shortTime'}}</ion-note>
           </ion-item>
 
